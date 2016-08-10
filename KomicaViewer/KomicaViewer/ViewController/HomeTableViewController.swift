@@ -24,6 +24,7 @@ class HomeTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
+        tableView.registerNib(UINib(nibName: "ThreadTableViewCell", bundle: nil), forCellReuseIdentifier: ThreadTableViewCell.identifier)
         // Add handler for Forum selected notification.
         NSNotificationCenter.defaultCenter().addObserver(self,
                                                          selector: #selector(HomeTableViewController.handleForumSelectedNotification(_:)),
