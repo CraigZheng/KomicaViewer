@@ -11,14 +11,15 @@ import UIKit
 import KomicaEngine
 import SDWebImage
 
-class HomeTableViewController: UITableViewController {
+class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol {
     
-    private let listDownloader = KomicaDownloader()
-    private var selectedForum: KomicaForum? {
-        return Forums.selectedForum
+    // MARK: ThreadTableViewControllerProtocol
+    var threads = [Thread]()    
+    func refreshWithPage(page: Int) {
+        loadThreadsWithPage(page)
     }
+    
     private var pageIndex = 0
-    private var threads = [Thread]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,22 +79,10 @@ extension HomeTableViewController {
 extension HomeTableViewController {
     
     func handleForumSelectedNotification(notification: NSNotification) {
-        title = selectedForum?.name
+        title = forum?.name
         threads.removeAll()
         tableView.reloadData()
-        loadThreadsWithPage(0)
-    }
-    
-    func loadThreadsWithPage(page: Int) {
-        if let selectedForum = selectedForum {
-            listDownloader.downloadListForRequest(KomicaDownloaderRequest(url: selectedForum.listURLForPage(page), parser: selectedForum.parserType, completion: { (success, result) in
-                // Process the downloaded threads, and reload the tableView.
-                if success, let downloadedThreads = result?.threads {
-                    self.threads.appendContentsOf(downloadedThreads)
-                }
-                self.tableView.reloadData()
-            }))
-        }
+        refreshWithPage(0)
     }
     
 }
