@@ -9,6 +9,7 @@
 import UIKit
 
 import KomicaEngine
+import SDWebImage
 
 class HomeTableViewController: UITableViewController {
     
@@ -21,6 +22,8 @@ class HomeTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 120
         // Add handler for Forum selected notification.
         NSNotificationCenter.defaultCenter().addObserver(self,
                                                          selector: #selector(HomeTableViewController.handleForumSelectedNotification(_:)),
@@ -32,6 +35,17 @@ class HomeTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return threads.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(ThreadTableViewCell.identifier, forIndexPath: indexPath)
+        let thread = threads[indexPath.row]
+        cell.textLabel?.text = (thread.ID ?? "") + " by " + (thread.UID ?? "")
+        cell.detailTextLabel?.attributedText = thread.content
+        if let imageURL = thread.thumbnailURL {
+            cell.imageView?.sd_setImageWithURL(imageURL)
+        }
+        return cell
     }
     
 }
