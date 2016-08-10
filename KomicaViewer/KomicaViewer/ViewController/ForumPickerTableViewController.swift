@@ -40,6 +40,8 @@ class ForumPickerTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let forum = forums[indexPath.row]
         Forums.selectedForum = forum
+        // Dismiss self.
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
 }

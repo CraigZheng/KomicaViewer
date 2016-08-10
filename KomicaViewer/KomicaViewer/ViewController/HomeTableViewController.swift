@@ -12,7 +12,11 @@ class HomeTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // Add handler for Forum selected notification.
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(HomeTableViewController.handleForumSelectedNotification(_:)),
+                                                         name: Forums.selectionUpdatedNotification,
+                                                         object: nil)
     }
     
     // MARK: - Table view data source
@@ -35,5 +39,9 @@ class HomeTableViewController: UITableViewController {
 
 // MARK: Forum selected notification handler.
 extension HomeTableViewController {
+    
+    func handleForumSelectedNotification(notification: NSNotification) {
+        DLog("Selected forum: \(Forums.selectedForum)")
+    }
     
 }
