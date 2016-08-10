@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Home-->
         <scene sceneID="xVi-5c-5hD">
             <objects>
                 <tableViewController id="oFT-St-UNq" customClass="HomeTableViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
@@ -28,11 +28,68 @@
                             <outlet property="delegate" destination="oFT-St-UNq" id="8gm-UR-Ihs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="aYr-iF-oH4"/>
+                    <navigationItem key="navigationItem" title="Home" id="aYr-iF-oH4">
+                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="Kgg-cW-qSB">
+                            <connections>
+                                <segue destination="q8u-Ey-SgU" kind="popoverPresentation" popoverAnchorBarButtonItem="Kgg-cW-qSB" id="A44-nI-7PW">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2vI-jQ-CmA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1491" y="-146"/>
+        </scene>
+        <!--Board-->
+        <scene sceneID="edd-3u-bqG">
+            <objects>
+                <tableViewController id="aq2-d7-B7B" customClass="ForumPickerTableViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2wJ-h4-lSz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="2H8-XD-yl2">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2H8-XD-yl2" id="nMl-Pr-PAa">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="aq2-d7-B7B" id="eLp-vM-Smc"/>
+                            <outlet property="delegate" destination="aq2-d7-B7B" id="u04-Jd-a7Z"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Board" id="ALv-R4-0mx"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6pu-mG-bIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2311" y="631"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7gO-nN-j9s">
+            <objects>
+                <navigationController id="q8u-Ey-SgU" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4ia-N3-gpa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="0.63375720099999999" blue="0.27949856020000002" alpha="0.88256318509999998" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="aq2-d7-B7B" kind="relationship" relationship="rootViewController" id="w9n-ek-hE6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wT4-YR-KVH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1491" y="631"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mNO-Ol-vqp">
@@ -41,6 +98,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fOT-yR-NNp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="1" green="0.63375720099999999" blue="0.27949856020000002" alpha="0.88256318509999998" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="oFT-St-UNq" kind="relationship" relationship="rootViewController" id="IUJ-UW-qUf"/>

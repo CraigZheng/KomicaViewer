@@ -16,7 +16,8 @@
 		44655D481D5AD24700229404 /* KomicaEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D401D5AD15400229404 /* KomicaEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		44655D6F1D5AD4B400229404 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D6C1D5AD49D00229404 /* AFNetworking.framework */; };
 		44655D701D5AD4B400229404 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D6C1D5AD49D00229404 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		44655D721D5AEE0100229404 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D711D5AEE0100229404 /* HomeTableViewController.swift */; };
+		44655D751D5AEF7900229404 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D741D5AEF7900229404 /* HomeTableViewController.swift */; };
+		44655D771D5AEF8E00229404 /* ForumPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +85,8 @@
 		44496F691D5985A6005875DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44655D3A1D5AD15400229404 /* KomicaEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KomicaEngine.xcodeproj; path = ../../komicaengine/KomicaEngine.xcodeproj; sourceTree = "<group>"; };
 		44655D6C1D5AD49D00229404 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = "<group>"; };
-		44655D711D5AEE0100229404 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeTableViewController.swift; path = ViewController/HomeTableViewController.swift; sourceTree = "<group>"; };
+		44655D741D5AEF7900229404 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumPickerTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,8 +136,8 @@
 				44496F561D5985A6005875DD /* Main.storyboard */,
 				44496F591D5985A6005875DD /* Assets.xcassets */,
 				44496F5B1D5985A6005875DD /* LaunchScreen.storyboard */,
+				44655D731D5AEF7900229404 /* ViewController */,
 				44496F5E1D5985A6005875DD /* Info.plist */,
-				44655D711D5AEE0100229404 /* HomeTableViewController.swift */,
 			);
 			path = KomicaViewer;
 			sourceTree = "<group>";
@@ -156,6 +158,15 @@
 				44655D421D5AD15400229404 /* KomicaEngineTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		44655D731D5AEF7900229404 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				44655D741D5AEF7900229404 /* HomeTableViewController.swift */,
+				44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,8 +296,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44655D721D5AEE0100229404 /* HomeTableViewController.swift in Sources */,
+				44655D751D5AEF7900229404 /* HomeTableViewController.swift in Sources */,
 				44496F531D5985A6005875DD /* AppDelegate.swift in Sources */,
+				44655D771D5AEF8E00229404 /* ForumPickerTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
