@@ -14,13 +14,14 @@ import SDWebImage
 class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol {
     
     // MARK: ThreadTableViewControllerProtocol
-    var threads = [Thread]()    
+    var threads = [Thread]()
     func refreshWithPage(page: Int) {
         loadThreadsWithPage(page)
     }
     
     private var pageIndex = 0
-
+    private let showThreadSegue = "showThread"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -58,6 +59,24 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
                 })
         }
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier(showThreadSegue, sender: tableView.cellForRowAtIndexPath(indexPath))
+    }
+    
+}
+
+// MARK: Prepare for segue.
+extension HomeTableViewController {
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let selectedCell = sender as? UITableViewCell,
+            let destinationViewController = segue.destinationViewController as? ThreadTableViewController,
+            let indexPath = tableView.indexPathForCell(selectedCell)
+        {
+            destinationViewController.selectedThreadID = threads[indexPath.row].ID
+        }
     }
     
 }
