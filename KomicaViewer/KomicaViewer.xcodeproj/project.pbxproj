@@ -19,6 +19,7 @@
 		44655D751D5AEF7900229404 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D741D5AEF7900229404 /* HomeTableViewController.swift */; };
 		44655D771D5AEF8E00229404 /* ForumPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */; };
 		44655D7A1D5AFDAB00229404 /* Forums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D791D5AFDAB00229404 /* Forums.swift */; };
+		44BD39751D5B1E510070E0CB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39741D5B1E510070E0CB /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		44655D741D5AEF7900229404 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumPickerTableViewController.swift; sourceTree = "<group>"; };
 		44655D791D5AFDAB00229404 /* Forums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forums.swift; sourceTree = "<group>"; };
+		44BD39741D5B1E510070E0CB /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				44496F561D5985A6005875DD /* Main.storyboard */,
 				44496F591D5985A6005875DD /* Assets.xcassets */,
 				44496F5B1D5985A6005875DD /* LaunchScreen.storyboard */,
+				44BD39731D5B1E510070E0CB /* Util */,
 				44655D781D5AF9F300229404 /* Model */,
 				44655D731D5AEF7900229404 /* ViewController */,
 				44496F5E1D5985A6005875DD /* Info.plist */,
@@ -178,6 +181,14 @@
 				44655D791D5AFDAB00229404 /* Forums.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		44BD39731D5B1E510070E0CB /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				44BD39741D5B1E510070E0CB /* Logger.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44BD39751D5B1E510070E0CB /* Logger.swift in Sources */,
 				44655D7A1D5AFDAB00229404 /* Forums.swift in Sources */,
 				44655D751D5AEF7900229404 /* HomeTableViewController.swift in Sources */,
 				44496F531D5985A6005875DD /* AppDelegate.swift in Sources */,
@@ -458,6 +470,7 @@
 				);
 				INFOPLIST_FILE = KomicaViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -474,6 +487,7 @@
 				);
 				INFOPLIST_FILE = KomicaViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
