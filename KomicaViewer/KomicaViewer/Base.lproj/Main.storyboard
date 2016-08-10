@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Home-->
@@ -14,30 +15,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="threadCellIdentifier" rowHeight="180" id="bhd-Rz-voJ" customClass="ThreadTableViewCell" customModule="KomicaViewer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="180"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="threadCellIdentifier" rowHeight="220" id="bhd-Rz-voJ" customClass="ThreadTableViewCell" customModule="KomicaViewer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="220"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bhd-Rz-voJ" id="iG5-Je-2Ie">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="179.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="219.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9AL-1b-gBW">
-                                            <rect key="frame" x="8" y="8" width="107.5" height="21"/>
+                                            <rect key="frame" x="8" y="48" width="107.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="108" placeholderIntrinsicHeight="134.5" translatesAutoresizingMaskIntoConstraints="NO" id="tJf-br-I0a">
-                                            <rect key="frame" x="8" y="37" width="108" height="134.5"/>
+                                            <rect key="frame" x="8" y="77" width="108" height="134.5"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Poster And Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwY-OB-oue">
-                                            <rect key="frame" x="467" y="8" width="125" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <rect key="frame" x="493" y="8" width="99" height="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Additional Info" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rky-2v-82I">
-                                            <rect key="frame" x="505" y="155" width="87" height="16"/>
+                                            <rect key="frame" x="505" y="195.5" width="87" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -47,7 +48,9 @@
                                         <constraint firstItem="tJf-br-I0a" firstAttribute="leading" secondItem="iG5-Je-2Ie" secondAttribute="leading" constant="8" id="3GS-p0-IKB"/>
                                         <constraint firstItem="jwY-OB-oue" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9AL-1b-gBW" secondAttribute="trailing" constant="8" id="6W4-fa-dOc"/>
                                         <constraint firstItem="9AL-1b-gBW" firstAttribute="leading" secondItem="iG5-Je-2Ie" secondAttribute="leading" constant="8" id="CXC-V8-OyT"/>
+                                        <constraint firstItem="9AL-1b-gBW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="jwY-OB-oue" secondAttribute="bottom" constant="8" id="Cbp-xQ-nzL"/>
                                         <constraint firstAttribute="trailing" secondItem="rky-2v-82I" secondAttribute="trailing" constant="8" id="Fus-8a-nDD"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="9AL-1b-gBW" secondAttribute="trailing" constant="8" id="Gke-nJ-W4c"/>
                                         <constraint firstItem="tJf-br-I0a" firstAttribute="top" secondItem="9AL-1b-gBW" secondAttribute="bottom" constant="8" id="Nbh-is-4eN"/>
                                         <constraint firstItem="9AL-1b-gBW" firstAttribute="top" secondItem="iG5-Je-2Ie" secondAttribute="top" constant="8" id="SpF-Np-H9k"/>
                                         <constraint firstAttribute="bottom" secondItem="tJf-br-I0a" secondAttribute="bottom" constant="8" id="XP7-87-XpY"/>
@@ -55,6 +58,12 @@
                                         <constraint firstAttribute="trailing" secondItem="jwY-OB-oue" secondAttribute="trailing" constant="8" id="z7R-sv-kbf"/>
                                         <constraint firstItem="jwY-OB-oue" firstAttribute="top" secondItem="iG5-Je-2Ie" secondAttribute="top" constant="8" id="zyU-5F-QsN"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="SpF-Np-H9k"/>
+                                            <exclude reference="6W4-fa-dOc"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="_detailTextLabel" destination="9AL-1b-gBW" id="Sbf-bw-QuB"/>
