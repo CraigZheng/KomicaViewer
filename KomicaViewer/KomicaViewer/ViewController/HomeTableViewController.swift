@@ -8,7 +8,14 @@
 
 import UIKit
 
+import KomicaEngine
+
 class HomeTableViewController: UITableViewController {
+    
+    private let listDownloader = KomicaDownloader()
+    private let selectedForum = Forums.selectedForum
+    private var pageIndex = 0
+    private var threads = [Thread]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,27 +28,38 @@ class HomeTableViewController: UITableViewController {
     
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return threads.count
     }
+    
+}
+
+// MARK: UIActions.
+extension HomeTableViewController {
     
     @IBAction func unwindToHomeSegue(segue: UIStoryboardSegue) {
         // Unwind to home.
     }
-
+    
 }
 
 // MARK: Forum selected notification handler.
 extension HomeTableViewController {
     
     func handleForumSelectedNotification(notification: NSNotification) {
-        DLog("Selected forum: \(Forums.selectedForum)")
+        title = selectedForum?.name
+    }
+    
+    func loadThreadsWithPage(page: Int) {
+        if let selectedForum = selectedForum {
+            listDownloader.downloadListForRequest(KomicaDownloaderRequest(url: selectedForum.listURLForPage(page), parser: selectedForum.parserType, completion: { (success, result) in
+                // Process the downloaded threads, and reload the tableView.
+                if success, let downloadedThreads = result?.threads {
+                    self.threads.appendContentsOf(downloadedThreads)
+                }
+                self.tableView.reloadData()
+            }))
+        }
     }
     
 }
