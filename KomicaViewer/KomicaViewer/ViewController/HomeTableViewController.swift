@@ -45,7 +45,8 @@ class HomeTableViewController: UITableViewController {
         if let imageURL = thread.thumbnailURL {
             cell.imageView?.sd_setImageWithURL(imageURL, placeholderImage: nil, completed: { [weak cell](image, error, cacheType, imageURL) in
                 guard let strongCell = cell else { return }
-                if image != nil && cacheType == SDImageCacheType.Disk {
+                // If its been downloaded from the web, reload this cell.
+                if image != nil && cacheType == SDImageCacheType.None {
                     dispatch_async(dispatch_get_main_queue(), {
                         if let indexPaths = tableView.indexPathForCell(strongCell) {
                             tableView.reloadRowsAtIndexPaths([indexPaths], withRowAnimation: .Automatic)
