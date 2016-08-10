@@ -55,6 +55,11 @@
                                         <constraint firstItem="jwY-OB-oue" firstAttribute="top" secondItem="iG5-Je-2Ie" secondAttribute="top" constant="8" id="zyU-5F-QsN"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="_detailTextLabel" destination="9AL-1b-gBW" id="Sbf-bw-QuB"/>
+                                    <outlet property="_imageView" destination="tJf-br-I0a" id="avf-5a-eul"/>
+                                    <outlet property="_textLabel" destination="jwY-OB-oue" id="wx8-Wx-4Zh"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

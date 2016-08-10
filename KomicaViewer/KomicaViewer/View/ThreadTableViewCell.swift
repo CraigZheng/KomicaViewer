@@ -11,15 +11,24 @@ import UIKit
 class ThreadTableViewCell: UITableViewCell {
     static let identifier = "threadCellIdentifier"
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var _detailTextLabel: UILabel!
+    @IBOutlet weak var _textLabel: UILabel!
+    @IBOutlet weak var _imageView: UIImageView!
+    
+    // MARK: Override to return customisable UI elements.
+    
+    override var textLabel: UILabel? {
+        get { return _textLabel }
+        set { _textLabel = newValue}
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    override var detailTextLabel: UILabel? {
+        get { return _detailTextLabel }
+        set { _detailTextLabel = newValue }
     }
-
+    
+    override var imageView: UIImageView? {
+        get { return _imageView }
+        set { _imageView = newValue }
+    }
 }
