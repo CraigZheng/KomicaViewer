@@ -27,10 +27,31 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="TKj-vf-6Gc" kind="show" identifier="showThread" id="ZRg-xO-66o"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2vI-jQ-CmA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1491" y="-146"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="LUp-S7-IKc">
+            <objects>
+                <viewController id="TKj-vf-6Gc" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cHb-wb-DPy"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jgb-tm-VnD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ErA-mQ-O2w">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ct-Ua-kny" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2275" y="-146"/>
         </scene>
         <!--Board-->
         <scene sceneID="edd-3u-bqG">

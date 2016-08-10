@@ -79,6 +79,9 @@ extension HomeTableViewController {
     
     func handleForumSelectedNotification(notification: NSNotification) {
         title = selectedForum?.name
+        threads.removeAll()
+        tableView.reloadData()
+        loadThreadsWithPage(0)
     }
     
     func loadThreadsWithPage(page: Int) {
