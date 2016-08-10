@@ -19,10 +19,32 @@
                             <color key="textColor" red="0.14901960780000001" green="0.5568627451" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
                     </navigationBar>
+                    <connections>
+                        <segue destination="ghk-Ob-ETY" kind="relationship" relationship="rootViewController" id="YKP-Gh-WAX"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zTu-q7-6HQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-739" y="369"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bMK-Tk-WPX">
+            <objects>
+                <viewController id="ghk-Ob-ETY" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D7J-nv-L2x"/>
+                        <viewControllerLayoutGuide type="bottom" id="KL3-Qp-1p2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fhQ-RR-fbG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bae-6Z-SSm"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Tj-PV-3xp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-27" y="369"/>
         </scene>
     </scenes>
 </document>
