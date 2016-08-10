@@ -68,6 +68,10 @@ extension HomeTableViewController {
         // Unwind to home.
     }
     
+    @IBAction func tapOnImageView(sender: AnyObject) {
+        DLog("\(sender)")
+    }
+    
 }
 
 // MARK: Forum selected notification handler.

@@ -8,7 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="threadCellIdentifier" rowHeight="220" id="ENT-K0-ZfT" userLabel="ThreadTableViewCell" customClass="ThreadTableViewCell" customModule="KomicaViewer" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="threadCellIdentifier" rowHeight="220" id="ENT-K0-ZfT" userLabel="ThreadTableViewCell" customClass="ThreadTableViewCell" customModule="KomicaViewer" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="600" height="220"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ENT-K0-ZfT" id="qdO-r1-kyX">
@@ -21,9 +21,15 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="108" placeholderIntrinsicHeight="134.5" translatesAutoresizingMaskIntoConstraints="NO" id="tP8-Rx-2TW">
+                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="108" placeholderIntrinsicHeight="134.5" translatesAutoresizingMaskIntoConstraints="NO" id="tP8-Rx-2TW">
                         <rect key="frame" x="8" y="77" width="108" height="134.5"/>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUS-S1-WzD" userLabel="Image View Button">
+                        <rect key="frame" x="8" y="77" width="108" height="134.5"/>
+                        <connections>
+                            <action selector="tapOnImageView:" destination="-2" eventType="touchUpInside" id="oCh-5o-DgJ"/>
+                        </connections>
+                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Poster And Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAp-vS-hVV">
                         <rect key="frame" x="493" y="8" width="99" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -40,8 +46,11 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="xJG-08-KIl" secondAttribute="bottom" constant="8" id="2bF-3E-eA9"/>
                     <constraint firstItem="2FU-Qn-VjA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uAp-vS-hVV" secondAttribute="bottom" constant="8" id="49h-cy-efV"/>
+                    <constraint firstItem="cUS-S1-WzD" firstAttribute="top" secondItem="tP8-Rx-2TW" secondAttribute="top" id="526-R7-kl7"/>
+                    <constraint firstItem="cUS-S1-WzD" firstAttribute="leading" secondItem="tP8-Rx-2TW" secondAttribute="leading" id="6o7-3J-1YT"/>
                     <constraint firstItem="2FU-Qn-VjA" firstAttribute="leading" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="73a-Jb-5ZC"/>
                     <constraint firstAttribute="trailing" secondItem="xJG-08-KIl" secondAttribute="trailing" constant="8" id="Bdw-eB-Qhq"/>
+                    <constraint firstItem="cUS-S1-WzD" firstAttribute="bottom" secondItem="tP8-Rx-2TW" secondAttribute="bottom" id="GiI-G8-1xW"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="2FU-Qn-VjA" secondAttribute="trailing" constant="8" id="TaE-Vh-oHX"/>
                     <constraint firstItem="uAp-vS-hVV" firstAttribute="top" secondItem="qdO-r1-kyX" secondAttribute="top" constant="8" id="Vfr-Dj-VO9"/>
                     <constraint firstItem="tP8-Rx-2TW" firstAttribute="leading" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="dQ0-LO-SyR"/>
@@ -50,6 +59,7 @@
                     <constraint firstItem="tP8-Rx-2TW" firstAttribute="top" secondItem="2FU-Qn-VjA" secondAttribute="bottom" constant="8" id="qnk-OJ-JPn"/>
                     <constraint firstItem="2FU-Qn-VjA" firstAttribute="top" secondItem="qdO-r1-kyX" secondAttribute="top" constant="8" id="tMo-Rp-Yoh"/>
                     <constraint firstItem="xJG-08-KIl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tP8-Rx-2TW" secondAttribute="trailing" constant="8" id="tpf-zj-JRu"/>
+                    <constraint firstItem="cUS-S1-WzD" firstAttribute="trailing" secondItem="tP8-Rx-2TW" secondAttribute="trailing" id="uHl-Fc-lPL"/>
                     <constraint firstAttribute="bottom" secondItem="tP8-Rx-2TW" secondAttribute="bottom" constant="8" id="xw0-gf-fjr"/>
                     <constraint firstAttribute="trailing" secondItem="uAp-vS-hVV" secondAttribute="trailing" constant="8" id="ytR-tZ-GBb"/>
                 </constraints>
@@ -61,6 +71,7 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <gestureRecognizers/>
             <connections>
                 <outlet property="_detailTextLabel" destination="2FU-Qn-VjA" id="V29-mH-lfT"/>
                 <outlet property="_imageView" destination="tP8-Rx-2TW" id="4Ly-OI-x1q"/>
