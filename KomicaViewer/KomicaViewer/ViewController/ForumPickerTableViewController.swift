@@ -11,7 +11,7 @@ import UIKit
 import KomicaEngine
 
 class ForumPickerTableViewController: UITableViewController {
-    let forums = KomicaForumFinder.sharedInstance.forums
+    let forums = Forums.defaultForums
 
     private let cellIdentifier = "cellIdentifier"
     
@@ -35,6 +35,11 @@ class ForumPickerTableViewController: UITableViewController {
         cell.textLabel?.text = forums[indexPath.row].name
         cell.detailTextLabel?.text = forums[indexPath.row].header
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let forum = forums[indexPath.row]
+        Forums.selectedForum = forum
     }
     
 }
