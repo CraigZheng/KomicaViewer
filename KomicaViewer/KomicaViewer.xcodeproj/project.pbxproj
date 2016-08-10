@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		44496F531D5985A6005875DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44496F521D5985A6005875DD /* AppDelegate.swift */; };
-		44496F551D5985A6005875DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44496F541D5985A6005875DD /* ViewController.swift */; };
 		44496F581D5985A6005875DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44496F561D5985A6005875DD /* Main.storyboard */; };
 		44496F5A1D5985A6005875DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44496F591D5985A6005875DD /* Assets.xcassets */; };
 		44496F5D1D5985A6005875DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44496F5B1D5985A6005875DD /* LaunchScreen.storyboard */; };
@@ -17,6 +16,7 @@
 		44655D481D5AD24700229404 /* KomicaEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D401D5AD15400229404 /* KomicaEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		44655D6F1D5AD4B400229404 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D6C1D5AD49D00229404 /* AFNetworking.framework */; };
 		44655D701D5AD4B400229404 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D6C1D5AD49D00229404 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		44655D721D5AEE0100229404 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D711D5AEE0100229404 /* HomeTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +75,6 @@
 /* Begin PBXFileReference section */
 		44496F4F1D5985A6005875DD /* KomicaViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KomicaViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44496F521D5985A6005875DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		44496F541D5985A6005875DD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		44496F571D5985A6005875DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		44496F591D5985A6005875DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44496F5C1D5985A6005875DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -85,6 +84,7 @@
 		44496F691D5985A6005875DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44655D3A1D5AD15400229404 /* KomicaEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KomicaEngine.xcodeproj; path = ../../komicaengine/KomicaEngine.xcodeproj; sourceTree = "<group>"; };
 		44655D6C1D5AD49D00229404 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = "<group>"; };
+		44655D711D5AEE0100229404 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeTableViewController.swift; path = ViewController/HomeTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,11 +131,11 @@
 			isa = PBXGroup;
 			children = (
 				44496F521D5985A6005875DD /* AppDelegate.swift */,
-				44496F541D5985A6005875DD /* ViewController.swift */,
 				44496F561D5985A6005875DD /* Main.storyboard */,
 				44496F591D5985A6005875DD /* Assets.xcassets */,
 				44496F5B1D5985A6005875DD /* LaunchScreen.storyboard */,
 				44496F5E1D5985A6005875DD /* Info.plist */,
+				44655D711D5AEE0100229404 /* HomeTableViewController.swift */,
 			);
 			path = KomicaViewer;
 			sourceTree = "<group>";
@@ -285,7 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44496F551D5985A6005875DD /* ViewController.swift in Sources */,
+				44655D721D5AEE0100229404 /* HomeTableViewController.swift in Sources */,
 				44496F531D5985A6005875DD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
