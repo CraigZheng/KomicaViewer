@@ -11,6 +11,9 @@ import Foundation
 import KomicaEngine
 
 class Forums {
+    // Selection updated notification.
+    static let selectionUpdatedNotification = "Forums.selectionUpdatedNotification"
+    
     private static let sharedInstance = Forums()
     private var selectedForum: KomicaForum?
     
@@ -20,6 +23,8 @@ class Forums {
         }
         set {
             sharedInstance.selectedForum = newValue
+            // Selection updated, send a notification for this.
+            NSNotificationCenter.defaultCenter().postNotificationName(selectionUpdatedNotification, object: nil)
         }
     }
     
