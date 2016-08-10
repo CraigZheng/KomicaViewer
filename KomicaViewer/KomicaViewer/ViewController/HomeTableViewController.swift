@@ -82,14 +82,20 @@ extension HomeTableViewController {
 }
 
 // MARK: UIActions.
-extension HomeTableViewController {
+extension HomeTableViewController: UIDocumentInteractionControllerDelegate {
     
     @IBAction func unwindToHomeSegue(segue: UIStoryboardSegue) {
         // Unwind to home.
     }
     
     @IBAction func tapOnImageView(sender: AnyObject) {
-        DLog("\(sender)")
+        if let sender = sender as? UIView,
+            let cell = sender.superCell(),
+            let indexPath = tableView.indexPathForCell(cell),
+            let imageURL = threads[indexPath.row].imageURL
+        {
+            let documentInteractionController = UIDocumentInteractionController()
+        }
     }
     
 }
