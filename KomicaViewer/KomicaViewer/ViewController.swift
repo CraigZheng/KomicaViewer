@@ -8,11 +8,16 @@
 
 import UIKit
 
+import KomicaEngine
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let forums = KomicaForumFinder.sharedInstance.forums
+        print("\(forums)")
     }
 
     override func didReceiveMemoryWarning() {

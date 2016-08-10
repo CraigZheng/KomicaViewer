@@ -13,6 +13,10 @@
 		44496F5A1D5985A6005875DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44496F591D5985A6005875DD /* Assets.xcassets */; };
 		44496F5D1D5985A6005875DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44496F5B1D5985A6005875DD /* LaunchScreen.storyboard */; };
 		44496F681D5985A6005875DD /* KomicaViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44496F671D5985A6005875DD /* KomicaViewerTests.swift */; };
+		44655D471D5AD24700229404 /* KomicaEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D401D5AD15400229404 /* KomicaEngine.framework */; };
+		44655D481D5AD24700229404 /* KomicaEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D401D5AD15400229404 /* KomicaEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		44655D6F1D5AD4B400229404 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D6C1D5AD49D00229404 /* AFNetworking.framework */; };
+		44655D701D5AD4B400229404 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D6C1D5AD49D00229404 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,7 +27,50 @@
 			remoteGlobalIDString = 44496F4E1D5985A6005875DD;
 			remoteInfo = KomicaViewer;
 		};
+		44655D3F1D5AD15400229404 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44655D3A1D5AD15400229404 /* KomicaEngine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4453D1D91CB662A10076ABE7;
+			remoteInfo = KomicaEngine;
+		};
+		44655D411D5AD15400229404 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44655D3A1D5AD15400229404 /* KomicaEngine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4453D1E31CB662A10076ABE7;
+			remoteInfo = KomicaEngineTests;
+		};
+		44655D431D5AD16400229404 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44655D3A1D5AD15400229404 /* KomicaEngine.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4453D1D81CB662A10076ABE7;
+			remoteInfo = KomicaEngine;
+		};
+		44655D491D5AD24700229404 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44655D3A1D5AD15400229404 /* KomicaEngine.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4453D1D81CB662A10076ABE7;
+			remoteInfo = KomicaEngine;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		44655D4B1D5AD24700229404 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				44655D481D5AD24700229404 /* KomicaEngine.framework in Embed Frameworks */,
+				44655D701D5AD4B400229404 /* AFNetworking.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		44496F4F1D5985A6005875DD /* KomicaViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KomicaViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,6 +83,8 @@
 		44496F631D5985A6005875DD /* KomicaViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KomicaViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44496F671D5985A6005875DD /* KomicaViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KomicaViewerTests.swift; sourceTree = "<group>"; };
 		44496F691D5985A6005875DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44655D3A1D5AD15400229404 /* KomicaEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KomicaEngine.xcodeproj; path = ../../komicaengine/KomicaEngine.xcodeproj; sourceTree = "<group>"; };
+		44655D6C1D5AD49D00229404 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +92,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44655D471D5AD24700229404 /* KomicaEngine.framework in Frameworks */,
+				44655D6F1D5AD4B400229404 /* AFNetworking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +110,8 @@
 		44496F461D5985A6005875DD = {
 			isa = PBXGroup;
 			children = (
+				44655D6C1D5AD49D00229404 /* AFNetworking.framework */,
+				44655D3A1D5AD15400229404 /* KomicaEngine.xcodeproj */,
 				44496F511D5985A6005875DD /* KomicaViewer */,
 				44496F661D5985A6005875DD /* KomicaViewerTests */,
 				44496F501D5985A6005875DD /* Products */,
@@ -96,6 +149,15 @@
 			path = KomicaViewerTests;
 			sourceTree = "<group>";
 		};
+		44655D3B1D5AD15400229404 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				44655D401D5AD15400229404 /* KomicaEngine.framework */,
+				44655D421D5AD15400229404 /* KomicaEngineTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,10 +168,13 @@
 				44496F4B1D5985A6005875DD /* Sources */,
 				44496F4C1D5985A6005875DD /* Frameworks */,
 				44496F4D1D5985A6005875DD /* Resources */,
+				44655D4B1D5AD24700229404 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				44655D441D5AD16400229404 /* PBXTargetDependency */,
+				44655D4A1D5AD24700229404 /* PBXTargetDependency */,
 			);
 			name = KomicaViewer;
 			productName = KomicaViewer;
@@ -164,6 +229,12 @@
 			mainGroup = 44496F461D5985A6005875DD;
 			productRefGroup = 44496F501D5985A6005875DD /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 44655D3B1D5AD15400229404 /* Products */;
+					ProjectRef = 44655D3A1D5AD15400229404 /* KomicaEngine.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				44496F4E1D5985A6005875DD /* KomicaViewer */,
@@ -171,6 +242,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		44655D401D5AD15400229404 /* KomicaEngine.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KomicaEngine.framework;
+			remoteRef = 44655D3F1D5AD15400229404 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44655D421D5AD15400229404 /* KomicaEngineTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = KomicaEngineTests.xctest;
+			remoteRef = 44655D411D5AD15400229404 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		44496F4D1D5985A6005875DD /* Resources */ = {
@@ -217,6 +305,16 @@
 			isa = PBXTargetDependency;
 			target = 44496F4E1D5985A6005875DD /* KomicaViewer */;
 			targetProxy = 44496F641D5985A6005875DD /* PBXContainerItemProxy */;
+		};
+		44655D441D5AD16400229404 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KomicaEngine;
+			targetProxy = 44655D431D5AD16400229404 /* PBXContainerItemProxy */;
+		};
+		44655D4A1D5AD24700229404 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KomicaEngine;
+			targetProxy = 44655D491D5AD24700229404 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -329,6 +427,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = KomicaViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
@@ -340,6 +443,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = KomicaViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
@@ -390,6 +498,7 @@
 				44496F6E1D5985A6005875DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		44496F6F1D5985A6005875DD /* Build configuration list for PBXNativeTarget "KomicaViewerTests" */ = {
 			isa = XCConfigurationList;
@@ -398,6 +507,7 @@
 				44496F711D5985A6005875DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
