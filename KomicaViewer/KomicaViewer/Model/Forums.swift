@@ -22,9 +22,11 @@ class Forums {
             return sharedInstance.selectedForum
         }
         set {
-            sharedInstance.selectedForum = newValue
-            // Selection updated, send a notification for this.
-            NSNotificationCenter.defaultCenter().postNotificationName(selectionUpdatedNotification, object: nil)
+            if sharedInstance.selectedForum != newValue {
+                sharedInstance.selectedForum = newValue
+                // Selection updated, send a notification for this.
+                NSNotificationCenter.defaultCenter().postNotificationName(selectionUpdatedNotification, object: nil)
+            }
         }
     }
     
