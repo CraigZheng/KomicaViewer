@@ -13,7 +13,9 @@ import KomicaEngine
 class HomeTableViewController: UITableViewController {
     
     private let listDownloader = KomicaDownloader()
-    private let selectedForum = Forums.selectedForum
+    private var selectedForum: KomicaForum? {
+        return Forums.selectedForum
+    }
     private var pageIndex = 0
     private var threads = [Thread]()
 
