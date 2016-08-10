@@ -58,3 +58,6 @@ fastlane/screenshots
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+KomicaViewer/KomicaViewer.xcodeproj/project.xcworkspace/xcshareddata/KomicaViewer.xcscmblueprint
+KomicaViewer/KomicaViewer.xcworkspace/contents.xcworkspacedata
+KomicaViewer/KomicaViewer.xcworkspace/xcshareddata/KomicaViewer.xcscmblueprint

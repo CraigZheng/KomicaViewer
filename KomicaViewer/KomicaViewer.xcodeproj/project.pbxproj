@@ -21,6 +21,8 @@
 		44655D7A1D5AFDAB00229404 /* Forums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D791D5AFDAB00229404 /* Forums.swift */; };
 		44BD39751D5B1E510070E0CB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39741D5B1E510070E0CB /* Logger.swift */; };
 		44BD39791D5B27690070E0CB /* ThreadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39781D5B27690070E0CB /* ThreadTableViewCell.swift */; };
+		68C7FFBFD9780B131B854DB5 /* Pods_KomicaViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A425C4E230E74FFE405CF60 /* Pods_KomicaViewer.framework */; };
+		A38B6DBED10718599DC25619 /* Pods_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9E99A3D7D0B75076C8D4C6 /* Pods_KomicaViewerTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A425C4E230E74FFE405CF60 /* Pods_KomicaViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KomicaViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C9E99A3D7D0B75076C8D4C6 /* Pods_KomicaViewerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KomicaViewerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		371FCDFC139C9298E2CE9BF0 /* Pods-KomicaViewerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests.release.xcconfig"; sourceTree = "<group>"; };
 		44496F4F1D5985A6005875DD /* KomicaViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KomicaViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44496F521D5985A6005875DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44496F571D5985A6005875DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -93,6 +98,9 @@
 		44655D791D5AFDAB00229404 /* Forums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forums.swift; sourceTree = "<group>"; };
 		44BD39741D5B1E510070E0CB /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		44BD39781D5B27690070E0CB /* ThreadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadTableViewCell.swift; sourceTree = "<group>"; };
+		465FEF44FBCB43E64B9CC4FE /* Pods-KomicaViewerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4F33DAA50DCB60326B9AEF9D /* Pods-KomicaViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer.release.xcconfig"; sourceTree = "<group>"; };
+		DAB898B19240D54CA02C1861 /* Pods-KomicaViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +110,7 @@
 			files = (
 				44655D471D5AD24700229404 /* KomicaEngine.framework in Frameworks */,
 				44655D6F1D5AD4B400229404 /* AFNetworking.framework in Frameworks */,
+				68C7FFBFD9780B131B854DB5 /* Pods_KomicaViewer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,12 +118,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A38B6DBED10718599DC25619 /* Pods_KomicaViewerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3129FC28C783876813456D15 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A425C4E230E74FFE405CF60 /* Pods_KomicaViewer.framework */,
+				2C9E99A3D7D0B75076C8D4C6 /* Pods_KomicaViewerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		44496F461D5985A6005875DD = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +142,8 @@
 				44496F511D5985A6005875DD /* KomicaViewer */,
 				44496F661D5985A6005875DD /* KomicaViewerTests */,
 				44496F501D5985A6005875DD /* Products */,
+				8E176AB58A960593C6562361 /* Pods */,
+				3129FC28C783876813456D15 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -202,6 +223,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		8E176AB58A960593C6562361 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DAB898B19240D54CA02C1861 /* Pods-KomicaViewer.debug.xcconfig */,
+				4F33DAA50DCB60326B9AEF9D /* Pods-KomicaViewer.release.xcconfig */,
+				465FEF44FBCB43E64B9CC4FE /* Pods-KomicaViewerTests.debug.xcconfig */,
+				371FCDFC139C9298E2CE9BF0 /* Pods-KomicaViewerTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -209,10 +241,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 44496F6C1D5985A6005875DD /* Build configuration list for PBXNativeTarget "KomicaViewer" */;
 			buildPhases = (
+				7BF8544B2F5B3079BB66FB76 /* [CP] Check Pods Manifest.lock */,
 				44496F4B1D5985A6005875DD /* Sources */,
 				44496F4C1D5985A6005875DD /* Frameworks */,
 				44496F4D1D5985A6005875DD /* Resources */,
 				44655D4B1D5AD24700229404 /* Embed Frameworks */,
+				9B8EF6BF0691FFF00370BA47 /* [CP] Embed Pods Frameworks */,
+				AC055B34C87542385C0B897D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -229,9 +264,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 44496F6F1D5985A6005875DD /* Build configuration list for PBXNativeTarget "KomicaViewerTests" */;
 			buildPhases = (
+				05AF5FED83C4F76449BBDD57 /* [CP] Check Pods Manifest.lock */,
 				44496F5F1D5985A6005875DD /* Sources */,
 				44496F601D5985A6005875DD /* Frameworks */,
 				44496F611D5985A6005875DD /* Resources */,
+				68104A70DA5FA7686066341C /* [CP] Embed Pods Frameworks */,
+				97865819251EB715CFC1A5AC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -323,6 +361,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		05AF5FED83C4F76449BBDD57 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		68104A70DA5FA7686066341C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7BF8544B2F5B3079BB66FB76 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		97865819251EB715CFC1A5AC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B8EF6BF0691FFF00370BA47 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC055B34C87542385C0B897D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		44496F4B1D5985A6005875DD /* Sources */ = {
@@ -473,6 +604,7 @@
 		};
 		44496F6D1D5985A6005875DD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAB898B19240D54CA02C1861 /* Pods-KomicaViewer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -490,6 +622,7 @@
 		};
 		44496F6E1D5985A6005875DD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F33DAA50DCB60326B9AEF9D /* Pods-KomicaViewer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -507,6 +640,7 @@
 		};
 		44496F701D5985A6005875DD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 465FEF44FBCB43E64B9CC4FE /* Pods-KomicaViewerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = KomicaViewerTests/Info.plist;
@@ -519,6 +653,7 @@
 		};
 		44496F711D5985A6005875DD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 371FCDFC139C9298E2CE9BF0 /* Pods-KomicaViewerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = KomicaViewerTests/Info.plist;
