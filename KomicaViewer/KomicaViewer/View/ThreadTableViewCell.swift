@@ -9,6 +9,7 @@
 import UIKit
 
 class ThreadTableViewCell: UITableViewCell {
+    static let identifier = "threadCellIdentifier"
 
     override func awakeFromNib() {
         super.awakeFromNib()
