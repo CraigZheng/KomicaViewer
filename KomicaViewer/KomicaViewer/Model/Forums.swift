@@ -32,10 +32,15 @@ class Forums {
     }
     
     static var defaultForums = KomicaForumFinder.sharedInstance.forums
+    static var remoteForums: [KomicaForum]?
     
-    static func updateRemoteForums(completion updateRemoteCompletion: ((success: Bool, forums: [KomicaForum]?, error: NSError?)->())?) {
+    static func updateRemoteForums() {
         KomicaForumFinder.sharedInstance.loadRemoteForumsWithCompletion({ (success, forums, error) in
-            updateRemoteCompletion?(success: success, forums: forums, error: error)
+            if let forums = forums {
+                remoteForums = forums
+                // Remote forums updated, send a notification.
+                NSNotificationCenter.defaultCenter().postNotificationName(forumsUpdatedNotification, object: nil)
+            }
         })
     }
 }
