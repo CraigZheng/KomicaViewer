@@ -10,10 +10,14 @@ import UIKit
 
 import KomicaEngine
 import SDWebImage
+import MWPhotoBrowser
 
 class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol {
     
     var selectedThreadID: String!
+    
+    private var selectedPhoto: MWPhoto?
+    private var photoBrowser: MWPhotoBrowser?
     
     // MARK: ThreadTableViewControllerProtocol
     var threads = [Thread]()
@@ -60,4 +64,34 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         return cell
     }
 
+}
+
+// MARK: UIActions.
+extension ThreadTableViewController: MWPhotoBrowserDelegate {
+    
+    @IBAction func unwindToHomeSegue(segue: UIStoryboardSegue) {
+        // Unwind to home.
+    }
+    
+    @IBAction func tapOnImageView(sender: AnyObject) {
+        if let sender = sender as? UIView,
+            let cell = sender.superCell(),
+            let indexPath = tableView.indexPathForCell(cell),
+            let imageURL = threads[indexPath.row].imageURL
+        {
+            selectedPhoto = MWPhoto(URL: imageURL)
+            photoBrowser = MWPhotoBrowser(delegate: self)
+            // Present
+            navigationController?.pushViewController(photoBrowser!, animated:true)
+        }
+    }
+    
+    func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+        return selectedPhoto == nil ? 0 : 1
+    }
+    
+    func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+        return selectedPhoto ?? MWPhoto()
+    }
+    
 }

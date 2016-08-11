@@ -9,6 +9,7 @@
 import UIKit
 
 import KomicaEngine
+import MWPhotoBrowser
 import SDWebImage
 
 class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol {
@@ -19,6 +20,8 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         loadThreadsWithPage(page)
     }
     
+    private var selectedPhoto: MWPhoto?
+    private var photoBrowser: MWPhotoBrowser?
     private var pageIndex = 0
     private let showThreadSegue = "showThread"
     
@@ -82,7 +85,7 @@ extension HomeTableViewController {
 }
 
 // MARK: UIActions.
-extension HomeTableViewController: UIDocumentInteractionControllerDelegate {
+extension HomeTableViewController: MWPhotoBrowserDelegate {
     
     @IBAction func unwindToHomeSegue(segue: UIStoryboardSegue) {
         // Unwind to home.
@@ -94,8 +97,19 @@ extension HomeTableViewController: UIDocumentInteractionControllerDelegate {
             let indexPath = tableView.indexPathForCell(cell),
             let imageURL = threads[indexPath.row].imageURL
         {
-            let documentInteractionController = UIDocumentInteractionController()
+            selectedPhoto = MWPhoto(URL: imageURL)
+            photoBrowser = MWPhotoBrowser(delegate: self)
+            // Present
+            navigationController?.pushViewController(photoBrowser!, animated:true)
         }
+    }
+    
+    func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+        return selectedPhoto == nil ? 0 : 1
+    }
+    
+    func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+        return selectedPhoto ?? MWPhoto()
     }
     
 }
