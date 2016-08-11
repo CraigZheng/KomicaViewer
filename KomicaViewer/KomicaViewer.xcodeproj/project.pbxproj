@@ -19,6 +19,7 @@
 		44655D751D5AEF7900229404 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D741D5AEF7900229404 /* HomeTableViewController.swift */; };
 		44655D771D5AEF8E00229404 /* ForumPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */; };
 		44655D7A1D5AFDAB00229404 /* Forums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D791D5AFDAB00229404 /* Forums.swift */; };
+		447EF1C31D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */; };
 		44BD39751D5B1E510070E0CB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39741D5B1E510070E0CB /* Logger.swift */; };
 		44BD39791D5B27690070E0CB /* ThreadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39781D5B27690070E0CB /* ThreadTableViewCell.swift */; };
 		44BD397D1D5B5AA70070E0CB /* ThreadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44BD397C1D5B5AA70070E0CB /* ThreadTableViewCell.xib */; };
@@ -100,6 +101,7 @@
 		44655D741D5AEF7900229404 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumPickerTableViewController.swift; sourceTree = "<group>"; };
 		44655D791D5AFDAB00229404 /* Forums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forums.swift; sourceTree = "<group>"; };
+		447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerBulkUpdateProtocol.swift; sourceTree = "<group>"; };
 		44BD39741D5B1E510070E0CB /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		44BD39781D5B27690070E0CB /* ThreadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadTableViewCell.swift; sourceTree = "<group>"; };
 		44BD397C1D5B5AA70070E0CB /* ThreadTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreadTableViewCell.xib; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */,
 				44BD397F1D5B5E180070E0CB /* ThreadTableViewController.swift */,
 				44BD39811D5B5F310070E0CB /* ThreadTableViewProtocol.swift */,
+				447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				447EF1C31D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift in Sources */,
 				44BD39751D5B1E510070E0CB /* Logger.swift in Sources */,
 				44655D7A1D5AFDAB00229404 /* Forums.swift in Sources */,
 				44655D751D5AEF7900229404 /* HomeTableViewController.swift in Sources */,

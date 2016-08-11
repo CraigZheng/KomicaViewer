@@ -12,7 +12,7 @@ import KomicaEngine
 import SDWebImage
 import MWPhotoBrowser
 
-class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol {
+class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol {
     
     var selectedThread: Thread!
     
@@ -23,6 +23,14 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     lazy var threads: [Thread] = {
         return [self.selectedThread]
     }()
+    
+    // MARK: TableViewControllerBulkUpdateProtocol
+    var targetTableView: UITableView {
+        return self.tableView
+    }
+    var bulkUpdateTimer: NSTimer?
+    var pendingIndexPaths: [NSIndexPath] = [NSIndexPath]()
+    
     func refreshWithPage(page: Int) {
         // For each thread ID, there is only 1 page.
         let stringArray = selectedThread.ID!.componentsSeparatedByCharactersInSet(
@@ -56,8 +64,8 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
                 // If its been downloaded from the web, reload this cell.
                 if image != nil && cacheType == SDImageCacheType.None {
                     dispatch_async(dispatch_get_main_queue(), {
-                        if let indexPaths = tableView.indexPathForCell(strongCell) {
-                            tableView.reloadRowsAtIndexPaths([indexPaths], withRowAnimation: .Automatic)
+                        if let indexPath = tableView.indexPathForCell(strongCell) {
+                            self.addPendingIndexPaths(indexPath)
                         }
                     })
                 }
