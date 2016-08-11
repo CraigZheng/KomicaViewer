@@ -10,6 +10,7 @@ target 'KomicaViewer' do
   # Pods for KomicaViewer
   pod 'SDWebImage', '~>3.8'
   pod "MWPhotoBrowser"
+  pod 'MBProgressHUD', '~> 1.0.0'
   target 'KomicaViewerTests' do
     inherit! :search_paths
     # Pods for testing

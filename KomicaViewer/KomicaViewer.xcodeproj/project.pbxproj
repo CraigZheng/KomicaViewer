@@ -26,6 +26,7 @@
 		44BD39801D5B5E180070E0CB /* ThreadTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD397F1D5B5E180070E0CB /* ThreadTableViewController.swift */; };
 		44BD39821D5B5F310070E0CB /* ThreadTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39811D5B5F310070E0CB /* ThreadTableViewProtocol.swift */; };
 		44BD39861D5B74ED0070E0CB /* UIView+SuperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39851D5B74ED0070E0CB /* UIView+SuperCell.swift */; };
+		44F48EBC1D5D3F0700519C1B /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F48EBB1D5D3F0700519C1B /* ProgressHUD.swift */; };
 		68C7FFBFD9780B131B854DB5 /* Pods_KomicaViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A425C4E230E74FFE405CF60 /* Pods_KomicaViewer.framework */; };
 		A38B6DBED10718599DC25619 /* Pods_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9E99A3D7D0B75076C8D4C6 /* Pods_KomicaViewerTests.framework */; };
 /* End PBXBuildFile section */
@@ -108,6 +109,7 @@
 		44BD397F1D5B5E180070E0CB /* ThreadTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadTableViewController.swift; sourceTree = "<group>"; };
 		44BD39811D5B5F310070E0CB /* ThreadTableViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreadTableViewProtocol.swift; path = KomicaViewer/View/ThreadTableViewProtocol.swift; sourceTree = SOURCE_ROOT; };
 		44BD39851D5B74ED0070E0CB /* UIView+SuperCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SuperCell.swift"; sourceTree = "<group>"; };
+		44F48EBB1D5D3F0700519C1B /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		465FEF44FBCB43E64B9CC4FE /* Pods-KomicaViewerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4F33DAA50DCB60326B9AEF9D /* Pods-KomicaViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer.release.xcconfig"; sourceTree = "<group>"; };
 		DAB898B19240D54CA02C1861 /* Pods-KomicaViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 		44BD39731D5B1E510070E0CB /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				44F48EBB1D5D3F0700519C1B /* ProgressHUD.swift */,
 				44BD39851D5B74ED0070E0CB /* UIView+SuperCell.swift */,
 				44BD39741D5B1E510070E0CB /* Logger.swift */,
 			);
@@ -482,6 +485,7 @@
 				44655D7A1D5AFDAB00229404 /* Forums.swift in Sources */,
 				44655D751D5AEF7900229404 /* HomeTableViewController.swift in Sources */,
 				44496F531D5985A6005875DD /* AppDelegate.swift in Sources */,
+				44F48EBC1D5D3F0700519C1B /* ProgressHUD.swift in Sources */,
 				44655D771D5AEF8E00229404 /* ForumPickerTableViewController.swift in Sources */,
 				44BD39821D5B5F310070E0CB /* ThreadTableViewProtocol.swift in Sources */,
 				44BD39791D5B27690070E0CB /* ThreadTableViewCell.swift in Sources */,
