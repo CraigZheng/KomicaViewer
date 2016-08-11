@@ -308,6 +308,7 @@
 				TargetAttributes = {
 					44496F4E1D5985A6005875DD = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 9EBE9MWW9X;
 					};
 					44496F621D5985A6005875DD = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -627,6 +628,7 @@
 			baseConfigurationReference = DAB898B19240D54CA02C1861 /* Pods-KomicaViewer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -645,6 +647,7 @@
 			baseConfigurationReference = 4F33DAA50DCB60326B9AEF9D /* Pods-KomicaViewer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
