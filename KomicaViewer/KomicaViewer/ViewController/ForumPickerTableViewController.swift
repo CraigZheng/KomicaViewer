@@ -11,13 +11,22 @@ import UIKit
 import KomicaEngine
 
 class ForumPickerTableViewController: UITableViewController {
-    let forums = Forums.defaultForums
+    var forums = Forums.remoteForums ?? Forums.defaultForums
 
     private let cellIdentifier = "cellIdentifier"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        NSNotificationCenter.defaultCenter().addObserverForName(Forums.forumsUpdatedNotification,
+                                                                object: nil,
+                                                                queue: NSOperationQueue.mainQueue()) { (_) in
+                                                                    // If remote forums is available, reload remote forums.
+                                                                    if let remoteForums = Forums.remoteForums where remoteForums.count > 0 {
+                                                                        self.forums = remoteForums
+                                                                        self.tableView.reloadData()
+                                                                        DLog("Remote Forums Updated.")
+                                                                    }
+        }
     }
 
     // MARK: - Table view data source
