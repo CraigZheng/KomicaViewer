@@ -11,8 +11,9 @@ import Foundation
 import KomicaEngine
 
 class Forums {
-    // Selection updated notification.
+    // Forum notifications.
     static let selectionUpdatedNotification = "Forums.selectionUpdatedNotification"
+    static let forumsUpdatedNotification = "Forums.forumsUpdatedNotification"
     
     private static let sharedInstance = Forums()
     private var selectedForum: KomicaForum?
@@ -32,4 +33,9 @@ class Forums {
     
     static var defaultForums = KomicaForumFinder.sharedInstance.forums
     
+    static func updateRemoteForums(completion updateRemoteCompletion: ((success: Bool, forums: [KomicaForum]?, error: NSError?)->())?) {
+        KomicaForumFinder.sharedInstance.loadRemoteForumsWithCompletion({ (success, forums, error) in
+            updateRemoteCompletion?(success: success, forums: forums, error: error)
+        })
+    }
 }
