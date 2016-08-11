@@ -70,6 +70,8 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
                     })
                 }
                 })
+        } else {
+            cell.imageView?.image = nil
         }
         return cell
     }

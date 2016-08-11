@@ -67,6 +67,8 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
                     })
                 }
                 })
+        } else {
+            cell.imageView?.image = nil
         }
         return cell
     }
