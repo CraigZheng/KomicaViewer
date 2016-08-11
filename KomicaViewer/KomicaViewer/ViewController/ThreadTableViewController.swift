@@ -14,16 +14,18 @@ import MWPhotoBrowser
 
 class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol {
     
-    var selectedThreadID: String!
+    var selectedThread: Thread!
     
     private var selectedPhoto: MWPhoto?
     private var photoBrowser: MWPhotoBrowser?
     
     // MARK: ThreadTableViewControllerProtocol
-    var threads = [Thread]()
+    lazy var threads: [Thread] = {
+        return [self.selectedThread]
+    }()
     func refreshWithPage(page: Int) {
         // For each thread ID, there is only 1 page.
-        let stringArray = selectedThreadID.componentsSeparatedByCharactersInSet(
+        let stringArray = selectedThread.ID!.componentsSeparatedByCharactersInSet(
             NSCharacterSet.decimalDigitCharacterSet().invertedSet)
         if let threadID = Int(stringArray.joinWithSeparator("")) {
             loadResponsesWithThreadID(threadID)

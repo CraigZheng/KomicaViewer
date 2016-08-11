@@ -78,7 +78,7 @@ extension HomeTableViewController {
             let destinationViewController = segue.destinationViewController as? ThreadTableViewController,
             let indexPath = tableView.indexPathForCell(selectedCell)
         {
-            destinationViewController.selectedThreadID = threads[indexPath.row].ID
+            destinationViewController.selectedThread = threads[indexPath.row]
         }
     }
     
