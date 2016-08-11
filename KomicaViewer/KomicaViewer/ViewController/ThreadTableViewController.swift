@@ -59,17 +59,22 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         cell.textLabel?.text = (thread.ID ?? "") + " by " + (thread.UID ?? "")
         cell.detailTextLabel?.text = thread.content?.string
         if let imageURL = thread.thumbnailURL {
-            cell.imageView?.sd_setImageWithURL(imageURL, placeholderImage: nil, completed: { [weak cell](image, error, cacheType, imageURL) in
-                guard let strongCell = cell else { return }
-                // If its been downloaded from the web, reload this cell.
-                if image != nil && cacheType == SDImageCacheType.None {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        if let indexPath = tableView.indexPathForCell(strongCell) {
-                            self.addPendingIndexPaths(indexPath)
-                        }
+            if SDWebImageManager.sharedManager().cachedImageExistsForURL(imageURL) {
+                let cachedImage = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(SDWebImageManager.sharedManager().cacheKeyForURL(imageURL))
+                cell.imageView?.image = cachedImage
+            } else {
+                cell.imageView?.sd_setImageWithURL(imageURL, placeholderImage: nil, completed: { [weak cell](image, error, cacheType, imageURL) in
+                    guard let strongCell = cell else { return }
+                    // If its been downloaded from the web, reload this cell.
+                    if image != nil && cacheType == SDImageCacheType.None {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            if let indexPath = tableView.indexPathForCell(strongCell) {
+                                self.addPendingIndexPaths(indexPath)
+                            }
+                        })
+                    }
                     })
-                }
-                })
+            }
         } else {
             cell.imageView?.image = nil
         }
