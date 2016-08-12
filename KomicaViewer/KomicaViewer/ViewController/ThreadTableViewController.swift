@@ -14,7 +14,11 @@ import MWPhotoBrowser
 
 class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol {
     
-    var selectedThread: Thread!
+    var selectedThread: Thread! {
+        didSet {
+            title = selectedThread.title
+        }
+    }
     
     private var selectedPhoto: MWPhoto?
     private var photoBrowser: MWPhotoBrowser?
