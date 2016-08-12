@@ -26,6 +26,10 @@ extension ThreadTableViewControllerProtocol where Self: UITableViewController {
     var completion: KomicaDownloaderHandler? {
         return { (success, page, result) in
             if success, let t = result?.threads {
+                if page == 0 {
+                    // If page is 0, reset the threads.
+                    self.threads.removeAll()
+                }
                 self.threads.appendContentsOf(t)
             }
             self.tableView.reloadData()
