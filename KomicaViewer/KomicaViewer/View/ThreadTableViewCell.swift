@@ -14,6 +14,8 @@ import SDWebImage
 class ThreadTableViewCell: UITableViewCell {
     static let identifier = "threadCellIdentifier"
 
+    var shouldShowParasitePost = true
+    
     @IBOutlet weak var _detailTextLabel: UILabel!
     @IBOutlet weak var _textLabel: UILabel!
     @IBOutlet weak var _imageView: UIImageView!
@@ -66,7 +68,7 @@ class ThreadTableViewCell: UITableViewCell {
             imageViewZeroHeight?.priority = 999
         }
         // Parasite post.
-        if let parasitePosts = thread.pushPost,
+        if shouldShowParasitePost, let parasitePosts = thread.pushPost,
             let firstParasitePost = parasitePosts.first
         {
             parasitePostTextLabel?.text = firstParasitePost

@@ -54,6 +54,8 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         let cell = tableView.dequeueReusableCellWithIdentifier(ThreadTableViewCell.identifier, forIndexPath: indexPath)
         if let cell = cell as? ThreadTableViewCell {
             let thread = threads[indexPath.row]
+            // Home view does not show parasite view.
+            cell.shouldShowParasitePost = false
             cell.layoutWithThread(thread, forTableViewController: self)
         }
         return cell
