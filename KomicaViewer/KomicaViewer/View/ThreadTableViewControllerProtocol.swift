@@ -24,7 +24,7 @@ extension ThreadTableViewControllerProtocol where Self: UITableViewController {
     var forum: KomicaForum? { return Forums.selectedForum }
     var downloader: KomicaDownloader? { return KomicaDownloader() }
     var completion: KomicaDownloaderHandler? {
-        return { (success, result) in
+        return { (success, page, result) in
             if success, let t = result?.threads {
                 self.threads.appendContentsOf(t)
             }
@@ -36,13 +36,13 @@ extension ThreadTableViewControllerProtocol where Self: UITableViewController {
         if let forum = forum,
             let downloader = downloader
         {
-            downloader.downloadListForRequest(KomicaDownloaderRequest(url: forum.listURLForPage(page), parser: forum.parserType, completion: completion))
+            downloader.downloadListForRequest(KomicaDownloaderRequest(url: forum.listURLForPage(page), page: page, parser: forum.parserType, completion: completion))
         }
     }
     
     func loadResponsesWithThreadID(threadID: Int) {
         if let forum = forum, let downloader = downloader {
-            downloader.downloadRepliesForRequest(KomicaDownloaderRequest(url: forum.responseURLForThreadID(threadID), parser: forum .parserType, completion: completion))
+            downloader.downloadRepliesForRequest(KomicaDownloaderRequest(url: forum.responseURLForThreadID(threadID), page: 0, parser: forum .parserType, completion: completion))
         }
     }
 }
