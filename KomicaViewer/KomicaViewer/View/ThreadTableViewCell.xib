@@ -46,14 +46,14 @@
                         <rect key="frame" x="8" y="265" width="584" height="50"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parasite post content label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyn-dW-dhN">
-                                <rect key="frame" x="8" y="0.0" width="182.5" height="50"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <rect key="frame" x="8" y="0.0" width="172" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parasite post count" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Edn-WZ-uNg">
-                                <rect key="frame" x="459" y="33" width="125" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <rect key="frame" x="466.5" y="34" width="117.5" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -65,10 +65,16 @@
                             <constraint firstAttribute="height" constant="50" placeholder="YES" id="TlI-rS-Ypc"/>
                             <constraint firstItem="wyn-dW-dhN" firstAttribute="top" secondItem="vXa-Td-Ege" secondAttribute="top" id="X6P-iO-tFd"/>
                             <constraint firstAttribute="bottom" secondItem="wyn-dW-dhN" secondAttribute="bottom" id="ecI-2e-rIh"/>
-                            <constraint firstItem="Edn-WZ-uNg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wyn-dW-dhN" secondAttribute="trailing" constant="8" id="l4F-h8-8WO"/>
+                            <constraint firstItem="Edn-WZ-uNg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wyn-dW-dhN" secondAttribute="trailing" constant="16" id="l4F-h8-8WO"/>
                             <constraint firstItem="wyn-dW-dhN" firstAttribute="leading" secondItem="vXa-Td-Ege" secondAttribute="leading" constant="8" id="pZh-qZ-cT1"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Be5-yl-v9e" userLabel="Parasite Post View Button">
+                        <rect key="frame" x="8" y="265" width="584" height="50"/>
+                        <connections>
+                            <action selector="tapOnParasitePostView:" destination="-2" eventType="touchUpInside" id="Zom-dA-Z8X"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="xJG-08-KIl" secondAttribute="bottom" constant="8" id="2bF-3E-eA9"/>
@@ -79,12 +85,14 @@
                     <constraint firstAttribute="trailing" secondItem="xJG-08-KIl" secondAttribute="trailing" constant="8" id="Bdw-eB-Qhq"/>
                     <constraint firstItem="cUS-S1-WzD" firstAttribute="bottom" secondItem="tP8-Rx-2TW" secondAttribute="bottom" id="GiI-G8-1xW"/>
                     <constraint firstItem="vXa-Td-Ege" firstAttribute="top" secondItem="cUS-S1-WzD" secondAttribute="bottom" constant="8" id="Gpn-8Z-njZ"/>
+                    <constraint firstItem="Be5-yl-v9e" firstAttribute="bottom" secondItem="vXa-Td-Ege" secondAttribute="bottom" id="JK7-0J-MBE"/>
                     <constraint firstAttribute="trailing" secondItem="vXa-Td-Ege" secondAttribute="trailing" constant="8" id="KX8-gM-7D4"/>
                     <constraint firstItem="xJG-08-KIl" firstAttribute="bottom" secondItem="tP8-Rx-2TW" secondAttribute="bottom" id="TS9-J8-bJs"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="2FU-Qn-VjA" secondAttribute="trailing" constant="8" id="TaE-Vh-oHX"/>
                     <constraint firstItem="uAp-vS-hVV" firstAttribute="top" secondItem="qdO-r1-kyX" secondAttribute="top" constant="8" id="Vfr-Dj-VO9"/>
                     <constraint firstItem="tP8-Rx-2TW" firstAttribute="leading" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="dQ0-LO-SyR"/>
                     <constraint firstItem="uAp-vS-hVV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2FU-Qn-VjA" secondAttribute="trailing" constant="8" id="g7u-6R-8zU"/>
+                    <constraint firstItem="Be5-yl-v9e" firstAttribute="leading" secondItem="vXa-Td-Ege" secondAttribute="leading" id="l7F-7R-wQk"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tP8-Rx-2TW" secondAttribute="trailing" constant="8" id="ngn-c0-gDR"/>
                     <constraint firstItem="tP8-Rx-2TW" firstAttribute="top" secondItem="2FU-Qn-VjA" secondAttribute="bottom" constant="8" id="qnk-OJ-JPn"/>
                     <constraint firstItem="vXa-Td-Ege" firstAttribute="leading" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="rnh-v9-1Jh"/>
@@ -92,16 +100,18 @@
                     <constraint firstItem="xJG-08-KIl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tP8-Rx-2TW" secondAttribute="trailing" constant="8" id="tpf-zj-JRu"/>
                     <constraint firstAttribute="bottom" secondItem="vXa-Td-Ege" secondAttribute="bottom" id="u8b-Mm-2bW"/>
                     <constraint firstItem="cUS-S1-WzD" firstAttribute="trailing" secondItem="tP8-Rx-2TW" secondAttribute="trailing" id="uHl-Fc-lPL"/>
+                    <constraint firstItem="Be5-yl-v9e" firstAttribute="top" secondItem="vXa-Td-Ege" secondAttribute="top" id="xY4-xZ-3lI"/>
                     <constraint firstAttribute="bottom" secondItem="tP8-Rx-2TW" secondAttribute="bottom" constant="8" id="xw0-gf-fjr"/>
                     <constraint firstAttribute="trailing" secondItem="uAp-vS-hVV" secondAttribute="trailing" constant="8" id="ytR-tZ-GBb"/>
+                    <constraint firstItem="Be5-yl-v9e" firstAttribute="trailing" secondItem="vXa-Td-Ege" secondAttribute="trailing" id="zpQ-VM-13z"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="tMo-Rp-Yoh"/>
                         <exclude reference="xw0-gf-fjr"/>
+                        <exclude reference="g7u-6R-8zU"/>
                         <exclude reference="2bF-3E-eA9"/>
                         <exclude reference="tpf-zj-JRu"/>
-                        <exclude reference="g7u-6R-8zU"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>

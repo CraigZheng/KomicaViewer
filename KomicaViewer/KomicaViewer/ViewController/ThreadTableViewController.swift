@@ -71,8 +71,9 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
 // MARK: UIActions.
 extension ThreadTableViewController: MWPhotoBrowserDelegate {
     
-    @IBAction func unwindToHomeSegue(segue: UIStoryboardSegue) {
-        // Unwind to home.
+    @IBAction func tapOnParasitePostView(segue: UIButton) {
+        // User tap on parasite post view.
+        DLog("")
     }
     
     @IBAction func tapOnImageView(sender: AnyObject) {
