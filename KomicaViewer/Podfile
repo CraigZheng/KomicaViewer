@@ -18,6 +18,7 @@ target 'KomicaViewer' do
   pod "MWPhotoBrowser", '~> 2.1.2'
   pod "MBProgressHUD"
   pod "AFNetworking"
+  pod "PureLayout"
   target 'KomicaViewerTests' do
 #   inherit! :search_paths
     # Pods for testing

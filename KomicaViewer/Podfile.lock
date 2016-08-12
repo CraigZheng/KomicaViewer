@@ -20,6 +20,7 @@ PODS:
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
+  - PureLayout (3.0.2)
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
@@ -28,14 +29,16 @@ DEPENDENCIES:
   - AFNetworking
   - MBProgressHUD
   - MWPhotoBrowser (~> 2.1.2)
+  - PureLayout
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
 
-PODFILE CHECKSUM: 1b4dc6a44f79bb5d4bbd49a2045de4d71d3ffe45
+PODFILE CHECKSUM: 5b90fc8add9bca598aa468390a64f0f6c70c4505
 
 COCOAPODS: 1.0.1
