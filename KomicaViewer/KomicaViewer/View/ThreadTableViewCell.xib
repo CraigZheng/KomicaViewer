@@ -46,17 +46,26 @@
                         <rect key="frame" x="8" y="265" width="584" height="50"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parasite post content label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyn-dW-dhN">
-                                <rect key="frame" x="8" y="8" width="182.5" height="34"/>
+                                <rect key="frame" x="8" y="0.0" width="182.5" height="50"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parasite post count" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Edn-WZ-uNg">
+                                <rect key="frame" x="459" y="33" width="125" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.97774974370552914" blue="0.7536062093255198" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="TlI-rS-Ypc"/>
-                            <constraint firstItem="wyn-dW-dhN" firstAttribute="top" secondItem="vXa-Td-Ege" secondAttribute="top" constant="8" id="X6P-iO-tFd"/>
-                            <constraint firstAttribute="bottom" secondItem="wyn-dW-dhN" secondAttribute="bottom" constant="8" id="ecI-2e-rIh"/>
+                            <constraint firstAttribute="bottom" secondItem="Edn-WZ-uNg" secondAttribute="bottom" id="5fI-T6-7fa"/>
+                            <constraint firstAttribute="trailing" secondItem="Edn-WZ-uNg" secondAttribute="trailing" id="8xx-Hj-pAM"/>
+                            <constraint firstAttribute="height" constant="50" placeholder="YES" id="TlI-rS-Ypc"/>
+                            <constraint firstItem="wyn-dW-dhN" firstAttribute="top" secondItem="vXa-Td-Ege" secondAttribute="top" id="X6P-iO-tFd"/>
+                            <constraint firstAttribute="bottom" secondItem="wyn-dW-dhN" secondAttribute="bottom" id="ecI-2e-rIh"/>
+                            <constraint firstItem="Edn-WZ-uNg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wyn-dW-dhN" secondAttribute="trailing" constant="8" id="l4F-h8-8WO"/>
                             <constraint firstItem="wyn-dW-dhN" firstAttribute="leading" secondItem="vXa-Td-Ege" secondAttribute="leading" constant="8" id="pZh-qZ-cT1"/>
                         </constraints>
                     </view>
@@ -101,6 +110,8 @@
                 <outlet property="_detailTextLabel" destination="2FU-Qn-VjA" id="V29-mH-lfT"/>
                 <outlet property="_imageView" destination="tP8-Rx-2TW" id="4Ly-OI-x1q"/>
                 <outlet property="_textLabel" destination="uAp-vS-hVV" id="wPo-pe-Ig2"/>
+                <outlet property="parasitePostCountLabel" destination="Edn-WZ-uNg" id="p1r-lA-n5u"/>
+                <outlet property="parasitePostTextLabel" destination="wyn-dW-dhN" id="bLD-xz-VQW"/>
             </connections>
             <point key="canvasLocation" x="375" y="294"/>
         </tableViewCell>

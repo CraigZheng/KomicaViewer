@@ -17,6 +17,8 @@ class ThreadTableViewCell: UITableViewCell {
     @IBOutlet weak var _detailTextLabel: UILabel!
     @IBOutlet weak var _textLabel: UILabel!
     @IBOutlet weak var _imageView: UIImageView!
+    @IBOutlet weak var parasitePostTextLabel: UILabel!
+    @IBOutlet weak var parasitePostCountLabel: UILabel!
     
     // MARK: Override to return customisable UI elements.
     
@@ -59,6 +61,15 @@ class ThreadTableViewCell: UITableViewCell {
         } else {
             imageView?.image = nil
         }
-
+        // Parasite post.
+        if let parasitePosts = thread.pushPost,
+            let firstParasitePost = parasitePosts.first
+        {
+            parasitePostTextLabel.text = firstParasitePost
+            parasitePostCountLabel.text = parasitePosts.count > 0 ? "Replies: \(parasitePosts.count)" : ""
+        } else {
+            parasitePostTextLabel.text = ""
+            parasitePostCountLabel.text = ""
+        }
     }
 }
