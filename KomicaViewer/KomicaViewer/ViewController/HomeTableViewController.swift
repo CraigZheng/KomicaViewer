@@ -16,6 +16,9 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     
     // MARK: ThreadTableViewControllerProtocol
     var threads = [Thread]()
+    func refresh() {
+        refreshWithPage(0)
+    }
     func refreshWithPage(page: Int) {
         loadThreadsWithPage(page)
     }
@@ -38,6 +41,10 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self,
+                                  action: #selector(HomeTableViewController.refresh),
+                                  forControlEvents: UIControlEvents.ValueChanged)
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
         tableView.registerNib(UINib(nibName: "ThreadTableViewCell", bundle: nil), forCellReuseIdentifier: ThreadTableViewCell.identifier)

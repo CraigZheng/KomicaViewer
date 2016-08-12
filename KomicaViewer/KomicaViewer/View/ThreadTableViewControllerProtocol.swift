@@ -15,6 +15,7 @@ protocol ThreadTableViewControllerProtocol: class {
     var threads: [Thread] { get set }
     var downloader: KomicaDownloader? { get }
     var completion: KomicaDownloaderHandler? { get }
+    func refresh()
     func refreshWithPage(page: Int)
 }
 
@@ -28,6 +29,7 @@ extension ThreadTableViewControllerProtocol where Self: UITableViewController {
                 self.threads.appendContentsOf(t)
             }
             self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
         }
     }
     func loadThreadsWithPage(page: Int) {
