@@ -17,6 +17,8 @@ class ForumPickerTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44
         NSNotificationCenter.defaultCenter().addObserverForName(Forums.forumsUpdatedNotification,
                                                                 object: nil,
                                                                 queue: NSOperationQueue.mainQueue()) { (_) in

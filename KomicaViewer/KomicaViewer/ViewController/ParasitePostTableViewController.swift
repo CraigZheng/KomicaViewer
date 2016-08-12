@@ -12,6 +12,12 @@ class ParasitePostTableViewController: UITableViewController {
     
     var parasitePosts: [String]!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44
+    }
+    
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
