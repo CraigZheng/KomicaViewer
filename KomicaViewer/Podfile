@@ -19,6 +19,7 @@ target 'KomicaViewer' do
   pod "MBProgressHUD"
   pod "AFNetworking"
   pod "PureLayout"
+  pod 'SVPullToRefresh', :git => 'https://github.com/samvermette/SVPullToRefresh.git'
   target 'KomicaViewerTests' do
 #   inherit! :search_paths
     # Pods for testing

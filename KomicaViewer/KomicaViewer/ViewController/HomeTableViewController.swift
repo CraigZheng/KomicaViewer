@@ -11,6 +11,7 @@ import UIKit
 import KomicaEngine
 import MWPhotoBrowser
 import SDWebImage
+import SVPullToRefresh
 
 class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol {
     
@@ -20,6 +21,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         refreshWithPage(0)
     }
     func refreshWithPage(page: Int) {
+        DLog(" - \(page)")
         loadThreadsWithPage(page)
     }
     
@@ -53,6 +55,9 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
                                                          selector: #selector(HomeTableViewController.handleForumSelectedNotification(_:)),
                                                          name: Forums.selectionUpdatedNotification,
                                                          object: nil)
+        tableView.addPullToRefreshWithActionHandler({
+            self.refreshWithPage(++self.pageIndex)
+        }, position: .Bottom)
     }
     
     // MARK: - Table view data source

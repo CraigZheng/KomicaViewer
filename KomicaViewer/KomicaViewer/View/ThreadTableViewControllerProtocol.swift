@@ -9,6 +9,7 @@
 import UIKit
 
 import KomicaEngine
+import SVPullToRefresh
 
 protocol ThreadTableViewControllerProtocol: class {
     var forum: KomicaForum? { get }
@@ -35,6 +36,7 @@ extension ThreadTableViewControllerProtocol where Self: UITableViewController {
             self?.tableView.reloadData()
             self?.refreshControl?.endRefreshing()
             self?.hideLoading()
+            self?.tableView.pullToRefreshView.stopAnimating()
         }
     }
     func loadThreadsWithPage(page: Int) {
