@@ -21,6 +21,7 @@
 		44A65A971D5DBB0100A4DDE6 /* CPLoadFromNibView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A65A941D5DBB0100A4DDE6 /* CPLoadFromNibView.m */; };
 		44A65A981D5DBB0100A4DDE6 /* UIView+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A65A961D5DBB0100A4DDE6 /* UIView+Util.m */; };
 		44A65AA01D5DC7F500A4DDE6 /* ParasitePostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A65A9F1D5DC7F500A4DDE6 /* ParasitePostTableViewController.swift */; };
+		44A65AAB1D5DEE1000A4DDE6 /* UIViewController+ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A65AAA1D5DEE1000A4DDE6 /* UIViewController+ProgressBar.swift */; };
 		44BD39751D5B1E510070E0CB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39741D5B1E510070E0CB /* Logger.swift */; };
 		44BD39791D5B27690070E0CB /* ThreadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39781D5B27690070E0CB /* ThreadTableViewCell.swift */; };
 		44BD397D1D5B5AA70070E0CB /* ThreadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44BD397C1D5B5AA70070E0CB /* ThreadTableViewCell.xib */; };
@@ -108,6 +109,7 @@
 		44A65A961D5DBB0100A4DDE6 /* UIView+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Util.m"; sourceTree = "<group>"; };
 		44A65A9B1D5DBB7200A4DDE6 /* KomicaViewer-bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KomicaViewer-bridging-header.h"; sourceTree = "<group>"; };
 		44A65A9F1D5DC7F500A4DDE6 /* ParasitePostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParasitePostTableViewController.swift; sourceTree = "<group>"; };
+		44A65AAA1D5DEE1000A4DDE6 /* UIViewController+ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ProgressBar.swift"; sourceTree = "<group>"; };
 		44BD39741D5B1E510070E0CB /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		44BD39781D5B27690070E0CB /* ThreadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadTableViewCell.swift; sourceTree = "<group>"; };
 		44BD397C1D5B5AA70070E0CB /* ThreadTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreadTableViewCell.xib; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 		44BD39771D5B27430070E0CB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				44A65AAA1D5DEE1000A4DDE6 /* UIViewController+ProgressBar.swift */,
 				44BD39781D5B27690070E0CB /* ThreadTableViewCell.swift */,
 				44BD397C1D5B5AA70070E0CB /* ThreadTableViewCell.xib */,
 				44A65A921D5DBB0100A4DDE6 /* LoadFromNibView */,
@@ -513,6 +516,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44A65AAB1D5DEE1000A4DDE6 /* UIViewController+ProgressBar.swift in Sources */,
 				447EF1C31D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift in Sources */,
 				44A65A981D5DBB0100A4DDE6 /* UIView+Util.m in Sources */,
 				44BD39751D5B1E510070E0CB /* Logger.swift in Sources */,
