@@ -38,6 +38,7 @@ class Forums {
         KomicaForumFinder.sharedInstance.loadRemoteForumsWithCompletion({ (success, forums, error) in
             if let forums = forums {
                 remoteForums = forums
+                remoteForums?.appendContentsOf(KomicaForumFinder.sharedInstance.uniqueForums)
                 // Remote forums updated, send a notification.
                 NSNotificationCenter.defaultCenter().postNotificationName(forumsUpdatedNotification, object: nil)
             }
