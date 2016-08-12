@@ -20,6 +20,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         }
     }
     
+    private let showParasitePostSegue = "showParasitePosts"
     private var selectedPhoto: MWPhoto?
     private var photoBrowser: MWPhotoBrowser?
     
@@ -65,15 +66,35 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         }
         return cell
     }
+    
+    // MARK: Segue events.
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let parasitePostTableViewController = segue.destinationViewController as? ParasitePostTableViewController,
+            let parasitePost = selectedThread.pushPost
+        {
+            parasitePostTableViewController.parasitePosts = parasitePost
+        }
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        var should = true
+        if identifier == showParasitePostSegue {
+            should = selectedThread.pushPost?.count > 0
+        }
+        return should
+    }
 
 }
 
 // MARK: UIActions.
 extension ThreadTableViewController: MWPhotoBrowserDelegate {
     
-    @IBAction func tapOnParasitePostView(segue: UIButton) {
-        // User tap on parasite post view.
-        DLog("")
+    @IBAction func tapOnParasitePostView(sender: UIButton) {
+        // User tap on parasite post view, show all parasite posts.
+        if shouldPerformSegueWithIdentifier(showParasitePostSegue, sender: sender) {
+            performSegueWithIdentifier(showParasitePostSegue, sender: sender)
+        }
     }
     
     @IBAction func tapOnImageView(sender: AnyObject) {
