@@ -52,28 +52,9 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(ThreadTableViewCell.identifier, forIndexPath: indexPath)
-        let thread = threads[indexPath.row]
-        cell.textLabel?.text = (thread.ID ?? "") + " by " + (thread.UID ?? "")
-        cell.detailTextLabel?.text = thread.content?.string
-        if let imageURL = thread.thumbnailURL {
-            if SDWebImageManager.sharedManager().cachedImageExistsForURL(imageURL) {
-                let cachedImage = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(SDWebImageManager.sharedManager().cacheKeyForURL(imageURL))
-                cell.imageView?.image = cachedImage
-            } else {
-                cell.imageView?.sd_setImageWithURL(imageURL, placeholderImage: nil, completed: { [weak cell](image, error, cacheType, imageURL) in
-                    guard let strongCell = cell else { return }
-                    // If its been downloaded from the web, reload this cell.
-                    if image != nil && cacheType == SDImageCacheType.None {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            if let indexPath = tableView.indexPathForCell(strongCell) {
-                                self.addPendingIndexPaths(indexPath)
-                            }
-                        })
-                    }
-                    })
-            }
-        } else {
-            cell.imageView?.image = nil
+        if let cell = cell as? ThreadTableViewCell {
+            let thread = threads[indexPath.row]
+            cell.layoutWithThread(thread, forTableViewController: self)
         }
         return cell
     }

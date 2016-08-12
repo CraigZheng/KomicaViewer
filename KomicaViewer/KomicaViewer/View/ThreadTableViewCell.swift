@@ -1,5 +1,5 @@
 //
-//  ThreadTableViewCell.swift
+//  ThreadTableViewswift
 //  KomicaViewer
 //
 //  Created by Craig Zheng on 10/08/2016.
@@ -7,6 +7,9 @@
 //
 
 import UIKit
+
+import KomicaEngine
+import SDWebImage
 
 class ThreadTableViewCell: UITableViewCell {
     static let identifier = "threadCellIdentifier"
@@ -30,5 +33,32 @@ class ThreadTableViewCell: UITableViewCell {
     override var imageView: UIImageView? {
         get { return _imageView }
         set { _imageView = newValue }
+    }
+    
+    func layoutWithThread(thread: Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol) {
+        textLabel?.text = (thread.ID ?? "") + " by " + (thread.UID ?? "")
+        detailTextLabel?.text = thread.content?.string
+        if let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController
+        {
+            if SDWebImageManager.sharedManager().cachedImageExistsForURL(imageURL) {
+                let cachedImage = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(SDWebImageManager.sharedManager().cacheKeyForURL(imageURL))
+                imageView?.image = cachedImage
+            } else {
+                imageView?.sd_setImageWithURL(imageURL, placeholderImage: nil, completed: { [weak self](image, error, cacheType, imageURL) in
+                    guard let strongCell = self else { return }
+                    // If its been downloaded from the web, reload this 
+                    if image != nil && cacheType == SDImageCacheType.None {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            if let indexPath = tableViewController.tableView.indexPathForCell(strongCell) {
+                                (tableViewController as! TableViewControllerBulkUpdateProtocol).addPendingIndexPaths(indexPath)
+                            }
+                        })
+                    }
+                    })
+            }
+        } else {
+            imageView?.image = nil
+        }
+
     }
 }
