@@ -29,17 +29,25 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     }
     
     // MARK: ThreadTableViewControllerProtocol
+    var completion: KomicaDownloaderHandler? {
+        return { (success, page, result) in
+            if success, let t = result?.threads {
+                if page == 0 {
+                    // If page is 0, reset the threads.
+                    self.threads = [self.selectedThread]
+                }
+                self.threads.appendContentsOf(t)
+            }
+            self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
+        }
+    }
     lazy var threads: [Thread] = {
         return [self.selectedThread]
     }()
-    
-    // MARK: TableViewControllerBulkUpdateProtocol
-    var targetTableView: UITableView {
-        return self.tableView
+    func refresh() {
+        refreshWithPage(0)
     }
-    var bulkUpdateTimer: NSTimer?
-    var pendingIndexPaths: [NSIndexPath] = [NSIndexPath]()
-    
     func refreshWithPage(page: Int) {
         // For each thread ID, there is only 1 page.
         let stringArray = selectedThread.ID!.componentsSeparatedByCharactersInSet(
@@ -48,9 +56,20 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
             loadResponsesWithThreadID(threadID)
         }
     }
+
+    // MARK: TableViewControllerBulkUpdateProtocol
+    var targetTableView: UITableView {
+        return self.tableView
+    }
+    var bulkUpdateTimer: NSTimer?
+    var pendingIndexPaths: [NSIndexPath] = [NSIndexPath]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self,
+                                  action: #selector(ThreadTableViewController.refresh),
+                                  forControlEvents: UIControlEvents.ValueChanged)
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
         tableView.registerNib(UINib(nibName: "ThreadTableViewCell", bundle: nil), forCellReuseIdentifier: ThreadTableViewCell.identifier)
