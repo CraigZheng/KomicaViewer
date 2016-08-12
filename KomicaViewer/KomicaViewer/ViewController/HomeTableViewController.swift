@@ -72,6 +72,16 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         return cell
     }
     
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        var estimatedHeight = CGFloat(44)
+        if let threadContent = threads[indexPath.row].content {
+            let estimatedTextSize = threadContent.string.boundingRectWithSize(CGSizeMake(CGRectGetWidth(view.frame), CGFloat(MAXFLOAT)), options: .UsesLineFragmentOrigin, attributes: nil, context: nil).size
+            estimatedHeight += estimatedTextSize.height + 80
+            estimatedHeight += threads[indexPath.row].thumbnailURL == nil ? 0 : 100
+        }
+        return estimatedHeight
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier(showThreadSegue, sender: tableView.cellForRowAtIndexPath(indexPath))
     }
