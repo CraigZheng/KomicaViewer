@@ -71,16 +71,22 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let parasitePostTableViewController = segue.destinationViewController as? ParasitePostTableViewController,
-            let parasitePost = selectedThread.pushPost
+            let superCell = (sender as? UIView)?.superCell(),
+            let indexPath = tableView.indexPathForCell(superCell),
+            let parasitePosts = threads[indexPath.row].pushPost
         {
-            parasitePostTableViewController.parasitePosts = parasitePost
+            parasitePostTableViewController.parasitePosts = parasitePosts
         }
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         var should = true
-        if identifier == showParasitePostSegue {
-            should = selectedThread.pushPost?.count > 0
+        if identifier == showParasitePostSegue,
+            let superCell = (sender as? UIView)?.superCell(),
+            let indexPath = tableView.indexPathForCell(superCell),
+            let parasitePosts = threads[indexPath.row].pushPost
+        {
+            should = parasitePosts.count > 0
         }
         return should
     }
