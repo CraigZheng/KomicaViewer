@@ -24,22 +24,24 @@ extension ThreadTableViewControllerProtocol where Self: UITableViewController {
     var forum: KomicaForum? { return Forums.selectedForum }
     var downloader: KomicaDownloader? { return KomicaDownloader() }
     var completion: KomicaDownloaderHandler? {
-        return { (success, page, result) in
+        return { [weak self ](success, page, result) in
             if success, let t = result?.threads {
                 if page == 0 {
                     // If page is 0, reset the threads.
-                    self.threads.removeAll()
+                    self?.threads.removeAll()
                 }
-                self.threads.appendContentsOf(t)
+                self?.threads.appendContentsOf(t)
             }
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
+            self?.tableView.reloadData()
+            self?.refreshControl?.endRefreshing()
+            self?.hideLoading()
         }
     }
     func loadThreadsWithPage(page: Int) {
         if let forum = forum,
             let downloader = downloader
         {
+            showLoading()
             downloader.downloadListForRequest(KomicaDownloaderRequest(url: forum.listURLForPage(page), page: page, parser: forum.parserType, completion: completion))
         }
     }
