@@ -16,16 +16,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2FU-Qn-VjA">
-                        <rect key="frame" x="8" y="94" width="107.5" height="21"/>
+                        <rect key="frame" x="8" y="114" width="107.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="108" placeholderIntrinsicHeight="134.5" translatesAutoresizingMaskIntoConstraints="NO" id="tP8-Rx-2TW">
-                        <rect key="frame" x="8" y="123" width="108" height="134.5"/>
+                        <rect key="frame" x="8" y="143" width="108" height="134.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" priority="1" id="FDR-p8-tyN"/>
+                        </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUS-S1-WzD" userLabel="Image View Button">
-                        <rect key="frame" x="8" y="123" width="108" height="134.5"/>
+                        <rect key="frame" x="8" y="143" width="108" height="134.5"/>
                         <connections>
                             <action selector="tapOnImageView:" destination="-2" eventType="touchUpInside" id="oCh-5o-DgJ"/>
                         </connections>
@@ -37,22 +40,22 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Additional Info" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJG-08-KIl">
-                        <rect key="frame" x="505" y="241" width="87" height="16"/>
+                        <rect key="frame" x="505" y="261" width="87" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vXa-Td-Ege" userLabel="Parasite Post Container">
-                        <rect key="frame" x="8" y="265" width="584" height="50"/>
+                        <rect key="frame" x="8" y="285" width="584" height="30"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parasite post content label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyn-dW-dhN">
-                                <rect key="frame" x="8" y="0.0" width="172" height="50"/>
+                                <rect key="frame" x="8" y="0.0" width="172" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parasite post count" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Edn-WZ-uNg">
-                                <rect key="frame" x="466.5" y="34" width="117.5" height="16"/>
+                                <rect key="frame" x="466.5" y="14" width="117.5" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -62,7 +65,7 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Edn-WZ-uNg" secondAttribute="bottom" id="5fI-T6-7fa"/>
                             <constraint firstAttribute="trailing" secondItem="Edn-WZ-uNg" secondAttribute="trailing" id="8xx-Hj-pAM"/>
-                            <constraint firstAttribute="height" constant="50" placeholder="YES" id="TlI-rS-Ypc"/>
+                            <constraint firstAttribute="height" priority="1" id="TlI-rS-Ypc"/>
                             <constraint firstItem="wyn-dW-dhN" firstAttribute="top" secondItem="vXa-Td-Ege" secondAttribute="top" id="X6P-iO-tFd"/>
                             <constraint firstAttribute="bottom" secondItem="wyn-dW-dhN" secondAttribute="bottom" id="ecI-2e-rIh"/>
                             <constraint firstItem="Edn-WZ-uNg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wyn-dW-dhN" secondAttribute="trailing" constant="16" id="l4F-h8-8WO"/>
@@ -70,14 +73,13 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Be5-yl-v9e" userLabel="Parasite Post View Button">
-                        <rect key="frame" x="8" y="265" width="584" height="50"/>
+                        <rect key="frame" x="8" y="285" width="584" height="30"/>
                         <connections>
                             <action selector="tapOnParasitePostView:" destination="-2" eventType="touchUpInside" id="Zom-dA-Z8X"/>
                         </connections>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="xJG-08-KIl" secondAttribute="bottom" constant="8" id="2bF-3E-eA9"/>
                     <constraint firstItem="2FU-Qn-VjA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uAp-vS-hVV" secondAttribute="bottom" constant="8" id="49h-cy-efV"/>
                     <constraint firstItem="cUS-S1-WzD" firstAttribute="top" secondItem="tP8-Rx-2TW" secondAttribute="top" id="526-R7-kl7"/>
                     <constraint firstItem="cUS-S1-WzD" firstAttribute="leading" secondItem="tP8-Rx-2TW" secondAttribute="leading" id="6o7-3J-1YT"/>
@@ -91,37 +93,26 @@
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="2FU-Qn-VjA" secondAttribute="trailing" constant="8" id="TaE-Vh-oHX"/>
                     <constraint firstItem="uAp-vS-hVV" firstAttribute="top" secondItem="qdO-r1-kyX" secondAttribute="top" constant="8" id="Vfr-Dj-VO9"/>
                     <constraint firstItem="tP8-Rx-2TW" firstAttribute="leading" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="dQ0-LO-SyR"/>
-                    <constraint firstItem="uAp-vS-hVV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2FU-Qn-VjA" secondAttribute="trailing" constant="8" id="g7u-6R-8zU"/>
                     <constraint firstItem="Be5-yl-v9e" firstAttribute="leading" secondItem="vXa-Td-Ege" secondAttribute="leading" id="l7F-7R-wQk"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tP8-Rx-2TW" secondAttribute="trailing" constant="8" id="ngn-c0-gDR"/>
                     <constraint firstItem="tP8-Rx-2TW" firstAttribute="top" secondItem="2FU-Qn-VjA" secondAttribute="bottom" constant="8" id="qnk-OJ-JPn"/>
                     <constraint firstItem="vXa-Td-Ege" firstAttribute="leading" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="rnh-v9-1Jh"/>
-                    <constraint firstItem="2FU-Qn-VjA" firstAttribute="top" secondItem="qdO-r1-kyX" secondAttribute="top" constant="8" id="tMo-Rp-Yoh"/>
-                    <constraint firstItem="xJG-08-KIl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tP8-Rx-2TW" secondAttribute="trailing" constant="8" id="tpf-zj-JRu"/>
                     <constraint firstAttribute="bottom" secondItem="vXa-Td-Ege" secondAttribute="bottom" id="u8b-Mm-2bW"/>
                     <constraint firstItem="cUS-S1-WzD" firstAttribute="trailing" secondItem="tP8-Rx-2TW" secondAttribute="trailing" id="uHl-Fc-lPL"/>
                     <constraint firstItem="Be5-yl-v9e" firstAttribute="top" secondItem="vXa-Td-Ege" secondAttribute="top" id="xY4-xZ-3lI"/>
-                    <constraint firstAttribute="bottom" secondItem="tP8-Rx-2TW" secondAttribute="bottom" constant="8" id="xw0-gf-fjr"/>
                     <constraint firstAttribute="trailing" secondItem="uAp-vS-hVV" secondAttribute="trailing" constant="8" id="ytR-tZ-GBb"/>
                     <constraint firstItem="Be5-yl-v9e" firstAttribute="trailing" secondItem="vXa-Td-Ege" secondAttribute="trailing" id="zpQ-VM-13z"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="tMo-Rp-Yoh"/>
-                        <exclude reference="xw0-gf-fjr"/>
-                        <exclude reference="g7u-6R-8zU"/>
-                        <exclude reference="2bF-3E-eA9"/>
-                        <exclude reference="tpf-zj-JRu"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <gestureRecognizers/>
             <connections>
                 <outlet property="_detailTextLabel" destination="2FU-Qn-VjA" id="V29-mH-lfT"/>
                 <outlet property="_imageView" destination="tP8-Rx-2TW" id="4Ly-OI-x1q"/>
                 <outlet property="_textLabel" destination="uAp-vS-hVV" id="wPo-pe-Ig2"/>
+                <outlet property="imageViewZeroHeight" destination="FDR-p8-tyN" id="1zX-Bj-roG"/>
                 <outlet property="parasitePostCountLabel" destination="Edn-WZ-uNg" id="p1r-lA-n5u"/>
                 <outlet property="parasitePostTextLabel" destination="wyn-dW-dhN" id="bLD-xz-VQW"/>
+                <outlet property="parasitePostViewZeroHeight" destination="TlI-rS-Ypc" id="Yoj-Fv-JRx"/>
             </connections>
             <point key="canvasLocation" x="375" y="294"/>
         </tableViewCell>

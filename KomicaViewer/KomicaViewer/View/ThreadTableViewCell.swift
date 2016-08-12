@@ -17,8 +17,10 @@ class ThreadTableViewCell: UITableViewCell {
     @IBOutlet weak var _detailTextLabel: UILabel!
     @IBOutlet weak var _textLabel: UILabel!
     @IBOutlet weak var _imageView: UIImageView!
-    @IBOutlet weak var parasitePostTextLabel: UILabel!
-    @IBOutlet weak var parasitePostCountLabel: UILabel!
+    @IBOutlet weak var imageViewZeroHeight: NSLayoutConstraint?
+    @IBOutlet weak var parasitePostTextLabel: UILabel?
+    @IBOutlet weak var parasitePostCountLabel: UILabel?
+    @IBOutlet weak var parasitePostViewZeroHeight: NSLayoutConstraint?
     
     // MARK: Override to return customisable UI elements.
     
@@ -42,6 +44,7 @@ class ThreadTableViewCell: UITableViewCell {
         detailTextLabel?.text = thread.content?.string
         if let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController
         {
+            imageViewZeroHeight?.priority = 1
             if SDWebImageManager.sharedManager().cachedImageExistsForURL(imageURL) {
                 let cachedImage = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(SDWebImageManager.sharedManager().cacheKeyForURL(imageURL))
                 imageView?.image = cachedImage
@@ -60,16 +63,19 @@ class ThreadTableViewCell: UITableViewCell {
             }
         } else {
             imageView?.image = nil
+            imageViewZeroHeight?.priority = 999
         }
         // Parasite post.
         if let parasitePosts = thread.pushPost,
             let firstParasitePost = parasitePosts.first
         {
-            parasitePostTextLabel.text = firstParasitePost
-            parasitePostCountLabel.text = parasitePosts.count - 1 > 0 ? "\(parasitePosts.count - 1) more..." : ""
+            parasitePostTextLabel?.text = firstParasitePost
+            parasitePostCountLabel?.text = parasitePosts.count - 1 > 0 ? "\(parasitePosts.count - 1) more..." : ""
+            parasitePostViewZeroHeight?.priority = 1
         } else {
-            parasitePostTextLabel.text = ""
-            parasitePostCountLabel.text = ""
+            parasitePostTextLabel?.text = ""
+            parasitePostCountLabel?.text = ""
+            parasitePostViewZeroHeight?.priority = 999
         }
     }
 }
