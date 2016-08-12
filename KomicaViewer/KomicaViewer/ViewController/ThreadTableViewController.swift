@@ -22,7 +22,11 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     
     private let showParasitePostSegue = "showParasitePosts"
     private var selectedPhoto: MWPhoto?
-    private var photoBrowser: MWPhotoBrowser?
+    private var photoBrowser: MWPhotoBrowser {
+        let photoBrowser = MWPhotoBrowser(delegate: self)
+        photoBrowser.zoomPhotosToFill = true
+        return photoBrowser
+    }
     
     // MARK: ThreadTableViewControllerProtocol
     lazy var threads: [Thread] = {
@@ -110,9 +114,8 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate {
             let imageURL = threads[indexPath.row].imageURL
         {
             selectedPhoto = MWPhoto(URL: imageURL)
-            photoBrowser = MWPhotoBrowser(delegate: self)
             // Present
-            navigationController?.pushViewController(photoBrowser!, animated:true)
+            navigationController?.pushViewController(photoBrowser, animated:true)
         }
     }
     

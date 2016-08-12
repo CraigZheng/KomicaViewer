@@ -28,7 +28,11 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     var pendingIndexPaths: [NSIndexPath] = [NSIndexPath]()
     
     private var selectedPhoto: MWPhoto?
-    private var photoBrowser: MWPhotoBrowser?
+    private var photoBrowser: MWPhotoBrowser {
+        let photoBrowser = MWPhotoBrowser(delegate: self)
+        photoBrowser.zoomPhotosToFill = true
+        return photoBrowser
+    }
     private var pageIndex = 0
     private let showThreadSegue = "showThread"
     
@@ -95,9 +99,8 @@ extension HomeTableViewController: MWPhotoBrowserDelegate {
             let imageURL = threads[indexPath.row].imageURL
         {
             selectedPhoto = MWPhoto(URL: imageURL)
-            photoBrowser = MWPhotoBrowser(delegate: self)
             // Present
-            navigationController?.pushViewController(photoBrowser!, animated:true)
+            navigationController?.pushViewController(photoBrowser, animated:true)
         }
     }
     
