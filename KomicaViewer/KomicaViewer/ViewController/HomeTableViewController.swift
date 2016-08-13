@@ -24,6 +24,11 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         DLog(" - \(page)")
         loadThreadsWithPage(page)
     }
+    lazy var postCompletion: KomicaDownloaderHandler? = { (success, page, result) in
+        // Update the current page.
+        DLog("HomeTableViewController.postCompletion()")
+        self.pageIndex = page
+    }
     
     // MARK: TableViewControllerBulkUpdateProtocol
     var targetTableView: UITableView {
@@ -56,7 +61,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
                                                          name: Forums.selectionUpdatedNotification,
                                                          object: nil)
         tableView.addPullToRefreshWithActionHandler({
-            self.refreshWithPage(++self.pageIndex)
+            self.refreshWithPage(self.pageIndex + 1)
         }, position: .Bottom)
     }
     

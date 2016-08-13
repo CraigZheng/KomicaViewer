@@ -42,6 +42,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
             self.refreshControl?.endRefreshing()
         }
     }
+    var postCompletion: KomicaDownloaderHandler?
     lazy var threads: [Thread] = {
         return [self.selectedThread]
     }()
