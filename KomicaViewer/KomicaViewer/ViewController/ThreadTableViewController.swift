@@ -21,12 +21,14 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     }
     
     private let showParasitePostSegue = "showParasitePosts"
-    private var selectedPhoto: MWPhoto?
     private var photoBrowser: MWPhotoBrowser {
-        let photoBrowser = MWPhotoBrowser(delegate: self)
-        photoBrowser.zoomPhotosToFill = true
-        return photoBrowser
+        if _photoBrowser == nil {
+            _photoBrowser = MWPhotoBrowser(delegate: self)
+            _photoBrowser!.zoomPhotosToFill = true
+        }
+        return _photoBrowser!
     }
+    private var _photoBrowser: MWPhotoBrowser?
     
     // MARK: ThreadTableViewControllerProtocol
     var completion: KomicaDownloaderHandler? {
@@ -139,21 +141,34 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate {
     @IBAction func tapOnImageView(sender: AnyObject) {
         if let sender = sender as? UIView,
             let cell = sender.superCell(),
-            let indexPath = tableView.indexPathForCell(cell),
-            let imageURL = threads[indexPath.row].imageURL
+            let indexPath = tableView.indexPathForCell(cell)
         {
-            selectedPhoto = MWPhoto(URL: imageURL)
             // Present
+            _photoBrowser = nil
+            if let index = imageThreads.indexOf(threads[indexPath.row]) {
+                photoBrowser.setCurrentPhotoIndex(UInt(index))
+            }
             navigationController?.pushViewController(photoBrowser, animated:true)
         }
     }
     
+    private var imageThreads: [Thread] {
+        return self.threads.filter({ (thread) -> Bool in
+            return thread.imageURL != nil
+        })
+    }
+    
+    // MARK: MWPhotoBrowserDelegate
     func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
-        return selectedPhoto == nil ? 0 : 1
+        return UInt(imageThreads.count)
     }
     
     func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
-        return selectedPhoto ?? MWPhoto()
+        var photo: MWPhoto?
+        if let imageURL = imageThreads[Int(index)].imageURL {
+            photo = MWPhoto(URL: imageURL)
+        }
+        return photo ?? MWPhoto()
     }
     
 }
