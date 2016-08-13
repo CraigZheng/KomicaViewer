@@ -26,6 +26,11 @@
                                 </segue>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="aiT-9T-Fl6">
+                            <connections>
+                                <action selector="openInSafariAction:" destination="oFT-St-UNq" id="RD3-9D-88L"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="Fxb-WB-Xzn" kind="show" identifier="showThread" id="xt5-yj-14A"/>
@@ -35,7 +40,7 @@
             </objects>
             <point key="canvasLocation" x="1491" y="-146"/>
         </scene>
-        <!--Thread Table View Controller-->
+        <!--Title-->
         <scene sceneID="l78-DI-aXJ">
             <objects>
                 <tableViewController id="Fxb-WB-Xzn" customClass="ThreadTableViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
@@ -48,6 +53,15 @@
                             <outlet property="delegate" destination="Fxb-WB-Xzn" id="kSb-EK-137"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="TxK-Ay-4qA">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="UeO-Zh-80L">
+                            <connections>
+                                <action selector="openInSafariAction:" destination="Fxb-WB-Xzn" id="yyf-Q8-XDL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="PR8-ly-aaG" kind="show" identifier="showParasitePosts" id="9fq-5Y-o5k"/>
                     </connections>

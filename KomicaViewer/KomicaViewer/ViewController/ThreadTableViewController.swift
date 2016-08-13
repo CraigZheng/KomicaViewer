@@ -38,7 +38,13 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         return _photoBrowser!
     }
     private var _photoBrowser: MWPhotoBrowser?
-    
+    // Get the threadID from the selectedThread.ID.
+    private var threadID: Int? {
+        let stringArray = selectedThread.ID!.componentsSeparatedByCharactersInSet(
+            NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+        let threadID = Int(stringArray.joinWithSeparator(""))
+        return threadID ?? nil
+    }
     // MARK: ThreadTableViewControllerProtocol
     lazy var postCompletion: KomicaDownloaderHandler? = {
         [weak self](success, page, result) in
@@ -61,9 +67,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     }
     func refreshWithPage(page: Int) {
         // For each thread ID, there is only 1 page.
-        let stringArray = selectedThread.ID!.componentsSeparatedByCharactersInSet(
-            NSCharacterSet.decimalDigitCharacterSet().invertedSet)
-        if let threadID = Int(stringArray.joinWithSeparator("")) {
+        if let threadID = threadID {
             loadResponsesWithThreadID(threadID)
         }
     }
@@ -138,7 +142,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
 }
 
 // MARK: UIActions.
-extension ThreadTableViewController: MWPhotoBrowserDelegate {
+extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate {
     
     @IBAction func tapOnParasitePostView(sender: UIButton) {
         // User tap on parasite post view, show all parasite posts.
@@ -159,6 +163,10 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate {
             }
             navigationController?.pushViewController(photoBrowser, animated:true)
         }
+    }
+    
+    @IBAction func openInSafariAction(sender: AnyObject) {
+        UIAlertView(title: "Open In Safari?", message: "You are about to open this page in safari, continue?", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Confirm").show()
     }
     
     private var imageThreads: [Thread] {
@@ -189,5 +197,17 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate {
             thumbnail = MWPhoto(URL: imageURL)
         }
         return thumbnail ?? MWPhoto()
+    }
+    
+    // UIAlertViewDelegate
+    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
+        if buttonIndex != alertView.cancelButtonIndex {
+            // Open in Safari.
+            if let threadID = threadID,
+                let currentPageURL = forum?.responseURLForThreadID(threadID) where UIApplication.sharedApplication().canOpenURL(currentPageURL)
+            {
+                UIApplication.sharedApplication().openURL(currentPageURL)
+            }
+        }
     }
 }

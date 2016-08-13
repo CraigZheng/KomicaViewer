@@ -130,8 +130,12 @@ extension HomeTableViewController {
 }
 
 // MARK: UIActions.
-extension HomeTableViewController: MWPhotoBrowserDelegate {
+extension HomeTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate {
     
+    @IBAction func openInSafariAction(sender: AnyObject) {
+        UIAlertView(title: "Open In Safari?", message: "You are about to open this page in safari, continue?", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Confirm").show()
+    }
+
     @IBAction func unwindToHomeSegue(segue: UIStoryboardSegue) {
         // Unwind to home.
     }
@@ -156,6 +160,16 @@ extension HomeTableViewController: MWPhotoBrowserDelegate {
         return selectedPhoto ?? MWPhoto()
     }
     
+    // MARK: UIAlertViewDelegate
+    
+    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
+        if buttonIndex != alertView.cancelButtonIndex {
+            // Open in Safari.
+            if let currentPageURL = forum?.listURLForPage(pageIndex) where UIApplication.sharedApplication().canOpenURL(currentPageURL) {
+                UIApplication.sharedApplication().openURL(currentPageURL)
+            }
+        }
+    }
 }
 
 // MARK: Forum selected notification handler.
