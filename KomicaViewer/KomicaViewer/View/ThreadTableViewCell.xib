@@ -41,6 +41,7 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJG-08-KIl">
                         <rect key="frame" x="542" y="261" width="50" height="16"/>
+                        <color key="backgroundColor" red="1" green="1" blue="0.93725490196078431" alpha="0.80235499100719421" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.92941176470588238" green="0.031372549019607843" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -95,6 +96,7 @@
                     <constraint firstAttribute="trailing" secondItem="xJG-08-KIl" secondAttribute="trailing" constant="8" id="Bdw-eB-Qhq"/>
                     <constraint firstItem="cUS-S1-WzD" firstAttribute="bottom" secondItem="tP8-Rx-2TW" secondAttribute="bottom" id="GiI-G8-1xW"/>
                     <constraint firstItem="vXa-Td-Ege" firstAttribute="top" secondItem="cUS-S1-WzD" secondAttribute="bottom" constant="8" id="Gpn-8Z-njZ"/>
+                    <constraint firstItem="xJG-08-KIl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="J8g-fe-SAx"/>
                     <constraint firstItem="Be5-yl-v9e" firstAttribute="bottom" secondItem="vXa-Td-Ege" secondAttribute="bottom" id="JK7-0J-MBE"/>
                     <constraint firstAttribute="trailing" secondItem="vXa-Td-Ege" secondAttribute="trailing" constant="8" id="KX8-gM-7D4"/>
                     <constraint firstItem="zcD-E7-l3X" firstAttribute="leading" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="Rt8-kE-Q0J"/>
