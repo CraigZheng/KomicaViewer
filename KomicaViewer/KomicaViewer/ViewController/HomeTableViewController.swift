@@ -28,6 +28,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         // Update the current page.
         DLog("HomeTableViewController.postCompletion()")
         self.pageIndex = page
+        ProgressHUD.showMessage("Completed loading the \(page + 1) page")
     }
     
     // MARK: TableViewControllerBulkUpdateProtocol
