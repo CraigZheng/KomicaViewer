@@ -46,14 +46,21 @@ extension ThreadTableViewControllerProtocol where Self: UITableViewController {
             let downloader = downloader
         {
             showLoading()
-            downloader.downloadListForRequest(KomicaDownloaderRequest(url: forum.listURLForPage(page), page: page, parser: forum.parserType, completion: completion))
+            if let targetURL = forum.listURLForPage(page) {
+                downloader.downloadListForRequest(KomicaDownloaderRequest(url: targetURL, page: page, parser: forum.parserType, completion: completion))
+            } else {
+                completion?(success: false, page: 0, result: nil)
+            }
         }
     }
     
     func loadResponsesWithThreadID(threadID: Int) {
         showLoading()
-        if let forum = forum, let downloader = downloader {
-            downloader.downloadRepliesForRequest(KomicaDownloaderRequest(url: forum.responseURLForThreadID(threadID), page: 0, parser: forum .parserType, completion: completion))
+        if let forum = forum, let downloader = downloader, let targetURL = forum.responseURLForThreadID(threadID)
+        {
+            downloader.downloadRepliesForRequest(KomicaDownloaderRequest(url: targetURL, page: 0, parser: forum .parserType, completion: completion))
+        } else {
+            completion?(success: false, page: 0, result: nil)
         }
     }
 }
