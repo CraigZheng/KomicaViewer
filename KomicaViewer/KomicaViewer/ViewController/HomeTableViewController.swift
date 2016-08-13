@@ -24,6 +24,18 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         DLog(" - \(page)")
         loadThreadsWithPage(page)
     }
+    lazy var postCompletion: KomicaDownloaderHandler? = { (success, page, result) in
+        // Update the current page.
+        self.pageIndex = page
+        ProgressHUD.showMessage("Completed loading the \(page + 1) page")
+        // If the originalContentInset is nil, record it, otherwise apply it to the tableView.
+        // This is due to a bug that is introduced by SVPullToRefresh library. In order to fix this bug, I need to manually adjust the content inset.
+        if let originalContentInset = self.originalContentInset {
+            self.tableView.contentInset = originalContentInset
+        } else {
+            self.originalContentInset = self.tableView.contentInset
+        }
+    }
     
     // MARK: TableViewControllerBulkUpdateProtocol
     var targetTableView: UITableView {
@@ -33,6 +45,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     var pendingIndexPaths: [NSIndexPath] = [NSIndexPath]()
     
     private var selectedPhoto: MWPhoto?
+    private var originalContentInset: UIEdgeInsets?
     private var photoBrowser: MWPhotoBrowser {
         let photoBrowser = MWPhotoBrowser(delegate: self)
         photoBrowser.displayNavArrows = true; // Whether to display left and right nav arrows on toolbar (defaults to false)
@@ -65,7 +78,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
                                                          name: Forums.selectionUpdatedNotification,
                                                          object: nil)
         tableView.addPullToRefreshWithActionHandler({
-            self.refreshWithPage(++self.pageIndex)
+            self.refreshWithPage(self.pageIndex + 1)
         }, position: .Bottom)
     }
     
