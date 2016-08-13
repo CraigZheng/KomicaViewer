@@ -23,6 +23,8 @@ class ThreadTableViewCell: UITableViewCell {
     @IBOutlet weak var parasitePostTextLabel: UILabel?
     @IBOutlet weak var parasitePostCountLabel: UILabel?
     @IBOutlet weak var parasitePostViewZeroHeight: NSLayoutConstraint?
+    @IBOutlet weak var dateLabel: UILabel?
+    @IBOutlet weak var warningLabel: UILabel?
     
     // MARK: Override to return customisable UI elements.
     
@@ -78,6 +80,12 @@ class ThreadTableViewCell: UITableViewCell {
             parasitePostTextLabel?.text = ""
             parasitePostCountLabel?.text = ""
             parasitePostViewZeroHeight?.priority = 999
+        }
+        dateLabel?.text = thread.postDateString ?? ""
+        if !thread.warnings.isEmpty {
+            warningLabel?.text = thread.warnings.joinWithSeparator("\n")
+        } else {
+            warningLabel?.text = ""
         }
     }
 }

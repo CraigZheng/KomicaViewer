@@ -33,29 +33,29 @@
                             <action selector="tapOnImageView:" destination="-2" eventType="touchUpInside" id="oCh-5o-DgJ"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Poster And Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAp-vS-hVV">
-                        <rect key="frame" x="493" y="8" width="99" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAp-vS-hVV">
+                        <rect key="frame" x="527" y="8" width="65" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.71372549019999998" green="0.30588235289999999" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.80784313730000001" green="0.086274509799999996" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Additional Info" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJG-08-KIl">
-                        <rect key="frame" x="505" y="261" width="87" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJG-08-KIl">
+                        <rect key="frame" x="542" y="261" width="50" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.92941176470588238" green="0.031372549019607843" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vXa-Td-Ege" userLabel="Parasite Post Container">
                         <rect key="frame" x="8" y="285" width="584" height="30"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parasite post content label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyn-dW-dhN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parasite post content label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyn-dW-dhN">
                                 <rect key="frame" x="8" y="0.0" width="172" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.71372549019999998" green="0.30588235289999999" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parasite post count" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Edn-WZ-uNg">
-                                <rect key="frame" x="474.5" y="15.5" width="109.5" height="14.5"/>
+                                <rect key="frame" x="474" y="15" width="109.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.71372549019999998" green="0.30588235289999999" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -78,10 +78,17 @@
                             <action selector="tapOnParasitePostView:" destination="-2" eventType="touchUpInside" id="Zom-dA-Z8X"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcD-E7-l3X">
+                        <rect key="frame" x="8" y="8" width="62.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.80784313730000001" green="0.086274509799999996" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" red="1" green="1" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="2FU-Qn-VjA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uAp-vS-hVV" secondAttribute="bottom" constant="8" id="49h-cy-efV"/>
+                    <constraint firstItem="2FU-Qn-VjA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uAp-vS-hVV" secondAttribute="bottom" constant="16" id="49h-cy-efV"/>
+                    <constraint firstItem="uAp-vS-hVV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zcD-E7-l3X" secondAttribute="trailing" constant="16" id="4tL-gw-3ME"/>
                     <constraint firstItem="cUS-S1-WzD" firstAttribute="top" secondItem="tP8-Rx-2TW" secondAttribute="top" id="526-R7-kl7"/>
                     <constraint firstItem="cUS-S1-WzD" firstAttribute="leading" secondItem="tP8-Rx-2TW" secondAttribute="leading" id="6o7-3J-1YT"/>
                     <constraint firstItem="2FU-Qn-VjA" firstAttribute="leading" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="73a-Jb-5ZC"/>
@@ -90,10 +97,12 @@
                     <constraint firstItem="vXa-Td-Ege" firstAttribute="top" secondItem="cUS-S1-WzD" secondAttribute="bottom" constant="8" id="Gpn-8Z-njZ"/>
                     <constraint firstItem="Be5-yl-v9e" firstAttribute="bottom" secondItem="vXa-Td-Ege" secondAttribute="bottom" id="JK7-0J-MBE"/>
                     <constraint firstAttribute="trailing" secondItem="vXa-Td-Ege" secondAttribute="trailing" constant="8" id="KX8-gM-7D4"/>
+                    <constraint firstItem="zcD-E7-l3X" firstAttribute="leading" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="Rt8-kE-Q0J"/>
                     <constraint firstItem="xJG-08-KIl" firstAttribute="bottom" secondItem="tP8-Rx-2TW" secondAttribute="bottom" id="TS9-J8-bJs"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="2FU-Qn-VjA" secondAttribute="trailing" constant="8" id="TaE-Vh-oHX"/>
                     <constraint firstItem="uAp-vS-hVV" firstAttribute="top" secondItem="qdO-r1-kyX" secondAttribute="top" constant="8" id="Vfr-Dj-VO9"/>
                     <constraint firstItem="tP8-Rx-2TW" firstAttribute="leading" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="dQ0-LO-SyR"/>
+                    <constraint firstItem="zcD-E7-l3X" firstAttribute="top" secondItem="qdO-r1-kyX" secondAttribute="top" constant="8" id="l0G-D1-oWz"/>
                     <constraint firstItem="Be5-yl-v9e" firstAttribute="leading" secondItem="vXa-Td-Ege" secondAttribute="leading" id="l7F-7R-wQk"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tP8-Rx-2TW" secondAttribute="trailing" constant="8" id="ngn-c0-gDR"/>
                     <constraint firstItem="tP8-Rx-2TW" firstAttribute="top" secondItem="2FU-Qn-VjA" secondAttribute="bottom" constant="8" id="qnk-OJ-JPn"/>
@@ -109,11 +118,13 @@
             <connections>
                 <outlet property="_detailTextLabel" destination="2FU-Qn-VjA" id="V29-mH-lfT"/>
                 <outlet property="_imageView" destination="tP8-Rx-2TW" id="4Ly-OI-x1q"/>
-                <outlet property="_textLabel" destination="uAp-vS-hVV" id="wPo-pe-Ig2"/>
+                <outlet property="_textLabel" destination="zcD-E7-l3X" id="tcU-c6-jPZ"/>
+                <outlet property="dateLabel" destination="uAp-vS-hVV" id="oVY-6l-PB9"/>
                 <outlet property="imageViewZeroHeight" destination="FDR-p8-tyN" id="1zX-Bj-roG"/>
                 <outlet property="parasitePostCountLabel" destination="Edn-WZ-uNg" id="p1r-lA-n5u"/>
                 <outlet property="parasitePostTextLabel" destination="wyn-dW-dhN" id="bLD-xz-VQW"/>
                 <outlet property="parasitePostViewZeroHeight" destination="TlI-rS-Ypc" id="Yoj-Fv-JRx"/>
+                <outlet property="warningLabel" destination="xJG-08-KIl" id="RUF-tP-SKv"/>
             </connections>
             <point key="canvasLocation" x="375" y="294"/>
         </tableViewCell>
