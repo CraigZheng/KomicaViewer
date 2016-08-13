@@ -56,16 +56,16 @@
             </objects>
             <point key="canvasLocation" x="2311" y="-146"/>
         </scene>
-        <!--Parasite Post-->
+        <!--Parasite Post Table View Controller-->
         <scene sceneID="W16-NV-Wfv">
             <objects>
-                <tableViewController title="Parasite Post" id="PR8-ly-aaG" customClass="ParasitePostTableViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="PR8-ly-aaG" customClass="ParasitePostTableViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="P1B-Bx-pQU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellIdentifier" textLabel="gEL-bC-yF0" style="IBUITableViewCellStyleDefault" id="avY-jQ-OV5">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellIdentifier" textLabel="gEL-bC-yF0" style="IBUITableViewCellStyleDefault" id="avY-jQ-OV5">
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="avY-jQ-OV5" id="tXh-F6-DBl">

@@ -74,7 +74,7 @@ class ThreadTableViewCell: UITableViewCell {
             let firstParasitePost = parasitePosts.first
         {
             parasitePostTextLabel?.text = firstParasitePost
-            parasitePostCountLabel?.text = parasitePosts.count - 1 > 0 ? "\(parasitePosts.count - 1) more..." : ""
+            parasitePostCountLabel?.text = parasitePosts.count - 1 > 0 ? "..." : ""
             parasitePostViewZeroHeight?.priority = 1
         } else {
             parasitePostTextLabel?.text = ""
