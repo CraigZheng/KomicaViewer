@@ -39,13 +39,6 @@
                         <color key="textColor" red="0.80784313730000001" green="0.086274509799999996" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJG-08-KIl">
-                        <rect key="frame" x="542" y="261" width="50" height="16"/>
-                        <color key="backgroundColor" red="1" green="1" blue="0.93725490196078431" alpha="0.80235499100719421" colorSpace="calibratedRGB"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.92941176470588238" green="0.031372549019607843" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vXa-Td-Ege" userLabel="Parasite Post Container">
                         <rect key="frame" x="8" y="285" width="584" height="30"/>
                         <subviews>
@@ -83,6 +76,13 @@
                         <rect key="frame" x="8" y="8" width="62.5" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.80784313730000001" green="0.086274509799999996" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xJG-08-KIl">
+                        <rect key="frame" x="544.5" y="263" width="47" height="14.5"/>
+                        <color key="backgroundColor" red="1" green="1" blue="0.93725490196078431" alpha="0.80235499100719421" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.92941176470588238" green="0.031372549019607843" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
