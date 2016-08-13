@@ -35,7 +35,16 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     private var selectedPhoto: MWPhoto?
     private var photoBrowser: MWPhotoBrowser {
         let photoBrowser = MWPhotoBrowser(delegate: self)
-        photoBrowser.zoomPhotosToFill = true
+        photoBrowser.displayNavArrows = true; // Whether to display left and right nav arrows on toolbar (defaults to false)
+        photoBrowser.displaySelectionButtons = false; // Whether selection buttons are shown on each image (defaults to false)
+        photoBrowser.zoomPhotosToFill = false; // Images that almost fill the screen will be initially zoomed to fill (defaults to true)
+        photoBrowser.alwaysShowControls = false; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to false)
+        photoBrowser.enableGrid = true; // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to true)
+        photoBrowser.startOnGrid = false; // Whether to start on the grid of thumbnails instead of the first photo (defaults to false)
+        photoBrowser.delayToHideElements = UInt(8);
+        photoBrowser.enableSwipeToDismiss = false; // dont dismiss
+        photoBrowser.displayActionButton = true;
+        photoBrowser.hidesBottomBarWhenPushed = true;
         return photoBrowser
     }
     private var pageIndex = 0
@@ -126,11 +135,11 @@ extension HomeTableViewController: MWPhotoBrowserDelegate {
         }
     }
     
-    func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+    func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser) -> UInt {
         return selectedPhoto == nil ? 0 : 1
     }
     
-    func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+    func photoBrowser(photoBrowser: MWPhotoBrowser, photoAtIndex index: UInt) -> MWPhotoProtocol! {
         return selectedPhoto ?? MWPhoto()
     }
     

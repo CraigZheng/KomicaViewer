@@ -24,7 +24,16 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     private var photoBrowser: MWPhotoBrowser {
         if _photoBrowser == nil {
             _photoBrowser = MWPhotoBrowser(delegate: self)
-            _photoBrowser!.zoomPhotosToFill = true
+            _photoBrowser!.displayNavArrows = true; // Whether to display left and right nav arrows on toolbar (defaults to false)
+            _photoBrowser!.displaySelectionButtons = false; // Whether selection buttons are shown on each image (defaults to false)
+            _photoBrowser!.zoomPhotosToFill = false; // Images that almost fill the screen will be initially zoomed to fill (defaults to true)
+            _photoBrowser!.alwaysShowControls = false; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to false)
+            _photoBrowser!.enableGrid = true; // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to true)
+            _photoBrowser!.startOnGrid = false; // Whether to start on the grid of thumbnails instead of the first photo (defaults to false)
+            _photoBrowser!.delayToHideElements = UInt(8);
+            _photoBrowser!.enableSwipeToDismiss = false; // dont dismiss
+            _photoBrowser!.displayActionButton = true;
+            _photoBrowser!.hidesBottomBarWhenPushed = true;
         }
         return _photoBrowser!
     }
@@ -171,4 +180,14 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate {
         return photo ?? MWPhoto()
     }
     
+    func photoBrowser(photoBrowser: MWPhotoBrowser!, thumbPhotoAtIndex index: UInt) -> MWPhotoProtocol! {
+        var thumbnail: MWPhoto?
+        if let thumbnailURL = imageThreads[Int(index)].thumbnailURL {
+            thumbnail = MWPhoto(URL: thumbnailURL)
+        } else if let imageURL = imageThreads[Int(index)].imageURL {
+            // Cannot find thumbnail URL for this thread, use full size image instead.
+            thumbnail = MWPhoto(URL: imageURL)
+        }
+        return thumbnail ?? MWPhoto()
+    }
 }
