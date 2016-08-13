@@ -30,16 +30,18 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     
     // MARK: ThreadTableViewControllerProtocol
     var completion: KomicaDownloaderHandler? {
-        return { (success, page, result) in
+        return { [weak self](success, page, result) in
+            guard let strongSelf = self else { return }
             if success, let t = result?.threads {
                 if page == 0 {
                     // If page is 0, reset the threads.
-                    self.threads = [self.selectedThread]
+                    strongSelf.threads = [strongSelf.selectedThread]
                 }
-                self.threads.appendContentsOf(t)
+                strongSelf.threads.appendContentsOf(t)
             }
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
+            strongSelf.tableView.reloadData()
+            strongSelf.hideLoading()
+            strongSelf.refreshControl?.endRefreshing()
         }
     }
     lazy var threads: [Thread] = {
