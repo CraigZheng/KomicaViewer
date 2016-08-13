@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		443342A41D5F568B00EDFA8F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443342A31D5F568B00EDFA8F /* Configuration.swift */; };
 		443342A71D5F576F00EDFA8F /* AFHTTPSessionManager+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443342A61D5F576F00EDFA8F /* AFHTTPSessionManager+Util.swift */; };
+		443342A91D5F5A3800EDFA8F /* ActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443342A81D5F5A3800EDFA8F /* ActionTableViewCell.swift */; };
 		44496F531D5985A6005875DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44496F521D5985A6005875DD /* AppDelegate.swift */; };
 		44496F581D5985A6005875DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44496F561D5985A6005875DD /* Main.storyboard */; };
 		44496F5A1D5985A6005875DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44496F591D5985A6005875DD /* Assets.xcassets */; };
@@ -94,6 +95,7 @@
 		21C3A364A9DD0DDE230355EF /* Pods_KomicaViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KomicaViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		443342A31D5F568B00EDFA8F /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		443342A61D5F576F00EDFA8F /* AFHTTPSessionManager+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AFHTTPSessionManager+Util.swift"; sourceTree = "<group>"; };
+		443342A81D5F5A3800EDFA8F /* ActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionTableViewCell.swift; sourceTree = "<group>"; };
 		44496F4F1D5985A6005875DD /* KomicaViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KomicaViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44496F521D5985A6005875DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44496F571D5985A6005875DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				44BD39781D5B27690070E0CB /* ThreadTableViewCell.swift */,
 				44BD397C1D5B5AA70070E0CB /* ThreadTableViewCell.xib */,
 				44A65A921D5DBB0100A4DDE6 /* LoadFromNibView */,
+				443342A81D5F5A3800EDFA8F /* ActionTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 				44655D751D5AEF7900229404 /* HomeTableViewController.swift in Sources */,
 				443342A71D5F576F00EDFA8F /* AFHTTPSessionManager+Util.swift in Sources */,
 				44496F531D5985A6005875DD /* AppDelegate.swift in Sources */,
+				443342A91D5F5A3800EDFA8F /* ActionTableViewCell.swift in Sources */,
 				44F48EBC1D5D3F0700519C1B /* ProgressHUD.swift in Sources */,
 				44655D771D5AEF8E00229404 /* ForumPickerTableViewController.swift in Sources */,
 				443342A41D5F568B00EDFA8F /* Configuration.swift in Sources */,

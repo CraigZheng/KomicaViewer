@@ -137,6 +137,75 @@
                                     <color key="backgroundColor" red="1" green="1" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="remoteActionCellIdentifier" rowHeight="150" id="TsX-0X-Uva" customClass="ActionTableViewCell" customModule="KomicaViewer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="136" width="320" height="150"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TsX-0X-Uva" id="RKn-H6-l5T">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZVl-fk-Ybn">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <prototypes>
+                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="actionCellIdentifier" textLabel="WPi-OG-EbJ" style="IBUITableViewCellStyleDefault" id="IH9-Tf-JNr">
+                                                    <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IH9-Tf-JNr" id="ptT-qV-pWs">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WPi-OG-EbJ">
+                                                                <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="backgroundColor" red="1" green="1" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <color key="textColor" red="0.0" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </tableViewCellContentView>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </tableViewCell>
+                                            </prototypes>
+                                        </tableView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IgD-Sx-HMJ">
+                                            <rect key="frame" x="16" y="128" width="288" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="Nrx-db-fYN"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="1" green="1" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="ZVl-fk-Ybn" firstAttribute="leading" secondItem="RKn-H6-l5T" secondAttribute="leading" id="IHR-Ur-s77"/>
+                                        <constraint firstAttribute="bottom" secondItem="ZVl-fk-Ybn" secondAttribute="bottom" id="Vrz-B1-o6I"/>
+                                        <constraint firstAttribute="trailing" secondItem="IgD-Sx-HMJ" secondAttribute="trailing" id="Y9C-vj-nyq"/>
+                                        <constraint firstItem="IgD-Sx-HMJ" firstAttribute="top" secondItem="ZVl-fk-Ybn" secondAttribute="bottom" id="aNX-zx-k3v"/>
+                                        <constraint firstItem="ZVl-fk-Ybn" firstAttribute="top" secondItem="RKn-H6-l5T" secondAttribute="top" id="dW7-bq-7Xy"/>
+                                        <constraint firstAttribute="bottom" secondItem="IgD-Sx-HMJ" secondAttribute="bottom" id="hai-0A-Oc3"/>
+                                        <constraint firstItem="IgD-Sx-HMJ" firstAttribute="leading" secondItem="RKn-H6-l5T" secondAttribute="leading" id="mgp-sd-hZG"/>
+                                        <constraint firstItem="IgD-Sx-HMJ" firstAttribute="leading" secondItem="RKn-H6-l5T" secondAttribute="leading" constant="16" id="qZg-fn-Y24"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZVl-fk-Ybn" secondAttribute="trailing" id="rLw-cT-pDy"/>
+                                        <constraint firstAttribute="trailing" secondItem="IgD-Sx-HMJ" secondAttribute="trailing" constant="16" id="s5x-AR-WEN"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="Vrz-B1-o6I"/>
+                                            <exclude reference="Y9C-vj-nyq"/>
+                                            <exclude reference="mgp-sd-hZG"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="_textLabel" destination="IgD-Sx-HMJ" id="o9q-u5-taz"/>
+                                    <outlet property="actionTableView" destination="ZVl-fk-Ybn" id="HaD-Yf-ICw"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="aq2-d7-B7B" id="eLp-vM-Smc"/>

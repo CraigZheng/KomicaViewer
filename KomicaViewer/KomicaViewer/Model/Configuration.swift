@@ -21,9 +21,9 @@ class Configuration: NSObject {
     static let updatedNotification = "Configuration.updatedNotification"
     static var bundleVersion: String {
         // Won't be nil.
-        let bundleIdentifier = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleIdentifier")!
+        let bundleVersion = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion")!
         let versionString = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")!
-        return "\(bundleIdentifier)-\(versionString)"
+        return "\(versionString)(\(bundleVersion))"
     }
 
     private var _entityListURL: String?

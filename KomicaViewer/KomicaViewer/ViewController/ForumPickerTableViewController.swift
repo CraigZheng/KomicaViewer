@@ -14,10 +14,19 @@ class ForumPickerTableViewController: UITableViewController {
     var forums = Forums.remoteForums ?? Forums.defaultForums
 
     private let cellIdentifier = "cellIdentifier"
+    private let remoteActionCellIdentifier = "remoteActionCellIdentifier"
+    private struct Section {
+        static let board = 0
+        static let settings = 1
+        static let count = 2
+    }
+    private struct SectionHeader {
+        static let board = "Board"
+        static let settings = "Settings"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
         NSNotificationCenter.defaultCenter().addObserverForName(Forums.forumsUpdatedNotification,
                                                                 object: nil,
@@ -34,18 +43,44 @@ class ForumPickerTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return Section.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // 0: the settings section.
+        if section == Section.settings {
+            return 1
+        }
         return forums.count
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == Section.settings {
+            return CGFloat(Configuration.singleton.remoteActions.count * 44 + 20)
+        } else {
+            return UITableViewAutomaticDimension
+        }
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
-        cell.textLabel?.text = forums[indexPath.row].name
-        cell.detailTextLabel?.text = forums[indexPath.row].header
-        return cell
+        if indexPath.section == Section.settings {
+            let cell = tableView.dequeueReusableCellWithIdentifier(remoteActionCellIdentifier, forIndexPath: indexPath)
+            cell.textLabel?.text = "App Version: " + Configuration.bundleVersion
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+            cell.textLabel?.text = forums[indexPath.row].name
+            cell.detailTextLabel?.text = forums[indexPath.row].header
+            return cell
+        }
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == Section.board {
+            return SectionHeader.board
+        } else {
+            return SectionHeader.settings
+        }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
