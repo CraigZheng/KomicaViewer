@@ -37,7 +37,7 @@ extension ThreadTableViewControllerProtocol where Self: UITableViewController {
             self?.tableView.reloadData()
             self?.refreshControl?.endRefreshing()
             self?.hideLoading()
-            self?.tableView.pullToRefreshView.stopAnimating()
+            self?.tableView.pullToRefreshView?.stopAnimating()
             self?.postCompletion?(success: success, page: page, result: result)
         }
     }
