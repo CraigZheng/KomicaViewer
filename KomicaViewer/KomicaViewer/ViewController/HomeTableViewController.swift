@@ -27,7 +27,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     lazy var postCompletion: KomicaDownloaderHandler? = { (success, page, result) in
         // Update the current page.
         self.pageIndex = page
-        ProgressHUD.showMessage("Completed loading the \(page + 1) page")
+        ProgressHUD.showMessage("Loaded the \(page + 1) page")
         // If the originalContentInset is nil, record it, otherwise apply it to the tableView.
         // This is due to a bug that is introduced by SVPullToRefresh library. In order to fix this bug, I need to manually adjust the content inset.
         if let originalContentInset = self.originalContentInset {
