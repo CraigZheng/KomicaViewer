@@ -40,20 +40,19 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     private var _photoBrowser: MWPhotoBrowser?
     
     // MARK: ThreadTableViewControllerProtocol
-    var completion: KomicaDownloaderHandler? {
-        return { (success, page, result) in
-            if success, let t = result?.threads {
-                if page == 0 {
-                    // If page is 0, reset the threads.
-                    self.threads = [self.selectedThread]
-                }
-                self.threads.appendContentsOf(t)
+    lazy var postCompletion: KomicaDownloaderHandler? = {
+        [weak self](success, page, result) in
+        guard let strongSelf = self else { return }
+        if success, let t = result?.threads {
+            if page == 0 {
+                // If page is 0, reset the threads.
+                strongSelf.threads = [strongSelf.selectedThread]
             }
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
+            strongSelf.threads.appendContentsOf(t)
+            // Necessary to reload for the data change.
+            strongSelf.tableView.reloadData()
         }
     }
-    var postCompletion: KomicaDownloaderHandler?
     lazy var threads: [Thread] = {
         return [self.selectedThread]
     }()
