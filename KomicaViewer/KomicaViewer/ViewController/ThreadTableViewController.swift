@@ -40,10 +40,12 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     private var _photoBrowser: MWPhotoBrowser?
     // Get the threadID from the selectedThread.ID.
     private var threadID: Int? {
-        let stringArray = selectedThread.ID!.componentsSeparatedByCharactersInSet(
-            NSCharacterSet.decimalDigitCharacterSet().invertedSet)
-        let threadID = Int(stringArray.joinWithSeparator(""))
-        return threadID ?? nil
+        if let stringArray = selectedThread.ID?.componentsSeparatedByCharactersInSet(
+            NSCharacterSet.decimalDigitCharacterSet().invertedSet) {
+            let threadID = Int(stringArray.joinWithSeparator(""))
+            return threadID
+        }
+        return 0
     }
     // MARK: ThreadTableViewControllerProtocol
     lazy var postCompletion: KomicaDownloaderHandler? = {
