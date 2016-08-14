@@ -35,6 +35,12 @@ target 'KomicaEngine' do
   # Pods for KomicaViewer
   pod "AFNetworking"
 
+  target ‘KomicaEngineTests' do
+   inherit! :search_paths
+    # Pods for testing
+  end
+
+
 end
 
 post_install do |installer|
