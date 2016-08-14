@@ -44,7 +44,11 @@ class ThreadTableViewCell: UITableViewCell {
     }
     
     func layoutWithThread(thread: Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol) {
-        textLabel?.text = (thread.ID ?? "") + " by " + (thread.UID ?? "")
+        var titleText = (thread.ID ?? "")
+        if let UID = thread.UID {
+            titleText += " by " + UID
+        }
+        textLabel?.text = titleText
         detailTextLabel?.text = thread.content?.string
         if let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController
         {
