@@ -31,14 +31,13 @@ class Forums {
         }
     }
     
-    static var defaultForums = KomicaForumFinder.sharedInstance.forums
-    static var remoteForums: [KomicaForum]?
+    static var defaultForumsGroup = KomicaForumFinder.sharedInstance.forumGroups
+    static var remoteForumGroup: [KomicaForumGroup]?
     
     static func updateRemoteForums() {
-        KomicaForumFinder.sharedInstance.loadRemoteForumsWithCompletion({ (success, forums, error) in
-            if let forums = forums {
-                remoteForums = forums
-                remoteForums?.appendContentsOf(KomicaForumFinder.sharedInstance.uniqueForums)
+        KomicaForumFinder.sharedInstance.loadRemoteForumsWithCompletion({ (success, groups, error) in
+            if let groups = groups {
+                remoteForumGroup = groups
                 // Remote forums updated, send a notification.
                 NSNotificationCenter.defaultCenter().postNotificationName(forumsUpdatedNotification, object: nil)
             }

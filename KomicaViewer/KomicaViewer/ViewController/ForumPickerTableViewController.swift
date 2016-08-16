@@ -11,18 +11,12 @@ import UIKit
 import KomicaEngine
 
 class ForumPickerTableViewController: UITableViewController {
-    var forums = Forums.remoteForums ?? Forums.defaultForums
+    var forumGroup = Forums.remoteForumGroup ?? Forums.defaultForumsGroup
 
     private let cellIdentifier = "cellIdentifier"
     private let remoteActionCellIdentifier = "remoteActionCellIdentifier"
-    private struct Section {
-        static let board = 0
-        static let settings = 1
-        static let count = 2
-    }
-    private struct SectionHeader {
-        static let board = "Board"
-        static let settings = "Settings"
+    private var lastSectionIndex: Int {
+        return numberOfSectionsInTableView(tableView) - 1
     }
     
     override func viewDidLoad() {
@@ -32,8 +26,8 @@ class ForumPickerTableViewController: UITableViewController {
                                                                 object: nil,
                                                                 queue: NSOperationQueue.mainQueue()) { (_) in
                                                                     // If remote forums is available, reload remote forums.
-                                                                    if let remoteForums = Forums.remoteForums where remoteForums.count > 0 {
-                                                                        self.forums = remoteForums
+                                                                    if let remoteForumGroup = Forums.remoteForumGroup where remoteForumGroup.count > 0 {
+                                                                        self.forumGroup = remoteForumGroup
                                                                         self.tableView.reloadData()
                                                                         DLog("Remote Forums Updated.")
                                                                     }
@@ -43,19 +37,20 @@ class ForumPickerTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return Section.count
+        // +1 for the remote actions section.
+        return forumGroup.count + 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 0: the settings section.
-        if section == Section.settings {
+        if section == lastSectionIndex {
             return 1
         }
-        return forums.count
+        return forumGroup[section].forums?.count ?? 0
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.section == Section.settings {
+        if indexPath.section == lastSectionIndex {
             return CGFloat(Configuration.singleton.remoteActions.count * 44 + 20)
         } else {
             return UITableViewAutomaticDimension
@@ -63,35 +58,41 @@ class ForumPickerTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == Section.settings {
+        if indexPath.section == lastSectionIndex {
             let cell = tableView.dequeueReusableCellWithIdentifier(remoteActionCellIdentifier, forIndexPath: indexPath)
             cell.textLabel?.text = "App Version: " + Configuration.bundleVersion
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
-            cell.textLabel?.text = forums[indexPath.row].name
-            if let indexURLString = forums[indexPath.row].indexURL,
-                let indexURL = NSURL(string: indexURLString)
-            {
-                cell.detailTextLabel?.text = indexURL.host ?? ""
-            } else {
-                cell.detailTextLabel?.text = ""
+            if let forums = forumGroup[indexPath.section].forums {
+                cell.textLabel?.text = forums[indexPath.row].name
+                if let indexURLString = forums[indexPath.row].indexURL,
+                    let indexURL = NSURL(string: indexURLString)
+                {
+                    cell.detailTextLabel?.text = indexURL.host ?? ""
+                } else {
+                    cell.detailTextLabel?.text = ""
+                }
             }
             return cell
         }
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == Section.board {
-            return SectionHeader.board
+        if section == lastSectionIndex {
+            return "Settings"
         } else {
-            return SectionHeader.settings
+            if section < forumGroup.count {
+                return forumGroup[section].name ?? ""
+            }
         }
+        return nil
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let forum = forums[indexPath.row]
-        Forums.selectedForum = forum
+        if let forums = forumGroup[indexPath.section].forums where indexPath.row < forums.count {
+            Forums.selectedForum = forums[indexPath.row]
+        }
         // Dismiss self.
         dismissViewControllerAnimated(true, completion: nil)
     }
