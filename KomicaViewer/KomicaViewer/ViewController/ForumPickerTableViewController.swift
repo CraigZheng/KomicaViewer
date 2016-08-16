@@ -70,7 +70,13 @@ class ForumPickerTableViewController: UITableViewController {
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
             cell.textLabel?.text = forums[indexPath.row].name
-            cell.detailTextLabel?.text = forums[indexPath.row].header
+            if let indexURLString = forums[indexPath.row].indexURL,
+                let indexURL = NSURL(string: indexURLString)
+            {
+                cell.detailTextLabel?.text = indexURL.host ?? ""
+            } else {
+                cell.detailTextLabel?.text = ""
+            }
             return cell
         }
     }
