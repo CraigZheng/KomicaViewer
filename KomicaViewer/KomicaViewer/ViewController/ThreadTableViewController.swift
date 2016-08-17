@@ -86,6 +86,8 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // TODO: Menu items.
+        
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self,
                                   action: #selector(ThreadTableViewController.refresh),
@@ -118,6 +120,18 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
             estimatedHeight += threads[indexPath.row].thumbnailURL == nil ? 0 : 100
         }
         return estimatedHeight
+    }
+    
+    override func tableView(tableView: UITableView, shouldShowMenuForRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
+        return true
+    }
+    
+    override func tableView(tableView: UITableView, performAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
+        // Do nothing for now.
     }
     
     // MARK: Segue events.
