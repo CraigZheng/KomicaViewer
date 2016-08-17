@@ -78,8 +78,8 @@
                         <color key="textColor" red="0.80784313730000001" green="0.086274509799999996" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xJG-08-KIl">
-                        <rect key="frame" x="544.5" y="263" width="47" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Warning" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xJG-08-KIl">
+                        <rect key="frame" x="544" y="263" width="47" height="14.5"/>
                         <color key="backgroundColor" red="1" green="1" blue="0.93725490196078431" alpha="0.80235499100719421" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.92941176470588238" green="0.031372549019607843" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
@@ -93,6 +93,7 @@
                     <constraint firstItem="cUS-S1-WzD" firstAttribute="top" secondItem="tP8-Rx-2TW" secondAttribute="top" id="526-R7-kl7"/>
                     <constraint firstItem="cUS-S1-WzD" firstAttribute="leading" secondItem="tP8-Rx-2TW" secondAttribute="leading" id="6o7-3J-1YT"/>
                     <constraint firstItem="2FU-Qn-VjA" firstAttribute="leading" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="73a-Jb-5ZC"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="tP8-Rx-2TW" secondAttribute="bottom" constant="8" id="8Qb-xx-MfM"/>
                     <constraint firstAttribute="trailing" secondItem="xJG-08-KIl" secondAttribute="trailing" constant="8" id="Bdw-eB-Qhq"/>
                     <constraint firstItem="cUS-S1-WzD" firstAttribute="bottom" secondItem="tP8-Rx-2TW" secondAttribute="bottom" id="GiI-G8-1xW"/>
                     <constraint firstItem="vXa-Td-Ege" firstAttribute="top" secondItem="cUS-S1-WzD" secondAttribute="bottom" constant="8" id="Gpn-8Z-njZ"/>
