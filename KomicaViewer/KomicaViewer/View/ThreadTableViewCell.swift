@@ -46,7 +46,7 @@ class ThreadTableViewCell: UITableViewCell {
     func layoutWithThread(thread: Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol) {
         var titleText = (thread.ID ?? "")
         if let UID = thread.UID {
-            titleText += " by " + UID
+            titleText += " " + UID
         }
         textLabel?.text = titleText
         detailTextLabel?.text = thread.content?.string
