@@ -105,6 +105,7 @@
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="2FU-Qn-VjA" secondAttribute="trailing" constant="8" id="TaE-Vh-oHX"/>
                     <constraint firstItem="uAp-vS-hVV" firstAttribute="top" secondItem="qdO-r1-kyX" secondAttribute="top" constant="8" id="Vfr-Dj-VO9"/>
                     <constraint firstItem="tP8-Rx-2TW" firstAttribute="leading" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="dQ0-LO-SyR"/>
+                    <constraint firstItem="2FU-Qn-VjA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zcD-E7-l3X" secondAttribute="bottom" constant="16" id="dqa-6h-GvN"/>
                     <constraint firstItem="zcD-E7-l3X" firstAttribute="top" secondItem="qdO-r1-kyX" secondAttribute="top" constant="8" id="l0G-D1-oWz"/>
                     <constraint firstItem="Be5-yl-v9e" firstAttribute="leading" secondItem="vXa-Td-Ege" secondAttribute="leading" id="l7F-7R-wQk"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tP8-Rx-2TW" secondAttribute="trailing" constant="8" id="ngn-c0-gDR"/>
@@ -119,6 +120,7 @@
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="49h-cy-efV"/>
                         <exclude reference="TS9-J8-bJs"/>
                     </mask>
                 </variation>
