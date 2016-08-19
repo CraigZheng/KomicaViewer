@@ -18,6 +18,8 @@ protocol WebViewGuardDogDelegate: class {
 class WebViewGuardDog: NSObject, UIWebViewDelegate {
     // Home host, any host that does not match this host would be rejected.
     var home: String?
+    var showWarningOnBlock = false
+    var onBlockMessage = "You cannot navigate away from this page."
     var delegate: WebViewGuardDogDelegate?
     // MARK: UIWebViewDelegate
     
@@ -27,6 +29,9 @@ class WebViewGuardDog: NSObject, UIWebViewDelegate {
             if request.URL?.host != home {
                 should = false
                 delegate?.blockedRequest(request)
+                if showWarningOnBlock && !onBlockMessage.isEmpty {
+                    ProgressHUD.showMessage(onBlockMessage)
+                }
             }
         }
         return should

@@ -61,6 +61,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     }
     private var guardDog: WebViewGuardDog {
         _guardDog.home = currentURL?.host
+        _guardDog.showWarningOnBlock = true
         return _guardDog
     }
     private let _guardDog = WebViewGuardDog()
@@ -150,7 +151,7 @@ extension HomeTableViewController {
 }
 
 // MARK: UIActions.
-extension HomeTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate, WebViewGuardDogDelegate {
+extension HomeTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate {
     
     @IBAction func openInSafariAction(sender: AnyObject) {
         // Open in browser.
@@ -183,12 +184,6 @@ extension HomeTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate, 
     
     func photoBrowser(photoBrowser: MWPhotoBrowser, photoAtIndex index: UInt) -> MWPhotoProtocol! {
         return selectedPhoto ?? MWPhoto()
-    }
-    
-    // MARK: WebViewGuardDogDelegate
-    
-    func blockedRequest(request: NSURLRequest) {
-        // TODO: alert.
     }
     
 }

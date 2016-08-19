@@ -29,6 +29,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     }
     private var guardDog: WebViewGuardDog {
         _guardDog.home = currentURL?.host
+        _guardDog.showWarningOnBlock = true
         return _guardDog
     }
     private let _guardDog = WebViewGuardDog()
