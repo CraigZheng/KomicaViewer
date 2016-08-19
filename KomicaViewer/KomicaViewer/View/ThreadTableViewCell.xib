@@ -15,12 +15,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="315.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2FU-Qn-VjA">
-                        <rect key="frame" x="8" y="114" width="107.5" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.71372549019607845" green="0.30588235294117649" blue="0.015686274509803921" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="108" placeholderIntrinsicHeight="134.5" translatesAutoresizingMaskIntoConstraints="NO" id="tP8-Rx-2TW">
                         <rect key="frame" x="8" y="143" width="108" height="134.5"/>
                         <constraints>
@@ -85,14 +79,20 @@
                         <color key="textColor" red="0.92941176470588238" green="0.031372549019607843" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Text View" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MKW-2o-zVf">
+                        <rect key="frame" x="8" y="98.5" width="584" height="36.5"/>
+                        <color key="backgroundColor" red="1" green="1" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.71372549019999998" green="0.30588235289999999" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                    </textView>
                 </subviews>
                 <color key="backgroundColor" red="1" green="1" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="2FU-Qn-VjA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uAp-vS-hVV" secondAttribute="bottom" constant="16" id="49h-cy-efV"/>
                     <constraint firstItem="uAp-vS-hVV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zcD-E7-l3X" secondAttribute="trailing" constant="16" id="4tL-gw-3ME"/>
                     <constraint firstItem="cUS-S1-WzD" firstAttribute="top" secondItem="tP8-Rx-2TW" secondAttribute="top" id="526-R7-kl7"/>
                     <constraint firstItem="cUS-S1-WzD" firstAttribute="leading" secondItem="tP8-Rx-2TW" secondAttribute="leading" id="6o7-3J-1YT"/>
-                    <constraint firstItem="2FU-Qn-VjA" firstAttribute="leading" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="73a-Jb-5ZC"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="tP8-Rx-2TW" secondAttribute="bottom" constant="8" id="8Qb-xx-MfM"/>
                     <constraint firstAttribute="trailing" secondItem="xJG-08-KIl" secondAttribute="trailing" constant="8" id="Bdw-eB-Qhq"/>
                     <constraint firstItem="cUS-S1-WzD" firstAttribute="bottom" secondItem="tP8-Rx-2TW" secondAttribute="bottom" id="GiI-G8-1xW"/>
@@ -100,34 +100,33 @@
                     <constraint firstItem="xJG-08-KIl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="J8g-fe-SAx"/>
                     <constraint firstItem="Be5-yl-v9e" firstAttribute="bottom" secondItem="vXa-Td-Ege" secondAttribute="bottom" id="JK7-0J-MBE"/>
                     <constraint firstAttribute="trailing" secondItem="vXa-Td-Ege" secondAttribute="trailing" constant="8" id="KX8-gM-7D4"/>
+                    <constraint firstItem="MKW-2o-zVf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zcD-E7-l3X" secondAttribute="bottom" constant="8" id="L0s-cH-mcu"/>
                     <constraint firstItem="zcD-E7-l3X" firstAttribute="leading" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="Rt8-kE-Q0J"/>
                     <constraint firstItem="xJG-08-KIl" firstAttribute="bottom" secondItem="tP8-Rx-2TW" secondAttribute="bottom" id="TS9-J8-bJs"/>
-                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="2FU-Qn-VjA" secondAttribute="trailing" constant="8" id="TaE-Vh-oHX"/>
                     <constraint firstItem="uAp-vS-hVV" firstAttribute="top" secondItem="qdO-r1-kyX" secondAttribute="top" constant="8" id="Vfr-Dj-VO9"/>
                     <constraint firstItem="tP8-Rx-2TW" firstAttribute="leading" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="dQ0-LO-SyR"/>
-                    <constraint firstItem="2FU-Qn-VjA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zcD-E7-l3X" secondAttribute="bottom" constant="16" id="dqa-6h-GvN"/>
+                    <constraint firstItem="cUS-S1-WzD" firstAttribute="top" secondItem="MKW-2o-zVf" secondAttribute="bottom" constant="8" id="eX1-Q0-kwa"/>
                     <constraint firstItem="zcD-E7-l3X" firstAttribute="top" secondItem="qdO-r1-kyX" secondAttribute="top" constant="8" id="l0G-D1-oWz"/>
                     <constraint firstItem="Be5-yl-v9e" firstAttribute="leading" secondItem="vXa-Td-Ege" secondAttribute="leading" id="l7F-7R-wQk"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tP8-Rx-2TW" secondAttribute="trailing" constant="8" id="ngn-c0-gDR"/>
-                    <constraint firstItem="tP8-Rx-2TW" firstAttribute="top" secondItem="2FU-Qn-VjA" secondAttribute="bottom" constant="8" id="qnk-OJ-JPn"/>
+                    <constraint firstAttribute="trailing" secondItem="MKW-2o-zVf" secondAttribute="trailing" constant="8" id="pUh-Mb-A7p"/>
                     <constraint firstItem="vXa-Td-Ege" firstAttribute="top" secondItem="xJG-08-KIl" secondAttribute="bottom" constant="4" id="rPN-hX-Pgw"/>
                     <constraint firstItem="vXa-Td-Ege" firstAttribute="leading" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="rnh-v9-1Jh"/>
                     <constraint firstAttribute="bottom" secondItem="vXa-Td-Ege" secondAttribute="bottom" id="u8b-Mm-2bW"/>
                     <constraint firstItem="cUS-S1-WzD" firstAttribute="trailing" secondItem="tP8-Rx-2TW" secondAttribute="trailing" id="uHl-Fc-lPL"/>
+                    <constraint firstItem="MKW-2o-zVf" firstAttribute="leading" secondItem="qdO-r1-kyX" secondAttribute="leading" constant="8" id="wIh-w3-I1U"/>
                     <constraint firstItem="Be5-yl-v9e" firstAttribute="top" secondItem="vXa-Td-Ege" secondAttribute="top" id="xY4-xZ-3lI"/>
                     <constraint firstAttribute="trailing" secondItem="uAp-vS-hVV" secondAttribute="trailing" constant="8" id="ytR-tZ-GBb"/>
                     <constraint firstItem="Be5-yl-v9e" firstAttribute="trailing" secondItem="vXa-Td-Ege" secondAttribute="trailing" id="zpQ-VM-13z"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
-                        <exclude reference="49h-cy-efV"/>
                         <exclude reference="TS9-J8-bJs"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
             <gestureRecognizers/>
             <connections>
-                <outlet property="_detailTextLabel" destination="2FU-Qn-VjA" id="V29-mH-lfT"/>
                 <outlet property="_imageView" destination="tP8-Rx-2TW" id="4Ly-OI-x1q"/>
                 <outlet property="_textLabel" destination="zcD-E7-l3X" id="tcU-c6-jPZ"/>
                 <outlet property="dateLabel" destination="uAp-vS-hVV" id="oVY-6l-PB9"/>
@@ -135,6 +134,7 @@
                 <outlet property="parasitePostCountLabel" destination="Edn-WZ-uNg" id="p1r-lA-n5u"/>
                 <outlet property="parasitePostTextLabel" destination="wyn-dW-dhN" id="bLD-xz-VQW"/>
                 <outlet property="parasitePostViewZeroHeight" destination="TlI-rS-Ypc" id="Yoj-Fv-JRx"/>
+                <outlet property="textView" destination="MKW-2o-zVf" id="c5e-ZG-u2z"/>
                 <outlet property="warningLabel" destination="xJG-08-KIl" id="RUF-tP-SKv"/>
             </connections>
             <point key="canvasLocation" x="375" y="294"/>
