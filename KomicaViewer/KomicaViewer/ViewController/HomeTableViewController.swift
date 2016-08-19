@@ -56,6 +56,14 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     var bulkUpdateTimer: NSTimer?
     var pendingIndexPaths: [NSIndexPath] = [NSIndexPath]()
     
+    private var currentURL: NSURL? {
+        return forum?.listURLForPage(pageIndex)
+    }
+    private var guardDog: WebViewGuardDog {
+        _guardDog.home = currentURL?.host
+        return _guardDog
+    }
+    private let _guardDog = WebViewGuardDog()
     private var selectedPhoto: MWPhoto?
     private var originalContentInset: UIEdgeInsets?
     private var photoBrowser: MWPhotoBrowser {
@@ -148,6 +156,7 @@ extension HomeTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate {
         // Open in browser.
         if let currentPageURL = forum?.listURLForPage(pageIndex) where UIApplication.sharedApplication().canOpenURL(currentPageURL) {
             let webViewController = SVModalWebViewController(URL: currentPageURL)
+            webViewController.webViewDelegate = guardDog
             self.presentViewController(webViewController, animated: true, completion: nil)
         }
     }

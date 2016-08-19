@@ -21,6 +21,17 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         }
     }
     
+    private var currentURL: NSURL? {
+        if let threadID = threadID {
+            return forum?.responseURLForThreadID(threadID)
+        }
+        return nil
+    }
+    private var guardDog: WebViewGuardDog {
+        _guardDog.home = currentURL?.host
+        return _guardDog
+    }
+    private let _guardDog = WebViewGuardDog()
     private let showParasitePostSegue = "showParasitePosts"
     private var photoBrowser: MWPhotoBrowser {
         if _photoBrowser == nil {
@@ -176,6 +187,7 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate
         let currentPageURL = forum?.responseURLForThreadID(threadID) where UIApplication.sharedApplication().canOpenURL(currentPageURL)
         {
             let webViewController = SVModalWebViewController(URL: currentPageURL)
+            webViewController.webViewDelegate = guardDog
             self.presentViewController(webViewController, animated: true, completion: nil)
         }
     }
