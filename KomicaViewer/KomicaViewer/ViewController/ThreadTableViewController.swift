@@ -11,6 +11,7 @@ import UIKit
 import KomicaEngine
 import SDWebImage
 import MWPhotoBrowser
+import SVWebViewController
 
 class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol {
     
@@ -171,7 +172,12 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate
     }
     
     @IBAction func openInSafariAction(sender: AnyObject) {
-        UIAlertView(title: "Open In Safari?", message: "You are about to open this page in safari, continue?", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Confirm").show()
+        if let threadID = threadID,
+        let currentPageURL = forum?.responseURLForThreadID(threadID) where UIApplication.sharedApplication().canOpenURL(currentPageURL)
+        {
+            let webViewController = SVModalWebViewController(URL: currentPageURL)
+            self.presentViewController(webViewController, animated: true, completion: nil)
+        }
     }
     
     private var imageThreads: [Thread] {

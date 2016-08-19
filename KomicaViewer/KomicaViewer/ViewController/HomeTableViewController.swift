@@ -12,6 +12,7 @@ import KomicaEngine
 import MWPhotoBrowser
 import SDWebImage
 import SVPullToRefresh
+import SVWebViewController
 
 class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol {
     
@@ -144,7 +145,11 @@ extension HomeTableViewController {
 extension HomeTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate {
     
     @IBAction func openInSafariAction(sender: AnyObject) {
-        UIAlertView(title: "Open In Safari?", message: "You are about to open this page in safari, continue?", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Confirm").show()
+        // Open in browser.
+        if let currentPageURL = forum?.listURLForPage(pageIndex) where UIApplication.sharedApplication().canOpenURL(currentPageURL) {
+            let webViewController = SVModalWebViewController(URL: currentPageURL)
+            self.presentViewController(webViewController, animated: true, completion: nil)
+        }
     }
 
     @IBAction func unwindToHomeSegue(segue: UIStoryboardSegue) {
