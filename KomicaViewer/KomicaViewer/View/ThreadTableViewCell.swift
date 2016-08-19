@@ -17,8 +17,9 @@ class ThreadTableViewCell: UITableViewCell {
     var shouldShowParasitePost = true
     
     @IBOutlet weak var _detailTextLabel: UILabel!
-    @IBOutlet weak var _textLabel: UILabel!
+    @IBOutlet weak var _textLabel: UILabel?
     @IBOutlet weak var _imageView: UIImageView!
+    @IBOutlet weak var textView: UITextView?
     @IBOutlet weak var imageViewZeroHeight: NSLayoutConstraint?
     @IBOutlet weak var parasitePostTextLabel: UILabel?
     @IBOutlet weak var parasitePostCountLabel: UILabel?
@@ -46,10 +47,10 @@ class ThreadTableViewCell: UITableViewCell {
     func layoutWithThread(thread: Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol) {
         var titleText = (thread.ID ?? "")
         if let UID = thread.UID {
-            titleText += " by " + UID
+            titleText += " " + UID
         }
         textLabel?.text = titleText
-        detailTextLabel?.text = thread.content?.string
+        textView?.text = thread.content?.string
         if let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController
         {
             imageViewZeroHeight?.priority = 1
