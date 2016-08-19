@@ -157,6 +157,8 @@ extension HomeTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate {
         // Open in browser.
         if let currentPageURL = forum?.listURLForPage(pageIndex) where UIApplication.sharedApplication().canOpenURL(currentPageURL) {
             let webViewController = SVModalWebViewController(URL: currentPageURL)
+            webViewController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
+            webViewController.barsTintColor = navigationController?.navigationBar.barTintColor
             webViewController.webViewDelegate = guardDog
             self.presentViewController(webViewController, animated: true, completion: nil)
         }
