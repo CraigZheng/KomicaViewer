@@ -8,13 +8,17 @@
 
 import UIKit
 
+protocol WebViewGuardDogDelegate: class {
+    func blockedRequest(request: NSURLRequest)
+}
+
 /**
  Allows only NSURL host that matches home.
  */
 class WebViewGuardDog: NSObject, UIWebViewDelegate {
     // Home host, any host that does not match this host would be rejected.
     var home: String?
-    
+    var delegate: WebViewGuardDogDelegate?
     // MARK: UIWebViewDelegate
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
@@ -22,6 +26,7 @@ class WebViewGuardDog: NSObject, UIWebViewDelegate {
         if let home = home {
             if request.URL?.host != home {
                 should = false
+                delegate?.blockedRequest(request)
             }
         }
         return should

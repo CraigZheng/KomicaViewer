@@ -150,7 +150,7 @@ extension HomeTableViewController {
 }
 
 // MARK: UIActions.
-extension HomeTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate {
+extension HomeTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate, WebViewGuardDogDelegate {
     
     @IBAction func openInSafariAction(sender: AnyObject) {
         // Open in browser.
@@ -185,16 +185,12 @@ extension HomeTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate {
         return selectedPhoto ?? MWPhoto()
     }
     
-    // MARK: UIAlertViewDelegate
+    // MARK: WebViewGuardDogDelegate
     
-    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
-        if buttonIndex != alertView.cancelButtonIndex {
-            // Open in Safari.
-            if let currentPageURL = forum?.listURLForPage(pageIndex) where UIApplication.sharedApplication().canOpenURL(currentPageURL) {
-                UIApplication.sharedApplication().openURL(currentPageURL)
-            }
-        }
+    func blockedRequest(request: NSURLRequest) {
+        // TODO: alert.
     }
+    
 }
 
 // MARK: Forum selected notification handler.
