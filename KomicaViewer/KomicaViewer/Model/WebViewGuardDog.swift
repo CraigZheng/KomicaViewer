@@ -29,7 +29,7 @@ class WebViewGuardDog: NSObject, UIWebViewDelegate {
             if request.URL?.host != home {
                 should = false
                 delegate?.blockedRequest(request)
-                if showWarningOnBlock && !onBlockMessage.isEmpty {
+                if showWarningOnBlock && !onBlockMessage.isEmpty && navigationType == .LinkClicked {
                     ProgressHUD.showMessage(onBlockMessage)
                 }
             }
