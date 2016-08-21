@@ -10,6 +10,14 @@ import UIKit
 
 import KomicaEngine
 
+enum ForumField: String {
+    case name = "Name"
+    case indexURL = "Index URL"
+    case listURL = "Page URL"
+    case responseURL = "Response URL"
+    case parserType = "Page Style"
+}
+
 class AddForumTableViewController: UITableViewController {
     
     // MARK: UI elements.
@@ -33,13 +41,6 @@ class AddForumTableViewController: UITableViewController {
         static let page = "page"
         static let response = "response"
     }
-    private struct ForumField {
-        static let name = "Name"
-        static let indexURL = "Index URL"
-        static let listURL = "Page URL"
-        static let responseURL = "Response URL"
-        static let parserType = "Page Style"
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,13 +54,13 @@ class AddForumTableViewController: UITableViewController {
             textInputViewController.delegate = self
             switch segueIdentifier {
             case SegueIdentifier.name:
-                textInputViewController.title = ForumField.name
+                textInputViewController.field = ForumField.name
             case SegueIdentifier.index:
-                textInputViewController.title = ForumField.indexURL
+                textInputViewController.field = ForumField.indexURL
             case SegueIdentifier.page:
-                textInputViewController.title = ForumField.listURL
+                textInputViewController.field = ForumField.listURL
             case SegueIdentifier.response:
-                textInputViewController.title = ForumField.responseURL
+                textInputViewController.field = ForumField.responseURL
             default:
                 break
             }
@@ -80,7 +81,7 @@ extension AddForumTableViewController {
 // MARK: ForumTextInputViewControllerProtocol
 extension AddForumTableViewController: ForumTextInputViewControllerProtocol {
     
-    func forumDetailEntered(inputViewController: ForumTextInputViewController, enteredDetails: String, forField: String) {
+    func forumDetailEntered(inputViewController: ForumTextInputViewController, enteredDetails: String, forField: ForumField) {
         DLog("\(enteredDetails) - \(forField)")
     }
     

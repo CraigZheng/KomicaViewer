@@ -9,16 +9,24 @@
 import UIKit
 
 protocol ForumTextInputViewControllerProtocol {
-    func forumDetailEntered(inputViewController: ForumTextInputViewController, enteredDetails: String, forField: String)
+    func forumDetailEntered(inputViewController: ForumTextInputViewController, enteredDetails: String, forField: ForumField)
 }
 
 class ForumTextInputViewController: UIViewController {
+    @IBOutlet weak var textView: UITextView!
+    
     var delegate: ForumTextInputViewControllerProtocol?
-
+    var prefilledString: String?
+    var field: ForumField! {
+        didSet {
+            self.title = field.rawValue
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        if let prefilledString = prefilledString {
+            textView.text = prefilledString
+        }
     }
 
 }
@@ -35,5 +43,8 @@ extension ForumTextInputViewController: UITextViewDelegate {
 extension ForumTextInputViewController {
     
     @IBAction func saveAction(sender: AnyObject) {
+        if let enteredText = textView.text {
+            delegate?.forumDetailEntered(self, enteredDetails: enteredText, forField: field)
+        }
     }
 }
