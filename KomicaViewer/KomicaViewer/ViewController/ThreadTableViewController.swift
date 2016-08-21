@@ -13,7 +13,7 @@ import SDWebImage
 import MWPhotoBrowser
 import SVWebViewController
 
-class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol {
+class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol {
     
     var selectedThread: Thread! {
         didSet {
@@ -27,11 +27,10 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         }
         return nil
     }
-    private var guardDog: WebViewGuardDog {
-        _guardDog.home = currentURL?.host
-        _guardDog.showWarningOnBlock = true
-        return _guardDog
-    }
+    // MARK: SVWebViewProtocol
+    var svWebViewURL: NSURL?
+    var svWebViewGuardDog: WebViewGuardDog?
+    // MARK: private properties.
     private let _guardDog = WebViewGuardDog()
     private let showParasitePostSegue = "showParasitePosts"
     private var photoBrowser: MWPhotoBrowser {
@@ -198,15 +197,27 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate
     }
     
     @IBAction func openInSafariAction(sender: AnyObject) {
-        if let threadID = threadID,
-        let currentPageURL = forum?.responseURLForThreadID(threadID) where UIApplication.sharedApplication().canOpenURL(currentPageURL)
-        {
-            let webViewController = SVModalWebViewController(URL: currentPageURL)
-            webViewController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
-            webViewController.barsTintColor = navigationController?.navigationBar.barTintColor
-            webViewController.webViewDelegate = guardDog
-            self.presentViewController(webViewController, animated: true, completion: nil)
+        let openURLAction = UIAlertAction(title: "Open URL", style: .Default) { _ in
+            // Set the target URL to the currentURL.
+            self.svWebViewGuardDog = self._guardDog
+            self.svWebViewURL = self.currentURL
+            self.presentSVWebView()
         }
+        let reportAction = UIAlertAction(title: "Report Thread", style: .Default) { _ in
+            // Set the URL to report URL.
+            self.svWebViewGuardDog = WebViewGuardDog()
+            self.svWebViewGuardDog?.home = Configuration.singleton.reportURL?.host
+            self.svWebViewGuardDog?.showWarningOnBlock = true
+            self.svWebViewURL = Configuration.singleton.reportURL
+            self.presentSVWebView()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+
+        let alertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .ActionSheet)
+        alertController.addAction(openURLAction)
+        alertController.addAction(reportAction)
+        alertController.addAction(cancelAction)
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     private var imageThreads: [Thread] {

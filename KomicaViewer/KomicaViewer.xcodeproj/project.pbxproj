@@ -12,6 +12,7 @@
 		443342A91D5F5A3800EDFA8F /* ActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443342A81D5F5A3800EDFA8F /* ActionTableViewCell.swift */; };
 		44397D581D670A80005B44AA /* WebViewGuardDog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44397D571D670A80005B44AA /* WebViewGuardDog.swift */; };
 		44397D671D6953FB005B44AA /* UIApplication+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44397D661D6953FB005B44AA /* UIApplication+Util.swift */; };
+		44397D5F1D6942E7005B44AA /* SVWebViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44397D5E1D6942E7005B44AA /* SVWebViewProtocol.swift */; };
 		44496F531D5985A6005875DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44496F521D5985A6005875DD /* AppDelegate.swift */; };
 		44496F581D5985A6005875DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44496F561D5985A6005875DD /* Main.storyboard */; };
 		44496F5A1D5985A6005875DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44496F591D5985A6005875DD /* Assets.xcassets */; };
@@ -100,6 +101,7 @@
 		443342A81D5F5A3800EDFA8F /* ActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionTableViewCell.swift; sourceTree = "<group>"; };
 		44397D571D670A80005B44AA /* WebViewGuardDog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewGuardDog.swift; sourceTree = "<group>"; };
 		44397D661D6953FB005B44AA /* UIApplication+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Util.swift"; sourceTree = "<group>"; };
+		44397D5E1D6942E7005B44AA /* SVWebViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVWebViewProtocol.swift; sourceTree = "<group>"; };
 		44496F4F1D5985A6005875DD /* KomicaViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KomicaViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44496F521D5985A6005875DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44496F571D5985A6005875DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				44BD39811D5B5F310070E0CB /* ThreadTableViewControllerProtocol.swift */,
 				447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */,
 				44A65A9F1D5DC7F500A4DDE6 /* ParasitePostTableViewController.swift */,
+				44397D5E1D6942E7005B44AA /* SVWebViewProtocol.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				44A65AAB1D5DEE1000A4DDE6 /* UIViewController+ProgressBar.swift in Sources */,
 				447EF1C31D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift in Sources */,
 				44A65AA21D5DDA3300A4DDE6 /* UIColor+RGB.swift in Sources */,
+				44397D5F1D6942E7005B44AA /* SVWebViewProtocol.swift in Sources */,
 				44A65A981D5DBB0100A4DDE6 /* UIView+Util.m in Sources */,
 				44BD39751D5B1E510070E0CB /* Logger.swift in Sources */,
 				44655D7A1D5AFDAB00229404 /* Forums.swift in Sources */,
