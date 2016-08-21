@@ -22,7 +22,7 @@
             </objects>
             <point key="canvasLocation" x="27" y="259"/>
         </scene>
-        <!--Enter Details-->
+        <!--Custom Board-->
         <scene sceneID="B3f-13-GbE">
             <objects>
                 <tableViewController id="mDc-n7-gOu" sceneMemberID="viewController">
@@ -30,6 +30,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="eGP-uU-Ryd">
+                            <rect key="frame" x="0.0" y="328" width="320" height="10"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <sections>
                             <tableViewSection id="oGc-22-o9H">
                                 <cells>
@@ -196,13 +201,15 @@
                             <outlet property="delegate" destination="mDc-n7-gOu" id="qbk-KW-RUn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Enter Details" id="eeI-vE-M5Y"/>
+                    <navigationItem key="navigationItem" title="Custom Board" id="eeI-vE-M5Y">
+                        <barButtonItem key="rightBarButtonItem" title="?" id="jRF-fL-0cu"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zhZ-u0-9mR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="560" y="259"/>
         </scene>
-        <!--View Controller-->
+        <!--Enter Details-->
         <scene sceneID="sMk-07-D0a">
             <objects>
                 <viewController id="b2M-Qc-uVL" sceneMemberID="viewController">
@@ -229,6 +236,7 @@
                             <constraint firstItem="2Zg-V9-1Om" firstAttribute="leading" secondItem="Zwj-ux-0V7" secondAttribute="leading" id="xaD-aG-ZyQ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Enter Details" id="eb2-lY-kNt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1wc-q9-gRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
