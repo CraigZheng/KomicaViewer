@@ -16,6 +16,7 @@ class Forums {
     static let forumsUpdatedNotification = "Forums.forumsUpdatedNotification"
     
     private static let sharedInstance = Forums()
+    private static let customForumsKey = "customForumsKey"
     private var selectedForum: KomicaForum?
     
     static var selectedForum: KomicaForum? {
@@ -33,7 +34,13 @@ class Forums {
     
     static var defaultForumsGroup = KomicaForumFinder.sharedInstance.forumGroups
     static var remoteForumGroup: [KomicaForumGroup]?
-    
+    static let customForumGroup: KomicaForumGroup = {
+        let group = KomicaForumGroup()
+        group.name = "Custom Boards"
+        group.forums = [KomicaForum]()
+        Forums.restoreCustomForums()
+        return group
+    }()
     static func updateRemoteForums() {
         KomicaForumFinder.sharedInstance.loadRemoteForumsWithCompletion({ (success, groups, error) in
             if let groups = groups {
@@ -42,5 +49,43 @@ class Forums {
                 NSNotificationCenter.defaultCenter().postNotificationName(forumsUpdatedNotification, object: nil)
             }
         })
+    }
+
+    class func addCustomForum(forum: KomicaForum) {
+        customForumGroup.forums?.append(forum)
+    }
+    
+    private class func saveCustomForums() {
+        if let customForums = Forums.customForumGroup.forums {
+            var jsonStrings = [String]()
+            customForums.forEach({forum in
+                if let jsonString = forum.jsonEncode() {
+                    jsonStrings.append(jsonString)
+                }
+            })
+            if !jsonStrings.isEmpty {
+                // Save to user default for now.
+                NSUserDefaults.standardUserDefaults().setObject(jsonStrings, forKey: Forums.customForumsKey)
+                NSUserDefaults.standardUserDefaults().synchronize()
+            }
+        }
+    }
+    
+    private class func restoreCustomForums() {
+        if let jsonStrings = NSUserDefaults.standardUserDefaults().objectForKey(Forums.customForumsKey) as? [String] {
+            var forums = [KomicaForum]()
+            jsonStrings.forEach({jsonString in
+                if let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding),
+                    let rawDict = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: .AllowFragments) as? Dictionary<String, AnyObject>,
+                    let jsonDict = rawDict
+                {
+                    let forum = KomicaForum(jsonDict: jsonDict)
+                    forums.append(forum)
+                }
+            })
+            if !forums.isEmpty {
+                Forums.customForumGroup.forums = forums
+            }
+        }
     }
 }

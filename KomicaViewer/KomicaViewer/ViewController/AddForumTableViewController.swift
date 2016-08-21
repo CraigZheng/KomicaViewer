@@ -88,6 +88,7 @@ extension AddForumTableViewController {
             ProgressHUD.showMessage(warning)
         } else {
             newForum.parserType = newForum.parserTypes[parserPickerView.selectedRowInComponent(0)]
+            Forums.addCustomForum(newForum)
         }
     }
 

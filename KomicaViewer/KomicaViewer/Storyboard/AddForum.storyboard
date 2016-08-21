@@ -146,7 +146,7 @@
                                             <segue destination="b2M-Qc-uVL" kind="show" identifier="response" id="Pqs-Dq-1Og"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="basicCellIdentifier" rowHeight="149" id="Log-0d-5r3" userLabel="Page Style">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="basicCellIdentifier" rowHeight="149" id="Log-0d-5r3" userLabel="Page Style">
                                         <rect key="frame" x="0.0" y="240" width="320" height="149"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Log-0d-5r3" id="HJC-Cd-w6M">
@@ -178,7 +178,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="Qg9-mZ-pZ8" userLabel="Add Button">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="Qg9-mZ-pZ8" userLabel="Add Button">
                                         <rect key="frame" x="0.0" y="389" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qg9-mZ-pZ8" id="Uod-5n-LJV">
