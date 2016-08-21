@@ -31,7 +31,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     var svWebViewURL: NSURL? {
         return currentURL
     }
-    var svWebViewGuardDog: WebViewGuardDog {
+    var svWebViewGuardDog: WebViewGuardDog? {
         _guardDog.home = currentURL?.host
         _guardDog.showWarningOnBlock = true
         return _guardDog
