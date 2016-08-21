@@ -30,46 +30,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="7Oo-5b-PvO" userLabel="Footer View">
-                            <rect key="frame" x="0.0" y="328" width="320" height="120"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <pickerView contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="C5G-16-bNe">
-                                    <rect key="frame" x="0.0" y="44" width="320" height="76"/>
-                                    <connections>
-                                        <outlet property="dataSource" destination="mDc-n7-gOu" id="Vye-No-Sfz"/>
-                                        <outlet property="delegate" destination="mDc-n7-gOu" id="zpr-rv-HGH"/>
-                                    </connections>
-                                </pickerView>
-                                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="9Ws-eV-KyH">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                    <items>
-                                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Df8-ih-WPZ"/>
-                                        <barButtonItem title="OK" id="5Lr-EJ-Isn">
-                                            <connections>
-                                                <action selector="okButtonAction:" destination="mDc-n7-gOu" id="2yu-YU-xU2"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </items>
-                                </toolbar>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="C5G-16-bNe" secondAttribute="trailing" id="8bS-xy-PQ0"/>
-                                <constraint firstAttribute="trailing" secondItem="9Ws-eV-KyH" secondAttribute="trailing" id="AQX-DO-nYc"/>
-                                <constraint firstItem="9Ws-eV-KyH" firstAttribute="top" secondItem="7Oo-5b-PvO" secondAttribute="top" id="L7G-qK-QP5"/>
-                                <constraint firstAttribute="bottom" secondItem="C5G-16-bNe" secondAttribute="bottom" id="QD9-Pc-o2q"/>
-                                <constraint firstItem="C5G-16-bNe" firstAttribute="leading" secondItem="7Oo-5b-PvO" secondAttribute="leading" id="Xv7-Ik-6Rg"/>
-                                <constraint firstItem="9Ws-eV-KyH" firstAttribute="leading" secondItem="7Oo-5b-PvO" secondAttribute="leading" id="knr-AM-n6m"/>
-                                <constraint firstAttribute="bottom" secondItem="9Ws-eV-KyH" secondAttribute="bottom" id="s5Y-7i-eeI"/>
-                                <constraint firstItem="C5G-16-bNe" firstAttribute="top" secondItem="9Ws-eV-KyH" secondAttribute="bottom" id="xeZ-az-b3w"/>
-                            </constraints>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="s5Y-7i-eeI"/>
-                                </mask>
-                            </variation>
-                        </view>
                         <sections>
                             <tableViewSection id="oGc-22-o9H">
                                 <cells>
@@ -181,32 +141,40 @@
                                             <segue destination="b2M-Qc-uVL" kind="show" identifier="response" id="Pqs-Dq-1Og"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="basicCellIdentifier" textLabel="0pa-WE-hZ0" detailTextLabel="Bbz-Ap-xLD" style="IBUITableViewCellStyleValue1" id="Log-0d-5r3" userLabel="Page Style">
-                                        <rect key="frame" x="0.0" y="240" width="320" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="basicCellIdentifier" rowHeight="149" id="Log-0d-5r3" userLabel="Page Style">
+                                        <rect key="frame" x="0.0" y="240" width="320" height="149"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Log-0d-5r3" id="HJC-Cd-w6M">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="148.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Page Style" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0pa-WE-hZ0">
-                                                    <rect key="frame" x="15" y="12" width="77" height="19.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Page Style" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kqg-eZ-2v3">
+                                                    <rect key="frame" x="16" y="8" width="288" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Incomplete..." textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bbz-Ap-xLD">
-                                                    <rect key="frame" x="211" y="12" width="94" height="19.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iTS-1x-wxa">
+                                                    <rect key="frame" x="0.0" y="37" width="320" height="111.5"/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="mDc-n7-gOu" id="PdF-xT-leI"/>
+                                                        <outlet property="delegate" destination="mDc-n7-gOu" id="4E1-tK-6Bv"/>
+                                                    </connections>
+                                                </pickerView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Kqg-eZ-2v3" firstAttribute="top" secondItem="HJC-Cd-w6M" secondAttribute="top" constant="8" id="1ZR-qz-zLF"/>
+                                                <constraint firstItem="iTS-1x-wxa" firstAttribute="top" secondItem="Kqg-eZ-2v3" secondAttribute="bottom" constant="8" id="3vx-GI-2cq"/>
+                                                <constraint firstItem="Kqg-eZ-2v3" firstAttribute="leading" secondItem="HJC-Cd-w6M" secondAttribute="leading" constant="16" id="Abi-Hf-1iX"/>
+                                                <constraint firstAttribute="bottom" secondItem="iTS-1x-wxa" secondAttribute="bottom" id="VR5-Bu-Skk"/>
+                                                <constraint firstAttribute="trailing" secondItem="iTS-1x-wxa" secondAttribute="trailing" id="WuB-s3-BQJ"/>
+                                                <constraint firstItem="iTS-1x-wxa" firstAttribute="leading" secondItem="HJC-Cd-w6M" secondAttribute="leading" id="gvr-Bx-FbO"/>
+                                                <constraint firstAttribute="trailing" secondItem="Kqg-eZ-2v3" secondAttribute="trailing" constant="16" id="txn-dg-mVd"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Qg9-mZ-pZ8">
-                                        <rect key="frame" x="0.0" y="284" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="389" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qg9-mZ-pZ8" id="Uod-5n-LJV">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -248,11 +216,9 @@
                         <outlet property="nameDetailLabel" destination="djR-Iu-t1n" id="SMj-JH-qfo"/>
                         <outlet property="nameLabel" destination="Aed-L7-7A0" id="D5c-7h-cuF"/>
                         <outlet property="pageDetailLabel" destination="IFe-zE-62M" id="Jqc-19-BeB"/>
-                        <outlet property="pageStyleDetailLabel" destination="Bbz-Ap-xLD" id="oJu-dR-Qtb"/>
-                        <outlet property="pageStyleLabel" destination="0pa-WE-hZ0" id="CaP-o8-sQ3"/>
+                        <outlet property="pageStyleLabel" destination="Kqg-eZ-2v3" id="5Wm-QL-cpM"/>
                         <outlet property="pageURLLabel" destination="i4U-63-Ygn" id="Ehu-ip-8f4"/>
-                        <outlet property="parserPickerFooterView" destination="7Oo-5b-PvO" id="4G0-T3-KOG"/>
-                        <outlet property="parserPickerView" destination="C5G-16-bNe" id="hBs-4t-4aB"/>
+                        <outlet property="parserPickerView" destination="iTS-1x-wxa" id="m1v-1g-SGz"/>
                         <outlet property="responseDetailLabel" destination="Khn-lq-Sod" id="fmp-gF-Dj9"/>
                         <outlet property="responseURLLabel" destination="8qD-Vm-50c" id="EWR-OF-gYg"/>
                     </connections>

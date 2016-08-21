@@ -30,13 +30,12 @@ class AddForumTableViewController: UITableViewController {
     @IBOutlet weak var indexDetailLabel: UILabel!
     @IBOutlet weak var pageDetailLabel: UILabel!
     @IBOutlet weak var responseDetailLabel: UILabel!
-    @IBOutlet weak var pageStyleDetailLabel: UILabel!
-    @IBOutlet weak var parserPickerFooterView: UIView!
     @IBOutlet weak var parserPickerView: UIPickerView!
     
     
     // MARK: Private.
     private let newForum = KomicaForum()
+    private let parserTypes = ["Pixmicat", "MyKomica", "Siokara"]
     private struct SegueIdentifier {
         static let name = "name"
         static let index = "index"
@@ -125,10 +124,10 @@ extension AddForumTableViewController: UIPickerViewDelegate, UIPickerViewDataSou
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 3
+        return parserTypes.count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
+        return parserTypes[row]
     }
 }
