@@ -34,7 +34,7 @@ class AddForumTableViewController: UITableViewController {
         static let response = "response"
     }
     private struct ForumField {
-        static let name = "name"
+        static let name = "Name"
         static let indexURL = "Index URL"
         static let listURL = "Page URL"
         static let responseURL = "Response URL"

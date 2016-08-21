@@ -8,7 +8,12 @@
 
 import UIKit
 
+protocol ForumTextInputViewControllerProtocol {
+    func forumDetailEntered(inputViewController: ForumTextInputViewController, enteredDetails: String, forField: String)
+}
+
 class ForumTextInputViewController: UIViewController {
+    var delegate: ForumTextInputViewControllerProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,4 +21,12 @@ class ForumTextInputViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+}
+
+extension ForumTextInputViewController: UITextViewDelegate {
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        
+    }
+    
 }
