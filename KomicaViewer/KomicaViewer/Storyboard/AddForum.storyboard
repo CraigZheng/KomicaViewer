@@ -227,7 +227,7 @@
         <!--Enter Details-->
         <scene sceneID="sMk-07-D0a">
             <objects>
-                <viewController id="b2M-Qc-uVL" sceneMemberID="viewController">
+                <viewController id="b2M-Qc-uVL" customClass="ForumTextInputViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Aiw-Rf-N99"/>
                         <viewControllerLayoutGuide type="bottom" id="Rf1-HO-FwN"/>
@@ -241,6 +241,9 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="b2M-Qc-uVL" id="Jtj-0x-Brd"/>
+                                </connections>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -259,6 +262,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Pqs-Dq-1Og"/>
+        <segue reference="nzl-mP-UF6"/>
     </inferredMetricsTieBreakers>
 </document>

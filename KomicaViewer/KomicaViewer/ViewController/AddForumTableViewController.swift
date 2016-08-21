@@ -33,6 +33,13 @@ class AddForumTableViewController: UITableViewController {
         static let page = "page"
         static let response = "response"
     }
+    private struct ForumField {
+        static let name = "name"
+        static let indexURL = "Index URL"
+        static let listURL = "Page URL"
+        static let responseURL = "Response URL"
+        static let parserType = "Page Style"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +47,23 @@ class AddForumTableViewController: UITableViewController {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        if let segueIdentifier = segue.identifier,
+            let textInputViewController = segue.destinationViewController as? ForumTextInputViewController
+        {
+            textInputViewController.delegate = self
+            switch segueIdentifier {
+            case SegueIdentifier.name:
+                textInputViewController.title = ForumField.name
+            case SegueIdentifier.index:
+                textInputViewController.title = ForumField.indexURL
+            case SegueIdentifier.page:
+                textInputViewController.title = ForumField.listURL
+            case SegueIdentifier.response:
+                textInputViewController.title = ForumField.responseURL
+            default:
+                break
+            }
+        }
     }
 
 }
@@ -50,6 +73,15 @@ extension AddForumTableViewController {
     
     @IBAction func addForumAction(sender: UIButton) {
         DLog("")
+    }
+
+}
+
+// MARK: ForumTextInputViewControllerProtocol
+extension AddForumTableViewController: ForumTextInputViewControllerProtocol {
+    
+    func forumDetailEntered(inputViewController: ForumTextInputViewController, enteredDetails: String, forField: String) {
+        DLog("\(enteredDetails) - \(forField)")
     }
     
 }
