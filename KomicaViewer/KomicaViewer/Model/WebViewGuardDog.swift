@@ -26,10 +26,10 @@ class WebViewGuardDog: NSObject, UIWebViewDelegate {
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         var should = true
         if let home = home {
-            if request.URL?.host != home {
+            if request.URL?.host != home && navigationType == .LinkClicked{
                 should = false
                 delegate?.blockedRequest(request)
-                if showWarningOnBlock && !onBlockMessage.isEmpty && navigationType == .LinkClicked {
+                if showWarningOnBlock && !onBlockMessage.isEmpty {
                     ProgressHUD.showMessage(onBlockMessage)
                 }
             }

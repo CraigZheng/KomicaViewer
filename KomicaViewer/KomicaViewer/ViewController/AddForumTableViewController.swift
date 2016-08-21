@@ -50,15 +50,12 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
             return Configuration.singleton.addForumHelpURL
         }
     }
-    var svWebViewGuardDog: WebViewGuardDog? {
-        set {}
-        get {
-            let guardDog = WebViewGuardDog()
-            guardDog.showWarningOnBlock = true
-            guardDog.home = svWebViewURL?.host
-            return guardDog
-        }
-    }
+    var svWebViewGuardDog: WebViewGuardDog? = {
+        let guardDog = WebViewGuardDog()
+        guardDog.showWarningOnBlock = true
+        guardDog.home = Configuration.singleton.addForumHelpURL?.host
+        return guardDog
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
