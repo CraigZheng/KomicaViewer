@@ -14,7 +14,7 @@ import SDWebImage
 import SVPullToRefresh
 import SVWebViewController
 
-class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol {
+class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol {
     
     // MARK: ThreadTableViewControllerProtocol
     var threads = [Thread]()
@@ -59,11 +59,16 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     private var currentURL: NSURL? {
         return forum?.listURLForPage(pageIndex)
     }
-    private var guardDog: WebViewGuardDog {
+    // MARK: SVWebViewProtocol
+    var svWebViewURL: NSURL? {
+        return currentURL
+    }
+    var svWebViewGuardDog: WebViewGuardDog {
         _guardDog.home = currentURL?.host
         _guardDog.showWarningOnBlock = true
         return _guardDog
     }
+    
     private let _guardDog = WebViewGuardDog()
     private var selectedPhoto: MWPhoto?
     private var originalContentInset: UIEdgeInsets?
@@ -151,17 +156,11 @@ extension HomeTableViewController {
 }
 
 // MARK: UIActions.
-extension HomeTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate {
+extension HomeTableViewController: MWPhotoBrowserDelegate {
     
     @IBAction func openInSafariAction(sender: AnyObject) {
         // Open in browser.
-        if let currentPageURL = forum?.listURLForPage(pageIndex) where UIApplication.sharedApplication().canOpenURL(currentPageURL) {
-            let webViewController = SVModalWebViewController(URL: currentPageURL)
-            webViewController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
-            webViewController.barsTintColor = navigationController?.navigationBar.barTintColor
-            webViewController.webViewDelegate = guardDog
-            self.presentViewController(webViewController, animated: true, completion: nil)
-        }
+        presentSVWebView()
     }
 
     @IBAction func unwindToHomeSegue(segue: UIStoryboardSegue) {

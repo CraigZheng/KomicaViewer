@@ -13,7 +13,7 @@ import SDWebImage
 import MWPhotoBrowser
 import SVWebViewController
 
-class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol {
+class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol {
     
     var selectedThread: Thread! {
         didSet {
@@ -27,7 +27,11 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         }
         return nil
     }
-    private var guardDog: WebViewGuardDog {
+    // MARK: SVWebViewProtocol
+    var svWebViewURL: NSURL? {
+        return currentURL
+    }
+    var svWebViewGuardDog: WebViewGuardDog {
         _guardDog.home = currentURL?.host
         _guardDog.showWarningOnBlock = true
         return _guardDog
@@ -184,15 +188,7 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate
     }
     
     @IBAction func openInSafariAction(sender: AnyObject) {
-        if let threadID = threadID,
-        let currentPageURL = forum?.responseURLForThreadID(threadID) where UIApplication.sharedApplication().canOpenURL(currentPageURL)
-        {
-            let webViewController = SVModalWebViewController(URL: currentPageURL)
-            webViewController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
-            webViewController.barsTintColor = navigationController?.navigationBar.barTintColor
-            webViewController.webViewDelegate = guardDog
-            self.presentViewController(webViewController, animated: true, completion: nil)
-        }
+        presentSVWebView()
     }
     
     private var imageThreads: [Thread] {
