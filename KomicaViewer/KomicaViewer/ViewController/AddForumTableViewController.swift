@@ -74,15 +74,12 @@ class AddForumTableViewController: UITableViewController {
         indexDetailLabel.text = newForum.indexURL ?? incompleted
         pageDetailLabel.text = newForum.listURL ?? incompleted
         responseDetailLabel.text = newForum.responseURL ?? incompleted
-//        pageStyleDetailLabel: UILabel! // TODO: complete the parser type.
 
     }
 }
 
 // MARK: UI actions.
 extension AddForumTableViewController {
-    @IBAction func okButtonAction(sender: AnyObject) {
-    }
     
     @IBAction func addForumAction(sender: UIButton) {
         DLog("")

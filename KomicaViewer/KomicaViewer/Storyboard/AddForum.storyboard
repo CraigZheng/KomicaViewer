@@ -30,6 +30,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="VnL-IU-iBW">
+                            <rect key="frame" x="0.0" y="449" width="320" height="5"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <sections>
                             <tableViewSection id="oGc-22-o9H">
                                 <cells>
@@ -155,7 +160,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iTS-1x-wxa">
-                                                    <rect key="frame" x="0.0" y="37" width="320" height="111.5"/>
+                                                    <rect key="frame" x="20" y="37" width="280" height="91.5"/>
                                                     <connections>
                                                         <outlet property="dataSource" destination="mDc-n7-gOu" id="PdF-xT-leI"/>
                                                         <outlet property="delegate" destination="mDc-n7-gOu" id="4E1-tK-6Bv"/>
@@ -164,24 +169,24 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Kqg-eZ-2v3" firstAttribute="top" secondItem="HJC-Cd-w6M" secondAttribute="top" constant="8" id="1ZR-qz-zLF"/>
-                                                <constraint firstItem="iTS-1x-wxa" firstAttribute="top" secondItem="Kqg-eZ-2v3" secondAttribute="bottom" constant="8" id="3vx-GI-2cq"/>
+                                                <constraint firstItem="iTS-1x-wxa" firstAttribute="top" secondItem="Kqg-eZ-2v3" secondAttribute="bottom" constant="8" symbolic="YES" id="3vx-GI-2cq"/>
                                                 <constraint firstItem="Kqg-eZ-2v3" firstAttribute="leading" secondItem="HJC-Cd-w6M" secondAttribute="leading" constant="16" id="Abi-Hf-1iX"/>
-                                                <constraint firstAttribute="bottom" secondItem="iTS-1x-wxa" secondAttribute="bottom" id="VR5-Bu-Skk"/>
-                                                <constraint firstAttribute="trailing" secondItem="iTS-1x-wxa" secondAttribute="trailing" id="WuB-s3-BQJ"/>
-                                                <constraint firstItem="iTS-1x-wxa" firstAttribute="leading" secondItem="HJC-Cd-w6M" secondAttribute="leading" id="gvr-Bx-FbO"/>
+                                                <constraint firstAttribute="bottom" secondItem="iTS-1x-wxa" secondAttribute="bottom" constant="20" symbolic="YES" id="VR5-Bu-Skk"/>
+                                                <constraint firstAttribute="trailing" secondItem="iTS-1x-wxa" secondAttribute="trailing" constant="20" symbolic="YES" id="WuB-s3-BQJ"/>
+                                                <constraint firstItem="iTS-1x-wxa" firstAttribute="leading" secondItem="HJC-Cd-w6M" secondAttribute="leading" constant="20" symbolic="YES" id="gvr-Bx-FbO"/>
                                                 <constraint firstAttribute="trailing" secondItem="Kqg-eZ-2v3" secondAttribute="trailing" constant="16" id="txn-dg-mVd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Qg9-mZ-pZ8">
-                                        <rect key="frame" x="0.0" y="389" width="320" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="Qg9-mZ-pZ8" userLabel="Add Button">
+                                        <rect key="frame" x="0.0" y="389" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qg9-mZ-pZ8" id="Uod-5n-LJV">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUS-g3-0yj" customClass="RoundCornerBorderedButton" customModule="KomicaViewer" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="8" width="304" height="27.5"/>
+                                                    <rect key="frame" x="8" y="8" width="304" height="43.5"/>
                                                     <color key="backgroundColor" red="1" green="0.45404717319999999" blue="0.17108253700000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="ADD">
                                                         <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
