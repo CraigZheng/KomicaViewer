@@ -91,7 +91,7 @@ class ForumPickerTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return "Custom Boards"
+            return (Forums.customForumGroup.forums?.isEmpty != nil ?? false) ? "" : "Custom Boards"
         } else if section == lastSectionIndex {
             return "Settings"
         } else {
