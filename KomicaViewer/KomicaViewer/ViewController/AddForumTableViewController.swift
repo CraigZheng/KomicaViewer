@@ -35,7 +35,7 @@ class AddForumTableViewController: UITableViewController {
     
     // MARK: Private.
     private let newForum = KomicaForum()
-    private let parserTypes = ["Pixmicat", "MyKomica", "Siokara"]
+    private let parserTypes = ["Pixmicat", "My Komica", "Siokara"]
     private struct SegueIdentifier {
         static let name = "name"
         static let index = "index"
@@ -74,7 +74,6 @@ class AddForumTableViewController: UITableViewController {
         indexDetailLabel.text = newForum.indexURL ?? incompleted
         pageDetailLabel.text = newForum.listURL ?? incompleted
         responseDetailLabel.text = newForum.responseURL ?? incompleted
-
     }
 }
 
@@ -83,6 +82,13 @@ extension AddForumTableViewController {
     
     @IBAction func addForumAction(sender: UIButton) {
         DLog("")
+        if newForum.name?.isEmpty == nil || newForum.indexURL?.isEmpty == nil || newForum.listURL?.isEmpty == nil || newForum.responseURL?.isEmpty == nil {
+            let warning = "Supplied information not enough to construct a new board"
+            DLog(warning)
+            ProgressHUD.showMessage(warning)
+        } else {
+            
+        }
     }
 
 }
