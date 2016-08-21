@@ -15,7 +15,7 @@ class ThreadTableViewCell: UITableViewCell {
     static let identifier = "threadCellIdentifier"
 
     var shouldShowParasitePost = true
-    
+    private var alertController: UIAlertController?
     @IBOutlet weak var _detailTextLabel: UILabel!
     @IBOutlet weak var _textLabel: UILabel?
     @IBOutlet weak var _imageView: UIImageView!
@@ -42,6 +42,69 @@ class ThreadTableViewCell: UITableViewCell {
     override var imageView: UIImageView? {
         get { return _imageView }
         set { _imageView = newValue }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ThreadTableViewCell.longPressAction))
+        contentView.addGestureRecognizer(longPressGestureRecognizer)
+    }
+    
+    // MARK: Private.
+    private var links: [NSURL] {
+        var links = [NSURL]()
+        if let linkDetector = try? NSDataDetector(types: NSTextCheckingType.Link.rawValue), let text = textView?.text {
+            for match in linkDetector.matchesInString(text, options: [], range: NSMakeRange(0, text.characters.count)) {
+                if match.resultType == NSTextCheckingType.Link, let url = match.URL {
+                    links.append(url)
+                }
+            }
+        }
+        return links
+    }
+    
+    func longPressAction() {
+        DLog("")
+        // If there's another alertController, don't do anything.
+        if alertController == nil {
+            alertController = UIAlertController(title: "What do you want to do?", message: nil, preferredStyle: .ActionSheet)
+            if let alertController = alertController {
+                let copyAction = UIAlertAction(title: "Copy Content", style: .Default) { (_) in
+                    if let text = self.textView?.text {
+                        UIPasteboard.generalPasteboard().string = text
+                    }
+                    // Set alertController to nil, so this cell is ready for another alertController.
+                    self.alertController = nil
+                }
+                let openAction = UIAlertAction(title: "Open URLs", style: .Default) { _ in
+                    self.alertController = nil
+                    if !self.links.isEmpty {
+                        // Secondary alert controller.
+                        let alertController = UIAlertController(title: "Which URL?", message: nil, preferredStyle: .ActionSheet)
+                        for link in self.links {
+                            let linkAction = UIAlertAction(title: link.absoluteString, style: .Default) { _ in
+                                if UIApplication.sharedApplication().canOpenURL(link) {
+                                    UIApplication.sharedApplication().openURL(link)
+                                }
+                            }
+                            alertController.addAction(linkAction)
+                        }
+                        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                        if let topViewController = UIApplication.topViewController {
+                            topViewController.presentViewController(alertController, animated: true, completion: nil)
+                        }
+                    }
+                }
+                alertController.addAction(copyAction)
+                if !links.isEmpty {
+                    alertController.addAction(openAction)
+                }
+                alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: {_ in self.alertController = nil}))
+                if let topViewController = UIApplication.topViewController {
+                    topViewController.presentViewController(alertController, animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     func layoutWithThread(thread: Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol) {
