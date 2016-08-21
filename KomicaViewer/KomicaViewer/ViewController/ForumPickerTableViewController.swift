@@ -63,6 +63,18 @@ class ForumPickerTableViewController: UITableViewController {
         return forumsForSection(section)?.count ?? 0
     }
     
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return indexPath.section == 0
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == 0 && editingStyle == .Delete {
+            Forums.customForumGroup.forums?.removeAtIndex(indexPath.row)
+            Forums.saveCustomForums()
+            tableView.reloadData()
+        }
+    }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == lastSectionIndex {
             return CGFloat(Configuration.singleton.remoteActions.count * 44 + 20)

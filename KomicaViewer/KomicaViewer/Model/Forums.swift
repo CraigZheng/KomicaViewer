@@ -58,7 +58,7 @@ class Forums {
         saveCustomForums()
     }
     
-    private class func saveCustomForums() {
+    class func saveCustomForums() {
         if let customForums = Forums.customForumGroup.forums {
             var jsonStrings = [String]()
             customForums.forEach({forum in
@@ -69,6 +69,10 @@ class Forums {
             if !jsonStrings.isEmpty {
                 // Save to user default for now.
                 NSUserDefaults.standardUserDefaults().setObject(jsonStrings, forKey: Forums.customForumsKey)
+                NSUserDefaults.standardUserDefaults().synchronize()
+            } else {
+                // Remove everything.
+                NSUserDefaults.standardUserDefaults().removeObjectForKey(Forums.customForumsKey)
                 NSUserDefaults.standardUserDefaults().synchronize()
             }
         }
