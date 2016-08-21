@@ -44,7 +44,7 @@ class AddForumTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        reload()
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -67,6 +67,15 @@ class AddForumTableViewController: UITableViewController {
         }
     }
 
+    func reload() {
+        let incompleted = "Incompleted..."
+        nameDetailLabel.text = newForum.name ?? incompleted
+        indexDetailLabel.text = newForum.indexURL ?? incompleted
+        pageDetailLabel.text = newForum.listURL ?? incompleted
+        responseDetailLabel.text = newForum.responseURL ?? incompleted
+//        pageStyleDetailLabel: UILabel! // TODO: complete the parser type.
+
+    }
 }
 
 // MARK: UI actions.
@@ -81,8 +90,25 @@ extension AddForumTableViewController {
 // MARK: ForumTextInputViewControllerProtocol
 extension AddForumTableViewController: ForumTextInputViewControllerProtocol {
     
-    func forumDetailEntered(inputViewController: ForumTextInputViewController, enteredDetails: String, forField: ForumField) {
-        DLog("\(enteredDetails) - \(forField)")
+    func forumDetailEntered(inputViewController: ForumTextInputViewController, enteredDetails: String, forField field: ForumField) {
+        // Safe guard.
+        if enteredDetails.isEmpty {
+            return
+        }
+        DLog("\(enteredDetails) - \(field)")
+        switch field {
+        case .indexURL:
+            newForum.indexURL = enteredDetails
+        case .listURL:
+            newForum.listURL = enteredDetails
+        case .name:
+            newForum.name = enteredDetails
+        case .responseURL:
+            newForum.responseURL = enteredDetails
+        default:
+            break
+        }
+        reload()
     }
     
 }

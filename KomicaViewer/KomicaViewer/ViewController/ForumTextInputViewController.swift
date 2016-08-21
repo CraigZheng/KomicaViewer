@@ -43,8 +43,9 @@ extension ForumTextInputViewController: UITextViewDelegate {
 extension ForumTextInputViewController {
     
     @IBAction func saveAction(sender: AnyObject) {
-        if let enteredText = textView.text {
+        if let enteredText = textView.text where !enteredText.isEmpty {
             delegate?.forumDetailEntered(self, enteredDetails: enteredText, forField: field)
+            navigationController?.popViewControllerAnimated(true)
         }
     }
 }
