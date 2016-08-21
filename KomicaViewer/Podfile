@@ -20,6 +20,7 @@ target 'KomicaViewer' do
   pod "AFNetworking"
   pod "PureLayout"
   pod 'SVPullToRefresh', :git => 'https://github.com/samvermette/SVPullToRefresh.git'
+  pod 'SVWebViewController', :git => 'https://github.com/TransitApp/SVWebViewController.git'
   target 'KomicaViewerTests' do
 #   inherit! :search_paths
     # Pods for testing

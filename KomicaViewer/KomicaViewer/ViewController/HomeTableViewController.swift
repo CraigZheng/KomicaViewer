@@ -12,6 +12,7 @@ import KomicaEngine
 import MWPhotoBrowser
 import SDWebImage
 import SVPullToRefresh
+import SVWebViewController
 
 class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol {
     
@@ -55,6 +56,15 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     var bulkUpdateTimer: NSTimer?
     var pendingIndexPaths: [NSIndexPath] = [NSIndexPath]()
     
+    private var currentURL: NSURL? {
+        return forum?.listURLForPage(pageIndex)
+    }
+    private var guardDog: WebViewGuardDog {
+        _guardDog.home = currentURL?.host
+        _guardDog.showWarningOnBlock = true
+        return _guardDog
+    }
+    private let _guardDog = WebViewGuardDog()
     private var selectedPhoto: MWPhoto?
     private var originalContentInset: UIEdgeInsets?
     private var photoBrowser: MWPhotoBrowser {
@@ -144,7 +154,14 @@ extension HomeTableViewController {
 extension HomeTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate {
     
     @IBAction func openInSafariAction(sender: AnyObject) {
-        UIAlertView(title: "Open In Safari?", message: "You are about to open this page in safari, continue?", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Confirm").show()
+        // Open in browser.
+        if let currentPageURL = forum?.listURLForPage(pageIndex) where UIApplication.sharedApplication().canOpenURL(currentPageURL) {
+            let webViewController = SVModalWebViewController(URL: currentPageURL)
+            webViewController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
+            webViewController.barsTintColor = navigationController?.navigationBar.barTintColor
+            webViewController.webViewDelegate = guardDog
+            self.presentViewController(webViewController, animated: true, completion: nil)
+        }
     }
 
     @IBAction func unwindToHomeSegue(segue: UIStoryboardSegue) {
@@ -171,16 +188,6 @@ extension HomeTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate {
         return selectedPhoto ?? MWPhoto()
     }
     
-    // MARK: UIAlertViewDelegate
-    
-    func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
-        if buttonIndex != alertView.cancelButtonIndex {
-            // Open in Safari.
-            if let currentPageURL = forum?.listURLForPage(pageIndex) where UIApplication.sharedApplication().canOpenURL(currentPageURL) {
-                UIApplication.sharedApplication().openURL(currentPageURL)
-            }
-        }
-    }
 }
 
 // MARK: Forum selected notification handler.

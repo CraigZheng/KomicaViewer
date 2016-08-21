@@ -25,6 +25,7 @@ PODS:
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
   - SVPullToRefresh (0.4.1)
+  - SVWebViewController (1.0)
 
 DEPENDENCIES:
   - AFNetworking
@@ -32,15 +33,21 @@ DEPENDENCIES:
   - MWPhotoBrowser (~> 2.1.2)
   - PureLayout
   - SVPullToRefresh (from `https://github.com/samvermette/SVPullToRefresh.git`)
+  - SVWebViewController (from `https://github.com/TransitApp/SVWebViewController.git`)
 
 EXTERNAL SOURCES:
   SVPullToRefresh:
     :git: https://github.com/samvermette/SVPullToRefresh.git
+  SVWebViewController:
+    :git: https://github.com/TransitApp/SVWebViewController.git
 
 CHECKOUT OPTIONS:
   SVPullToRefresh:
     :commit: a5f9dfee86a27c4e994d7edf93d0768c881d58bb
     :git: https://github.com/samvermette/SVPullToRefresh.git
+  SVWebViewController:
+    :commit: 9abad6b852b6c2ad19bb3c28532cce53719e2a7f
+    :git: https://github.com/TransitApp/SVWebViewController.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -50,7 +57,8 @@ SPEC CHECKSUMS:
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
+  SVWebViewController: aa2e18a41ff5f45be7aeec8e92ca5bcc50b5ebb1
 
-PODFILE CHECKSUM: f6331dfb449ed84da424a4afe5e1aba5ad39fca2
+PODFILE CHECKSUM: d76dedbef9138855a243c4ddcfeec15a7262f808
 
 COCOAPODS: 1.0.1

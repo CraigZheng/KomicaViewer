@@ -13,7 +13,8 @@ import MBProgressHUD
 class ProgressHUD: MBProgressHUD {
     
     class func showMessage(message: String) {
-        if let rootView = UIApplication.sharedApplication().keyWindow?.rootViewController?.view {
+        let topViewController = UIApplication.sharedApplication().keyWindow?.rootViewController?.presentedViewController ?? UIApplication.sharedApplication().keyWindow?.rootViewController
+        if let rootView = topViewController?.view {
             let hud = MBProgressHUD.showHUDAddedTo(rootView, animated:true)
             // Set the annular determinate mode to show task progress.
             hud.mode = .Text
