@@ -17,9 +17,18 @@ class ForumTextInputViewController: UIViewController {
     
     var delegate: ForumTextInputViewControllerProtocol?
     var prefilledString: String?
+    var pageSpecifier: String?
     var field: ForumField! {
         didSet {
             self.title = field.rawValue
+            switch field! {
+            case ForumField.listURL:
+                pageSpecifier = "<PAGE>"
+            case ForumField.responseURL:
+                pageSpecifier = "<ID>"
+            default:
+                break;
+            }
         }
     }
     override func viewDidLoad() {
@@ -44,8 +53,13 @@ extension ForumTextInputViewController {
     
     @IBAction func saveAction(sender: AnyObject) {
         if let enteredText = textView.text where !enteredText.isEmpty {
-            delegate?.forumDetailEntered(self, enteredDetails: enteredText, forField: field)
-            navigationController?.popViewControllerAnimated(true)
+            // If page specifier is not empty and the enteredText does not contain it, show a warning.
+            if let pageSpecifier = pageSpecifier where !pageSpecifier.isEmpty && !enteredText.containsString(pageSpecifier) {
+                ProgressHUD.showMessage("Cannot save, \(pageSpecifier) is required.")
+            } else {
+                delegate?.forumDetailEntered(self, enteredDetails: enteredText, forField: field)
+                navigationController?.popViewControllerAnimated(true)
+            }
         }
     }
 }
