@@ -30,10 +30,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="eGP-uU-Ryd">
-                            <rect key="frame" x="0.0" y="328" width="320" height="10"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="7Oo-5b-PvO" userLabel="Footer View">
+                            <rect key="frame" x="0.0" y="328" width="320" height="120"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <pickerView contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="C5G-16-bNe">
+                                    <rect key="frame" x="0.0" y="44" width="320" height="76"/>
+                                    <connections>
+                                        <outlet property="dataSource" destination="mDc-n7-gOu" id="Vye-No-Sfz"/>
+                                        <outlet property="delegate" destination="mDc-n7-gOu" id="zpr-rv-HGH"/>
+                                    </connections>
+                                </pickerView>
+                                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="9Ws-eV-KyH">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <items>
+                                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Df8-ih-WPZ"/>
+                                        <barButtonItem title="OK" id="5Lr-EJ-Isn">
+                                            <connections>
+                                                <action selector="okButtonAction:" destination="mDc-n7-gOu" id="2yu-YU-xU2"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </items>
+                                </toolbar>
+                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="C5G-16-bNe" secondAttribute="trailing" id="8bS-xy-PQ0"/>
+                                <constraint firstAttribute="trailing" secondItem="9Ws-eV-KyH" secondAttribute="trailing" id="AQX-DO-nYc"/>
+                                <constraint firstItem="9Ws-eV-KyH" firstAttribute="top" secondItem="7Oo-5b-PvO" secondAttribute="top" id="L7G-qK-QP5"/>
+                                <constraint firstAttribute="bottom" secondItem="C5G-16-bNe" secondAttribute="bottom" id="QD9-Pc-o2q"/>
+                                <constraint firstItem="C5G-16-bNe" firstAttribute="leading" secondItem="7Oo-5b-PvO" secondAttribute="leading" id="Xv7-Ik-6Rg"/>
+                                <constraint firstItem="9Ws-eV-KyH" firstAttribute="leading" secondItem="7Oo-5b-PvO" secondAttribute="leading" id="knr-AM-n6m"/>
+                                <constraint firstAttribute="bottom" secondItem="9Ws-eV-KyH" secondAttribute="bottom" id="s5Y-7i-eeI"/>
+                                <constraint firstItem="C5G-16-bNe" firstAttribute="top" secondItem="9Ws-eV-KyH" secondAttribute="bottom" id="xeZ-az-b3w"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="s5Y-7i-eeI"/>
+                                </mask>
+                            </variation>
                         </view>
                         <sections>
                             <tableViewSection id="oGc-22-o9H">
@@ -216,6 +251,8 @@
                         <outlet property="pageStyleDetailLabel" destination="Bbz-Ap-xLD" id="oJu-dR-Qtb"/>
                         <outlet property="pageStyleLabel" destination="0pa-WE-hZ0" id="CaP-o8-sQ3"/>
                         <outlet property="pageURLLabel" destination="i4U-63-Ygn" id="Ehu-ip-8f4"/>
+                        <outlet property="parserPickerFooterView" destination="7Oo-5b-PvO" id="4G0-T3-KOG"/>
+                        <outlet property="parserPickerView" destination="C5G-16-bNe" id="hBs-4t-4aB"/>
                         <outlet property="responseDetailLabel" destination="Khn-lq-Sod" id="fmp-gF-Dj9"/>
                         <outlet property="responseURLLabel" destination="8qD-Vm-50c" id="EWR-OF-gYg"/>
                     </connections>

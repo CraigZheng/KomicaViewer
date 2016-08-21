@@ -31,6 +31,8 @@ class AddForumTableViewController: UITableViewController {
     @IBOutlet weak var pageDetailLabel: UILabel!
     @IBOutlet weak var responseDetailLabel: UILabel!
     @IBOutlet weak var pageStyleDetailLabel: UILabel!
+    @IBOutlet weak var parserPickerFooterView: UIView!
+    @IBOutlet weak var parserPickerView: UIPickerView!
     
     
     // MARK: Private.
@@ -80,6 +82,8 @@ class AddForumTableViewController: UITableViewController {
 
 // MARK: UI actions.
 extension AddForumTableViewController {
+    @IBAction func okButtonAction(sender: AnyObject) {
+    }
     
     @IBAction func addForumAction(sender: UIButton) {
         DLog("")
@@ -111,4 +115,20 @@ extension AddForumTableViewController: ForumTextInputViewControllerProtocol {
         reload()
     }
     
+}
+
+
+// MARK: UIPickerViewDelegate, UIPickerViewDataSource
+extension AddForumTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 3
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+    }
 }
