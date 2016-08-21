@@ -72,6 +72,7 @@ class ThreadTableViewCell: UITableViewCell {
                 let copyAction = UIAlertAction(title: "Copy Content", style: .Default) { (_) in
                     if let text = self.textView?.text {
                         UIPasteboard.generalPasteboard().string = text
+                        ProgressHUD.showMessage("Content Copied")
                     }
                     // Set alertController to nil, so this cell is ready for another alertController.
                     self.alertController = nil
