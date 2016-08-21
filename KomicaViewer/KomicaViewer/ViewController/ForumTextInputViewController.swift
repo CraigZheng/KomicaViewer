@@ -40,6 +40,7 @@ class ForumTextInputViewController: UIViewController {
         // Keyboard events observer.
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ForumTextInputViewController.handlekeyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ForumTextInputViewController.handleKeyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        textView.becomeFirstResponder()
     }
 
 }
