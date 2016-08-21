@@ -82,6 +82,7 @@ extension AddForumTableViewController {
     
     @IBAction func addForumAction(sender: UIButton) {
         DLog("")
+        
         if newForum.name?.isEmpty == nil || newForum.indexURL?.isEmpty == nil || newForum.listURL?.isEmpty == nil || newForum.responseURL?.isEmpty == nil {
             let warning = "Supplied information not enough to construct a new board"
             DLog(warning)

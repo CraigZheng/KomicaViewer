@@ -14,6 +14,7 @@ protocol ForumTextInputViewControllerProtocol {
 
 class ForumTextInputViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var delegate: ForumTextInputViewControllerProtocol?
     var prefilledString: String?
@@ -36,6 +37,9 @@ class ForumTextInputViewController: UIViewController {
         if let prefilledString = prefilledString {
             textView.text = prefilledString
         }
+        // Keyboard events observer.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ForumTextInputViewController.handlekeyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ForumTextInputViewController.handleKeyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
 
 }
@@ -52,6 +56,7 @@ extension ForumTextInputViewController: UITextViewDelegate {
 extension ForumTextInputViewController {
     
     @IBAction func saveAction(sender: AnyObject) {
+        textView.resignFirstResponder()
         if let enteredText = textView.text where !enteredText.isEmpty {
             // If page specifier is not empty and the enteredText does not contain it, show a warning.
             if let pageSpecifier = pageSpecifier where !pageSpecifier.isEmpty && !enteredText.containsString(pageSpecifier) {
@@ -62,4 +67,21 @@ extension ForumTextInputViewController {
             }
         }
     }
+}
+
+// MARK: keyboard events.
+extension ForumTextInputViewController {
+    
+    func handlekeyboardWillShow(notification: NSNotification) {
+        if let keyboardValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
+        {
+            let keyboardRect = view.convertRect(keyboardValue.CGRectValue(), fromView: nil)
+            bottomConstraint.constant = keyboardRect.size.height
+        }
+    }
+    
+    func handleKeyboardWillHide(notification: NSNotification) {
+        bottomConstraint.constant = 0
+    }
+    
 }

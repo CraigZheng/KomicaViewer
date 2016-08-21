@@ -271,6 +271,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bottomConstraint" destination="pwu-As-iIO" id="oMz-HM-nVA"/>
                         <outlet property="textView" destination="2Zg-V9-1Om" id="5Tw-dt-W5p"/>
                     </connections>
                 </viewController>
