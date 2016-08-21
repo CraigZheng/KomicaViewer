@@ -226,12 +226,25 @@
                                 <segue destination="KpS-1d-mSQ" kind="unwind" unwindAction="unwindToHomeSegue:" id="9Mr-nt-ZAg"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2ic-c5-pAJ">
+                            <connections>
+                                <segue destination="eeK-7e-v92" kind="show" id="KDO-j9-6KL"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pu-mG-bIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="KpS-1d-mSQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2311" y="631"/>
+        </scene>
+        <!--AddForum-->
+        <scene sceneID="uAF-rP-nnc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AddForum" id="eeK-7e-v92" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3XL-Mw-KFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2669.5" y="631"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7gO-nN-j9s">

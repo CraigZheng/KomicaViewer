@@ -11,6 +11,7 @@
 		443342A71D5F576F00EDFA8F /* AFHTTPSessionManager+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443342A61D5F576F00EDFA8F /* AFHTTPSessionManager+Util.swift */; };
 		443342A91D5F5A3800EDFA8F /* ActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443342A81D5F5A3800EDFA8F /* ActionTableViewCell.swift */; };
 		44397D581D670A80005B44AA /* WebViewGuardDog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44397D571D670A80005B44AA /* WebViewGuardDog.swift */; };
+		44397D6C1D695AA5005B44AA /* AddForum.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44397D6B1D695AA5005B44AA /* AddForum.storyboard */; };
 		44496F531D5985A6005875DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44496F521D5985A6005875DD /* AppDelegate.swift */; };
 		44496F581D5985A6005875DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44496F561D5985A6005875DD /* Main.storyboard */; };
 		44496F5A1D5985A6005875DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44496F591D5985A6005875DD /* Assets.xcassets */; };
@@ -98,6 +99,7 @@
 		443342A61D5F576F00EDFA8F /* AFHTTPSessionManager+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AFHTTPSessionManager+Util.swift"; sourceTree = "<group>"; };
 		443342A81D5F5A3800EDFA8F /* ActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionTableViewCell.swift; sourceTree = "<group>"; };
 		44397D571D670A80005B44AA /* WebViewGuardDog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewGuardDog.swift; sourceTree = "<group>"; };
+		44397D6B1D695AA5005B44AA /* AddForum.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddForum.storyboard; sourceTree = "<group>"; };
 		44496F4F1D5985A6005875DD /* KomicaViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KomicaViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44496F521D5985A6005875DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44496F571D5985A6005875DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -164,6 +166,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		44397D6E1D695AB6005B44AA /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				44397D6B1D695AA5005B44AA /* AddForum.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
 		44496F461D5985A6005875DD = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +199,7 @@
 		44496F511D5985A6005875DD /* KomicaViewer */ = {
 			isa = PBXGroup;
 			children = (
+				44397D6E1D695AB6005B44AA /* Storyboard */,
 				44496F521D5985A6005875DD /* AppDelegate.swift */,
 				44496F561D5985A6005875DD /* Main.storyboard */,
 				44496F591D5985A6005875DD /* Assets.xcassets */,
@@ -405,6 +416,7 @@
 				44496F5D1D5985A6005875DD /* LaunchScreen.storyboard in Resources */,
 				44496F5A1D5985A6005875DD /* Assets.xcassets in Resources */,
 				44496F581D5985A6005875DD /* Main.storyboard in Resources */,
+				44397D6C1D695AA5005B44AA /* AddForum.storyboard in Resources */,
 				44BD397D1D5B5AA70070E0CB /* ThreadTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
