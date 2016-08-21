@@ -13,6 +13,8 @@
 		44397D581D670A80005B44AA /* WebViewGuardDog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44397D571D670A80005B44AA /* WebViewGuardDog.swift */; };
 		44397D6C1D695AA5005B44AA /* AddForum.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44397D6B1D695AA5005B44AA /* AddForum.storyboard */; };
 		44397D721D695C00005B44AA /* RoundCornerBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44397D711D695C00005B44AA /* RoundCornerBorderedButton.swift */; };
+		44397D741D695D4D005B44AA /* AddForumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44397D731D695D4D005B44AA /* AddForumTableViewController.swift */; };
+		44397D761D695D65005B44AA /* ForumTextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44397D751D695D65005B44AA /* ForumTextInputViewController.swift */; };
 		44496F531D5985A6005875DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44496F521D5985A6005875DD /* AppDelegate.swift */; };
 		44496F581D5985A6005875DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44496F561D5985A6005875DD /* Main.storyboard */; };
 		44496F5A1D5985A6005875DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44496F591D5985A6005875DD /* Assets.xcassets */; };
@@ -102,6 +104,8 @@
 		44397D571D670A80005B44AA /* WebViewGuardDog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewGuardDog.swift; sourceTree = "<group>"; };
 		44397D6B1D695AA5005B44AA /* AddForum.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddForum.storyboard; sourceTree = "<group>"; };
 		44397D711D695C00005B44AA /* RoundCornerBorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundCornerBorderedButton.swift; sourceTree = "<group>"; };
+		44397D731D695D4D005B44AA /* AddForumTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddForumTableViewController.swift; sourceTree = "<group>"; };
+		44397D751D695D65005B44AA /* ForumTextInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumTextInputViewController.swift; sourceTree = "<group>"; };
 		44496F4F1D5985A6005875DD /* KomicaViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KomicaViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44496F521D5985A6005875DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44496F571D5985A6005875DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -242,6 +246,8 @@
 				44BD39811D5B5F310070E0CB /* ThreadTableViewControllerProtocol.swift */,
 				447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */,
 				44A65A9F1D5DC7F500A4DDE6 /* ParasitePostTableViewController.swift */,
+				44397D731D695D4D005B44AA /* AddForumTableViewController.swift */,
+				44397D751D695D65005B44AA /* ForumTextInputViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -560,9 +566,11 @@
 				44F48EBC1D5D3F0700519C1B /* ProgressHUD.swift in Sources */,
 				44655D771D5AEF8E00229404 /* ForumPickerTableViewController.swift in Sources */,
 				443342A41D5F568B00EDFA8F /* Configuration.swift in Sources */,
+				44397D761D695D65005B44AA /* ForumTextInputViewController.swift in Sources */,
 				44A65AA01D5DC7F500A4DDE6 /* ParasitePostTableViewController.swift in Sources */,
 				44BD39821D5B5F310070E0CB /* ThreadTableViewControllerProtocol.swift in Sources */,
 				44BD39791D5B27690070E0CB /* ThreadTableViewCell.swift in Sources */,
+				44397D741D695D4D005B44AA /* AddForumTableViewController.swift in Sources */,
 				44A65A971D5DBB0100A4DDE6 /* CPLoadFromNibView.m in Sources */,
 				44BD39801D5B5E180070E0CB /* ThreadTableViewController.swift in Sources */,
 				44397D581D670A80005B44AA /* WebViewGuardDog.swift in Sources */,
