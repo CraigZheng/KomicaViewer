@@ -18,6 +18,14 @@ class ForumPickerTableViewController: UITableViewController {
     private var lastSectionIndex: Int {
         return numberOfSectionsInTableView(tableView) - 1
     }
+    private var shouldShowCustomForums: Bool {
+        let should = Forums.customForumGroup.forums?.isEmpty != nil ?? false
+        return should
+    }
+    private func forumsForSection(section: Int) -> [KomicaForum]? {
+        let forums = section == 0 ? Forums.customForumGroup.forums : forumGroup[section - 1].forums
+        return forums
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,16 +45,17 @@ class ForumPickerTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // +1 for the remote actions section.
-        return forumGroup.count + 1
+        // +1 for the remote actions section, +1 for the custom forums section.
+        let sections = forumGroup.count + 2
+        return sections
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // 0: the settings section.
+        // Last section is the settings section.
         if section == lastSectionIndex {
             return 1
         }
-        return forumGroup[section].forums?.count ?? 0
+        return forumsForSection(section)?.count ?? 0
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -64,7 +73,9 @@ class ForumPickerTableViewController: UITableViewController {
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
-            if let forums = forumGroup[indexPath.section].forums {
+            // If section == 0 and custom forums not empty, show the customForumGroup.
+            let forums = forumsForSection(indexPath.section)
+            if let forums = forums where !forums.isEmpty {
                 cell.textLabel?.text = forums[indexPath.row].name
                 if let indexURLString = forums[indexPath.row].indexURL,
                     let indexURL = NSURL(string: indexURLString)
@@ -79,18 +90,21 @@ class ForumPickerTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == lastSectionIndex {
+        if section == 0 {
+            return "Custom Boards"
+        } else if section == lastSectionIndex {
             return "Settings"
         } else {
             if section < forumGroup.count {
-                return forumGroup[section].name ?? ""
+                return forumGroup[section - 1].name ?? ""
             }
         }
         return nil
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let forums = forumGroup[indexPath.section].forums where indexPath.row < forums.count {
+        if let forums = forumsForSection(indexPath.section) where indexPath.row < forums.count
+        {
             Forums.selectedForum = forums[indexPath.row]
         }
         // Dismiss self.
