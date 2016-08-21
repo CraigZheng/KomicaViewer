@@ -213,6 +213,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Custom Board" id="eeI-vE-M5Y">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="dcn-TI-Xpl"/>
                         <barButtonItem key="rightBarButtonItem" title="?" id="jRF-fL-0cu"/>
                     </navigationItem>
                     <connections>
