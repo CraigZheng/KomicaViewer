@@ -11,8 +11,8 @@ import UIKit
 import SVWebViewController
 
 protocol SVWebViewProtocol: class {
-    var svWebViewGuardDog: WebViewGuardDog? { get }
-    var svWebViewURL: NSURL? { get }
+    var svWebViewGuardDog: WebViewGuardDog? { get set }
+    var svWebViewURL: NSURL? { get set }
     
     func presentSVWebView()
 }

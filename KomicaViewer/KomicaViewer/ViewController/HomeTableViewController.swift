@@ -61,12 +61,18 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     }
     // MARK: SVWebViewProtocol
     var svWebViewURL: NSURL? {
-        return currentURL
+        set {}
+        get {
+            return currentURL
+        }
     }
     var svWebViewGuardDog: WebViewGuardDog? {
-        _guardDog.home = currentURL?.host
-        _guardDog.showWarningOnBlock = true
-        return _guardDog
+        set {}
+        get {
+            _guardDog.home = currentURL?.host
+            _guardDog.showWarningOnBlock = true
+            return _guardDog
+        }
     }
     
     private let _guardDog = WebViewGuardDog()

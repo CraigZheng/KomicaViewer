@@ -28,14 +28,9 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         return nil
     }
     // MARK: SVWebViewProtocol
-    var svWebViewURL: NSURL? {
-        return currentURL
-    }
-    var svWebViewGuardDog: WebViewGuardDog? {
-        _guardDog.home = currentURL?.host
-        _guardDog.showWarningOnBlock = true
-        return _guardDog
-    }
+    var svWebViewURL: NSURL?
+    var svWebViewGuardDog: WebViewGuardDog?
+    // MARK: private properties.
     private let _guardDog = WebViewGuardDog()
     private let showParasitePostSegue = "showParasitePosts"
     private var photoBrowser: MWPhotoBrowser {
