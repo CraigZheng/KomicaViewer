@@ -11,6 +11,7 @@ import UIKit
 import KomicaEngine
 import SDWebImage
 import MWPhotoBrowser
+import SVWebViewController
 
 class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol {
     
@@ -20,6 +21,18 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         }
     }
     
+    private var currentURL: NSURL? {
+        if let threadID = threadID {
+            return forum?.responseURLForThreadID(threadID)
+        }
+        return nil
+    }
+    private var guardDog: WebViewGuardDog {
+        _guardDog.home = currentURL?.host
+        _guardDog.showWarningOnBlock = true
+        return _guardDog
+    }
+    private let _guardDog = WebViewGuardDog()
     private let showParasitePostSegue = "showParasitePosts"
     private var photoBrowser: MWPhotoBrowser {
         if _photoBrowser == nil {
@@ -185,7 +198,15 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate
     }
     
     @IBAction func openInSafariAction(sender: AnyObject) {
-        UIAlertView(title: "Open In Safari?", message: "You are about to open this page in safari, continue?", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Confirm").show()
+        if let threadID = threadID,
+        let currentPageURL = forum?.responseURLForThreadID(threadID) where UIApplication.sharedApplication().canOpenURL(currentPageURL)
+        {
+            let webViewController = SVModalWebViewController(URL: currentPageURL)
+            webViewController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
+            webViewController.barsTintColor = navigationController?.navigationBar.barTintColor
+            webViewController.webViewDelegate = guardDog
+            self.presentViewController(webViewController, animated: true, completion: nil)
+        }
     }
     
     private var imageThreads: [Thread] {
