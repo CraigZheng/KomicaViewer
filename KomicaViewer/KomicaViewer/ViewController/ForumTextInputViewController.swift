@@ -30,3 +30,10 @@ extension ForumTextInputViewController: UITextViewDelegate {
     }
     
 }
+
+// MARK: UI actions.
+extension ForumTextInputViewController {
+    
+    @IBAction func saveAction(sender: AnyObject) {
+    }
+}

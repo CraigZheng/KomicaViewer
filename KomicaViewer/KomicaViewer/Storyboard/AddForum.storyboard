@@ -254,7 +254,13 @@
                             <constraint firstItem="2Zg-V9-1Om" firstAttribute="leading" secondItem="Zwj-ux-0V7" secondAttribute="leading" id="xaD-aG-ZyQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Enter Details" id="eb2-lY-kNt"/>
+                    <navigationItem key="navigationItem" title="Enter Details" id="eb2-lY-kNt">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="sFk-Wf-Oe8">
+                            <connections>
+                                <action selector="saveAction:" destination="b2M-Qc-uVL" id="yYs-og-9LG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1wc-q9-gRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
