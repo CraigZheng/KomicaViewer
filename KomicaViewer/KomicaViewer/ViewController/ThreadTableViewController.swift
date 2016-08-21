@@ -183,7 +183,23 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate
     }
     
     @IBAction func openInSafariAction(sender: AnyObject) {
-        presentSVWebView()
+        let openURLAction = UIAlertAction(title: "Open URL", style: .Default) { _ in
+            // Set the target URL to the currentURL.
+            self.svWebViewGuardDog = self._guardDog
+            self.svWebViewURL = self.currentURL
+            self.presentSVWebView()
+        }
+        let reportAction = UIAlertAction(title: "Report Thread", style: .Default) { _ in
+            // Set the URL to report URL.
+            self.svWebViewGuardDog = nil
+            self.svWebViewURL = Configuration.singleton.reportURL
+            self.presentSVWebView()
+        }
+
+        let alertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .ActionSheet)
+        alertController.addAction(openURLAction)
+        alertController.addAction(reportAction)
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     private var imageThreads: [Thread] {
