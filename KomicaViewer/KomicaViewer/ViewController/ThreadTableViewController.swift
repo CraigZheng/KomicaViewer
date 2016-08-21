@@ -197,10 +197,12 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate
             self.svWebViewURL = Configuration.singleton.reportURL
             self.presentSVWebView()
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
 
         let alertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .ActionSheet)
         alertController.addAction(openURLAction)
         alertController.addAction(reportAction)
+        alertController.addAction(cancelAction)
         presentViewController(alertController, animated: true, completion: nil)
     }
     
