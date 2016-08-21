@@ -214,7 +214,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Custom Board" id="eeI-vE-M5Y">
                         <barButtonItem key="backBarButtonItem" title="Back" id="dcn-TI-Xpl"/>
-                        <barButtonItem key="rightBarButtonItem" title="?" id="jRF-fL-0cu"/>
+                        <barButtonItem key="rightBarButtonItem" title="?" id="jRF-fL-0cu">
+                            <connections>
+                                <action selector="addForumHelpAction:" destination="mDc-n7-gOu" id="LKz-ru-Swv"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="indexDetailLabel" destination="lHX-HB-XWd" id="Mnh-7Q-75q"/>

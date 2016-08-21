@@ -18,7 +18,7 @@ enum ForumField: String {
     case parserType = "Page Style"
 }
 
-class AddForumTableViewController: UITableViewController {
+class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     
     // MARK: UI elements.
     @IBOutlet weak var nameLabel: UILabel!
@@ -41,6 +41,23 @@ class AddForumTableViewController: UITableViewController {
         static let index = "index"
         static let page = "page"
         static let response = "response"
+    }
+    
+    // MARK: SVWebViewProtocol
+    var svWebViewURL: NSURL? {
+        set {}
+        get {
+            return Configuration.singleton.addForumHelpURL
+        }
+    }
+    var svWebViewGuardDog: WebViewGuardDog? {
+        set {}
+        get {
+            let guardDog = WebViewGuardDog()
+            guardDog.showWarningOnBlock = true
+            guardDog.home = svWebViewURL?.host
+            return guardDog
+        }
     }
     
     override func viewDidLoad() {
@@ -79,6 +96,10 @@ class AddForumTableViewController: UITableViewController {
 
 // MARK: UI actions.
 extension AddForumTableViewController {
+    
+    @IBAction func addForumHelpAction(sender: AnyObject) {
+        presentSVWebView()
+    }
     
     @IBAction func addForumAction(sender: UIButton) {
         DLog("")
