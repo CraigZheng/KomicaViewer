@@ -87,7 +87,7 @@ extension AddForumTableViewController {
             DLog(warning)
             ProgressHUD.showMessage(warning)
         } else {
-            
+            newForum.parserType = newForum.parserTypes[parserPickerView.selectedRowInComponent(0)]
         }
     }
 
