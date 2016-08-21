@@ -38,7 +38,9 @@ class Forums {
         let group = KomicaForumGroup()
         group.name = "Custom Boards"
         group.forums = [KomicaForum]()
-        Forums.restoreCustomForums()
+        if let forums = Forums.restoreCustomForums() {
+            group.forums = forums
+        }
         return group
     }()
     static func updateRemoteForums() {
@@ -53,6 +55,7 @@ class Forums {
 
     class func addCustomForum(forum: KomicaForum) {
         customForumGroup.forums?.append(forum)
+        saveCustomForums()
     }
     
     private class func saveCustomForums() {
@@ -71,7 +74,7 @@ class Forums {
         }
     }
     
-    private class func restoreCustomForums() {
+    private class func restoreCustomForums() -> [KomicaForum]? {
         if let jsonStrings = NSUserDefaults.standardUserDefaults().objectForKey(Forums.customForumsKey) as? [String] {
             var forums = [KomicaForum]()
             jsonStrings.forEach({jsonString in
@@ -83,9 +86,8 @@ class Forums {
                     forums.append(forum)
                 }
             })
-            if !forums.isEmpty {
-                Forums.customForumGroup.forums = forums
-            }
+            return forums
         }
+        return nil
     }
 }

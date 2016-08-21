@@ -89,6 +89,10 @@ extension AddForumTableViewController {
         } else {
             newForum.parserType = newForum.parserTypes[parserPickerView.selectedRowInComponent(0)]
             Forums.addCustomForum(newForum)
+            navigationController?.popViewControllerAnimated(true)
+            NSOperationQueue.mainQueue().addOperationWithBlock({
+                ProgressHUD.showMessage("\(self.newForum.name ?? "A new board") has been added")
+            })
         }
     }
 
