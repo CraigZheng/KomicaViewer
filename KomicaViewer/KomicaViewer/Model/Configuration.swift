@@ -28,6 +28,7 @@ class Configuration: NSObject {
     
     // MARK: public properties.
     var reportURL: NSURL?
+    var addForumHelpURL: NSURL?
     var remoteActions = [[String: String]]()
     var announcement: String?
     var updatedWithServer = false
@@ -76,6 +77,9 @@ class Configuration: NSObject {
         }
         if let remoteActions = jsonDictionary["remoteActions"] as? [[String: String]] {
             self.remoteActions = remoteActions
+        }
+        if let addForumHelpURL = jsonDictionary["addForumHelpURL"] as? String {
+            self.addForumHelpURL = NSURL(string: addForumHelpURL)
         }
     }
     
