@@ -60,7 +60,14 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if let jsonString = NSUserDefaults.standardUserDefaults().objectForKey(pausedForumKey) as? String where !jsonString.isEmpty {
+            if let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding),
+                let rawDict = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: .AllowFragments) as? Dictionary<String, AnyObject>,
+                let jsonDict = rawDict
+            {
+                newForum = KomicaForum(jsonDict: jsonDict)
+            }
+        }
         reload()
     }
     
@@ -99,10 +106,15 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
 
     func reload() {
         let incompleted = "Incompleted..."
-        nameDetailLabel.text = newForum.name?.isEmpty == false ? newForum.name : incompleted
-        indexDetailLabel.text = newForum.indexURL ?? incompleted
-        pageDetailLabel.text = newForum.listURL ?? incompleted
-        responseDetailLabel.text = newForum.responseURL ?? incompleted
+        nameDetailLabel.text = !(newForum.name ?? "").isEmpty ? newForum.name : incompleted
+        indexDetailLabel.text = !(newForum.indexURL ?? "").isEmpty ? newForum.indexURL : incompleted
+        pageDetailLabel.text = !(newForum.listURL ?? "").isEmpty ? newForum.listURL : incompleted
+        responseDetailLabel.text = !(newForum.responseURL ?? "").isEmpty ? newForum.responseURL : incompleted
+        var selectRow = 0
+        if let parserType = newForum.parserType {
+             selectRow = newForum.parserTypes.indexOf({ $0 == parserType }) ?? 0
+        }
+        parserPickerView.selectRow(selectRow, inComponent: 0, animated: false)
     }
 }
 
