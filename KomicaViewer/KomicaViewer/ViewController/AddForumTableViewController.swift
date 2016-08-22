@@ -171,3 +171,16 @@ extension AddForumTableViewController: UIPickerViewDelegate, UIPickerViewDataSou
         return parserTypes[row]
     }
 }
+
+private extension KomicaForum {
+    func isReady() -> Bool {
+        var isReady = true
+        if (name ?? "").isEmpty
+            || (indexURL ?? "" ).isEmpty
+            || (listURL ?? "").isEmpty
+            || (responseURL ?? "").isEmpty {
+            isReady = false
+        }
+        return isReady
+    }
+}
