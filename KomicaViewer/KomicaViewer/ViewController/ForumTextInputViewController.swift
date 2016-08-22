@@ -14,7 +14,8 @@ protocol ForumTextInputViewControllerProtocol {
 
 class ForumTextInputViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var textViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
     
     var delegate: ForumTextInputViewControllerProtocol?
     var prefilledString: String?
@@ -77,12 +78,14 @@ extension ForumTextInputViewController {
         if let keyboardValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
         {
             let keyboardRect = view.convertRect(keyboardValue.CGRectValue(), fromView: nil)
-            bottomConstraint.constant = keyboardRect.size.height
+            textViewBottomConstraint.constant = keyboardRect.size.height
+            toolbarBottomConstraint.constant = keyboardRect.size.height
         }
     }
     
     func handleKeyboardWillHide(notification: NSNotification) {
-        bottomConstraint.constant = 0
+        textViewBottomConstraint.constant = 0
+        toolbarBottomConstraint.constant = 0
     }
     
 }

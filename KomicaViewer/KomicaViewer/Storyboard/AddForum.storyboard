@@ -258,6 +258,18 @@
                                     <outlet property="delegate" destination="b2M-Qc-uVL" id="Jtj-0x-Brd"/>
                                 </connections>
                             </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OF6-Qz-tep">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="flexibleSpace" id="Yfv-jI-JCA"/>
+                                    <barButtonItem title="Insert" id="3QC-MN-ah7"/>
+                                    <barButtonItem systemItem="save" id="sFk-Wf-Oe8">
+                                        <connections>
+                                            <action selector="saveAction:" destination="b2M-Qc-uVL" id="yYs-og-9LG"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="You must ensure the correctness of all details." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHF-lo-ecs">
                                 <rect key="frame" x="8" y="72" width="304" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -268,30 +280,22 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="2Zg-V9-1Om" secondAttribute="trailing" id="6JI-IQ-uMA"/>
-                            <constraint firstItem="2Zg-V9-1Om" firstAttribute="top" secondItem="Aiw-Rf-N99" secondAttribute="bottom" id="7wo-y5-aXQ"/>
+                            <constraint firstItem="Rf1-HO-FwN" firstAttribute="top" secondItem="OF6-Qz-tep" secondAttribute="bottom" id="Her-ER-yWH"/>
                             <constraint firstItem="xHF-lo-ecs" firstAttribute="leading" secondItem="Zwj-ux-0V7" secondAttribute="leading" constant="8" id="Rdq-NT-BlX"/>
                             <constraint firstAttribute="trailing" secondItem="xHF-lo-ecs" secondAttribute="trailing" constant="8" id="inJ-pi-L7u"/>
                             <constraint firstItem="xHF-lo-ecs" firstAttribute="top" secondItem="Aiw-Rf-N99" secondAttribute="bottom" constant="8" id="j7l-zf-1kk"/>
+                            <constraint firstItem="OF6-Qz-tep" firstAttribute="leading" secondItem="Zwj-ux-0V7" secondAttribute="leading" id="ks5-Hh-QWw"/>
+                            <constraint firstAttribute="trailing" secondItem="OF6-Qz-tep" secondAttribute="trailing" id="l3o-Kk-Bsc"/>
                             <constraint firstItem="Rf1-HO-FwN" firstAttribute="top" secondItem="2Zg-V9-1Om" secondAttribute="bottom" id="pwu-As-iIO"/>
                             <constraint firstItem="2Zg-V9-1Om" firstAttribute="leading" secondItem="Zwj-ux-0V7" secondAttribute="leading" id="xaD-aG-ZyQ"/>
                             <constraint firstItem="2Zg-V9-1Om" firstAttribute="top" secondItem="xHF-lo-ecs" secondAttribute="bottom" constant="8" id="zkM-2N-fmV"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="7wo-y5-aXQ"/>
-                            </mask>
-                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Enter Details" id="eb2-lY-kNt">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="sFk-Wf-Oe8">
-                            <connections>
-                                <action selector="saveAction:" destination="b2M-Qc-uVL" id="yYs-og-9LG"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Enter Details" id="eb2-lY-kNt"/>
                     <connections>
-                        <outlet property="bottomConstraint" destination="pwu-As-iIO" id="oMz-HM-nVA"/>
                         <outlet property="textView" destination="2Zg-V9-1Om" id="5Tw-dt-W5p"/>
+                        <outlet property="textViewBottomConstraint" destination="pwu-As-iIO" id="Rjz-7x-gOG"/>
+                        <outlet property="toolbarBottomConstraint" destination="Her-ER-yWH" id="vJO-mg-Buk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1wc-q9-gRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
