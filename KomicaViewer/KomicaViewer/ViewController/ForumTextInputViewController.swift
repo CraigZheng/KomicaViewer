@@ -16,6 +16,7 @@ class ForumTextInputViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var textViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var insertBarButtonItem: UIBarButtonItem!
     
     var delegate: ForumTextInputViewControllerProtocol?
     var prefilledString: String?
@@ -42,6 +43,8 @@ class ForumTextInputViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ForumTextInputViewController.handlekeyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ForumTextInputViewController.handleKeyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         textView.becomeFirstResponder()
+        insertBarButtonItem.enabled = pageSpecifier?.isEmpty == false ?? false
+
     }
 
 }
@@ -71,7 +74,7 @@ extension ForumTextInputViewController {
     }
     
     @IBAction func insertAction(sender: AnyObject) {
-        let alertController = UIAlertController(title: "Insert", message: "Insert the tag specifier to the current position", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Insert \(pageSpecifier ?? "")", message: "Insert the tag specifier to the current position", preferredStyle: .Alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: {_ in
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))

@@ -297,6 +297,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Enter Details" id="eb2-lY-kNt"/>
                     <connections>
+                        <outlet property="insertBarButtonItem" destination="3QC-MN-ah7" id="bZe-37-yW7"/>
                         <outlet property="textView" destination="2Zg-V9-1Om" id="5Tw-dt-W5p"/>
                         <outlet property="textViewBottomConstraint" destination="pwu-As-iIO" id="Rjz-7x-gOG"/>
                         <outlet property="toolbarBottomConstraint" destination="Her-ER-yWH" id="vJO-mg-Buk"/>
