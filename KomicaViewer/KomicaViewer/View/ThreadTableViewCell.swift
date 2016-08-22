@@ -91,6 +91,8 @@ class ThreadTableViewCell: UITableViewCell {
                             alertController.addAction(linkAction)
                         }
                         alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                        alertController.popoverPresentationController?.sourceView = self.contentView
+                        alertController.popoverPresentationController?.sourceRect = self.contentView.bounds
                         if let topViewController = UIApplication.topViewController {
                             topViewController.presentViewController(alertController, animated: true, completion: nil)
                         }
@@ -101,6 +103,8 @@ class ThreadTableViewCell: UITableViewCell {
                     alertController.addAction(openAction)
                 }
                 alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: {_ in self.alertController = nil}))
+                alertController.popoverPresentationController?.sourceView = contentView
+                alertController.popoverPresentationController?.sourceRect = contentView.bounds
                 if let topViewController = UIApplication.topViewController {
                     topViewController.presentViewController(alertController, animated: true, completion: nil)
                 }

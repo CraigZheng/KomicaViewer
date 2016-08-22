@@ -24,6 +24,8 @@ extension SVWebViewProtocol where Self: UIViewController {
         webViewController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
         webViewController.barsTintColor = navigationController?.navigationBar.barTintColor
         webViewController.webViewDelegate = svWebViewGuardDog
+        webViewController.popoverPresentationController?.sourceView = self.view
+        webViewController.popoverPresentationController?.sourceRect = self.view.bounds
         self.presentViewController(webViewController, animated: true, completion: nil)
     }
     

@@ -217,6 +217,7 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate
         alertController.addAction(openURLAction)
         alertController.addAction(reportAction)
         alertController.addAction(cancelAction)
+        alertController.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
         presentViewController(alertController, animated: true, completion: nil)
     }
     
