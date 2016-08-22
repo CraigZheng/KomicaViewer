@@ -35,6 +35,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     
     // MARK: Private.
     private var newForum = KomicaForum()
+    private let pausedForumKey = "pausedForumKey"
     private let parserTypes = ["Pixmicat", "My Komica", "Siokara"]
     private struct SegueIdentifier {
         static let name = "name"
@@ -59,7 +60,21 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         reload()
+    }
+    
+    deinit {
+        // Save the incompleted forum to NSUserDefaults.
+        if newForum.isModified() {
+            if newForum.parserType == nil {
+                newForum.parserType = newForum.parserTypes[parserPickerView.selectedRowInComponent(0)]
+            }
+            if let jsonString = newForum.jsonEncode() where !jsonString.isEmpty {
+                NSUserDefaults.standardUserDefaults().setObject(jsonString, forKey: pausedForumKey)
+                NSUserDefaults.standardUserDefaults().synchronize()
+            }
+        }
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -84,7 +99,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
 
     func reload() {
         let incompleted = "Incompleted..."
-        nameDetailLabel.text = newForum.name ?? incompleted
+        nameDetailLabel.text = newForum.name?.isEmpty == false ? newForum.name : incompleted
         indexDetailLabel.text = newForum.indexURL ?? incompleted
         pageDetailLabel.text = newForum.listURL ?? incompleted
         responseDetailLabel.text = newForum.responseURL ?? incompleted
@@ -100,8 +115,7 @@ extension AddForumTableViewController {
     
     @IBAction func addForumAction(sender: UIButton) {
         DLog("")
-        
-        if newForum.name?.isEmpty == nil || newForum.indexURL?.isEmpty == nil || newForum.listURL?.isEmpty == nil || newForum.responseURL?.isEmpty == nil {
+        if !newForum.isReady() {
             let warning = "Supplied information not enough to construct a new board"
             DLog(warning)
             ProgressHUD.showMessage(warning)
@@ -120,6 +134,9 @@ extension AddForumTableViewController {
         alertController.addAction(UIAlertAction(title: "Confirm", style: .Default, handler: { (_) in
             self.newForum = KomicaForum()
             self.reload()
+            // Remove the paused forum from the user default.
+            NSUserDefaults.standardUserDefaults().removeObjectForKey(self.pausedForumKey)
+            NSUserDefaults.standardUserDefaults().synchronize()
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         alertController.popoverPresentationController?.sourceView = view
@@ -182,5 +199,16 @@ private extension KomicaForum {
             isReady = false
         }
         return isReady
+    }
+    
+    func isModified() -> Bool {
+        var isModified = false
+        if !(name ?? "").isEmpty
+            || !(indexURL ?? "" ).isEmpty
+            || !(listURL ?? "").isEmpty
+            || !(responseURL ?? "").isEmpty {
+            isModified = true
+        }
+        return isModified
     }
 }
