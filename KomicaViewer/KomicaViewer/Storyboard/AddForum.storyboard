@@ -262,7 +262,11 @@
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <items>
                                     <barButtonItem systemItem="flexibleSpace" id="Yfv-jI-JCA"/>
-                                    <barButtonItem title="Insert" id="3QC-MN-ah7"/>
+                                    <barButtonItem title="Insert" id="3QC-MN-ah7">
+                                        <connections>
+                                            <action selector="insertAction:" destination="b2M-Qc-uVL" id="CIh-gs-UIy"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem systemItem="save" id="sFk-Wf-Oe8">
                                         <connections>
                                             <action selector="saveAction:" destination="b2M-Qc-uVL" id="yYs-og-9LG"/>

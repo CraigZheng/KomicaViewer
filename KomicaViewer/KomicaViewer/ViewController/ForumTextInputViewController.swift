@@ -69,6 +69,17 @@ extension ForumTextInputViewController {
             }
         }
     }
+    
+    @IBAction func insertAction(sender: AnyObject) {
+        let alertController = UIAlertController(title: "Insert", message: "Insert the tag specifier to the current position", preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: {_ in
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alertController.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
+        if let topViewController = UIApplication.topViewController {
+            topViewController.presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
 }
 
 // MARK: keyboard events.
