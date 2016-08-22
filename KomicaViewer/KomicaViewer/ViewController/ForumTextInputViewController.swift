@@ -55,6 +55,16 @@ extension ForumTextInputViewController: UITextViewDelegate {
         
     }
     
+    func textViewDidChange(textView: UITextView) {
+        // When page specifier is not empty.
+        if let pageSpecifier = pageSpecifier
+            where !pageSpecifier.isEmpty
+        {
+            // Insert button enables itself when the textView.text does not contain the page specifier.
+            insertBarButtonItem.enabled = (textView.text as NSString).rangeOfString(pageSpecifier).location == NSNotFound
+        }
+    }
+    
 }
 
 // MARK: UI actions.
