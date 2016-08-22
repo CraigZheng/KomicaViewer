@@ -34,6 +34,8 @@ class ForumTextInputViewController: UIViewController {
             }
         }
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let prefilledString = prefilledString {

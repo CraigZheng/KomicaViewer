@@ -186,22 +186,42 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUS-g3-0yj" customClass="RoundCornerBorderedButton" customModule="KomicaViewer" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="8" width="304" height="43.5"/>
-                                                    <color key="backgroundColor" red="1" green="0.45404717319999999" blue="0.17108253700000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <rect key="frame" x="164" y="8" width="148" height="43.5"/>
+                                                    <color key="backgroundColor" red="1" green="0.6778507134097902" blue="0.17108253700000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="ADD">
-                                                        <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="addForumAction:" destination="zhZ-u0-9mR" eventType="touchUpInside" id="W8I-1M-RPS"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sJ-tV-vsX" customClass="RoundCornerBorderedButton" customModule="KomicaViewer" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="8" width="148" height="43.5"/>
+                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="RESET">
+                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="resetForumAction:" destination="mDc-n7-gOu" eventType="touchUpInside" id="NCk-4y-cpA"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="1sJ-tV-vsX" firstAttribute="leading" secondItem="Uod-5n-LJV" secondAttribute="leading" constant="8" id="Cud-Tu-Cir"/>
                                                 <constraint firstItem="zUS-g3-0yj" firstAttribute="leading" secondItem="Uod-5n-LJV" secondAttribute="leading" constant="8" id="NhJ-dv-7F2"/>
+                                                <constraint firstItem="zUS-g3-0yj" firstAttribute="width" secondItem="1sJ-tV-vsX" secondAttribute="width" id="OPZ-ko-RQ3"/>
+                                                <constraint firstAttribute="bottom" secondItem="1sJ-tV-vsX" secondAttribute="bottom" constant="8" id="QQm-Pc-gVN"/>
                                                 <constraint firstAttribute="bottom" secondItem="zUS-g3-0yj" secondAttribute="bottom" constant="8" id="YSg-y5-ULi"/>
                                                 <constraint firstAttribute="trailing" secondItem="zUS-g3-0yj" secondAttribute="trailing" constant="8" id="aal-LX-Mkb"/>
+                                                <constraint firstItem="1sJ-tV-vsX" firstAttribute="top" secondItem="Uod-5n-LJV" secondAttribute="top" constant="8" id="eKk-xI-SQp"/>
                                                 <constraint firstItem="zUS-g3-0yj" firstAttribute="top" secondItem="Uod-5n-LJV" secondAttribute="top" constant="8" id="jv6-yV-2Da"/>
+                                                <constraint firstItem="zUS-g3-0yj" firstAttribute="leading" secondItem="1sJ-tV-vsX" secondAttribute="trailing" constant="8" symbolic="YES" id="rHz-nz-6dG"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="NhJ-dv-7F2"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>

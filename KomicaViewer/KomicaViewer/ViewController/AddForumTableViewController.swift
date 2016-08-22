@@ -34,7 +34,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     
     
     // MARK: Private.
-    private let newForum = KomicaForum()
+    private var newForum = KomicaForum()
     private let parserTypes = ["Pixmicat", "My Komica", "Siokara"]
     private struct SegueIdentifier {
         static let name = "name"
@@ -115,6 +115,19 @@ extension AddForumTableViewController {
         }
     }
 
+    @IBAction func resetForumAction(sender: AnyObject) {
+        let alertController = UIAlertController(title: "Reset?", message: nil, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "Confirm", style: .Default, handler: { (_) in
+            self.newForum = KomicaForum()
+            self.reload()
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alertController.popoverPresentationController?.sourceView = view
+        alertController.popoverPresentationController?.sourceRect = view.bounds
+        if let topViewController = UIApplication.topViewController {
+            topViewController.presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
 }
 
 // MARK: ForumTextInputViewControllerProtocol
