@@ -11,7 +11,10 @@ import Foundation
 extension UIApplication {
     
     class var topViewController: UIViewController? {
-        let topViewController = UIApplication.sharedApplication().keyWindow?.rootViewController?.presentedViewController ?? UIApplication.sharedApplication().keyWindow?.rootViewController
+        var topViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
+        while topViewController?.presentedViewController != nil {
+            topViewController = topViewController?.presentedViewController
+        }
         return topViewController
     }
 }
