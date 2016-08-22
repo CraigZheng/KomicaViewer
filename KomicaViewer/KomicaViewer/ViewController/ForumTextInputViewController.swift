@@ -76,6 +76,13 @@ extension ForumTextInputViewController {
     @IBAction func insertAction(sender: AnyObject) {
         let alertController = UIAlertController(title: "Insert \(pageSpecifier ?? "")", message: "Insert the tag specifier to the current position", preferredStyle: .Alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: {_ in
+            if let pageSpecifier = self.pageSpecifier where !pageSpecifier.isEmpty {
+                let generalPasteboard = UIPasteboard.generalPasteboard()
+                let items = generalPasteboard.items
+                generalPasteboard.string = pageSpecifier
+                self.textView.paste(self)
+                generalPasteboard.items = items
+            }
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         alertController.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
