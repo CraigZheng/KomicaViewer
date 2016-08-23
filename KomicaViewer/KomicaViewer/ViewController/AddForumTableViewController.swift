@@ -36,7 +36,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     // MARK: Private.
     private var newForum = KomicaForum()
     private let pausedForumKey = "pausedForumKey"
-    private let parserTypes = ["Pixmicat", "My Komica", "Siokara"]
+    private let parserTypes = KomicaForum.parserNames
     private struct SegueIdentifier {
         static let name = "name"
         static let index = "index"
@@ -75,7 +75,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
         // Save the incompleted forum to NSUserDefaults.
         if newForum.isModified() {
             if newForum.parserType == nil {
-                newForum.parserType = newForum.parserTypes[parserPickerView.selectedRowInComponent(0)]
+                newForum.parserType = KomicaForum.parserTypes[parserPickerView.selectedRowInComponent(0)]
             }
             if let jsonString = newForum.jsonEncode() where !jsonString.isEmpty {
                 NSUserDefaults.standardUserDefaults().setObject(jsonString, forKey: pausedForumKey)
@@ -112,7 +112,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
         responseDetailLabel.text = !(newForum.responseURL ?? "").isEmpty ? newForum.responseURL : incompleted
         var selectRow = 0
         if let parserType = newForum.parserType {
-             selectRow = newForum.parserTypes.indexOf({ $0 == parserType }) ?? 0
+             selectRow = KomicaForum.parserTypes.indexOf({ $0 == parserType }) ?? 0
         }
         parserPickerView.selectRow(selectRow, inComponent: 0, animated: false)
     }
@@ -132,7 +132,7 @@ extension AddForumTableViewController {
             DLog(warning)
             ProgressHUD.showMessage(warning)
         } else {
-            newForum.parserType = newForum.parserTypes[parserPickerView.selectedRowInComponent(0)]
+            newForum.parserType = KomicaForum.parserTypes[parserPickerView.selectedRowInComponent(0)]
             Forums.addCustomForum(newForum)
             navigationController?.popViewControllerAnimated(true)
             NSOperationQueue.mainQueue().addOperationWithBlock({
