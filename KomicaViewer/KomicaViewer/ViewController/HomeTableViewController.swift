@@ -19,7 +19,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     // MARK: ThreadTableViewControllerProtocol
     var threads = [Thread]()
     func refresh() {
-        refreshWithPage(0)
+        refreshWithPage(forum?.startingIndex ?? 0)
     }
     func refreshWithPage(page: Int) {
         DLog(" - \(page)")
@@ -36,9 +36,9 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         if success {
             // Update the current page.
             self.pageIndex = page
-            ProgressHUD.showMessage("\(page + 1)\(suffix) page loaded.")
+            ProgressHUD.showMessage("\(page + 1 - (self.forum?.startingIndex ?? 0))\(suffix) page loaded.")
         } else {
-            ProgressHUD.showMessage("\(page + 1)\(suffix) page failed to load.")
+            ProgressHUD.showMessage("\(page + 1 - (self.forum?.startingIndex ?? 0))\(suffix) page failed to load.")
         }
         // If the originalContentInset is nil, record it, otherwise apply it to the tableView.
         // This is due to a bug that is introduced by SVPullToRefresh library. In order to fix this bug, I need to manually adjust the content inset.
@@ -202,7 +202,7 @@ extension HomeTableViewController {
         title = forum?.name
         threads.removeAll()
         tableView.reloadData()
-        refreshWithPage(0)
+        refreshWithPage(forum?.startingIndex ?? 0)
     }
     
 }
