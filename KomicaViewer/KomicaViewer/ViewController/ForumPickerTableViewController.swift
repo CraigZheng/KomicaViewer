@@ -111,10 +111,8 @@ class ForumPickerTableViewController: UITableViewController {
             return (Forums.customForumGroup.forums?.isEmpty != nil ?? false) ? "" : "Custom Boards"
         } else if section == lastSectionIndex {
             return "Settings"
-        } else {
-            if section < forumGroup.count {
-                return forumGroup[section - 1].name ?? ""
-            }
+        } else if section - 1 < forumGroup.count {
+            return forumGroup[section - 1].name
         }
         return nil
     }
