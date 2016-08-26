@@ -77,7 +77,7 @@ class ThreadTableViewCell: UITableViewCell {
                     // Set alertController to nil, so this cell is ready for another alertController.
                     self.alertController = nil
                 }
-                let openAction = UIAlertAction(title: "Open URLs", style: .Default) { _ in
+                let openAction = UIAlertAction(title: "Open in Browser", style: .Default) { _ in
                     self.alertController = nil
                     if !self.links.isEmpty {
                         // Secondary alert controller.

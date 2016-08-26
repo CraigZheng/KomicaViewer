@@ -11,7 +11,7 @@ import UIKit
 import KomicaEngine
 
 class ForumPickerTableViewController: UITableViewController {
-    var forumGroup = Forums.remoteForumGroup ?? Forums.defaultForumsGroup
+    var forumGroups = Forums.remoteForumGroups ?? Forums.defaultForumsGroups
 
     private let cellIdentifier = "cellIdentifier"
     private let remoteActionCellIdentifier = "remoteActionCellIdentifier"
@@ -23,7 +23,7 @@ class ForumPickerTableViewController: UITableViewController {
         return should
     }
     private func forumsForSection(section: Int) -> [KomicaForum]? {
-        let forums = section == 0 ? Forums.customForumGroup.forums : forumGroup[section - 1].forums
+        let forums = section == 0 ? Forums.customForumGroup.forums : forumGroups[section - 1].forums
         return forums
     }
     
@@ -34,8 +34,8 @@ class ForumPickerTableViewController: UITableViewController {
                                                                 object: nil,
                                                                 queue: NSOperationQueue.mainQueue()) { (_) in
                                                                     // If remote forums is available, reload remote forums.
-                                                                    if let remoteForumGroup = Forums.remoteForumGroup where remoteForumGroup.count > 0 {
-                                                                        self.forumGroup = remoteForumGroup
+                                                                    if let remoteForumGroups = Forums.remoteForumGroups where remoteForumGroups.count > 0 {
+                                                                        self.forumGroups = remoteForumGroups
                                                                         self.tableView.reloadData()
                                                                         DLog("Remote Forums Updated.")
                                                                     }
@@ -51,7 +51,7 @@ class ForumPickerTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // +1 for the remote actions section, +1 for the custom forums section.
-        let sections = forumGroup.count + 2
+        let sections = forumGroups.count + 2
         return sections
     }
 
@@ -111,10 +111,8 @@ class ForumPickerTableViewController: UITableViewController {
             return (Forums.customForumGroup.forums?.isEmpty != nil ?? false) ? "" : "Custom Boards"
         } else if section == lastSectionIndex {
             return "Settings"
-        } else {
-            if section < forumGroup.count {
-                return forumGroup[section - 1].name ?? ""
-            }
+        } else if section - 1 < forumGroups.count {
+            return forumGroups[section - 1].name
         }
         return nil
     }

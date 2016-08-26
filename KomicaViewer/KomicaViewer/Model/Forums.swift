@@ -32,8 +32,8 @@ class Forums {
         }
     }
     
-    static var defaultForumsGroup = KomicaForumFinder.sharedInstance.forumGroups
-    static var remoteForumGroup: [KomicaForumGroup]?
+    static var defaultForumsGroups = KomicaForumFinder.sharedInstance.forumGroups
+    static var remoteForumGroups: [KomicaForumGroup]?
     static let customForumGroup: KomicaForumGroup = {
         let group = KomicaForumGroup()
         group.name = "Custom Boards"
@@ -46,7 +46,7 @@ class Forums {
     static func updateRemoteForums() {
         KomicaForumFinder.sharedInstance.loadRemoteForumsWithCompletion({ (success, groups, error) in
             if let groups = groups {
-                remoteForumGroup = groups
+                remoteForumGroups = groups
                 // Remote forums updated, send a notification.
                 NSNotificationCenter.defaultCenter().postNotificationName(forumsUpdatedNotification, object: nil)
             }

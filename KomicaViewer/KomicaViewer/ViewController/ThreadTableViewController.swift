@@ -197,7 +197,7 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate
     }
     
     @IBAction func openInSafariAction(sender: AnyObject) {
-        let openURLAction = UIAlertAction(title: "Open URL", style: .Default) { _ in
+        let openURLAction = UIAlertAction(title: "Open in Browser", style: .Default) { _ in
             // Set the target URL to the currentURL.
             self.svWebViewGuardDog = self._guardDog
             self.svWebViewURL = self.currentURL
