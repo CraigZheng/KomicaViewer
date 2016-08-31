@@ -66,19 +66,19 @@ class Configuration: NSObject {
         if let timeout = jsonDictionary["timeout"] as? NSNumber {
             self.timeout = NSTimeInterval(timeout.doubleValue)
         }
-        if let reportURL = jsonDictionary["reportURL"] as? String {
+        if let reportURL = jsonDictionary["reportURL"] as? String where !reportURL.isEmpty {
             self.reportURL = NSURL(string: reportURL)
         }
         if let thumbnailWidth = jsonDictionary["thumbnailWidth"] as? NSNumber {
             self.thumbnailWidth = Double(thumbnailWidth.doubleValue)
         }
-        if let announcement = jsonDictionary["announcement"] as? String {
+        if let announcement = jsonDictionary["announcement"] as? String where !announcement.isEmpty {
             self.announcement = announcement
         }
         if let remoteActions = jsonDictionary["remoteActions"] as? [[String: String]] {
             self.remoteActions = remoteActions
         }
-        if let addForumHelpURL = jsonDictionary["addForumHelpURL"] as? String {
+        if let addForumHelpURL = jsonDictionary["addForumHelpURL"] as? String where !addForumHelpURL.isEmpty {
             self.addForumHelpURL = NSURL(string: addForumHelpURL)
         } else {
             self.addForumHelpURL = nil
