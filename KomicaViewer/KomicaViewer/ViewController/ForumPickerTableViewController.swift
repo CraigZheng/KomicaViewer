@@ -118,7 +118,15 @@ class ForumPickerTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let forums = forumsForSection(indexPath.section) where indexPath.row < forums.count
+        // Remote action section.
+        if indexPath.section == lastSectionIndex,
+            let urlString = Configuration.singleton.remoteActions[indexPath.row].values.first,
+            let url = NSURL(string: urlString)
+        {
+            if UIApplication.sharedApplication().canOpenURL(url) {
+                UIApplication.sharedApplication().openURL(url)
+            }
+        } else if let forums = forumsForSection(indexPath.section) where indexPath.row < forums.count
         {
             Forums.selectedForum = forums[indexPath.row]
         }
