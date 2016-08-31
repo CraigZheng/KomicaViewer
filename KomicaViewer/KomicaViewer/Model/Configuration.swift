@@ -80,6 +80,8 @@ class Configuration: NSObject {
         }
         if let addForumHelpURL = jsonDictionary["addForumHelpURL"] as? String {
             self.addForumHelpURL = NSURL(string: addForumHelpURL)
+        } else {
+            self.addForumHelpURL = nil
         }
     }
     
