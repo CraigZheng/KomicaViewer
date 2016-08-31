@@ -8,6 +8,7 @@
 
 import UIKit
 
+import GoogleMobileAds
 import Firebase
 
 @UIApplicationMain
@@ -20,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         // Use Firebase library to configure APIs
         FIRApp.configure()
+        GADMobileAds.configureWithApplicationID("ca-app-pub-2081665256237089~8156537252")
         Forums.updateRemoteForums()
         // Initialise Configuration singleton.
         _ = Configuration.singleton
