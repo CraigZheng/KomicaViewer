@@ -31,6 +31,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     @IBOutlet weak var pageDetailLabel: UILabel!
     @IBOutlet weak var responseDetailLabel: UILabel!
     @IBOutlet weak var parserPickerView: UIPickerView!
+    @IBOutlet weak var addForumHelpButtonItem: UIBarButtonItem!
     
     
     // MARK: Private.
@@ -105,6 +106,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     }
 
     func reload() {
+        addForumHelpButtonItem.enabled = Configuration.singleton.addForumHelpURL != nil
         let incompleted = "Incompleted..."
         nameDetailLabel.text = !(newForum.name ?? "").isEmpty ? newForum.name : incompleted
         indexDetailLabel.text = !(newForum.indexURL ?? "").isEmpty ? newForum.indexURL : incompleted

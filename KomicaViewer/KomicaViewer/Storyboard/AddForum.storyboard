@@ -241,6 +241,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addForumHelpButtonItem" destination="jRF-fL-0cu" id="aNV-Uo-pog"/>
                         <outlet property="indexDetailLabel" destination="lHX-HB-XWd" id="Mnh-7Q-75q"/>
                         <outlet property="indexLabel" destination="AdF-L4-9cv" id="Giv-ti-eUM"/>
                         <outlet property="nameDetailLabel" destination="djR-Iu-t1n" id="SMj-JH-qfo"/>
