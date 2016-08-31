@@ -51,7 +51,7 @@ class AdConfiguration: NSObject {
     private let defaultConfiguration = "defaultAdConfiguration"
     private let historyKey = "AdConfiguration.historyOfClicks"
     private let defaultSession = NSURLSession(configuration: .defaultSessionConfiguration())
-    private let remoteConfigurationURL = NSURL(string: "http://civ.atwebpages.com/exheti/exheti_remote_ad_configuration.php")!
+    private let remoteConfigurationURL = NSURL(string: "http://civ.atwebpages.com/KomicaViewer/kv_remote_ad_configuration.php")!
     private struct DictionaryKey {
         static let enableAd = "enableAd"
         static let dailyAdClickLimit = "dailyAdClickLimit"
