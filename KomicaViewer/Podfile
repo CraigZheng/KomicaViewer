@@ -22,25 +22,9 @@ target 'KomicaViewer' do
   pod 'SVPullToRefresh', :git => 'https://github.com/samvermette/SVPullToRefresh.git'
   pod 'SVWebViewController', :git => 'https://github.com/TransitApp/SVWebViewController.git'
   target 'KomicaViewerTests' do
-#   inherit! :search_paths
-    # Pods for testing
-  end
-
-end
-
-target 'KomicaEngine' do
-  # Comment this line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
-  xcodeproj '../../komicaengine/KomicaEngine.xcodeproj'
-	
-  # Pods for KomicaViewer
-  pod "AFNetworking"
-
-  target ‘KomicaEngineTests' do
    inherit! :search_paths
     # Pods for testing
   end
-
 
 end
 
