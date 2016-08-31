@@ -21,9 +21,7 @@
                     <navigationItem key="navigationItem" title="Home" id="aYr-iF-oH4">
                         <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="Kgg-cW-qSB">
                             <connections>
-                                <segue destination="q8u-Ey-SgU" kind="popoverPresentation" popoverAnchorBarButtonItem="Kgg-cW-qSB" id="A44-nI-7PW">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <segue destination="q8u-Ey-SgU" kind="presentation" id="A44-nI-7PW"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="aiT-9T-Fl6">
