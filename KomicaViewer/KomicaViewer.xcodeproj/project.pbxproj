@@ -43,6 +43,7 @@
 		44BD39861D5B74ED0070E0CB /* UIView+SuperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39851D5B74ED0070E0CB /* UIView+SuperCell.swift */; };
 		44F48EBC1D5D3F0700519C1B /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F48EBB1D5D3F0700519C1B /* ProgressHUD.swift */; };
 		A626FE4C1E96D311C76B1EF2 /* Pods_KomicaViewer_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9888890F89082B45414F82C /* Pods_KomicaViewer_KomicaViewerTests.framework */; };
+		BCE55B9E9BB5B372EA0A346B /* Pods_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B10DC4DCE41530925D1075D /* Pods_KomicaViewerTests.framework */; };
 		FCE2F305F7F4C1FA09B39D36 /* Pods_KomicaViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21C3A364A9DD0DDE230355EF /* Pods_KomicaViewer.framework */; };
 /* End PBXBuildFile section */
 
@@ -143,7 +144,9 @@
 		44BD39811D5B5F310070E0CB /* ThreadTableViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreadTableViewControllerProtocol.swift; path = KomicaViewer/View/ThreadTableViewControllerProtocol.swift; sourceTree = SOURCE_ROOT; };
 		44BD39851D5B74ED0070E0CB /* UIView+SuperCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SuperCell.swift"; sourceTree = "<group>"; };
 		44F48EBB1D5D3F0700519C1B /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
+		9F0A0392FA0DA6C1927ACC66 /* Pods-KomicaViewerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B9888890F89082B45414F82C /* Pods_KomicaViewer_KomicaViewerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KomicaViewer_KomicaViewerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4E60A0BF1FCCC05D433E68E /* Pods-KomicaViewerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests.release.xcconfig"; sourceTree = "<group>"; };
 		DC7DAB90B7018AB9E394882B /* Pods-KomicaViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer.debug.xcconfig"; sourceTree = "<group>"; };
 		F8BD662B1EAC34FEA48F9CA3 /* Pods-KomicaViewer-KomicaViewerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewer-KomicaViewerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewer-KomicaViewerTests/Pods-KomicaViewer-KomicaViewerTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A626FE4C1E96D311C76B1EF2 /* Pods_KomicaViewer_KomicaViewerTests.framework in Frameworks */,
+				BCE55B9E9BB5B372EA0A346B /* Pods_KomicaViewerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +180,8 @@
 				1F999914BCD5E6DBD4D5D973 /* Pods-KomicaViewer.release.xcconfig */,
 				F8BD662B1EAC34FEA48F9CA3 /* Pods-KomicaViewer-KomicaViewerTests.debug.xcconfig */,
 				02A139F19997710138CF16D2 /* Pods-KomicaViewer-KomicaViewerTests.release.xcconfig */,
+				9F0A0392FA0DA6C1927ACC66 /* Pods-KomicaViewerTests.debug.xcconfig */,
+				C4E60A0BF1FCCC05D433E68E /* Pods-KomicaViewerTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -315,6 +321,7 @@
 			children = (
 				21C3A364A9DD0DDE230355EF /* Pods_KomicaViewer.framework */,
 				B9888890F89082B45414F82C /* Pods_KomicaViewer_KomicaViewerTests.framework */,
+				2B10DC4DCE41530925D1075D /* Pods_KomicaViewerTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -480,7 +487,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewer-KomicaViewerTests/Pods-KomicaViewer-KomicaViewerTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7BF8544B2F5B3079BB66FB76 /* [CP] Check Pods Manifest.lock */ = {
@@ -525,7 +532,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewer-KomicaViewerTests/Pods-KomicaViewer-KomicaViewerTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9B8EF6BF0691FFF00370BA47 /* [CP] Embed Pods Frameworks */ = {
@@ -775,7 +782,7 @@
 		};
 		44496F701D5985A6005875DD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8BD662B1EAC34FEA48F9CA3 /* Pods-KomicaViewer-KomicaViewerTests.debug.xcconfig */;
+			baseConfigurationReference = 9F0A0392FA0DA6C1927ACC66 /* Pods-KomicaViewerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = KomicaViewerTests/Info.plist;
@@ -788,7 +795,7 @@
 		};
 		44496F711D5985A6005875DD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 02A139F19997710138CF16D2 /* Pods-KomicaViewer-KomicaViewerTests.release.xcconfig */;
+			baseConfigurationReference = C4E60A0BF1FCCC05D433E68E /* Pods-KomicaViewerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = KomicaViewerTests/Info.plist;
