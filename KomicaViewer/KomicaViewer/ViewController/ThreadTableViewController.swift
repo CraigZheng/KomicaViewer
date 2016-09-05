@@ -12,8 +12,19 @@ import KomicaEngine
 import SDWebImage
 import MWPhotoBrowser
 import SVWebViewController
+import GoogleMobileAds
 
 class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol {
+    
+    @IBOutlet weak var adBannerTableViewHeaderView: UIView!
+    @IBOutlet weak var adBannerView: GADBannerView! {
+        didSet {
+            adBannerView.adUnitID = AdConfiguration.AdMobID.bannerID2
+            adBannerView.rootViewController = self
+            adBannerView.delegate = self
+        }
+    }
+    @IBOutlet weak var adDescriptionLabel: UILabel!
     
     var selectedThread: Thread! {
         didSet {
@@ -104,6 +115,12 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
                                                                 queue: NSOperationQueue.mainQueue()) { (_) in
                                                                     self.tableView.reloadData()
         }
+        // Ad configuration update notification
+        NSNotificationCenter.defaultCenter().addObserverForName(AdConfiguration.adConfigurationUpdatedNotification,
+                                                                object: nil,
+                                                                queue: NSOperationQueue.mainQueue()) { (_) in
+                                                                    self.attemptLoadRequest()
+        }
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self,
                                   action: #selector(ThreadTableViewController.refresh),
@@ -113,6 +130,8 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         tableView.registerNib(UINib(nibName: "ThreadTableViewCell", bundle: nil), forCellReuseIdentifier: ThreadTableViewCell.identifier)
         // Load page.
         refreshWithPage(0)
+        // Load ad.
+        attemptLoadRequest()
     }
     
     deinit {
@@ -270,4 +289,47 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate
             }
         }
     }
+}
+
+// MAKR: GADBannerViewDelegate
+extension ThreadTableViewController: GADBannerViewDelegate {
+    
+    func adViewWillLeaveApplication(bannerView: GADBannerView!) {
+        DLog("")
+        AdConfiguration.singleton.clickedAd()
+    }
+    
+    func toggleAdBanner(show: Bool) {
+        dispatch_async(dispatch_get_main_queue()) {
+            if (show) {
+                self.adDescriptionLabel.text = AdConfiguration.singleton.adDescription
+                self.adBannerView.hidden = false
+                self.adDescriptionLabel.hidden = false
+                self.adDescriptionLabel.setNeedsLayout()
+                self.adDescriptionLabel.layoutIfNeeded()
+                self.adBannerTableViewHeaderView.frame.size.height = 50
+                self.adBannerTableViewHeaderView.frame.size.height += CGRectGetHeight(self.adDescriptionLabel.frame)
+            } else {
+                self.adDescriptionLabel.text = nil
+                self.adBannerView.hidden = true
+                self.adDescriptionLabel.hidden = true
+                self.adBannerTableViewHeaderView.frame.size.height = 0
+            }
+        }
+    }
+    
+    func attemptLoadRequest() {
+        if AdConfiguration.singleton.shouldDisplayAds {
+            let request = GADRequest()
+            #if DEBUG
+                request.testDevices = [kGADSimulatorID]
+            #endif
+            adBannerView.loadRequest(request)
+            toggleAdBanner(true)
+        } else {
+            toggleAdBanner(false)
+        }
+        tableView.reloadData()
+    }
+    
 }

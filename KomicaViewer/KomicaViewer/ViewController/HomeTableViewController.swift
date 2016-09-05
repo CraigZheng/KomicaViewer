@@ -13,8 +13,19 @@ import MWPhotoBrowser
 import SDWebImage
 import SVPullToRefresh
 import SVWebViewController
+import GoogleMobileAds
 
 class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol {
+    
+    @IBOutlet weak var adBannerTableViewHeaderView: UIView!
+    @IBOutlet weak var adBannerView: GADBannerView! {
+        didSet {
+            adBannerView.adUnitID = AdConfiguration.AdMobID.bannerID1
+            adBannerView.rootViewController = self
+            adBannerView.delegate = self
+        }
+    }
+    @IBOutlet weak var adDescriptionLabel: UILabel!
     
     // MARK: ThreadTableViewControllerProtocol
     var threads = [Thread]()
@@ -115,6 +126,12 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
                                                                 queue: NSOperationQueue.mainQueue()) { (_) in
                                                                     self.tableView.reloadData()
         }
+        // Ad configuration update notification
+        NSNotificationCenter.defaultCenter().addObserverForName(AdConfiguration.adConfigurationUpdatedNotification,
+                                                                object: nil,
+                                                                queue: NSOperationQueue.mainQueue()) { (_) in
+                                                                    self.attemptLoadRequest()
+        }
         tableView.addPullToRefreshWithActionHandler({
             self.refreshWithPage(self.pageIndex + 1)
         }, position: .Bottom)
@@ -209,6 +226,49 @@ extension HomeTableViewController {
         threads.removeAll()
         tableView.reloadData()
         refreshWithPage(forum?.startingIndex ?? 0)
+    }
+    
+}
+
+// MAKR: GADBannerViewDelegate
+extension HomeTableViewController: GADBannerViewDelegate {
+    
+    func adViewWillLeaveApplication(bannerView: GADBannerView!) {
+        DLog("")
+        AdConfiguration.singleton.clickedAd()
+    }
+    
+    func toggleAdBanner(show: Bool) {
+        dispatch_async(dispatch_get_main_queue()) {
+            if (show) {
+                self.adDescriptionLabel.text = AdConfiguration.singleton.adDescription
+                self.adBannerView.hidden = false
+                self.adDescriptionLabel.hidden = false
+                self.adDescriptionLabel.setNeedsLayout()
+                self.adDescriptionLabel.layoutIfNeeded()
+                self.adBannerTableViewHeaderView.frame.size.height = 50
+                self.adBannerTableViewHeaderView.frame.size.height += CGRectGetHeight(self.adDescriptionLabel.frame)
+            } else {
+                self.adDescriptionLabel.text = nil
+                self.adBannerView.hidden = true
+                self.adDescriptionLabel.hidden = true
+                self.adBannerTableViewHeaderView.frame.size.height = 0
+            }
+        }
+    }
+    
+    func attemptLoadRequest() {
+        if AdConfiguration.singleton.shouldDisplayAds {
+            let request = GADRequest()
+            #if DEBUG
+                request.testDevices = [kGADSimulatorID]
+            #endif
+            adBannerView.loadRequest(request)
+            toggleAdBanner(true)
+        } else {
+            toggleAdBanner(false)
+        }
+        tableView.reloadData()
     }
     
 }
