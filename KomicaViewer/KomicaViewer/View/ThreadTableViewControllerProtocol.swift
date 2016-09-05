@@ -34,11 +34,13 @@ extension ThreadTableViewControllerProtocol where Self: UITableViewController {
                 }
                 self?.threads.appendContentsOf(t)
             }
-            self?.tableView.reloadData()
-            self?.refreshControl?.endRefreshing()
-            self?.hideLoading()
-            self?.tableView.pullToRefreshView?.stopAnimating()
-            self?.postCompletion?(success: success, page: page, result: result)
+            dispatch_async(dispatch_get_main_queue(), {
+                self?.tableView.reloadData()
+                self?.refreshControl?.endRefreshing()
+                self?.hideLoading()
+                self?.tableView.pullToRefreshView?.stopAnimating()
+                self?.postCompletion?(success: success, page: page, result: result)
+            })
         }
     }
     func loadThreadsWithPage(page: Int) {
