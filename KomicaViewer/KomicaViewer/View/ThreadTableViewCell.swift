@@ -130,7 +130,6 @@ class ThreadTableViewCell: UITableViewCell {
         if BlockedUserManager.sharedManager.isUserIDBlocked(thread.UID ?? "") {
             thread = Thread()
             thread.content = NSAttributedString(string: "Content Blocked")
-            return;
         }
         
         var titleText = (thread.ID ?? "")
