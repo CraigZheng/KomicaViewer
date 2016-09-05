@@ -28,7 +28,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="1" green="1" blue="0.93725490199999995" alpha="0.80235499099999996" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="IFY-eJ-06f" firstAttribute="leading" secondItem="byH-eZ-zxY" secondAttribute="leading" id="8It-Ma-L7O"/>
                                 <constraint firstItem="9TU-iA-i0k" firstAttribute="top" secondItem="IFY-eJ-06f" secondAttribute="bottom" id="D47-2g-lqs"/>
@@ -91,26 +91,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="6dw-Hm-7JB" userLabel="Ad Banner Header View">
-                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="Scz-fp-U5u" userLabel="Ad Banner Header View">
+                            <rect key="frame" x="0.0" y="64" width="320" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OMp-6N-z5T" customClass="GADBannerView">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="asv-Yy-NHf" customClass="GADBannerView">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbB-ON-QVn" userLabel="Ad Description Label">
+                                    <rect key="frame" x="0.0" y="80" width="320" height="0.0"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="OMp-6N-z5T" firstAttribute="top" secondItem="6dw-Hm-7JB" secondAttribute="top" id="6GC-Ko-SHX"/>
-                                <constraint firstItem="OMp-6N-z5T" firstAttribute="leading" secondItem="6dw-Hm-7JB" secondAttribute="leading" id="RJ3-Hw-V5D"/>
-                                <constraint firstAttribute="bottom" secondItem="OMp-6N-z5T" secondAttribute="bottom" id="Tz8-lX-Qg1"/>
-                                <constraint firstAttribute="trailing" secondItem="OMp-6N-z5T" secondAttribute="trailing" id="idQ-I3-vEc"/>
+                                <constraint firstItem="asv-Yy-NHf" firstAttribute="top" secondItem="Scz-fp-U5u" secondAttribute="top" id="2q1-6e-0l8"/>
+                                <constraint firstAttribute="bottom" secondItem="qbB-ON-QVn" secondAttribute="bottom" id="6Gh-NG-I1n"/>
+                                <constraint firstAttribute="trailing" secondItem="asv-Yy-NHf" secondAttribute="trailing" id="GsU-RT-o2T"/>
+                                <constraint firstItem="qbB-ON-QVn" firstAttribute="leading" secondItem="Scz-fp-U5u" secondAttribute="leading" id="R4d-l0-LOB"/>
+                                <constraint firstAttribute="bottom" secondItem="asv-Yy-NHf" secondAttribute="bottom" id="TII-2m-y3K"/>
+                                <constraint firstAttribute="trailing" secondItem="qbB-ON-QVn" secondAttribute="trailing" id="VK5-f3-x54"/>
+                                <constraint firstItem="asv-Yy-NHf" firstAttribute="leading" secondItem="Scz-fp-U5u" secondAttribute="leading" id="af9-PV-z46"/>
+                                <constraint firstItem="qbB-ON-QVn" firstAttribute="top" secondItem="asv-Yy-NHf" secondAttribute="bottom" id="pHH-EK-EtG"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="TII-2m-y3K"/>
+                                </mask>
+                            </variation>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="5RD-ac-21O">
-                                <rect key="frame" x="0.0" y="136" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="172" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5RD-ac-21O" id="vEw-0K-8CC">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -133,8 +148,9 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="adBannerTableViewHeaderView" destination="6dw-Hm-7JB" id="jkF-3r-wue"/>
-                        <outlet property="adBannerView" destination="OMp-6N-z5T" id="TN9-bb-Znc"/>
+                        <outlet property="adBannerTableViewHeaderView" destination="Scz-fp-U5u" id="YXd-aa-thi"/>
+                        <outlet property="adBannerView" destination="asv-Yy-NHf" id="GMU-sO-EqP"/>
+                        <outlet property="adDescriptionLabel" destination="qbB-ON-QVn" id="Ouf-dt-G9v"/>
                         <segue destination="PR8-ly-aaG" kind="show" identifier="showParasitePosts" id="9fq-5Y-o5k"/>
                     </connections>
                 </tableViewController>

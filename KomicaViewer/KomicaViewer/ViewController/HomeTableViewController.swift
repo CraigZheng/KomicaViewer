@@ -268,6 +268,7 @@ extension HomeTableViewController: GADBannerViewDelegate {
         } else {
             toggleAdBanner(false)
         }
+        tableView.reloadData()
     }
     
 }
