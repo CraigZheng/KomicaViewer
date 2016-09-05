@@ -13,17 +13,19 @@ import MBProgressHUD
 class ProgressHUD: MBProgressHUD {
     
     class func showMessage(message: String) {
-        if let rootView = UIApplication.topViewController?.view {
-            let hud = MBProgressHUD.showHUDAddedTo(rootView, animated:true)
-            // Set the annular determinate mode to show task progress.
-            hud.mode = .Text
-            
-            hud.detailsLabelText = message
-            hud.userInteractionEnabled = false
-            // Move to bottm center.
-            hud.xOffset = 0
-            hud.yOffset = Float(CGRectGetHeight(UIScreen.mainScreen().bounds) / 2 - 60)
-            hud.hide(true, afterDelay: 3.0)
+        dispatch_async(dispatch_get_main_queue()) {
+            if let rootView = UIApplication.topViewController?.view {
+                let hud = MBProgressHUD.showHUDAddedTo(rootView, animated:true)
+                // Set the annular determinate mode to show task progress.
+                hud.mode = .Text
+                
+                hud.detailsLabelText = message
+                hud.userInteractionEnabled = false
+                // Move to bottm center.
+                hud.xOffset = 0
+                hud.yOffset = Float(CGRectGetHeight(UIScreen.mainScreen().bounds) / 2 - 60)
+                hud.hide(true, afterDelay: 3.0)
+            }
         }
     }
 
