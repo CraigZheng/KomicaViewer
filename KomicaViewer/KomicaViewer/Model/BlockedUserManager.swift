@@ -10,6 +10,7 @@ import UIKit
 
 class BlockedUserManager: NSObject {
     static let sharedManager = BlockedUserManager()
+    static let updatedNotification = "BlockedUserUpdatedNotification"
     private let BlockedUserIDKey = "BlockedUserIDKey"
     
     private var blockedUserIDs = [String]()
@@ -33,11 +34,13 @@ class BlockedUserManager: NSObject {
     func blockUserID(id: String) {
         blockedUserIDs.append(id)
         save()
+        NSNotificationCenter.defaultCenter().postNotificationName(BlockedUserManager.updatedNotification, object: nil)
     }
     
     func unblockUserID(id: String) {
         blockedUserIDs.removeObject(id)
         save()
+        NSNotificationCenter.defaultCenter().postNotificationName(BlockedUserManager.updatedNotification, object: nil)
     }
     
     func isUserIDBlocked(id: String) -> Bool {

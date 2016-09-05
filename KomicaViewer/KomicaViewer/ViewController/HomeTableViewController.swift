@@ -109,6 +109,12 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
                                                          selector: #selector(HomeTableViewController.handleForumSelectedNotification(_:)),
                                                          name: Forums.selectionUpdatedNotification,
                                                          object: nil)
+        // Add handler for blocked user updated notification.
+        NSNotificationCenter.defaultCenter().addObserverForName(BlockedUserManager.updatedNotification,
+                                                                object: nil,
+                                                                queue: NSOperationQueue.mainQueue()) { (_) in
+                                                                    self.tableView.reloadData()
+        }
         tableView.addPullToRefreshWithActionHandler({
             self.refreshWithPage(self.pageIndex + 1)
         }, position: .Bottom)
