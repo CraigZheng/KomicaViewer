@@ -85,10 +85,12 @@ class AdConfiguration: NSObject {
     }
     
     func updateAdConfiguration(completion: (()->())?) {
+        DLog("")
         defaultSession.dataTaskWithRequest(NSURLRequest(URL: remoteConfigurationURL)) { (responseObject, response, error) in
             if let responseObject = responseObject {
                 self.parseJSONData(responseObject)
             }
+            DLog("")
             completion?()
         }.resume()
     }

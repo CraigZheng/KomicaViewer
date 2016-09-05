@@ -23,9 +23,9 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
             adBannerView.adUnitID = AdConfiguration.AdMobID.bannerID1
             adBannerView.rootViewController = self
             adBannerView.delegate = self
-            attemptLoadRequest()
         }
     }
+    @IBOutlet weak var adDescriptionLabel: UILabel!
     
     // MARK: ThreadTableViewControllerProtocol
     var threads = [Thread]()
@@ -125,6 +125,12 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
                                                                 object: nil,
                                                                 queue: NSOperationQueue.mainQueue()) { (_) in
                                                                     self.tableView.reloadData()
+        }
+        // Ad configuration update notification
+        NSNotificationCenter.defaultCenter().addObserverForName(AdConfiguration.adConfigurationUpdatedNotification,
+                                                                object: nil,
+                                                                queue: NSOperationQueue.mainQueue()) { (_) in
+                                                                    self.attemptLoadRequest()
         }
         tableView.addPullToRefreshWithActionHandler({
             self.refreshWithPage(self.pageIndex + 1)
@@ -232,17 +238,20 @@ extension HomeTableViewController: GADBannerViewDelegate {
         AdConfiguration.singleton.clickedAd()
     }
     
-    func adViewDidReceiveAd(bannerView: GADBannerView!) {
-        toggleAdBanner(true)
-    }
-    
     func toggleAdBanner(show: Bool) {
         dispatch_async(dispatch_get_main_queue()) {
             if (show) {
+                self.adDescriptionLabel.text = AdConfiguration.singleton.adDescription
                 self.adBannerView.hidden = false
+                self.adDescriptionLabel.hidden = false
+                self.adDescriptionLabel.setNeedsLayout()
+                self.adDescriptionLabel.layoutIfNeeded()
                 self.adBannerTableViewHeaderView.frame.size.height = 50
+                self.adBannerTableViewHeaderView.frame.size.height += CGRectGetHeight(self.adDescriptionLabel.frame)
             } else {
+                self.adDescriptionLabel.text = nil
                 self.adBannerView.hidden = true
+                self.adDescriptionLabel.hidden = true
                 self.adBannerTableViewHeaderView.frame.size.height = 0
             }
         }
@@ -255,6 +264,9 @@ extension HomeTableViewController: GADBannerViewDelegate {
                 request.testDevices = [kGADSimulatorID]
             #endif
             adBannerView.loadRequest(request)
+            toggleAdBanner(true)
+        } else {
+            toggleAdBanner(false)
         }
     }
     
