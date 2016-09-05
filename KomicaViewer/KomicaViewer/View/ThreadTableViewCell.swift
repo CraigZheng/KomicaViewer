@@ -63,6 +63,8 @@ class ThreadTableViewCell: UITableViewCell {
         return links
     }
     
+    private var userID: String?
+    
     func longPressAction() {
         DLog("")
         // If there's another alertController, don't do anything.
@@ -76,6 +78,14 @@ class ThreadTableViewCell: UITableViewCell {
                     }
                     // Set alertController to nil, so this cell is ready for another alertController.
                     self.alertController = nil
+                }
+                var blockUserAction: UIAlertAction?
+                if let userID = userID {
+                    blockUserAction = UIAlertAction(title: "Block \(userID)", style: .Default, handler: { (_) in
+                        if BlockedUserManager.sharedManager.isUserIDBlocked(userID) {
+                            BlockedUserManager.sharedManager.blockUserID(userID)
+                        }
+                    })
                 }
                 let openAction = UIAlertAction(title: "Open in Browser", style: .Default) { _ in
                     self.alertController = nil
@@ -99,6 +109,9 @@ class ThreadTableViewCell: UITableViewCell {
                     }
                 }
                 alertController.addAction(copyAction)
+                if let blockUserAction = blockUserAction {
+                    alertController.addAction(blockUserAction)
+                }
                 if !links.isEmpty {
                     alertController.addAction(openAction)
                 }
@@ -113,10 +126,18 @@ class ThreadTableViewCell: UITableViewCell {
     }
     
     func layoutWithThread(thread: Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol) {
+        var thread = thread
+        if BlockedUserManager.sharedManager.isUserIDBlocked(thread.UID ?? "") {
+            thread = Thread()
+            thread.content = NSAttributedString(string: "Content Blocked")
+            return;
+        }
+        
         var titleText = (thread.ID ?? "")
         if let UID = thread.UID {
             titleText += " " + UID
         }
+        userID = thread.UID
         textLabel?.text = titleText
         textView?.text = thread.content?.string
         if let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController
