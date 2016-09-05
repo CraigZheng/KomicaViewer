@@ -72,9 +72,12 @@ class ThreadTableViewCell: UITableViewCell {
             if let userID = userID where BlockedUserManager.sharedManager.isUserIDBlocked(userID ?? "") {
                 alertController = UIAlertController(title: "User blocked: \(userID)", message: "Would you like to unblock this user?", preferredStyle: .ActionSheet)
                 alertController?.addAction(UIAlertAction(title: "Unblock", style: .Default, handler: { (_) in
+                    self.alertController = nil
                     BlockedUserManager.sharedManager.unblockUserID(userID)
                 }))
-                alertController?.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                alertController?.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (_) in
+                    self.alertController = nil
+                }))
                 if let topViewController = UIApplication.topViewController,
                     let alertController = alertController
                 {
