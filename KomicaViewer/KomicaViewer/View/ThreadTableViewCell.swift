@@ -67,7 +67,7 @@ class ThreadTableViewCell: UITableViewCell {
         DLog("")
         // If there's another alertController, don't do anything.
         if alertController == nil {
-            alertController = UIAlertController(title: "What do you want to do?", message: nil, preferredStyle: .ActionSheet)
+            alertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .ActionSheet)
             if let alertController = alertController {
                 let copyAction = UIAlertAction(title: "Copy Content", style: .Default) { (_) in
                     if let text = self.textView?.text {
