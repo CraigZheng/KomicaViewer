@@ -13,6 +13,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="byH-eZ-zxY" userLabel="Ad Banner View">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IFY-eJ-06f" customClass="GADBannerView">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="IFY-eJ-06f" firstAttribute="leading" secondItem="byH-eZ-zxY" secondAttribute="leading" id="8It-Ma-L7O"/>
+                                <constraint firstAttribute="bottom" secondItem="IFY-eJ-06f" secondAttribute="bottom" id="WEC-nw-GeP"/>
+                                <constraint firstItem="IFY-eJ-06f" firstAttribute="top" secondItem="byH-eZ-zxY" secondAttribute="top" id="eSI-dZ-TWw"/>
+                                <constraint firstAttribute="trailing" secondItem="IFY-eJ-06f" secondAttribute="trailing" id="wi3-IR-74A"/>
+                            </constraints>
+                        </view>
                         <connections>
                             <outlet property="dataSource" destination="oFT-St-UNq" id="8HM-Bm-8LC"/>
                             <outlet property="delegate" destination="oFT-St-UNq" id="8gm-UR-Ihs"/>
@@ -31,6 +48,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="adBannerTableViewHeaderView" destination="byH-eZ-zxY" id="egr-T0-0RW"/>
+                        <outlet property="adBannerView" destination="IFY-eJ-06f" id="zFd-8w-SOe"/>
                         <segue destination="Fxb-WB-Xzn" kind="show" identifier="showThread" id="xt5-yj-14A"/>
                     </connections>
                 </tableViewController>
@@ -46,6 +65,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="6dw-Hm-7JB" userLabel="Ad Banner View">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OMp-6N-z5T" customClass="GADBannerView">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="OMp-6N-z5T" firstAttribute="top" secondItem="6dw-Hm-7JB" secondAttribute="top" id="6GC-Ko-SHX"/>
+                                <constraint firstItem="OMp-6N-z5T" firstAttribute="leading" secondItem="6dw-Hm-7JB" secondAttribute="leading" id="RJ3-Hw-V5D"/>
+                                <constraint firstAttribute="bottom" secondItem="OMp-6N-z5T" secondAttribute="bottom" id="Tz8-lX-Qg1"/>
+                                <constraint firstAttribute="trailing" secondItem="OMp-6N-z5T" secondAttribute="trailing" id="idQ-I3-vEc"/>
+                            </constraints>
+                        </view>
                         <connections>
                             <outlet property="dataSource" destination="Fxb-WB-Xzn" id="go1-vp-8AL"/>
                             <outlet property="delegate" destination="Fxb-WB-Xzn" id="kSb-EK-137"/>
@@ -61,6 +97,8 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="adBannerTableViewHeaderView" destination="6dw-Hm-7JB" id="jkF-3r-wue"/>
+                        <outlet property="adBannerView" destination="OMp-6N-z5T" id="TN9-bb-Znc"/>
                         <segue destination="PR8-ly-aaG" kind="show" identifier="showParasitePosts" id="9fq-5Y-o5k"/>
                     </connections>
                 </tableViewController>

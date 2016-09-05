@@ -12,8 +12,18 @@ import KomicaEngine
 import SDWebImage
 import MWPhotoBrowser
 import SVWebViewController
+import GoogleMobileAds
 
 class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol {
+    
+    @IBOutlet weak var adBannerTableViewHeaderView: UIView!
+    @IBOutlet weak var adBannerView: GADBannerView! {
+        didSet {
+            adBannerView.adUnitID = AdConfiguration.AdMobID.bannerID2
+            adBannerView.rootViewController = self
+            adBannerView.delegate = self
+        }
+    }
     
     var selectedThread: Thread! {
         didSet {
@@ -270,4 +280,28 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate
             }
         }
     }
+}
+
+// MAKR: GADBannerViewDelegate
+extension ThreadTableViewController: GADBannerViewDelegate {
+    
+    func adViewWillLeaveApplication(bannerView: GADBannerView!) {
+        DLog("")
+        AdConfiguration.singleton.clickedAd()
+    }
+    
+    func adViewDidReceiveAd(bannerView: GADBannerView!) {
+        toggleAdBanner(true)
+    }
+    
+    func toggleAdBanner(show: Bool) {
+        if (show) {
+            adBannerView.hidden = false
+            adBannerTableViewHeaderView.frame.size.height = 50
+        } else {
+            adBannerView.hidden = true
+            adBannerTableViewHeaderView.frame.size.height = 0
+        }
+    }
+    
 }

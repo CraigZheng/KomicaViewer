@@ -13,8 +13,18 @@ import MWPhotoBrowser
 import SDWebImage
 import SVPullToRefresh
 import SVWebViewController
+import GoogleMobileAds
 
 class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol {
+    
+    @IBOutlet weak var adBannerTableViewHeaderView: UIView!
+    @IBOutlet weak var adBannerView: GADBannerView! {
+        didSet {
+            adBannerView.adUnitID = AdConfiguration.AdMobID.bannerID1
+            adBannerView.rootViewController = self
+            adBannerView.delegate = self
+        }
+    }
     
     // MARK: ThreadTableViewControllerProtocol
     var threads = [Thread]()
@@ -209,6 +219,30 @@ extension HomeTableViewController {
         threads.removeAll()
         tableView.reloadData()
         refreshWithPage(forum?.startingIndex ?? 0)
+    }
+    
+}
+
+// MAKR: GADBannerViewDelegate
+extension HomeTableViewController: GADBannerViewDelegate {
+    
+    func adViewWillLeaveApplication(bannerView: GADBannerView!) {
+        DLog("")
+        AdConfiguration.singleton.clickedAd()
+    }
+    
+    func adViewDidReceiveAd(bannerView: GADBannerView!) {
+        toggleAdBanner(true)
+    }
+    
+    func toggleAdBanner(show: Bool) {
+        if (show) {
+            adBannerView.hidden = false
+            adBannerTableViewHeaderView.frame.size.height = 50
+        } else {
+            adBannerView.hidden = true
+            adBannerTableViewHeaderView.frame.size.height = 0
+        }
     }
     
 }

@@ -47,6 +47,11 @@ class AdConfiguration: NSObject {
     static let singleton = AdConfiguration()
     static let adConfigurationUpdatedNotification = "adConfigurationUpdatedNotification"
     
+    struct AdMobID {
+        static let bannerID1 = "ca-app-pub-2081665256237089/9633270459"
+        static let bannerID2 = "ca-app-pub-2081665256237089/1411999652"
+    }
+    
     // Private properties.
     private let defaultConfiguration = "defaultAdConfiguration"
     private let historyKey = "AdConfiguration.historyOfClicks"
