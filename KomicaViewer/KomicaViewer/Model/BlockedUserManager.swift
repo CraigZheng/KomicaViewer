@@ -33,6 +33,10 @@ class BlockedUserManager: NSObject {
     
     func blockUserID(id: String) {
         blockedUserIDs.append(id)
+        // A bit of safty measure, when more than 9999, drop the first entity.
+        if blockedUserIDs.count > 9999 {
+            blockedUserIDs.removeFirst()
+        }
         save()
         NSNotificationCenter.defaultCenter().postNotificationName(BlockedUserManager.updatedNotification, object: nil)
     }
