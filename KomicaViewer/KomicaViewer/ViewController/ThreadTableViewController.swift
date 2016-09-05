@@ -203,7 +203,7 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate
             self.svWebViewURL = self.currentURL
             self.presentSVWebView()
         }
-        let reportAction = UIAlertAction(title: "Report Thread", style: .Default) { _ in
+        let reportAction = UIAlertAction(title: "Report", style: .Default) { _ in
             // Set the URL to report URL.
             self.svWebViewGuardDog = WebViewGuardDog()
             self.svWebViewGuardDog?.home = Configuration.singleton.reportURL?.host
