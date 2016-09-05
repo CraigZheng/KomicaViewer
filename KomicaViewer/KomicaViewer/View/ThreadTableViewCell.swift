@@ -82,7 +82,7 @@ class ThreadTableViewCell: UITableViewCell {
                 var blockUserAction: UIAlertAction?
                 if let userID = userID {
                     blockUserAction = UIAlertAction(title: "Block \(userID)", style: .Default, handler: { (_) in
-                        if BlockedUserManager.sharedManager.isUserIDBlocked(userID) {
+                        if !BlockedUserManager.sharedManager.isUserIDBlocked(userID) {
                             BlockedUserManager.sharedManager.blockUserID(userID)
                         }
                     })
