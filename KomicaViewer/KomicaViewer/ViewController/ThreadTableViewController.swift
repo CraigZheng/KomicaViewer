@@ -98,8 +98,12 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: Menu items.
-        
+        // Block user updated notification.
+        NSNotificationCenter.defaultCenter().addObserverForName(BlockedUserManager.updatedNotification,
+                                                                object: nil,
+                                                                queue: NSOperationQueue.mainQueue()) { (_) in
+                                                                    self.tableView.reloadData()
+        }
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self,
                                   action: #selector(ThreadTableViewController.refresh),
@@ -109,6 +113,10 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         tableView.registerNib(UINib(nibName: "ThreadTableViewCell", bundle: nil), forCellReuseIdentifier: ThreadTableViewCell.identifier)
         // Load page.
         refreshWithPage(0)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -203,7 +211,7 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate
             self.svWebViewURL = self.currentURL
             self.presentSVWebView()
         }
-        let reportAction = UIAlertAction(title: "Report Thread", style: .Default) { _ in
+        let reportAction = UIAlertAction(title: "Report", style: .Default) { _ in
             // Set the URL to report URL.
             self.svWebViewGuardDog = WebViewGuardDog()
             self.svWebViewGuardDog?.home = Configuration.singleton.reportURL?.host

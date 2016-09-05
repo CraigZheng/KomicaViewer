@@ -63,56 +63,89 @@ class ThreadTableViewCell: UITableViewCell {
         return links
     }
     
+    private var userID: String?
+    
     func longPressAction() {
         DLog("")
         // If there's another alertController, don't do anything.
         if alertController == nil {
-            alertController = UIAlertController(title: "What do you want to do?", message: nil, preferredStyle: .ActionSheet)
-            if let alertController = alertController {
-                let copyAction = UIAlertAction(title: "Copy Content", style: .Default) { (_) in
-                    if let text = self.textView?.text {
-                        UIPasteboard.generalPasteboard().string = text
-                        ProgressHUD.showMessage("Content Copied")
-                    }
-                    // Set alertController to nil, so this cell is ready for another alertController.
-                    self.alertController = nil
-                }
-                let openAction = UIAlertAction(title: "Open in Browser", style: .Default) { _ in
-                    self.alertController = nil
-                    if !self.links.isEmpty {
-                        // Secondary alert controller.
-                        let alertController = UIAlertController(title: "Which URL?", message: nil, preferredStyle: .ActionSheet)
-                        for link in self.links {
-                            let linkAction = UIAlertAction(title: link.absoluteString, style: .Default) { _ in
-                                if UIApplication.sharedApplication().canOpenURL(link) {
-                                    UIApplication.sharedApplication().openURL(link)
-                                }
-                            }
-                            alertController.addAction(linkAction)
-                        }
-                        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-                        alertController.popoverPresentationController?.sourceView = self.contentView
-                        alertController.popoverPresentationController?.sourceRect = self.contentView.bounds
-                        if let topViewController = UIApplication.topViewController {
-                            topViewController.presentViewController(alertController, animated: true, completion: nil)
-                        }
-                    }
-                }
-                alertController.addAction(copyAction)
-                if !links.isEmpty {
-                    alertController.addAction(openAction)
-                }
-                alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: {_ in self.alertController = nil}))
-                alertController.popoverPresentationController?.sourceView = contentView
-                alertController.popoverPresentationController?.sourceRect = contentView.bounds
-                if let topViewController = UIApplication.topViewController {
+            if let userID = userID where BlockedUserManager.sharedManager.isUserIDBlocked(userID ?? "") {
+                alertController = UIAlertController(title: "User blocked: \(userID)", message: "Would you like to unblock this user?", preferredStyle: .ActionSheet)
+                alertController?.addAction(UIAlertAction(title: "Unblock", style: .Default, handler: { (_) in
+                    BlockedUserManager.sharedManager.unblockUserID(userID)
+                }))
+                alertController?.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                if let topViewController = UIApplication.topViewController,
+                    let alertController = alertController
+                {
                     topViewController.presentViewController(alertController, animated: true, completion: nil)
+                }
+            } else {
+                alertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .ActionSheet)
+                if let alertController = alertController {
+                    let copyAction = UIAlertAction(title: "Copy Content", style: .Default) { (_) in
+                        if let text = self.textView?.text {
+                            UIPasteboard.generalPasteboard().string = text
+                            ProgressHUD.showMessage("Content Copied")
+                        }
+                        // Set alertController to nil, so this cell is ready for another alertController.
+                        self.alertController = nil
+                    }
+                    var blockUserAction: UIAlertAction?
+                    if let userID = userID {
+                        blockUserAction = UIAlertAction(title: "Block \(userID)", style: .Default, handler: { (_) in
+                            if !BlockedUserManager.sharedManager.isUserIDBlocked(userID) {
+                                BlockedUserManager.sharedManager.blockUserID(userID)
+                            }
+                        })
+                    }
+                    let openAction = UIAlertAction(title: "Open in Browser", style: .Default) { _ in
+                        self.alertController = nil
+                        if !self.links.isEmpty {
+                            // Secondary alert controller.
+                            let alertController = UIAlertController(title: "Which URL?", message: nil, preferredStyle: .ActionSheet)
+                            for link in self.links {
+                                let linkAction = UIAlertAction(title: link.absoluteString, style: .Default) { _ in
+                                    if UIApplication.sharedApplication().canOpenURL(link) {
+                                        UIApplication.sharedApplication().openURL(link)
+                                    }
+                                }
+                                alertController.addAction(linkAction)
+                            }
+                            alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                            alertController.popoverPresentationController?.sourceView = self.contentView
+                            alertController.popoverPresentationController?.sourceRect = self.contentView.bounds
+                            if let topViewController = UIApplication.topViewController {
+                                topViewController.presentViewController(alertController, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                    alertController.addAction(copyAction)
+                    if let blockUserAction = blockUserAction {
+                        alertController.addAction(blockUserAction)
+                    }
+                    if !links.isEmpty {
+                        alertController.addAction(openAction)
+                    }
+                    alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: {_ in self.alertController = nil}))
+                    alertController.popoverPresentationController?.sourceView = contentView
+                    alertController.popoverPresentationController?.sourceRect = contentView.bounds
+                    if let topViewController = UIApplication.topViewController {
+                        topViewController.presentViewController(alertController, animated: true, completion: nil)
+                    }
                 }
             }
         }
     }
     
     func layoutWithThread(thread: Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol) {
+        var thread = thread
+        userID = thread.UID
+        if BlockedUserManager.sharedManager.isUserIDBlocked(thread.UID ?? "") {
+            thread = Thread()
+            thread.content = NSAttributedString(string: "Content Blocked")
+        }
+        
         var titleText = (thread.ID ?? "")
         if let UID = thread.UID {
             titleText += " " + UID
