@@ -22,6 +22,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
             adBannerView.adUnitID = AdConfiguration.AdMobID.bannerID2
             adBannerView.rootViewController = self
             adBannerView.delegate = self
+            attemptLoadRequest()
         }
     }
     
@@ -295,12 +296,24 @@ extension ThreadTableViewController: GADBannerViewDelegate {
     }
     
     func toggleAdBanner(show: Bool) {
-        if (show) {
-            adBannerView.hidden = false
-            adBannerTableViewHeaderView.frame.size.height = 50
-        } else {
-            adBannerView.hidden = true
-            adBannerTableViewHeaderView.frame.size.height = 0
+        dispatch_async(dispatch_get_main_queue()) {
+            if (show) {
+                self.adBannerView.hidden = false
+                self.adBannerTableViewHeaderView.frame.size.height = 50
+            } else {
+                self.adBannerView.hidden = true
+                self.adBannerTableViewHeaderView.frame.size.height = 0
+            }
+        }
+    }
+    
+    func attemptLoadRequest() {
+        if AdConfiguration.singleton.shouldDisplayAds {
+            let request = GADRequest()
+            #if DEBUG
+                request.testDevices = [kGADSimulatorID]
+            #endif
+            adBannerView.loadRequest(request)
         }
     }
     
