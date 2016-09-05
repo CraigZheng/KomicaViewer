@@ -9,7 +9,7 @@
 import UIKit
 
 class BlockedUserManager: NSObject {
-    static let sharedmanager = BlockedUserManager()
+    static let sharedManager = BlockedUserManager()
     private let BlockedUserIDKey = "BlockedUserIDKey"
     
     private var blockedUserIDs = [String]()
