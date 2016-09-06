@@ -53,6 +53,8 @@ extension ThreadTableViewControllerProtocol where Self: UITableViewController {
             } else {
                 completion?(success: false, page: 0, result: nil)
             }
+        } else {
+            completion?(success:false, page: 0, result: nil)
         }
     }
     
