@@ -13,7 +13,12 @@ import SDWebImage
 
 class ThreadTableViewCell: UITableViewCell {
     static let identifier = "threadCellIdentifier"
-
+    private struct TextColour {
+        static let standard = UIColor(red: 182/255.0, green: 78/255.0, blue: 4/255.0, alpha: 1.0)
+        static let warning = UIColor(red: 237/255.0, green: 8/255.0, blue: 25/255.0, alpha: 1.0)
+        static let blocked = UIColor.lightGrayColor()
+    }
+    
     var shouldShowParasitePost = true
     private var alertController: UIAlertController?
     @IBOutlet weak var _detailTextLabel: UILabel!
@@ -147,7 +152,12 @@ class ThreadTableViewCell: UITableViewCell {
         userID = thread.UID
         if BlockedUserManager.sharedManager.isUserIDBlocked(thread.UID ?? "") {
             thread = Thread()
-            thread.content = NSAttributedString(string: "Content Blocked")
+            thread.UID = userID
+            thread.content = NSAttributedString(string: "Content Blocked\nTap and hold to unblock")
+            // Set the text colour of text view to block colour.
+            textView?.textColor = TextColour.blocked
+        } else {
+            textView?.textColor = TextColour.standard
         }
         
         var titleText = (thread.ID ?? "")
