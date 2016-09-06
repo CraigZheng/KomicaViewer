@@ -261,7 +261,7 @@ extension HomeTableViewController: GADBannerViewDelegate {
         if AdConfiguration.singleton.shouldDisplayAds {
             let request = GADRequest()
             #if DEBUG
-                request.testDevices = [kGADSimulatorID]
+                request.testDevices = [kGADSimulatorID, "4fa1b332e0290930b2ae511c65ff8947"]
             #endif
             adBannerView.loadRequest(request)
             toggleAdBanner(true)
