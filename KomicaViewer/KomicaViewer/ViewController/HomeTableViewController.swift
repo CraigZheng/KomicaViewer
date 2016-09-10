@@ -49,7 +49,11 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
             self.pageIndex = page
             ProgressHUD.showMessage("\(page + 1 - (self.forum?.startingIndex ?? 0))\(suffix) page loaded.")
         } else {
-            ProgressHUD.showMessage("\(page + 1 - (self.forum?.startingIndex ?? 0))\(suffix) page failed to load.")
+            if Forums.selectedForum == nil {
+                ProgressHUD.showMessage("Please select a board")
+            } else {
+                ProgressHUD.showMessage("\(page + 1 - (self.forum?.startingIndex ?? 0))\(suffix) page failed to load.")
+            }
         }
         // If the originalContentInset is nil, record it, otherwise apply it to the tableView.
         // This is due to a bug that is introduced by SVPullToRefresh library. In order to fix this bug, I need to manually adjust the content inset.
