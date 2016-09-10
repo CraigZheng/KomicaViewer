@@ -3,5 +3,5 @@
     "dailyAdClickLimit": 4,
     "weeklyAdClickLimit": 12,
     "monthlyAdClickLimit": 24,
-    "adDescription": "Click this ad 4 times to make it disappear for the day!"
+    "adDescription": "Click this ad 4 times to make it disappear!"
 }

@@ -1,6 +1,6 @@
 {
   "reportURL": "http://2cat.or.tl/~ad/0d/fstyle.html?",
-  "addForumHelpURL": "https://drive.google.com/file/d/0BzYYz0LsNP2Qd0pNTm15Z19PSFk/view?usp=sharing",
+  "addForumHelpURL": "https://drive.google.com/file/d/0BzYYz0LsNP2QR1BNaWZib0FZU1U/view?usp=sharing",
   "imagePerPage": 40,
   "timeout": 20,
   "thumbnailWidth": 50,
@@ -12,6 +12,9 @@
     },
     {
       "Give a Review": "itms-apps://itunes.apple.com/app/id1143300746"
+    },
+    {
+      "My Other Apps": "https://itunes.apple.com/au/developer/haozheng-zheng/id530032325?mt=8"
     }
   ]
 }
