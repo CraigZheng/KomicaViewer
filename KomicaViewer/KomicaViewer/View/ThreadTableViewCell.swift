@@ -86,6 +86,8 @@ class ThreadTableViewCell: UITableViewCell {
                 if let topViewController = UIApplication.topViewController,
                     let alertController = alertController
                 {
+                    alertController.popoverPresentationController?.sourceView = contentView
+                    alertController.popoverPresentationController?.sourceRect = contentView.bounds
                     topViewController.presentViewController(alertController, animated: true, completion: nil)
                 }
             } else {
