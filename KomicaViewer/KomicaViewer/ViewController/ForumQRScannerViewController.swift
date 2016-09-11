@@ -22,8 +22,8 @@ class ForumQRScannerViewController: UIViewController {
         static let addForum = "addForum"
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         // Request camera permission.
         AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { (granted) in
             dispatch_async(dispatch_get_main_queue(), {
