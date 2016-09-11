@@ -335,10 +335,23 @@
                     <view key="view" contentMode="scaleToFill" id="cAg-mI-qFz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNp-g3-8lu">
+                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MNp-g3-8lu" firstAttribute="leading" secondItem="cAg-mI-qFz" secondAttribute="leading" id="056-NX-IgB"/>
+                            <constraint firstAttribute="trailing" secondItem="MNp-g3-8lu" secondAttribute="trailing" id="RuO-Jq-rNE"/>
+                            <constraint firstItem="MNp-g3-8lu" firstAttribute="top" secondItem="sqb-Qc-E4T" secondAttribute="bottom" id="XR8-Dc-3nI"/>
+                            <constraint firstItem="gKI-gA-llb" firstAttribute="top" secondItem="MNp-g3-8lu" secondAttribute="bottom" id="jTI-rf-u6s"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Scan QR Code" id="u5v-jD-3OE"/>
                     <connections>
+                        <outlet property="cameraPreviewView" destination="MNp-g3-8lu" id="RNP-89-LJi"/>
                         <segue destination="mDc-n7-gOu" kind="show" id="b1k-dL-5tt"/>
                     </connections>
                 </viewController>

@@ -11,6 +11,9 @@ import UIKit
 import AVFoundation
 
 class ForumQRScannerViewController: UIViewController {
+    
+    var captureSession: AVCaptureSession?
+    @IBOutlet var cameraPreviewView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +44,38 @@ class ForumQRScannerViewController: UIViewController {
     }
 
     private func setUpScanner() {
-        
+        captureSession?.stopRunning()
+        captureSession = AVCaptureSession()
+        let videoCaptureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        if let videoInput = try? AVCaptureDeviceInput(device:videoCaptureDevice),
+            let captureSession = captureSession
+        {
+            captureSession.addInput(videoInput)
+            let metadataOutput = AVCaptureMetadataOutput()
+            captureSession.addOutput(metadataOutput)
+            metadataOutput.setMetadataObjectsDelegate(self, queue:dispatch_get_main_queue())
+            metadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeEAN13Code]
+            let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+            previewLayer.frame = self.cameraPreviewView.bounds; // Align to cameraPreviewView.
+            previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+            cameraPreviewView.layer.addSublayer(previewLayer)
+            captureSession.startRunning()
+        }
     }
+}
+
+// MARK: AVCaptureMetadataOutputObjectsDelegate
+extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
+    
+    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+        if let lastMetadataObject = metadataObjects.last,
+            let readableObject = lastMetadataObject as? AVMetadataMachineReadableCodeObject
+        {
+            if (readableObject.type == AVMetadataObjectTypeQRCode) {
+                captureSession?.stopRunning()
+                // Construct a forum object with the scanned result.
+            }
+        }
+    }
+    
 }
