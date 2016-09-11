@@ -324,10 +324,10 @@
             </objects>
             <point key="canvasLocation" x="890" y="243"/>
         </scene>
-        <!--View Controller-->
+        <!--Scan QR Code-->
         <scene sceneID="VGR-rh-vXN">
             <objects>
-                <viewController id="qo9-m1-d3I" sceneMemberID="viewController">
+                <viewController id="qo9-m1-d3I" customClass="ForumQRScannerViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sqb-Qc-E4T"/>
                         <viewControllerLayoutGuide type="bottom" id="gKI-gA-llb"/>
@@ -337,6 +337,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Scan QR Code" id="u5v-jD-3OE"/>
                     <connections>
                         <segue destination="mDc-n7-gOu" kind="show" id="b1k-dL-5tt"/>
                     </connections>
