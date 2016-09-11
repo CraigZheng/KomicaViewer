@@ -49,6 +49,11 @@ class ForumQRScannerViewController: UIViewController {
             })
         })
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        captureSession?.stopRunning()
+    }
 
     private func setUpScanner() {
         captureSession?.stopRunning()
@@ -98,7 +103,6 @@ extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
                 {
                     capturedForum = KomicaForum(jsonDict: jsonDict)
                     if ((capturedForum?.isReady()) != nil) {
-                        captureSession?.stopRunning()
                         performSegueWithIdentifier(SegueIdentifier.addForum, sender: nil)
                         return
                     }
