@@ -100,7 +100,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="VnL-IU-iBW">
-                            <rect key="frame" x="0.0" y="449" width="320" height="5"/>
+                            <rect key="frame" x="0.0" y="509" width="320" height="5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
@@ -293,6 +293,38 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="Cr7-w2-k7f" userLabel="QR Button">
+                                        <rect key="frame" x="0.0" y="449" width="320" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cr7-w2-k7f" id="pKH-oj-EMl">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJl-sV-FVl" customClass="RoundCornerBorderedButton" customModule="KomicaViewer" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="8" width="280" height="43.5"/>
+                                                    <color key="backgroundColor" red="1" green="0.67785071340000003" blue="0.17108253700000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Share QR Code">
+                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="shareQRCodeAction:" destination="mDc-n7-gOu" eventType="touchUpInside" id="2rL-Ai-8WU"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qJl-sV-FVl" firstAttribute="top" secondItem="pKH-oj-EMl" secondAttribute="top" constant="8" id="DL1-yT-qj5"/>
+                                                <constraint firstItem="qJl-sV-FVl" firstAttribute="leading" secondItem="pKH-oj-EMl" secondAttribute="leading" constant="20" symbolic="YES" id="K9O-It-yc6"/>
+                                                <constraint firstItem="qJl-sV-FVl" firstAttribute="leading" secondItem="pKH-oj-EMl" secondAttribute="leading" constant="8" id="Ucw-N0-KPz"/>
+                                                <constraint firstAttribute="trailing" secondItem="qJl-sV-FVl" secondAttribute="trailing" constant="20" symbolic="YES" id="w8Q-74-b06"/>
+                                                <constraint firstAttribute="bottom" secondItem="qJl-sV-FVl" secondAttribute="bottom" constant="8" id="wpE-b2-DnO"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Ucw-N0-KPz"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -311,6 +343,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="zUS-g3-0yj" id="KRN-Gf-Fv0"/>
+                        <outlet property="addButtonTableViewCell" destination="Qg9-mZ-pZ8" id="jVn-jJ-tYE"/>
                         <outlet property="addForumHelpButtonItem" destination="jRF-fL-0cu" id="aNV-Uo-pog"/>
                         <outlet property="indexDetailLabel" destination="lHX-HB-XWd" id="Mnh-7Q-75q"/>
                         <outlet property="indexLabel" destination="AdF-L4-9cv" id="Giv-ti-eUM"/>
@@ -320,6 +353,7 @@
                         <outlet property="pageStyleLabel" destination="Kqg-eZ-2v3" id="5Wm-QL-cpM"/>
                         <outlet property="pageURLLabel" destination="i4U-63-Ygn" id="Ehu-ip-8f4"/>
                         <outlet property="parserPickerView" destination="iTS-1x-wxa" id="m1v-1g-SGz"/>
+                        <outlet property="qrButtonTableViewCell" destination="Cr7-w2-k7f" id="HJ0-zc-1D5"/>
                         <outlet property="resetButton" destination="1sJ-tV-vsX" id="dg1-9e-9EC"/>
                         <outlet property="responseDetailLabel" destination="Khn-lq-Sod" id="fmp-gF-Dj9"/>
                         <outlet property="responseURLLabel" destination="8qD-Vm-50c" id="EWR-OF-gYg"/>

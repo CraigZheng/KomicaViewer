@@ -39,6 +39,8 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     @IBOutlet weak var addForumHelpButtonItem: UIBarButtonItem!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var addButtonTableViewCell: UITableViewCell!
+    @IBOutlet weak var qrButtonTableViewCell: UITableViewCell!
     
     var newForum: KomicaForum!
     var displayType = AddForumViewControllerType.edit
@@ -185,6 +187,9 @@ extension AddForumTableViewController {
             topViewController.presentViewController(alertController, animated: true, completion: nil)
         }
     }
+    
+    @IBAction func shareQRCodeAction(sender: AnyObject) {
+    }
 }
 
 // MARK: ForumTextInputViewControllerProtocol
@@ -227,6 +232,22 @@ extension AddForumTableViewController: UIPickerViewDelegate, UIPickerViewDataSou
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return parserTypes[row]
     }
+}
+
+// MARK: UITableViewDelegate
+extension AddForumTableViewController {
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        // When the display type is editing, hide QR button.
+        // When the display type is readyonly, hide the add/reset buttons.
+        if (displayType == .edit && cell == qrButtonTableViewCell) ||
+            (displayType == .readonly && cell == addButtonTableViewCell) {
+            return 0
+        }
+        return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+    }
+    
 }
 
 extension KomicaForum {
