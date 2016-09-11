@@ -74,11 +74,15 @@
                     <navigationItem key="navigationItem" title="Custom Boards" id="M2d-Tl-bLB">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="oK5-b1-M1c">
                             <connections>
-                                <segue destination="mDc-n7-gOu" kind="show" identifier="addForum" id="pYr-uh-Apj"/>
+                                <action selector="addButtonAction:" destination="BjG-cC-Mhd" id="v7c-cs-I9F"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <connections>
+                        <segue destination="mDc-n7-gOu" kind="show" identifier="addForum" id="bdJ-Bw-15N"/>
+                        <segue destination="qo9-m1-d3I" kind="show" identifier="scanQRCode" id="HG1-5A-Z1f"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bso-IO-eEe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -318,7 +322,28 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zhZ-u0-9mR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="560" y="259"/>
+            <point key="canvasLocation" x="890" y="243"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="VGR-rh-vXN">
+            <objects>
+                <viewController id="qo9-m1-d3I" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sqb-Qc-E4T"/>
+                        <viewControllerLayoutGuide type="bottom" id="gKI-gA-llb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cAg-mI-qFz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="mDc-n7-gOu" kind="show" id="b1k-dL-5tt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="52O-8o-dip" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="449" y="642"/>
         </scene>
         <!--Enter Details-->
         <scene sceneID="sMk-07-D0a">
@@ -388,10 +413,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1wc-q9-gRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1009" y="259"/>
+            <point key="canvasLocation" x="1335" y="259"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="nzl-mP-UF6"/>
+        <segue reference="b1k-dL-5tt"/>
+        <segue reference="1aO-re-ZKI"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -16,6 +16,7 @@ class CustomForumManagerTableViewController: UITableViewController {
     
     private struct SegueIdentifier {
         static let addForum = "addForum"
+        static let scanQRCode = "scanQRCode"
     }
     
     override func viewDidLoad() {
@@ -55,4 +56,17 @@ extension CustomForumManagerTableViewController {
         tableView.setEditing(!tableView.editing, animated: true)
     }
     
+    @IBAction func addButtonAction(sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Add Custom Forum", message: nil, preferredStyle: .ActionSheet)
+        alertController.addAction(UIAlertAction(title: "Manually", style: .Default, handler: { (_) in
+            self.performSegueWithIdentifier(SegueIdentifier.addForum, sender: sender)
+        }))
+        alertController.addAction(UIAlertAction(title: "Scan QR Code", style: .Default, handler: { (_) in
+            self.performSegueWithIdentifier(SegueIdentifier.scanQRCode, sender: sender)
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alertController.popoverPresentationController?.sourceView = view
+        alertController.popoverPresentationController?.barButtonItem = sender
+        self .presentViewController(alertController, animated: true, completion: nil)
+    }
 }
