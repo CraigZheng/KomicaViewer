@@ -120,3 +120,38 @@ extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     }
     
 }
+
+// MARK: Read from library
+extension ForumQRScannerViewController {
+    // Shamelessly copied from http://stackoverflow.com/questions/35956538/how-to-read-qr-code-from-static-image
+    func performQRCodeDetection(image: CIImage) -> (outImage: CIImage?, decode: String) {
+        var resultImage: CIImage?
+        var decode = ""
+        let detector = CIDetector(ofType: CIDetectorTypeRectangle, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh, CIDetectorAspectRatio: 1.0])
+        let features = detector.featuresInImage(image)
+        for feature in features as! [CIQRCodeFeature] {
+            resultImage = drawHighlightOverlayForPoints(image,
+                                                        topLeft: feature.topLeft,
+                                                        topRight: feature.topRight,
+                                                        bottomLeft: feature.bottomLeft,
+                                                        bottomRight: feature.bottomRight)
+            decode = feature.messageString
+        }
+        return (resultImage, decode)
+    }
+    
+    func drawHighlightOverlayForPoints(image: CIImage, topLeft: CGPoint, topRight: CGPoint,
+                                       bottomLeft: CGPoint, bottomRight: CGPoint) -> CIImage {
+        var overlay = CIImage(color: CIColor(red: 1.0, green: 0, blue: 0, alpha: 0.5))
+        overlay = overlay.imageByCroppingToRect(image.extent)
+        overlay = overlay.imageByApplyingFilter("CIPerspectiveTransformWithExtent",
+                                                withInputParameters: [
+                                                    "inputExtent": CIVector(CGRect: image.extent),
+                                                    "inputTopLeft": CIVector(CGPoint: topLeft),
+                                                    "inputTopRight": CIVector(CGPoint: topRight),
+                                                    "inputBottomLeft": CIVector(CGPoint: bottomLeft),
+                                                    "inputBottomRight": CIVector(CGPoint: bottomRight)
+            ])
+        return overlay.imageByCompositingOverImage(image)
+    }
+}
