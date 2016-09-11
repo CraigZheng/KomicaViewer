@@ -57,6 +57,9 @@
                                     </subviews>
                                     <color key="backgroundColor" red="1" green="1" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="mDc-n7-gOu" kind="show" identifier="showForum" id="7b0-R6-JM0"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -307,6 +310,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="zUS-g3-0yj" id="KRN-Gf-Fv0"/>
                         <outlet property="addForumHelpButtonItem" destination="jRF-fL-0cu" id="aNV-Uo-pog"/>
                         <outlet property="indexDetailLabel" destination="lHX-HB-XWd" id="Mnh-7Q-75q"/>
                         <outlet property="indexLabel" destination="AdF-L4-9cv" id="Giv-ti-eUM"/>
@@ -316,6 +320,7 @@
                         <outlet property="pageStyleLabel" destination="Kqg-eZ-2v3" id="5Wm-QL-cpM"/>
                         <outlet property="pageURLLabel" destination="i4U-63-Ygn" id="Ehu-ip-8f4"/>
                         <outlet property="parserPickerView" destination="iTS-1x-wxa" id="m1v-1g-SGz"/>
+                        <outlet property="resetButton" destination="1sJ-tV-vsX" id="dg1-9e-9EC"/>
                         <outlet property="responseDetailLabel" destination="Khn-lq-Sod" id="fmp-gF-Dj9"/>
                         <outlet property="responseURLLabel" destination="8qD-Vm-50c" id="EWR-OF-gYg"/>
                     </connections>
@@ -420,6 +425,7 @@
                     <navigationItem key="navigationItem" title="Enter Details" id="eb2-lY-kNt"/>
                     <connections>
                         <outlet property="insertBarButtonItem" destination="3QC-MN-ah7" id="bZe-37-yW7"/>
+                        <outlet property="saveBarButtonItem" destination="sFk-Wf-Oe8" id="Em0-0U-gRa"/>
                         <outlet property="textView" destination="2Zg-V9-1Om" id="5Tw-dt-W5p"/>
                         <outlet property="textViewBottomConstraint" destination="pwu-As-iIO" id="Rjz-7x-gOG"/>
                         <outlet property="toolbarBottomConstraint" destination="Her-ER-yWH" id="vJO-mg-Buk"/>
@@ -431,7 +437,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="b1k-dL-5tt"/>
         <segue reference="1aO-re-ZKI"/>
+        <segue reference="7b0-R6-JM0"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -32,8 +32,11 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     @IBOutlet weak var responseDetailLabel: UILabel!
     @IBOutlet weak var parserPickerView: UIPickerView!
     @IBOutlet weak var addForumHelpButtonItem: UIBarButtonItem!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var resetButton: UIButton!
     
     var newForum: KomicaForum!
+    var allowEditing = true
     
     // MARK: Private.
     private let pausedForumKey = "pausedForumKey"
@@ -80,7 +83,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     
     deinit {
         // Save the incompleted forum to NSUserDefaults.
-        if newForum.isModified() {
+        if allowEditing && newForum.isModified() {
             if newForum.parserType == nil {
                 newForum.parserType = KomicaForum.parserTypes[parserPickerView.selectedRowInComponent(0)]
             }
@@ -96,15 +99,20 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
             let textInputViewController = segue.destinationViewController as? ForumTextInputViewController
         {
             textInputViewController.delegate = self
+            textInputViewController.allowEditing = allowEditing
             switch segueIdentifier {
             case SegueIdentifier.name:
                 textInputViewController.field = ForumField.name
+                textInputViewController.prefilledString = newForum.name
             case SegueIdentifier.index:
                 textInputViewController.field = ForumField.indexURL
+                textInputViewController.prefilledString = newForum.indexURL
             case SegueIdentifier.page:
                 textInputViewController.field = ForumField.listURL
+                textInputViewController.prefilledString = newForum.listURL
             case SegueIdentifier.response:
                 textInputViewController.field = ForumField.responseURL
+                textInputViewController.prefilledString = newForum.responseURL
             default:
                 break
             }
@@ -123,6 +131,8 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
              selectRow = KomicaForum.parserTypes.indexOf({ $0 == parserType }) ?? 0
         }
         parserPickerView.selectRow(selectRow, inComponent: 0, animated: false)
+        addButton.enabled = allowEditing
+        resetButton.enabled = allowEditing
     }
 }
 

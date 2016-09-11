@@ -17,6 +17,7 @@ class CustomForumManagerTableViewController: UITableViewController {
     private struct SegueIdentifier {
         static let addForum = "addForum"
         static let scanQRCode = "scanQRCode"
+        static let showForum = "showForum"
     }
     
     override func viewDidLoad() {
@@ -44,6 +45,18 @@ class CustomForumManagerTableViewController: UITableViewController {
             }
         }
         return cell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SegueIdentifier.showForum,
+            let destinationViewController = segue.destinationViewController as? AddForumTableViewController,
+            let tableViewCell = sender as? UITableViewCell,
+            let indexPath = tableView.indexPathForCell(tableViewCell),
+            let customForum = Forums.customForumGroup.forums?[indexPath.row]
+        {
+            destinationViewController.allowEditing = false
+            destinationViewController.newForum = customForum
+        }
     }
 
 }
