@@ -9,11 +9,17 @@
 import UIKit
 
 import AVFoundation
+import KomicaEngine
 
 class ForumQRScannerViewController: UIViewController {
     
-    var captureSession: AVCaptureSession?
     @IBOutlet var cameraPreviewView: UIView!
+    var captureSession: AVCaptureSession?
+    var capturedForum: KomicaForum?
+    
+    private struct SegueIdentifier {
+        static let addForum = "addForum"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +70,17 @@ class ForumQRScannerViewController: UIViewController {
     }
 }
 
+// MARK: Navigation
+extension ForumQRScannerViewController {
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SegueIdentifier.addForum, let destinationViewController = segue.destinationViewController as? AddForumTableViewController {
+            
+        }
+    }
+    
+}
+
 // MARK: AVCaptureMetadataOutputObjectsDelegate
 extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     
@@ -74,6 +91,17 @@ extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
             if (readableObject.type == AVMetadataObjectTypeQRCode) {
                 captureSession?.stopRunning()
                 // Construct a forum object with the scanned result.
+                if let jsonData = readableObject.stringValue.dataUsingEncoding(NSUTF8StringEncoding),
+                    let jsonDict = (try? NSJSONSerialization.JSONObjectWithData(jsonData,
+                                                                               options: .AllowFragments)) as? [String: AnyObject]
+                {
+                    capturedForum = KomicaForum(jsonDict: jsonDict)
+                    if ((capturedForum?.isReady()) != nil) {
+                        performSegueWithIdentifier(SegueIdentifier.addForum, sender: nil)
+                    } else {
+                        ProgressHUD.showMessage("Cannot make a custom board, please try again")
+                    }
+                }
             }
         }
     }

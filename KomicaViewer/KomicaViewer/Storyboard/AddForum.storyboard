@@ -352,7 +352,7 @@
                     <navigationItem key="navigationItem" title="Scan QR Code" id="u5v-jD-3OE"/>
                     <connections>
                         <outlet property="cameraPreviewView" destination="MNp-g3-8lu" id="RNP-89-LJi"/>
-                        <segue destination="mDc-n7-gOu" kind="show" id="b1k-dL-5tt"/>
+                        <segue destination="mDc-n7-gOu" kind="show" identifier="addForum" id="b1k-dL-5tt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="52O-8o-dip" userLabel="First Responder" sceneMemberID="firstResponder"/>

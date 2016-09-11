@@ -206,7 +206,7 @@ extension AddForumTableViewController: UIPickerViewDelegate, UIPickerViewDataSou
     }
 }
 
-private extension KomicaForum {
+extension KomicaForum {
     func isReady() -> Bool {
         var isReady = true
         if (name ?? "").isEmpty
