@@ -18,6 +18,11 @@ enum ForumField: String {
     case parserType = "Page Style"
 }
 
+enum AddForumViewControllerType {
+    case readonly
+    case edit
+}
+
 class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     
     // MARK: UI elements.
@@ -36,7 +41,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     @IBOutlet weak var resetButton: UIButton!
     
     var newForum: KomicaForum!
-    var allowEditing = true
+    var displayType = AddForumViewControllerType.edit
     
     // MARK: Private.
     private let pausedForumKey = "pausedForumKey"
@@ -83,7 +88,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     
     deinit {
         // Save the incompleted forum to NSUserDefaults.
-        if allowEditing && newForum.isModified() {
+        if displayType == .edit && newForum.isModified() {
             if newForum.parserType == nil {
                 newForum.parserType = KomicaForum.parserTypes[parserPickerView.selectedRowInComponent(0)]
             }
@@ -99,7 +104,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
             let textInputViewController = segue.destinationViewController as? ForumTextInputViewController
         {
             textInputViewController.delegate = self
-            textInputViewController.allowEditing = allowEditing
+            textInputViewController.allowEditing = displayType == .edit
             switch segueIdentifier {
             case SegueIdentifier.name:
                 textInputViewController.field = ForumField.name
@@ -131,8 +136,8 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
              selectRow = KomicaForum.parserTypes.indexOf({ $0 == parserType }) ?? 0
         }
         parserPickerView.selectRow(selectRow, inComponent: 0, animated: false)
-        addButton.enabled = allowEditing
-        resetButton.enabled = allowEditing
+        addButton.enabled = displayType == .edit
+        resetButton.enabled = displayType == .edit
     }
 }
 
