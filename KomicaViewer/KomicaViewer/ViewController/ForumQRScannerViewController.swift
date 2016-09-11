@@ -14,8 +14,9 @@ import KomicaEngine
 class ForumQRScannerViewController: UIViewController {
     
     @IBOutlet var cameraPreviewView: UIView!
-    var captureSession: AVCaptureSession?
     var capturedForum: KomicaForum?
+    private var captureSession: AVCaptureSession?
+    private var warningAlertController: UIAlertController?
     
     private struct SegueIdentifier {
         static let addForum = "addForum"
@@ -89,7 +90,6 @@ extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
             let readableObject = lastMetadataObject as? AVMetadataMachineReadableCodeObject
         {
             if (readableObject.type == AVMetadataObjectTypeQRCode) {
-                captureSession?.stopRunning()
                 // Construct a forum object with the scanned result.
                 if let jsonData = readableObject.stringValue.dataUsingEncoding(NSUTF8StringEncoding),
                     let jsonDict = (try? NSJSONSerialization.JSONObjectWithData(jsonData,
@@ -97,12 +97,20 @@ extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
                 {
                     capturedForum = KomicaForum(jsonDict: jsonDict)
                     if ((capturedForum?.isReady()) != nil) {
+                        captureSession?.stopRunning()
                         performSegueWithIdentifier(SegueIdentifier.addForum, sender: nil)
-                    } else {
-                        ProgressHUD.showMessage("Cannot make a custom board, please try again")
+                        return
                     }
                 }
             }
+        }
+        if warningAlertController == nil {
+            // Cannot parse.
+            warningAlertController = UIAlertController(title: "QR code cannot be parsed, please try again", message: nil, preferredStyle: .Alert)
+            warningAlertController?.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: { (_) in
+                self.warningAlertController = nil
+            }))
+            presentViewController(warningAlertController!, animated: true, completion: nil)
         }
     }
     
