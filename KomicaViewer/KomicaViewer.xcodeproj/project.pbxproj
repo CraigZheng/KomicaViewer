@@ -30,6 +30,7 @@
 		44655D7A1D5AFDAB00229404 /* Forums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D791D5AFDAB00229404 /* Forums.swift */; };
 		447EF1C31D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */; };
 		448C1E781D76CE5D007187DB /* AdConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C1E771D76CE5D007187DB /* AdConfiguration.swift */; };
+		448C9DAC1D856D50009BFEE3 /* CustomForumManagerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C9DAB1D856D50009BFEE3 /* CustomForumManagerTableViewController.swift */; };
 		449B210C1D7D1A21006AA091 /* BlockedUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449B210B1D7D1A21006AA091 /* BlockedUserManager.swift */; };
 		44A65A971D5DBB0100A4DDE6 /* CPLoadFromNibView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A65A941D5DBB0100A4DDE6 /* CPLoadFromNibView.m */; };
 		44A65A981D5DBB0100A4DDE6 /* UIView+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A65A961D5DBB0100A4DDE6 /* UIView+Util.m */; };
@@ -131,6 +132,7 @@
 		44655D791D5AFDAB00229404 /* Forums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forums.swift; sourceTree = "<group>"; };
 		447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerBulkUpdateProtocol.swift; sourceTree = "<group>"; };
 		448C1E771D76CE5D007187DB /* AdConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdConfiguration.swift; sourceTree = "<group>"; };
+		448C9DAB1D856D50009BFEE3 /* CustomForumManagerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomForumManagerTableViewController.swift; sourceTree = "<group>"; };
 		449B210B1D7D1A21006AA091 /* BlockedUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockedUserManager.swift; sourceTree = "<group>"; };
 		44A65A931D5DBB0100A4DDE6 /* CPLoadFromNibView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoadFromNibView.h; sourceTree = "<group>"; };
 		44A65A941D5DBB0100A4DDE6 /* CPLoadFromNibView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLoadFromNibView.m; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				44397D5E1D6942E7005B44AA /* SVWebViewProtocol.swift */,
 				44397D731D695D4D005B44AA /* AddForumTableViewController.swift */,
 				44397D751D695D65005B44AA /* ForumTextInputViewController.swift */,
+				448C9DAB1D856D50009BFEE3 /* CustomForumManagerTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 				448C1E781D76CE5D007187DB /* AdConfiguration.swift in Sources */,
 				44A65A971D5DBB0100A4DDE6 /* CPLoadFromNibView.m in Sources */,
 				44BD39801D5B5E180070E0CB /* ThreadTableViewController.swift in Sources */,
+				448C9DAC1D856D50009BFEE3 /* CustomForumManagerTableViewController.swift in Sources */,
 				44397D581D670A80005B44AA /* WebViewGuardDog.swift in Sources */,
 				44BD39861D5B74ED0070E0CB /* UIView+SuperCell.swift in Sources */,
 				449B210C1D7D1A21006AA091 /* BlockedUserManager.swift in Sources */,
