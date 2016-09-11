@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -307,7 +308,7 @@
                                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="shareQRCodeAction:" destination="mDc-n7-gOu" eventType="touchUpInside" id="2rL-Ai-8WU"/>
+                                                        <segue destination="JDE-zU-LX0" kind="show" identifier="showQRCode" id="5nX-xj-Sjl"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -468,6 +469,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1wc-q9-gRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1335" y="259"/>
+        </scene>
+        <!--Show ForumQR Code View Controller-->
+        <scene sceneID="XqS-nw-xVu">
+            <objects>
+                <viewController id="JDE-zU-LX0" customClass="ShowForumQRCodeViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ShP-Rc-0It"/>
+                        <viewControllerLayoutGuide type="bottom" id="3vh-FI-WEw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b6w-7j-g23">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xb4-ZH-e1g">
+                                <rect key="frame" x="0.0" y="102" width="320" height="320"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Xb4-ZH-e1g" secondAttribute="height" multiplier="1:1" id="zvp-NP-zpT"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3vh-FI-WEw" firstAttribute="top" secondItem="Xb4-ZH-e1g" secondAttribute="bottom" id="460-e3-O6e"/>
+                            <constraint firstItem="Xb4-ZH-e1g" firstAttribute="top" secondItem="ShP-Rc-0It" secondAttribute="bottom" id="ACi-fX-N8y"/>
+                            <constraint firstItem="Xb4-ZH-e1g" firstAttribute="leading" secondItem="b6w-7j-g23" secondAttribute="leading" id="Wba-uP-e9u"/>
+                            <constraint firstItem="Xb4-ZH-e1g" firstAttribute="centerY" secondItem="b6w-7j-g23" secondAttribute="centerY" id="ueD-0k-vq9"/>
+                            <constraint firstAttribute="trailing" secondItem="Xb4-ZH-e1g" secondAttribute="trailing" id="vCG-qk-nqQ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ACi-fX-N8y"/>
+                                <exclude reference="460-e3-O6e"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="qrImageView" destination="Xb4-ZH-e1g" id="3WU-et-wW6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pt7-LO-pdk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1335" y="983"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

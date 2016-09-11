@@ -53,6 +53,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
         static let index = "index"
         static let page = "page"
         static let response = "response"
+        static let showQRCode = "showQRCode"
     }
     
     // MARK: SVWebViewProtocol
@@ -101,6 +102,14 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
         }
     }
 
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        var should = true
+        if identifier == SegueIdentifier.showQRCode {
+            should = newForum.isReady()
+        }
+        return should
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let segueIdentifier = segue.identifier,
             let textInputViewController = segue.destinationViewController as? ForumTextInputViewController
@@ -123,6 +132,10 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
             default:
                 break
             }
+        } else if segue.identifier == SegueIdentifier.showQRCode,
+            let destinationViewController = segue.destinationViewController as? ShowForumQRCodeViewController
+        {
+            destinationViewController.forum = newForum
         }
     }
 
@@ -188,8 +201,6 @@ extension AddForumTableViewController {
         }
     }
     
-    @IBAction func shareQRCodeAction(sender: AnyObject) {
-    }
 }
 
 // MARK: ForumTextInputViewControllerProtocol
