@@ -142,6 +142,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     func reload() {
         addForumHelpButtonItem.enabled = Configuration.singleton.addForumHelpURL != nil
         let incompleted = "Incompleted..."
+        title = newForum.name
         nameDetailLabel.text = !(newForum.name ?? "").isEmpty ? newForum.name : incompleted
         indexDetailLabel.text = !(newForum.indexURL ?? "").isEmpty ? newForum.indexURL : incompleted
         pageDetailLabel.text = !(newForum.listURL ?? "").isEmpty ? newForum.listURL : incompleted
