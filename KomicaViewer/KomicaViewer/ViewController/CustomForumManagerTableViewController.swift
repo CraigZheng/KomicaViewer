@@ -57,7 +57,7 @@ extension CustomForumManagerTableViewController {
     }
     
     @IBAction func addButtonAction(sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: "Add Custom Forum", message: nil, preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: "Add a board...", message: nil, preferredStyle: .ActionSheet)
         alertController.addAction(UIAlertAction(title: "Manually", style: .Default, handler: { (_) in
             self.performSegueWithIdentifier(SegueIdentifier.addForum, sender: sender)
         }))

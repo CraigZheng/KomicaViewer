@@ -76,7 +76,8 @@ extension ForumQRScannerViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueIdentifier.addForum, let destinationViewController = segue.destinationViewController as? AddForumTableViewController {
-            
+            // Passing nil to the destination would cause the app to crash, so if capturedForum is nil, pass a new komica forum object to it.
+            destinationViewController.newForum = capturedForum ?? KomicaForum()
         }
     }
     

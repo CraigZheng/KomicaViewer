@@ -33,9 +33,9 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     @IBOutlet weak var parserPickerView: UIPickerView!
     @IBOutlet weak var addForumHelpButtonItem: UIBarButtonItem!
     
+    var newForum: KomicaForum!
     
     // MARK: Private.
-    private var newForum = KomicaForum()
     private let pausedForumKey = "pausedForumKey"
     private let parserTypes = KomicaForum.parserNames
     private struct SegueIdentifier {
@@ -61,12 +61,18 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let jsonString = NSUserDefaults.standardUserDefaults().objectForKey(pausedForumKey) as? String where !jsonString.isEmpty {
-            if let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding),
-                let rawDict = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: .AllowFragments) as? Dictionary<String, AnyObject>,
-                let jsonDict = rawDict
-            {
-                newForum = KomicaForum(jsonDict: jsonDict)
+        if newForum == nil {
+            // Restore from cache.
+            if let jsonString = NSUserDefaults.standardUserDefaults().objectForKey(pausedForumKey) as? String where !jsonString.isEmpty {
+                if let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding),
+                    let rawDict = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: .AllowFragments) as? Dictionary<String, AnyObject>,
+                    let jsonDict = rawDict
+                {
+                    newForum = KomicaForum(jsonDict: jsonDict)
+                }
+            } else {
+                // Cannot read from cache, create a new KomicaForum object.
+                newForum = KomicaForum()
             }
         }
         reload()
@@ -137,6 +143,8 @@ extension AddForumTableViewController {
             newForum.parserType = KomicaForum.parserTypes[parserPickerView.selectedRowInComponent(0)]
             Forums.addCustomForum(newForum)
             navigationController?.popToRootViewControllerAnimated(true)
+            // The forum has been added, reset the forum.
+            newForum = KomicaForum()
             // Remove the paused forum from the user default.
             NSUserDefaults.standardUserDefaults().removeObjectForKey(self.pausedForumKey)
             NSUserDefaults.standardUserDefaults().synchronize()
