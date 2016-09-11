@@ -136,7 +136,10 @@ extension AddForumTableViewController {
         } else {
             newForum.parserType = KomicaForum.parserTypes[parserPickerView.selectedRowInComponent(0)]
             Forums.addCustomForum(newForum)
-            navigationController?.popViewControllerAnimated(true)
+            navigationController?.popToRootViewControllerAnimated(true)
+            // Remove the paused forum from the user default.
+            NSUserDefaults.standardUserDefaults().removeObjectForKey(self.pausedForumKey)
+            NSUserDefaults.standardUserDefaults().synchronize()
             NSOperationQueue.mainQueue().addOperationWithBlock({
                 ProgressHUD.showMessage("\(self.newForum.name ?? "A new board") has been added")
             })
