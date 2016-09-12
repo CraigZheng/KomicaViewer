@@ -88,6 +88,19 @@ extension ForumQRScannerViewController {
     
 }
 
+// MARK: UI actions.
+
+extension ForumQRScannerViewController {
+    
+    @IBAction func loadFromLibraryAction(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func scanQRHelpBarButtonItemAction(sender: AnyObject) {
+        
+    }
+}
+
 // MARK: AVCaptureMetadataOutputObjectsDelegate
 extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     
