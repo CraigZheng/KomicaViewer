@@ -5,13 +5,16 @@
   "timeout": 20,
   "thumbnailWidth": 50,
   "remoteDebug": true,
-  "announcement": "",
+  "announcement": "If this app is crashing, please let me know by submitting a bug report.",
   "remoteActions": [
     {
-      "Contact Developer": "https://twitter.com/CRAIGZHENG"
+      "Contact Developer": "http://weibo.com/u/3868827431/"
     },
     {
       "Give a Review": "itms-apps://itunes.apple.com/app/id1143300746"
+    },
+    {
+      "Report a Bug": "https://www.wenjuan.com/s/VNjMNjm/"
     },
     {
       "My Other Apps": "https://itunes.apple.com/au/developer/haozheng-zheng/id530032325?mt=8"
