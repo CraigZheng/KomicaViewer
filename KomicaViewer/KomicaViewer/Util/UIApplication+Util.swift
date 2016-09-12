@@ -17,4 +17,8 @@ extension UIApplication {
         }
         return topViewController
     }
+    
+    class var appName: String {
+        return NSBundle.mainBundle().infoDictionary!["CFBundleDisplayName"] as! String
+    }
 }

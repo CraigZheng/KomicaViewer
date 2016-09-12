@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mDc-n7-gOu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BjG-cC-Mhd">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -15,23 +16,92 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="mDc-n7-gOu" kind="relationship" relationship="rootViewController" id="e2n-GA-KlS"/>
+                        <segue destination="BjG-cC-Mhd" kind="relationship" relationship="rootViewController" id="fXV-EL-xaF"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jRs-H0-d4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="27" y="259"/>
+            <point key="canvasLocation" x="-473" y="259"/>
+        </scene>
+        <!--Custom Boards-->
+        <scene sceneID="O4G-o2-Ksm">
+            <objects>
+                <tableViewController id="BjG-cC-Mhd" customClass="CustomForumManagerTableViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8ZK-lA-N71">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customForumCell" textLabel="irs-32-5hI" detailTextLabel="fO2-HZ-o3k" style="IBUITableViewCellStyleValue1" id="Esk-42-N2W">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Esk-42-N2W" id="Wsv-y8-oEd">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="irs-32-5hI">
+                                            <rect key="frame" x="15" y="12" width="31.5" height="19.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fO2-HZ-o3k">
+                                            <rect key="frame" x="263.5" y="12" width="41.5" height="19.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="1" green="1" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="mDc-n7-gOu" kind="show" identifier="showForum" id="7b0-R6-JM0"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="BjG-cC-Mhd" id="5Fc-dA-QhW"/>
+                            <outlet property="delegate" destination="BjG-cC-Mhd" id="D9W-0f-y1a"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems>
+                        <barButtonItem systemItem="edit" id="sG2-1p-Pcf">
+                            <connections>
+                                <action selector="editButtonAction:" destination="BjG-cC-Mhd" id="qmq-Oc-5H1"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Custom Boards" id="M2d-Tl-bLB">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="oK5-b1-M1c">
+                            <connections>
+                                <action selector="addButtonAction:" destination="BjG-cC-Mhd" id="v7c-cs-I9F"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <connections>
+                        <segue destination="mDc-n7-gOu" kind="show" identifier="addForum" id="bdJ-Bw-15N"/>
+                        <segue destination="qo9-m1-d3I" kind="show" identifier="scanQRCode" id="HG1-5A-Z1f"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bso-IO-eEe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-9" y="243"/>
         </scene>
         <!--Custom Board-->
         <scene sceneID="B3f-13-GbE">
             <objects>
                 <tableViewController id="mDc-n7-gOu" customClass="AddForumTableViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="YFb-cc-xMA">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="VnL-IU-iBW">
-                            <rect key="frame" x="0.0" y="449" width="320" height="5"/>
+                            <rect key="frame" x="0.0" y="509" width="320" height="5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
@@ -224,6 +294,38 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="Cr7-w2-k7f" userLabel="QR Button">
+                                        <rect key="frame" x="0.0" y="449" width="320" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cr7-w2-k7f" id="pKH-oj-EMl">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJl-sV-FVl" customClass="RoundCornerBorderedButton" customModule="KomicaViewer" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="8" width="280" height="43.5"/>
+                                                    <color key="backgroundColor" red="1" green="0.67785071340000003" blue="0.17108253700000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Share QR Code">
+                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="JDE-zU-LX0" kind="show" identifier="showQRCode" id="5nX-xj-Sjl"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qJl-sV-FVl" firstAttribute="top" secondItem="pKH-oj-EMl" secondAttribute="top" constant="8" id="DL1-yT-qj5"/>
+                                                <constraint firstItem="qJl-sV-FVl" firstAttribute="leading" secondItem="pKH-oj-EMl" secondAttribute="leading" constant="20" symbolic="YES" id="K9O-It-yc6"/>
+                                                <constraint firstItem="qJl-sV-FVl" firstAttribute="leading" secondItem="pKH-oj-EMl" secondAttribute="leading" constant="8" id="Ucw-N0-KPz"/>
+                                                <constraint firstAttribute="trailing" secondItem="qJl-sV-FVl" secondAttribute="trailing" constant="20" symbolic="YES" id="w8Q-74-b06"/>
+                                                <constraint firstAttribute="bottom" secondItem="qJl-sV-FVl" secondAttribute="bottom" constant="8" id="wpE-b2-DnO"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Ucw-N0-KPz"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -241,6 +343,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="zUS-g3-0yj" id="KRN-Gf-Fv0"/>
+                        <outlet property="addButtonTableViewCell" destination="Qg9-mZ-pZ8" id="jVn-jJ-tYE"/>
                         <outlet property="addForumHelpButtonItem" destination="jRF-fL-0cu" id="aNV-Uo-pog"/>
                         <outlet property="indexDetailLabel" destination="lHX-HB-XWd" id="Mnh-7Q-75q"/>
                         <outlet property="indexLabel" destination="AdF-L4-9cv" id="Giv-ti-eUM"/>
@@ -250,13 +354,50 @@
                         <outlet property="pageStyleLabel" destination="Kqg-eZ-2v3" id="5Wm-QL-cpM"/>
                         <outlet property="pageURLLabel" destination="i4U-63-Ygn" id="Ehu-ip-8f4"/>
                         <outlet property="parserPickerView" destination="iTS-1x-wxa" id="m1v-1g-SGz"/>
+                        <outlet property="qrButtonTableViewCell" destination="Cr7-w2-k7f" id="HJ0-zc-1D5"/>
+                        <outlet property="resetButton" destination="1sJ-tV-vsX" id="dg1-9e-9EC"/>
                         <outlet property="responseDetailLabel" destination="Khn-lq-Sod" id="fmp-gF-Dj9"/>
                         <outlet property="responseURLLabel" destination="8qD-Vm-50c" id="EWR-OF-gYg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zhZ-u0-9mR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="560" y="259"/>
+            <point key="canvasLocation" x="890" y="243"/>
+        </scene>
+        <!--Scan QR Code-->
+        <scene sceneID="VGR-rh-vXN">
+            <objects>
+                <viewController id="qo9-m1-d3I" customClass="ForumQRScannerViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sqb-Qc-E4T"/>
+                        <viewControllerLayoutGuide type="bottom" id="gKI-gA-llb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cAg-mI-qFz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNp-g3-8lu">
+                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MNp-g3-8lu" firstAttribute="leading" secondItem="cAg-mI-qFz" secondAttribute="leading" id="056-NX-IgB"/>
+                            <constraint firstAttribute="trailing" secondItem="MNp-g3-8lu" secondAttribute="trailing" id="RuO-Jq-rNE"/>
+                            <constraint firstItem="MNp-g3-8lu" firstAttribute="top" secondItem="sqb-Qc-E4T" secondAttribute="bottom" id="XR8-Dc-3nI"/>
+                            <constraint firstItem="gKI-gA-llb" firstAttribute="top" secondItem="MNp-g3-8lu" secondAttribute="bottom" id="jTI-rf-u6s"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Scan QR Code" id="u5v-jD-3OE"/>
+                    <connections>
+                        <outlet property="cameraPreviewView" destination="MNp-g3-8lu" id="RNP-89-LJi"/>
+                        <segue destination="mDc-n7-gOu" kind="show" identifier="addForum" id="b1k-dL-5tt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="52O-8o-dip" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="449" y="642"/>
         </scene>
         <!--Enter Details-->
         <scene sceneID="sMk-07-D0a">
@@ -267,11 +408,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Rf1-HO-FwN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Zwj-ux-0V7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2Zg-V9-1Om">
-                                <rect key="frame" x="0.0" y="101" width="320" height="467"/>
+                                <rect key="frame" x="0.0" y="101" width="320" height="423"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -280,7 +421,7 @@
                                 </connections>
                             </textView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OF6-Qz-tep">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="480" width="320" height="44"/>
                                 <items>
                                     <barButtonItem systemItem="flexibleSpace" id="Yfv-jI-JCA"/>
                                     <barButtonItem title="Insert" id="3QC-MN-ah7">
@@ -319,6 +460,7 @@
                     <navigationItem key="navigationItem" title="Enter Details" id="eb2-lY-kNt"/>
                     <connections>
                         <outlet property="insertBarButtonItem" destination="3QC-MN-ah7" id="bZe-37-yW7"/>
+                        <outlet property="saveBarButtonItem" destination="sFk-Wf-Oe8" id="Em0-0U-gRa"/>
                         <outlet property="textView" destination="2Zg-V9-1Om" id="5Tw-dt-W5p"/>
                         <outlet property="textViewBottomConstraint" destination="pwu-As-iIO" id="Rjz-7x-gOG"/>
                         <outlet property="toolbarBottomConstraint" destination="Her-ER-yWH" id="vJO-mg-Buk"/>
@@ -326,10 +468,53 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1wc-q9-gRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1009" y="259"/>
+            <point key="canvasLocation" x="1335" y="259"/>
+        </scene>
+        <!--Show ForumQR Code View Controller-->
+        <scene sceneID="XqS-nw-xVu">
+            <objects>
+                <viewController id="JDE-zU-LX0" customClass="ShowForumQRCodeViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ShP-Rc-0It"/>
+                        <viewControllerLayoutGuide type="bottom" id="3vh-FI-WEw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b6w-7j-g23">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xb4-ZH-e1g">
+                                <rect key="frame" x="0.0" y="102" width="320" height="320"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Xb4-ZH-e1g" secondAttribute="height" multiplier="1:1" id="zvp-NP-zpT"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3vh-FI-WEw" firstAttribute="top" secondItem="Xb4-ZH-e1g" secondAttribute="bottom" id="460-e3-O6e"/>
+                            <constraint firstItem="Xb4-ZH-e1g" firstAttribute="top" secondItem="ShP-Rc-0It" secondAttribute="bottom" id="ACi-fX-N8y"/>
+                            <constraint firstItem="Xb4-ZH-e1g" firstAttribute="leading" secondItem="b6w-7j-g23" secondAttribute="leading" id="Wba-uP-e9u"/>
+                            <constraint firstItem="Xb4-ZH-e1g" firstAttribute="centerY" secondItem="b6w-7j-g23" secondAttribute="centerY" id="ueD-0k-vq9"/>
+                            <constraint firstAttribute="trailing" secondItem="Xb4-ZH-e1g" secondAttribute="trailing" id="vCG-qk-nqQ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ACi-fX-N8y"/>
+                                <exclude reference="460-e3-O6e"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="qrImageView" destination="Xb4-ZH-e1g" id="3WU-et-wW6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pt7-LO-pdk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1335" y="983"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="nzl-mP-UF6"/>
+        <segue reference="1aO-re-ZKI"/>
+        <segue reference="7b0-R6-JM0"/>
     </inferredMetricsTieBreakers>
 </document>

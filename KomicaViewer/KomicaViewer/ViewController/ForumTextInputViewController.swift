@@ -17,7 +17,9 @@ class ForumTextInputViewController: UIViewController {
     @IBOutlet weak var textViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var insertBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var saveBarButtonItem: UIBarButtonItem!
     
+    var allowEditing = true
     var delegate: ForumTextInputViewControllerProtocol?
     var prefilledString: String?
     var pageSpecifier: String?
@@ -43,9 +45,15 @@ class ForumTextInputViewController: UIViewController {
         // Keyboard events observer.
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ForumTextInputViewController.handlekeyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ForumTextInputViewController.handleKeyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        textView.becomeFirstResponder()
+        // Configure the text view.
         insertBarButtonItem.enabled = pageSpecifier?.isEmpty == false ?? false
-
+        if !allowEditing {
+            textView.editable = false
+            insertBarButtonItem.enabled = false
+            saveBarButtonItem.enabled = false
+        } else {
+            textView.becomeFirstResponder()
+        }
     }
 
 }

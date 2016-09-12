@@ -18,6 +18,11 @@ enum ForumField: String {
     case parserType = "Page Style"
 }
 
+enum AddForumViewControllerType {
+    case readonly
+    case edit
+}
+
 class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     
     // MARK: UI elements.
@@ -32,10 +37,15 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     @IBOutlet weak var responseDetailLabel: UILabel!
     @IBOutlet weak var parserPickerView: UIPickerView!
     @IBOutlet weak var addForumHelpButtonItem: UIBarButtonItem!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var addButtonTableViewCell: UITableViewCell!
+    @IBOutlet weak var qrButtonTableViewCell: UITableViewCell!
     
+    var newForum: KomicaForum!
+    var displayType = AddForumViewControllerType.edit
     
     // MARK: Private.
-    private var newForum = KomicaForum()
     private let pausedForumKey = "pausedForumKey"
     private let parserTypes = KomicaForum.parserNames
     private struct SegueIdentifier {
@@ -43,6 +53,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
         static let index = "index"
         static let page = "page"
         static let response = "response"
+        static let showQRCode = "showQRCode"
     }
     
     // MARK: SVWebViewProtocol
@@ -61,12 +72,18 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let jsonString = NSUserDefaults.standardUserDefaults().objectForKey(pausedForumKey) as? String where !jsonString.isEmpty {
-            if let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding),
-                let rawDict = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: .AllowFragments) as? Dictionary<String, AnyObject>,
-                let jsonDict = rawDict
-            {
-                newForum = KomicaForum(jsonDict: jsonDict)
+        if newForum == nil {
+            // Restore from cache.
+            if let jsonString = NSUserDefaults.standardUserDefaults().objectForKey(pausedForumKey) as? String where !jsonString.isEmpty {
+                if let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding),
+                    let rawDict = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: .AllowFragments) as? Dictionary<String, AnyObject>,
+                    let jsonDict = rawDict
+                {
+                    newForum = KomicaForum(jsonDict: jsonDict)
+                }
+            } else {
+                // Cannot read from cache, create a new KomicaForum object.
+                newForum = KomicaForum()
             }
         }
         reload()
@@ -74,7 +91,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     
     deinit {
         // Save the incompleted forum to NSUserDefaults.
-        if newForum.isModified() {
+        if displayType == .edit && newForum.isModified() {
             if newForum.parserType == nil {
                 newForum.parserType = KomicaForum.parserTypes[parserPickerView.selectedRowInComponent(0)]
             }
@@ -85,29 +102,47 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
         }
     }
 
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        var should = true
+        if identifier == SegueIdentifier.showQRCode {
+            should = newForum.isReady()
+        }
+        return should
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let segueIdentifier = segue.identifier,
             let textInputViewController = segue.destinationViewController as? ForumTextInputViewController
         {
             textInputViewController.delegate = self
+            textInputViewController.allowEditing = displayType == .edit
             switch segueIdentifier {
             case SegueIdentifier.name:
                 textInputViewController.field = ForumField.name
+                textInputViewController.prefilledString = newForum.name
             case SegueIdentifier.index:
                 textInputViewController.field = ForumField.indexURL
+                textInputViewController.prefilledString = newForum.indexURL
             case SegueIdentifier.page:
                 textInputViewController.field = ForumField.listURL
+                textInputViewController.prefilledString = newForum.listURL
             case SegueIdentifier.response:
                 textInputViewController.field = ForumField.responseURL
+                textInputViewController.prefilledString = newForum.responseURL
             default:
                 break
             }
+        } else if segue.identifier == SegueIdentifier.showQRCode,
+            let destinationViewController = segue.destinationViewController as? ShowForumQRCodeViewController
+        {
+            destinationViewController.forum = newForum
         }
     }
 
     func reload() {
         addForumHelpButtonItem.enabled = Configuration.singleton.addForumHelpURL != nil
         let incompleted = "Incompleted..."
+        title = newForum.name
         nameDetailLabel.text = !(newForum.name ?? "").isEmpty ? newForum.name : incompleted
         indexDetailLabel.text = !(newForum.indexURL ?? "").isEmpty ? newForum.indexURL : incompleted
         pageDetailLabel.text = !(newForum.listURL ?? "").isEmpty ? newForum.listURL : incompleted
@@ -117,6 +152,8 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
              selectRow = KomicaForum.parserTypes.indexOf({ $0 == parserType }) ?? 0
         }
         parserPickerView.selectRow(selectRow, inComponent: 0, animated: false)
+        addButton.enabled = displayType == .edit
+        resetButton.enabled = displayType == .edit
     }
 }
 
@@ -136,7 +173,12 @@ extension AddForumTableViewController {
         } else {
             newForum.parserType = KomicaForum.parserTypes[parserPickerView.selectedRowInComponent(0)]
             Forums.addCustomForum(newForum)
-            navigationController?.popViewControllerAnimated(true)
+            navigationController?.popToRootViewControllerAnimated(true)
+            // The forum has been added, reset the forum.
+            newForum = KomicaForum()
+            // Remove the paused forum from the user default.
+            NSUserDefaults.standardUserDefaults().removeObjectForKey(self.pausedForumKey)
+            NSUserDefaults.standardUserDefaults().synchronize()
             NSOperationQueue.mainQueue().addOperationWithBlock({
                 ProgressHUD.showMessage("\(self.newForum.name ?? "A new board") has been added")
             })
@@ -159,6 +201,7 @@ extension AddForumTableViewController {
             topViewController.presentViewController(alertController, animated: true, completion: nil)
         }
     }
+    
 }
 
 // MARK: ForumTextInputViewControllerProtocol
@@ -203,7 +246,23 @@ extension AddForumTableViewController: UIPickerViewDelegate, UIPickerViewDataSou
     }
 }
 
-private extension KomicaForum {
+// MARK: UITableViewDelegate
+extension AddForumTableViewController {
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        // When the display type is editing, hide QR button.
+        // When the display type is readyonly, hide the add/reset buttons.
+        if (displayType == .edit && cell == qrButtonTableViewCell) ||
+            (displayType == .readonly && cell == addButtonTableViewCell) {
+            return 0
+        }
+        return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+    }
+    
+}
+
+extension KomicaForum {
     func isReady() -> Bool {
         var isReady = true
         if (name ?? "").isEmpty
