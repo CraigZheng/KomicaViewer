@@ -33,7 +33,15 @@ extension ThreadTableViewCell {
             } else {
                 alertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .ActionSheet)
                 if let alertController = alertController {
-                    let copyAction = UIAlertAction(title: "Copy Content", style: .Default) { (_) in
+                    let copyIDAction = UIAlertAction(title: "Copy ID", style: .Default) { (_) in
+                        if let text = self.textLabel?.text {
+                            UIPasteboard.generalPasteboard().string = text
+                            ProgressHUD.showMessage("ID Copied")
+                        }
+                        // Set alertController to nil, so this cell is ready for another alertController.
+                        self.alertController = nil
+                    }
+                    let copyContentAction = UIAlertAction(title: "Copy Content", style: .Default) { (_) in
                         if let text = self.textView?.text {
                             UIPasteboard.generalPasteboard().string = text
                             ProgressHUD.showMessage("Content Copied")
@@ -71,7 +79,8 @@ extension ThreadTableViewCell {
                             }
                         }
                     }
-                    alertController.addAction(copyAction)
+                    alertController.addAction(copyIDAction)
+                    alertController.addAction(copyContentAction)
                     if let blockUserAction = blockUserAction {
                         alertController.addAction(blockUserAction)
                     }
