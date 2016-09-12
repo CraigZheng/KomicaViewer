@@ -24,6 +24,19 @@ class CustomForumManagerTableViewController: UITableViewController {
         super.viewDidLoad()
 
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setToolbarHidden(false, animated: animated)
+        // Colours.
+        self.navigationController?.toolbar.barTintColor = self.navigationController?.navigationBar.barTintColor
+        self.navigationController?.toolbar.tintColor = self.navigationController?.navigationBar.tintColor
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setToolbarHidden(true, animated: animated)
+    }
 
     // MARK: - Table view data source
 
@@ -45,6 +58,16 @@ class CustomForumManagerTableViewController: UITableViewController {
             }
         }
         return cell
+    }
+    
+    // MARK: UITableView delegate
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == 0 && editingStyle == .Delete {
+            Forums.customForumGroup.forums?.removeAtIndex(indexPath.row)
+            Forums.saveCustomForums()
+            tableView.reloadData()
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
