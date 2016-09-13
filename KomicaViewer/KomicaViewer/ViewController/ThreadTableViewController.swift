@@ -214,12 +214,41 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate
             let cell = sender.superCell(),
             let indexPath = tableView.indexPathForCell(cell)
         {
-            // Present
-            _photoBrowser = nil
-            if let index = imageThreads.indexOf(threads[indexPath.row]) {
-                photoBrowser.setCurrentPhotoIndex(UInt(index))
+            if threads[indexPath.row].videoLinks?.isEmpty == false, let videoLink = threads[indexPath.row].videoLinks?.first
+            {
+                // When image is available, allow selecting either image or video.
+                let openMediaAlertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .ActionSheet)
+                if threads[indexPath.row].imageURL != nil {
+                    openMediaAlertController.addAction(UIAlertAction(title: "Open Image", style: .Default, handler: { (_) in
+                        self.openImageWithIndex(indexPath.row)
+                    }))
+                }
+                openMediaAlertController.addAction(UIAlertAction(title: "Video: \(videoLink)", style: .Default, handler: { (_) in
+                    self.openVideoWithLink(videoLink)
+                }))
+                openMediaAlertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                openMediaAlertController.popoverPresentationController?.sourceView = view
+                openMediaAlertController.popoverPresentationController?.sourceRect = view.bounds
+                presentViewController(openMediaAlertController, animated: true, completion: nil)
+            } else {
+                openImageWithIndex(indexPath.row)
             }
-            navigationController?.pushViewController(photoBrowser, animated:true)
+        }
+    }
+    
+    private func openImageWithIndex(index: Int) {
+        // Present
+        _photoBrowser = nil
+        if let index = imageThreads.indexOf(threads[index]) {
+            photoBrowser.setCurrentPhotoIndex(UInt(index))
+        }
+        navigationController?.pushViewController(photoBrowser, animated:true)
+    }
+    
+    private func openVideoWithLink(link: String) {
+        if let videoURL = NSURL(string: link) where UIApplication.sharedApplication().canOpenURL(videoURL)
+        {
+            UIApplication.sharedApplication().openURL(videoURL)
         }
     }
     

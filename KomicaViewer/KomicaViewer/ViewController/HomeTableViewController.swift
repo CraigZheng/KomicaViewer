@@ -94,19 +94,22 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     private var selectedPhoto: MWPhoto?
     private var originalContentInset: UIEdgeInsets?
     private var photoBrowser: MWPhotoBrowser {
-        let photoBrowser = MWPhotoBrowser(delegate: self)
-        photoBrowser.displayNavArrows = true; // Whether to display left and right nav arrows on toolbar (defaults to false)
-        photoBrowser.displaySelectionButtons = false; // Whether selection buttons are shown on each image (defaults to false)
-        photoBrowser.zoomPhotosToFill = false; // Images that almost fill the screen will be initially zoomed to fill (defaults to true)
-        photoBrowser.alwaysShowControls = false; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to false)
-        photoBrowser.enableGrid = true; // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to true)
-        photoBrowser.startOnGrid = false; // Whether to start on the grid of thumbnails instead of the first photo (defaults to false)
-        photoBrowser.delayToHideElements = UInt(8);
-        photoBrowser.enableSwipeToDismiss = false; // dont dismiss
-        photoBrowser.displayActionButton = true;
-        photoBrowser.hidesBottomBarWhenPushed = true;
-        return photoBrowser
+        if _photoBrowser == nil {
+            _photoBrowser = MWPhotoBrowser(delegate: self)
+            _photoBrowser!.displayNavArrows = true; // Whether to display left and right nav arrows on toolbar (defaults to false)
+            _photoBrowser!.displaySelectionButtons = false; // Whether selection buttons are shown on each image (defaults to false)
+            _photoBrowser!.zoomPhotosToFill = false; // Images that almost fill the screen will be initially zoomed to fill (defaults to true)
+            _photoBrowser!.alwaysShowControls = false; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to false)
+            _photoBrowser!.enableGrid = true; // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to true)
+            _photoBrowser!.startOnGrid = false; // Whether to start on the grid of thumbnails instead of the first photo (defaults to false)
+            _photoBrowser!.delayToHideElements = UInt(8);
+            _photoBrowser!.enableSwipeToDismiss = false; // dont dismiss
+            _photoBrowser!.displayActionButton = true;
+            _photoBrowser!.hidesBottomBarWhenPushed = true;
+        }
+        return _photoBrowser!
     }
+    private var _photoBrowser: MWPhotoBrowser?
     private var pageIndex = 0
     private let showThreadSegue = "showThread"
     
@@ -203,12 +206,43 @@ extension HomeTableViewController: MWPhotoBrowserDelegate {
     @IBAction func tapOnImageView(sender: AnyObject) {
         if let sender = sender as? UIView,
             let cell = sender.superCell(),
-            let indexPath = tableView.indexPathForCell(cell),
-            let imageURL = threads[indexPath.row].imageURL
+            let indexPath = tableView.indexPathForCell(cell)
         {
+            if threads[indexPath.row].videoLinks?.isEmpty == false, let videoLink = threads[indexPath.row].videoLinks?.first
+            {
+                // When image is available, allow selecting either image or video.
+                let openMediaAlertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .ActionSheet)
+                if threads[indexPath.row].imageURL != nil {
+                    openMediaAlertController.addAction(UIAlertAction(title: "Open Image", style: .Default, handler: { (_) in
+                        self.openImageWithIndex(indexPath.row)
+                    }))
+                }
+                openMediaAlertController.addAction(UIAlertAction(title: "Video: \(videoLink)", style: .Default, handler: { (_) in
+                    self.openVideoWithLink(videoLink)
+                }))
+                openMediaAlertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                openMediaAlertController.popoverPresentationController?.sourceView = view
+                openMediaAlertController.popoverPresentationController?.sourceRect = view.bounds
+                presentViewController(openMediaAlertController, animated: true, completion: nil)
+            } else {
+                openImageWithIndex(indexPath.row)
+            }
+        }
+    }
+    
+    private func openImageWithIndex(index: Int) {
+        // Present
+        _photoBrowser = nil
+        if let imageURL = threads[index].imageURL {
             selectedPhoto = MWPhoto(URL: imageURL)
-            // Present
-            navigationController?.pushViewController(photoBrowser, animated:true)
+        }
+        navigationController?.pushViewController(photoBrowser, animated:true)
+    }
+    
+    private func openVideoWithLink(link: String) {
+        if let videoURL = NSURL(string: link) where UIApplication.sharedApplication().canOpenURL(videoURL)
+        {
+            UIApplication.sharedApplication().openURL(videoURL)
         }
     }
     
