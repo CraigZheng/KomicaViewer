@@ -133,6 +133,7 @@ extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
         {
             if (readableObject.type == AVMetadataObjectTypeQRCode) {
                 if parseJsonString(readableObject.stringValue) {
+                    captureSession?.stopRunning()
                     return
                 }
             }
