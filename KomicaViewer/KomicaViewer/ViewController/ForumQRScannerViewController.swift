@@ -101,7 +101,11 @@ extension ForumQRScannerViewController: UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func scanQRHelpBarButtonItemAction(sender: AnyObject) {
-        
+        if let scanForumQRHelpURL = Configuration.singleton.scanForumQRHelpURL
+        where UIApplication.sharedApplication().canOpenURL(scanForumQRHelpURL)
+        {
+            UIApplication.sharedApplication().openURL(scanForumQRHelpURL)
+        }
     }
     
     // MARK: UIImagePickerControllerDelegate
