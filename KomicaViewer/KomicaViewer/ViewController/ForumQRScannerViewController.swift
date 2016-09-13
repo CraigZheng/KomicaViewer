@@ -90,14 +90,31 @@ extension ForumQRScannerViewController {
 
 // MARK: UI actions.
 
-extension ForumQRScannerViewController {
+extension ForumQRScannerViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBAction func loadFromLibraryAction(sender: AnyObject) {
-        
+        let picker = UIImagePickerController()
+        picker.allowsEditing = false
+        picker.sourceType = .PhotoLibrary
+        picker.delegate = self
+        presentViewController(picker, animated: true, completion: nil)
     }
     
     @IBAction func scanQRHelpBarButtonItemAction(sender: AnyObject) {
         
+    }
+    
+    // MARK: UIImagePickerControllerDelegate
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage,
+            let ciImage = CIImage(image: pickedImage)
+        {
+            let parsedResult = performQRCodeDetection(ciImage)
+            if let last = parsedResult.last {
+                parseJsonString(last)
+            }
+        }
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
@@ -109,16 +126,8 @@ extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
             let readableObject = lastMetadataObject as? AVMetadataMachineReadableCodeObject
         {
             if (readableObject.type == AVMetadataObjectTypeQRCode) {
-                // Construct a forum object with the scanned result.
-                if let jsonData = readableObject.stringValue.dataUsingEncoding(NSUTF8StringEncoding),
-                    let jsonDict = (try? NSJSONSerialization.JSONObjectWithData(jsonData,
-                                                                               options: .AllowFragments)) as? [String: AnyObject]
-                {
-                    capturedForum = KomicaForum(jsonDict: jsonDict)
-                    if ((capturedForum?.isReady()) != nil) {
-                        performSegueWithIdentifier(SegueIdentifier.addForum, sender: nil)
-                        return
-                    }
+                if parseJsonString(readableObject.stringValue) {
+                    return
                 }
             }
         }
@@ -132,39 +141,37 @@ extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
         }
     }
     
+    func parseJsonString(jsonString: String) -> Bool {
+        // Construct a forum object with the scanned result.
+        if let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding),
+            let jsonDict = (try? NSJSONSerialization.JSONObjectWithData(jsonData,
+                options: .AllowFragments)) as? [String: AnyObject]
+            where !jsonString.isEmpty
+        {
+            capturedForum = KomicaForum(jsonDict: jsonDict)
+            if ((capturedForum?.isReady()) != nil) {
+                performSegueWithIdentifier(SegueIdentifier.addForum, sender: nil)
+                return true
+            }
+        }
+        return false
+    }
+    
 }
 
 // MARK: Read from library
 extension ForumQRScannerViewController {
-    // Shamelessly copied from http://stackoverflow.com/questions/35956538/how-to-read-qr-code-from-static-image
-    func performQRCodeDetection(image: CIImage) -> (outImage: CIImage?, decode: String) {
-        var resultImage: CIImage?
-        var decode = ""
-        let detector = CIDetector(ofType: CIDetectorTypeRectangle, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh, CIDetectorAspectRatio: 1.0])
+    // Shamelessly copied from http://stackoverflow.com/questions/35956538/how-to-read-qr-code-from-static-image and modified to my need.
+    func performQRCodeDetection(image: CIImage) -> [String] {
+        let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh, CIDetectorAspectRatio: 1.0])
         let features = detector.featuresInImage(image)
-        for feature in features as! [CIQRCodeFeature] {
-            resultImage = drawHighlightOverlayForPoints(image,
-                                                        topLeft: feature.topLeft,
-                                                        topRight: feature.topRight,
-                                                        bottomLeft: feature.bottomLeft,
-                                                        bottomRight: feature.bottomRight)
-            decode = feature.messageString
+        var strings = [String]()
+        features.forEach { feature in
+            if let feature = feature as? CIQRCodeFeature {
+                strings.append(feature.messageString)
+            }
         }
-        return (resultImage, decode)
+        return strings
     }
     
-    func drawHighlightOverlayForPoints(image: CIImage, topLeft: CGPoint, topRight: CGPoint,
-                                       bottomLeft: CGPoint, bottomRight: CGPoint) -> CIImage {
-        var overlay = CIImage(color: CIColor(red: 1.0, green: 0, blue: 0, alpha: 0.5))
-        overlay = overlay.imageByCroppingToRect(image.extent)
-        overlay = overlay.imageByApplyingFilter("CIPerspectiveTransformWithExtent",
-                                                withInputParameters: [
-                                                    "inputExtent": CIVector(CGRect: image.extent),
-                                                    "inputTopLeft": CIVector(CGPoint: topLeft),
-                                                    "inputTopRight": CIVector(CGPoint: topRight),
-                                                    "inputBottomLeft": CIVector(CGPoint: bottomLeft),
-                                                    "inputBottomRight": CIVector(CGPoint: bottomRight)
-            ])
-        return overlay.imageByCompositingOverImage(image)
-    }
 }
