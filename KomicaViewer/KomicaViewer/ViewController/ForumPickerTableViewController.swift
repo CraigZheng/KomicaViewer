@@ -68,7 +68,7 @@ class ForumPickerTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 0 && editingStyle == .Delete {
+        if indexPath.section == 0 && editingStyle == .Delete {
             Forums.customForumGroup.forums?.removeAtIndex(indexPath.row)
             Forums.saveCustomForums()
             tableView.reloadData()
