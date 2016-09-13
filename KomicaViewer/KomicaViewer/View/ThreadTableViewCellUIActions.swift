@@ -33,7 +33,7 @@ extension ThreadTableViewCell {
             } else {
                 alertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .ActionSheet)
                 if let alertController = alertController {
-                    let copyIDAction = UIAlertAction(title: "Copy ID", style: .Default) { (_) in
+                    let copyIDAction = UIAlertAction(title: "Copy ID: \(userID ?? "")", style: .Default) { (_) in
                         if let text = self.textLabel?.text {
                             UIPasteboard.generalPasteboard().string = text
                             ProgressHUD.showMessage("ID Copied")
@@ -58,11 +58,11 @@ extension ThreadTableViewCell {
                             }
                         })
                     }
-                    let openAction = UIAlertAction(title: "Open in Browser", style: .Default) { _ in
+                    let openAction = UIAlertAction(title: "Open Links", style: .Default) { _ in
                         self.alertController = nil
                         if !self.links.isEmpty {
                             // Secondary alert controller.
-                            let alertController = UIAlertController(title: "Which URL?", message: nil, preferredStyle: .ActionSheet)
+                            let alertController = UIAlertController(title: "Which Link?", message: nil, preferredStyle: .ActionSheet)
                             for link in self.links {
                                 let linkAction = UIAlertAction(title: link.absoluteString, style: .Default) { _ in
                                     if UIApplication.sharedApplication().canOpenURL(link) {
