@@ -18,6 +18,8 @@ class ThreadTableViewCell: UITableViewCell {
         static let warning = UIColor(red: 237/255.0, green: 8/255.0, blue: 25/255.0, alpha: 1.0)
         static let blocked = UIColor.lightGrayColor()
     }
+    private let defaultFont = UIFont.systemFontOfSize(17)
+    private let defaultTextColour = UIColor(red: 182/255.0, green: 78/255.0, blue: 4/255.0, alpha: 1.0)
     
     var shouldShowParasitePost = true
     var alertController: UIAlertController?
@@ -86,7 +88,22 @@ class ThreadTableViewCell: UITableViewCell {
             titleText += " " + UID
         }
         textLabel?.text = titleText
-        textView?.text = thread.content?.string
+        //
+        if let attributedString = thread.content,
+            let mutableAttributedString = thread.content?.mutableCopy() as? NSMutableAttributedString {
+            // Set the default font and colour.
+            mutableAttributedString.addAttributes([NSFontAttributeName: defaultFont, NSForegroundColorAttributeName: defaultTextColour],
+                                           range: NSMakeRange(0, mutableAttributedString.length))
+            // Add the font colour attributes back to the attributed string.
+            attributedString.enumerateAttribute(NSForegroundColorAttributeName,
+                                                inRange: NSMakeRange(0, attributedString.length),
+                                                options: [], usingBlock: { (attributeValue, range, stop) in
+                                                    if let attribute = attributeValue as? UIColor {
+                                                        mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: attribute, range: range)
+                                                    }
+            })
+            textView?.attributedText = mutableAttributedString
+        }
         if let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController
         {
             imageViewZeroHeight?.priority = 1
