@@ -19,7 +19,6 @@ class ThreadTableViewCell: UITableViewCell {
         static let blocked = UIColor.lightGrayColor()
     }
     private let defaultFont = UIFont.systemFontOfSize(17)
-    private let defaultTextColour = UIColor(red: 182/255.0, green: 78/255.0, blue: 4/255.0, alpha: 1.0)
     
     var shouldShowParasitePost = true
     var alertController: UIAlertController?
@@ -76,11 +75,8 @@ class ThreadTableViewCell: UITableViewCell {
         if BlockedUserManager.sharedManager.isUserIDBlocked(thread.UID ?? "") {
             thread = Thread()
             thread.UID = userID
-            thread.content = NSAttributedString(string: "Content Blocked\nTap and hold to unblock")
-            // Set the text colour of text view to block colour.
-            textView?.textColor = TextColour.blocked
-        } else {
-            textView?.textColor = TextColour.standard
+            // Set the text colour of attributed string to blocked colour.
+            thread.content = NSAttributedString(string: "Content Blocked\nTap and hold to unblock", attributes: [NSForegroundColorAttributeName: TextColour.blocked])
         }
         
         var titleText = (thread.ID ?? "")
@@ -92,7 +88,7 @@ class ThreadTableViewCell: UITableViewCell {
         if let attributedString = thread.content,
             let mutableAttributedString = thread.content?.mutableCopy() as? NSMutableAttributedString {
             // Set the default font and colour.
-            mutableAttributedString.addAttributes([NSFontAttributeName: defaultFont, NSForegroundColorAttributeName: defaultTextColour],
+            mutableAttributedString.addAttributes([NSFontAttributeName: defaultFont, NSForegroundColorAttributeName: TextColour.standard],
                                            range: NSMakeRange(0, mutableAttributedString.length))
             // Add the font colour attributes back to the attributed string.
             attributedString.enumerateAttribute(NSForegroundColorAttributeName,
