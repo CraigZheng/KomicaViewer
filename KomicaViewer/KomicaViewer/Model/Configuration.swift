@@ -29,6 +29,7 @@ class Configuration: NSObject {
     // MARK: public properties.
     var reportURL: NSURL?
     var addForumHelpURL: NSURL?
+    var scanForumQRHelpURL: NSURL?
     var remoteActions = [[String: String]]()
     var announcement: String?
     var updatedWithServer = false
@@ -82,6 +83,11 @@ class Configuration: NSObject {
             self.addForumHelpURL = NSURL(string: addForumHelpURL)
         } else {
             self.addForumHelpURL = nil
+        }
+        if let scanForumQRHelpURL = jsonDictionary["scanForumQRHelpURL"] as? String where !scanForumQRHelpURL.isEmpty {
+            self.scanForumQRHelpURL = NSURL(string: scanForumQRHelpURL)
+        } else {
+            self.scanForumQRHelpURL = nil
         }
     }
     
