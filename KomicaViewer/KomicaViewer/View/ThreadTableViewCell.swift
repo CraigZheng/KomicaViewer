@@ -104,7 +104,7 @@ class ThreadTableViewCell: UITableViewCell {
             })
             textView?.attributedText = mutableAttributedString
         }
-        if false, let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController
+        if let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController
         {
             imageViewZeroHeight?.priority = 1
             if SDWebImageManager.sharedManager().cachedImageExistsForURL(imageURL) {
