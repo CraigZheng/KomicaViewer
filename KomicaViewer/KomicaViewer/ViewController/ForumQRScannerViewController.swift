@@ -115,7 +115,9 @@ extension ForumQRScannerViewController: UIImagePickerControllerDelegate, UINavig
         {
             let parsedResult = performQRCodeDetection(ciImage)
             if let last = parsedResult.last {
-                parseJsonString(last)
+                if !parseJsonString(last) {
+                    ProgressHUD.showMessage("QR code cannot be parsed, please try again")
+                }
             }
         }
         dismissViewControllerAnimated(true, completion: nil)
