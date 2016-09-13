@@ -377,19 +377,50 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNp-g3-8lu">
-                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="320"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="MNp-g3-8lu" secondAttribute="height" multiplier="1:1" id="E4b-ps-8oQ"/>
+                                </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WvQ-T7-OTQ" customClass="RoundCornerBorderedButton" customModule="KomicaViewer" customModuleProvider="target">
+                                <rect key="frame" x="20" y="392" width="280" height="43.5"/>
+                                <color key="backgroundColor" red="1" green="0.67785071340000003" blue="0.17108253700000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="dj6-Yt-Lge"/>
+                                </constraints>
+                                <state key="normal" title="Load From Photo Library">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loadFromLibraryAction:" destination="qo9-m1-d3I" eventType="touchUpInside" id="kgZ-zV-4An"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="MNp-g3-8lu" firstAttribute="leading" secondItem="cAg-mI-qFz" secondAttribute="leading" id="056-NX-IgB"/>
+                            <constraint firstAttribute="trailing" secondItem="WvQ-T7-OTQ" secondAttribute="trailing" constant="20" symbolic="YES" id="Qfs-Ue-pL8"/>
                             <constraint firstAttribute="trailing" secondItem="MNp-g3-8lu" secondAttribute="trailing" id="RuO-Jq-rNE"/>
                             <constraint firstItem="MNp-g3-8lu" firstAttribute="top" secondItem="sqb-Qc-E4T" secondAttribute="bottom" id="XR8-Dc-3nI"/>
+                            <constraint firstItem="WvQ-T7-OTQ" firstAttribute="top" secondItem="MNp-g3-8lu" secondAttribute="bottom" constant="8" id="aNY-wN-N1L"/>
                             <constraint firstItem="gKI-gA-llb" firstAttribute="top" secondItem="MNp-g3-8lu" secondAttribute="bottom" id="jTI-rf-u6s"/>
+                            <constraint firstItem="gKI-gA-llb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WvQ-T7-OTQ" secondAttribute="bottom" constant="8" symbolic="YES" id="pn8-BZ-4b0"/>
+                            <constraint firstItem="WvQ-T7-OTQ" firstAttribute="leading" secondItem="cAg-mI-qFz" secondAttribute="leading" constant="20" symbolic="YES" id="uzX-eY-gMp"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="jTI-rf-u6s"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Scan QR Code" id="u5v-jD-3OE"/>
+                    <navigationItem key="navigationItem" title="Scan QR Code" id="u5v-jD-3OE">
+                        <barButtonItem key="rightBarButtonItem" title="?" id="LSe-cx-f6k">
+                            <connections>
+                                <action selector="scanQRHelpBarButtonItemAction:" destination="qo9-m1-d3I" id="gpb-dU-18x"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cameraPreviewView" destination="MNp-g3-8lu" id="RNP-89-LJi"/>
                         <segue destination="mDc-n7-gOu" kind="show" identifier="addForum" id="b1k-dL-5tt"/>
@@ -514,7 +545,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="b1k-dL-5tt"/>
         <segue reference="1aO-re-ZKI"/>
-        <segue reference="7b0-R6-JM0"/>
     </inferredMetricsTieBreakers>
 </document>

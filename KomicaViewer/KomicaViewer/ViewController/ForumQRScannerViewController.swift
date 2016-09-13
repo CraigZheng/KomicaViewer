@@ -88,6 +88,36 @@ extension ForumQRScannerViewController {
     
 }
 
+// MARK: UI actions.
+
+extension ForumQRScannerViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    @IBAction func loadFromLibraryAction(sender: AnyObject) {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = false
+        picker.sourceType = .PhotoLibrary
+        picker.delegate = self
+        presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    @IBAction func scanQRHelpBarButtonItemAction(sender: AnyObject) {
+        
+    }
+    
+    // MARK: UIImagePickerControllerDelegate
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage,
+            let ciImage = CIImage(image: pickedImage)
+        {
+            let parsedResult = performQRCodeDetection(ciImage)
+            if let last = parsedResult.last {
+                parseJsonString(last)
+            }
+        }
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
 // MARK: AVCaptureMetadataOutputObjectsDelegate
 extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     
@@ -96,16 +126,8 @@ extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
             let readableObject = lastMetadataObject as? AVMetadataMachineReadableCodeObject
         {
             if (readableObject.type == AVMetadataObjectTypeQRCode) {
-                // Construct a forum object with the scanned result.
-                if let jsonData = readableObject.stringValue.dataUsingEncoding(NSUTF8StringEncoding),
-                    let jsonDict = (try? NSJSONSerialization.JSONObjectWithData(jsonData,
-                                                                               options: .AllowFragments)) as? [String: AnyObject]
-                {
-                    capturedForum = KomicaForum(jsonDict: jsonDict)
-                    if ((capturedForum?.isReady()) != nil) {
-                        performSegueWithIdentifier(SegueIdentifier.addForum, sender: nil)
-                        return
-                    }
+                if parseJsonString(readableObject.stringValue) {
+                    return
                 }
             }
         }
@@ -117,6 +139,39 @@ extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
             }))
             presentViewController(warningAlertController!, animated: true, completion: nil)
         }
+    }
+    
+    func parseJsonString(jsonString: String) -> Bool {
+        // Construct a forum object with the scanned result.
+        if let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding),
+            let jsonDict = (try? NSJSONSerialization.JSONObjectWithData(jsonData,
+                options: .AllowFragments)) as? [String: AnyObject]
+            where !jsonString.isEmpty
+        {
+            capturedForum = KomicaForum(jsonDict: jsonDict)
+            if ((capturedForum?.isReady()) != nil) {
+                performSegueWithIdentifier(SegueIdentifier.addForum, sender: nil)
+                return true
+            }
+        }
+        return false
+    }
+    
+}
+
+// MARK: Read from library
+extension ForumQRScannerViewController {
+    // Shamelessly copied from http://stackoverflow.com/questions/35956538/how-to-read-qr-code-from-static-image and modified to my need.
+    func performQRCodeDetection(image: CIImage) -> [String] {
+        let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh, CIDetectorAspectRatio: 1.0])
+        let features = detector.featuresInImage(image)
+        var strings = [String]()
+        features.forEach { feature in
+            if let feature = feature as? CIQRCodeFeature {
+                strings.append(feature.messageString)
+            }
+        }
+        return strings
     }
     
 }
