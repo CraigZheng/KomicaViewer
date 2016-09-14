@@ -12,8 +12,8 @@ import KomicaEngine
 import MWPhotoBrowser
 
 protocol UIViewControllerMWPhotoBrowserProtocol {
-    var photos: [MWPhoto]? { get set }
-    var thumbnails: [MWPhoto]? { get set }
+    var photoURLs: [NSURL]? { get set }
+    var thumbnailURLs: [NSURL]? { get set }
     var photoIndex: Int? { get set }
     func presentPhotos()
 }
@@ -21,8 +21,8 @@ protocol UIViewControllerMWPhotoBrowserProtocol {
 extension UIViewControllerMWPhotoBrowserProtocol where Self: UIViewController {
     
     private var photoBrowser: MWPhotoBrowser {
-        PhotoBrowserDelegate.singleton.photos = photos ?? []
-        PhotoBrowserDelegate.singleton.thumbnails = thumbnails
+        PhotoBrowserDelegate.singleton.photoURLs = photoURLs ?? []
+        PhotoBrowserDelegate.singleton.thumbnailURLs = thumbnailURLs
         let photoBrowser = MWPhotoBrowser(delegate: PhotoBrowserDelegate.singleton)
         photoBrowser!.displayNavArrows = true; // Whether to display left and right nav arrows on toolbar (defaults to false)
         photoBrowser!.displaySelectionButtons = false; // Whether selection buttons are shown on each image (defaults to false)
@@ -42,7 +42,7 @@ extension UIViewControllerMWPhotoBrowserProtocol where Self: UIViewController {
     }
 
     func presentPhotos() {
-        if let photos = photos where !photos.isEmpty {
+        if let photoURLs = photoURLs where !photoURLs.isEmpty {
             navigationController?.pushViewController(photoBrowser, animated:true)
         }
     }
@@ -52,19 +52,20 @@ extension UIViewControllerMWPhotoBrowserProtocol where Self: UIViewController {
 private class PhotoBrowserDelegate: NSObject, MWPhotoBrowserDelegate {
     static let singleton = PhotoBrowserDelegate()
     
-    var photos: [MWPhoto]!
-    var thumbnails: [MWPhoto]?
+    var photoURLs: [NSURL]!
+    var thumbnailURLs: [NSURL]?
     
     @objc func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
-        return UInt(photos.count)
+        return UInt(photoURLs.count)
     }
     
     @objc func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
-        return photos[Int(index)]
+        return MWPhoto(URL: photoURLs[Int(index)])
     }
     
     @objc private func photoBrowser(photoBrowser: MWPhotoBrowser!, thumbPhotoAtIndex index: UInt) -> MWPhotoProtocol! {
-        return thumbnails != nil ? thumbnails?[Int(index)] : photos[Int(index)]
+        let url = (thumbnailURLs != nil) ? thumbnailURLs?[Int(index)] : photoURLs[Int(index)]
+        return MWPhoto(URL: url)
     }
     
 }

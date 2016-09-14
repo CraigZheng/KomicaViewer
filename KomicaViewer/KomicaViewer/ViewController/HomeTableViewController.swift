@@ -9,7 +9,6 @@
 import UIKit
 
 import KomicaEngine
-import MWPhotoBrowser
 import SDWebImage
 import SVPullToRefresh
 import SVWebViewController
@@ -28,8 +27,8 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     @IBOutlet weak var adDescriptionLabel: UILabel!
     
     // MARK: UIViewControllerMWPhotoBrowserProtocol
-    var photos: [MWPhoto]?
-    var thumbnails: [MWPhoto]?
+    var photoURLs: [NSURL]?
+    var thumbnailURLs: [NSURL]?
     var photoIndex: Int?
     
     // MARK: ThreadTableViewControllerProtocol
@@ -219,7 +218,7 @@ extension HomeTableViewController {
     
     private func openImageWithIndex(index: Int) {
         // Present
-        photos = [MWPhoto(URL: threads[index].imageURL)]
+        photoURLs = [threads[index].imageURL ?? NSURL()]
         presentPhotos()
     }
     

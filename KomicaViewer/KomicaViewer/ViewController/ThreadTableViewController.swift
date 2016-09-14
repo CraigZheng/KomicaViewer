@@ -10,7 +10,6 @@ import UIKit
 
 import KomicaEngine
 import SDWebImage
-import MWPhotoBrowser
 import SVWebViewController
 import GoogleMobileAds
 
@@ -40,8 +39,8 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     }
     
     // MARK: UIViewControllerMWPhotoBrowserProtocol
-    var photos: [MWPhoto]?
-    var thumbnails: [MWPhoto]?
+    var photoURLs: [NSURL]?
+    var thumbnailURLs: [NSURL]?
     var photoIndex: Int?
     
     // MARK: SVWebViewProtocol
@@ -227,19 +226,11 @@ extension ThreadTableViewController: UIAlertViewDelegate {
     
     private func openImageWithIndex(index: Int) {
         // Present
-        photos = imageThreads.map({ (thread) -> MWPhoto in
-            if let imageURL = thread.imageURL {
-                return MWPhoto(URL: imageURL)
-            }
-            // Empty MWPhoto object.
-            return MWPhoto()
+        photoURLs = imageThreads.map({ (thread) -> NSURL in
+            return thread.imageURL ?? NSURL()
         })
-        thumbnails = imageThreads.map({ (thread) -> MWPhoto in
-            if let thumbnailURL = thread.thumbnailURL {
-                return MWPhoto(URL: thumbnailURL)
-            }
-            // Empty MWPhoto object.
-            return MWPhoto()
+        thumbnailURLs = imageThreads.map({ (thread) -> NSURL in
+            return thread.thumbnailURL ?? NSURL()
         })
         if let index = imageThreads.indexOf(threads[index]) {
             photoIndex = index
