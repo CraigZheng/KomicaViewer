@@ -243,6 +243,8 @@ extension HomeTableViewController: MWPhotoBrowserDelegate {
         if let videoURL = NSURL(string: link) where UIApplication.sharedApplication().canOpenURL(videoURL)
         {
             UIApplication.sharedApplication().openURL(videoURL)
+        } else {
+            ProgressHUD.showMessage("Cannot open: \(link)")
         }
     }
     
