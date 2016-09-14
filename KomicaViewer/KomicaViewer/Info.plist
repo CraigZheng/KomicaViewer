@@ -47,6 +47,8 @@
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>Scan QR code with your camera.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Select a QR code from your photo library.</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
