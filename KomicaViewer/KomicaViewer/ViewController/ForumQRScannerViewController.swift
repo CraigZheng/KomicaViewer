@@ -171,11 +171,11 @@ extension ForumQRScannerViewController {
     // Shamelessly copied from http://stackoverflow.com/questions/35956538/how-to-read-qr-code-from-static-image and modified to my need.
     func performQRCodeDetection(image: CIImage) -> [String] {
         let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh, CIDetectorAspectRatio: 1.0])
-        let features = detector.featuresInImage(image)
+        let features = detector!.featuresInImage(image)
         var strings = [String]()
         features.forEach { feature in
             if let feature = feature as? CIQRCodeFeature {
-                strings.append(feature.messageString)
+                strings.append(feature.messageString!)
             }
         }
         return strings

@@ -408,6 +408,7 @@
 					44496F4E1D5985A6005875DD = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 9EBE9MWW9X;
+						LastSwiftMigration = 0800;
 					};
 					44496F621D5985A6005875DD = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -782,6 +783,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -804,6 +806,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
