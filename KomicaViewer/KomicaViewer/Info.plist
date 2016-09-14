@@ -49,6 +49,10 @@
 	<string>Scan QR code with your camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Select a QR code from your photo library.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Select a date to be reminded about.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Use bluetooth device to post content.</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
