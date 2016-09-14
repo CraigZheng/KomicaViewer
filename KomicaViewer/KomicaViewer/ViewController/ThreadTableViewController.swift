@@ -14,7 +14,7 @@ import MWPhotoBrowser
 import SVWebViewController
 import GoogleMobileAds
 
-class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol {
+class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol, UIViewControllerMWPhotoBrowserDelegate {
     
     @IBOutlet weak var adBannerTableViewHeaderView: UIView!
     @IBOutlet weak var adBannerView: GADBannerView! {
@@ -38,29 +38,18 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         }
         return nil
     }
+    
+    // MARK: UIViewControllerMWPhotoBrowserDelegate
+    var photos: [MWPhoto]?
+    var thumbnails: [MWPhoto]?
+    var photoIndex: Int?
+    
     // MARK: SVWebViewProtocol
     var svWebViewURL: NSURL?
     var svWebViewGuardDog: WebViewGuardDog?
     // MARK: private properties.
     private let _guardDog = WebViewGuardDog()
     private let showParasitePostSegue = "showParasitePosts"
-    private var photoBrowser: MWPhotoBrowser {
-        if _photoBrowser == nil {
-            _photoBrowser = MWPhotoBrowser(delegate: self)
-            _photoBrowser!.displayNavArrows = true; // Whether to display left and right nav arrows on toolbar (defaults to false)
-            _photoBrowser!.displaySelectionButtons = false; // Whether selection buttons are shown on each image (defaults to false)
-            _photoBrowser!.zoomPhotosToFill = false; // Images that almost fill the screen will be initially zoomed to fill (defaults to true)
-            _photoBrowser!.alwaysShowControls = false; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to false)
-            _photoBrowser!.enableGrid = true; // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to true)
-            _photoBrowser!.startOnGrid = false; // Whether to start on the grid of thumbnails instead of the first photo (defaults to false)
-            _photoBrowser!.delayToHideElements = UInt(8);
-            _photoBrowser!.enableSwipeToDismiss = false; // dont dismiss
-            _photoBrowser!.displayActionButton = true;
-            _photoBrowser!.hidesBottomBarWhenPushed = true;
-        }
-        return _photoBrowser!
-    }
-    private var _photoBrowser: MWPhotoBrowser?
     // Get the threadID from the selectedThread.ID.
     private var threadID: Int? {
         if let stringArray = selectedThread.ID?.componentsSeparatedByCharactersInSet(
@@ -200,7 +189,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
 }
 
 // MARK: UIActions.
-extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate {
+extension ThreadTableViewController: UIAlertViewDelegate {
     
     @IBAction func tapOnParasitePostView(sender: UIButton) {
         // User tap on parasite post view, show all parasite posts.
@@ -238,11 +227,24 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate
     
     private func openImageWithIndex(index: Int) {
         // Present
-        _photoBrowser = nil
+        photos = imageThreads.map({ (thread) -> MWPhoto in
+            if let imageURL = thread.imageURL {
+                return MWPhoto(URL: imageURL)
+            }
+            // Empty MWPhoto object.
+            return MWPhoto()
+        })
+        thumbnails = imageThreads.map({ (thread) -> MWPhoto in
+            if let thumbnailURL = thread.thumbnailURL {
+                return MWPhoto(URL: thumbnailURL)
+            }
+            // Empty MWPhoto object.
+            return MWPhoto()
+        })
         if let index = imageThreads.indexOf(threads[index]) {
-            photoBrowser.setCurrentPhotoIndex(UInt(index))
+            photoIndex = index
         }
-        navigationController?.pushViewController(photoBrowser, animated:true)
+        presentPhotos()
     }
     
     private func openVideoWithLink(link: String) {
@@ -283,30 +285,6 @@ extension ThreadTableViewController: MWPhotoBrowserDelegate, UIAlertViewDelegate
         return self.threads.filter({ (thread) -> Bool in
             return thread.imageURL != nil
         })
-    }
-    
-    // MARK: MWPhotoBrowserDelegate
-    func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
-        return UInt(imageThreads.count)
-    }
-    
-    func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
-        var photo: MWPhoto?
-        if let imageURL = imageThreads[Int(index)].imageURL {
-            photo = MWPhoto(URL: imageURL)
-        }
-        return photo ?? MWPhoto()
-    }
-    
-    func photoBrowser(photoBrowser: MWPhotoBrowser!, thumbPhotoAtIndex index: UInt) -> MWPhotoProtocol! {
-        var thumbnail: MWPhoto?
-        if let thumbnailURL = imageThreads[Int(index)].thumbnailURL {
-            thumbnail = MWPhoto(URL: thumbnailURL)
-        } else if let imageURL = imageThreads[Int(index)].imageURL {
-            // Cannot find thumbnail URL for this thread, use full size image instead.
-            thumbnail = MWPhoto(URL: imageURL)
-        }
-        return thumbnail ?? MWPhoto()
     }
     
     // UIAlertViewDelegate

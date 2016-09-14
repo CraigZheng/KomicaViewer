@@ -15,7 +15,7 @@ import SVPullToRefresh
 import SVWebViewController
 import GoogleMobileAds
 
-class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol {
+class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol, UIViewControllerMWPhotoBrowserDelegate {
     
     @IBOutlet weak var adBannerTableViewHeaderView: UIView!
     @IBOutlet weak var adBannerView: GADBannerView! {
@@ -26,6 +26,11 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         }
     }
     @IBOutlet weak var adDescriptionLabel: UILabel!
+    
+    // MARK: UIViewControllerMWPhotoBrowserDelegate
+    var photos: [MWPhoto]?
+    var thumbnails: [MWPhoto]?
+    var photoIndex: Int?
     
     // MARK: ThreadTableViewControllerProtocol
     var threads = [Thread]()
@@ -91,25 +96,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     }
     
     private let _guardDog = WebViewGuardDog()
-    private var selectedPhoto: MWPhoto?
     private var originalContentInset: UIEdgeInsets?
-    private var photoBrowser: MWPhotoBrowser {
-        if _photoBrowser == nil {
-            _photoBrowser = MWPhotoBrowser(delegate: self)
-            _photoBrowser!.displayNavArrows = true; // Whether to display left and right nav arrows on toolbar (defaults to false)
-            _photoBrowser!.displaySelectionButtons = false; // Whether selection buttons are shown on each image (defaults to false)
-            _photoBrowser!.zoomPhotosToFill = false; // Images that almost fill the screen will be initially zoomed to fill (defaults to true)
-            _photoBrowser!.alwaysShowControls = false; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to false)
-            _photoBrowser!.enableGrid = true; // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to true)
-            _photoBrowser!.startOnGrid = false; // Whether to start on the grid of thumbnails instead of the first photo (defaults to false)
-            _photoBrowser!.delayToHideElements = UInt(8);
-            _photoBrowser!.enableSwipeToDismiss = false; // dont dismiss
-            _photoBrowser!.displayActionButton = true;
-            _photoBrowser!.hidesBottomBarWhenPushed = true;
-        }
-        return _photoBrowser!
-    }
-    private var _photoBrowser: MWPhotoBrowser?
     private var pageIndex = 0
     private let showThreadSegue = "showThread"
     
@@ -192,7 +179,7 @@ extension HomeTableViewController {
 }
 
 // MARK: UIActions.
-extension HomeTableViewController: MWPhotoBrowserDelegate {
+extension HomeTableViewController {
     
     @IBAction func openInSafariAction(sender: AnyObject) {
         // Open in browser.
@@ -232,11 +219,8 @@ extension HomeTableViewController: MWPhotoBrowserDelegate {
     
     private func openImageWithIndex(index: Int) {
         // Present
-        _photoBrowser = nil
-        if let imageURL = threads[index].imageURL {
-            selectedPhoto = MWPhoto(URL: imageURL)
-        }
-        navigationController?.pushViewController(photoBrowser, animated:true)
+        photos = [MWPhoto(URL: threads[index].imageURL)]
+        presentPhotos()
     }
     
     private func openVideoWithLink(link: String) {
@@ -246,14 +230,6 @@ extension HomeTableViewController: MWPhotoBrowserDelegate {
         } else {
             ProgressHUD.showMessage("Cannot open: \(link)")
         }
-    }
-    
-    func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser) -> UInt {
-        return selectedPhoto == nil ? 0 : 1
-    }
-    
-    func photoBrowser(photoBrowser: MWPhotoBrowser, photoAtIndex index: UInt) -> MWPhotoProtocol! {
-        return selectedPhoto ?? MWPhoto()
     }
     
 }
