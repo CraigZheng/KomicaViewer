@@ -1,5 +1,5 @@
 //
-//  UIViewControllerMWPhotoBrowserDelegate.swift
+//  UIViewControllerMWPhotoBrowserProtocol.swift
 //  KomicaViewer
 //
 //  Created by Craig on 14/09/2016.
@@ -11,14 +11,14 @@ import UIKit
 import KomicaEngine
 import MWPhotoBrowser
 
-protocol UIViewControllerMWPhotoBrowserDelegate {
+protocol UIViewControllerMWPhotoBrowserProtocol {
     var photos: [MWPhoto]? { get set }
     var thumbnails: [MWPhoto]? { get set }
     var photoIndex: Int? { get set }
     func presentPhotos()
 }
 
-extension UIViewControllerMWPhotoBrowserDelegate where Self: UIViewController {
+extension UIViewControllerMWPhotoBrowserProtocol where Self: UIViewController {
     
     private var photoBrowser: MWPhotoBrowser {
         PhotoBrowserDelegate.singleton.photos = photos ?? []

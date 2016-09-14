@@ -14,7 +14,7 @@ import MWPhotoBrowser
 import SVWebViewController
 import GoogleMobileAds
 
-class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol, UIViewControllerMWPhotoBrowserDelegate {
+class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol, UIViewControllerMWPhotoBrowserProtocol {
     
     @IBOutlet weak var adBannerTableViewHeaderView: UIView!
     @IBOutlet weak var adBannerView: GADBannerView! {
@@ -39,7 +39,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         return nil
     }
     
-    // MARK: UIViewControllerMWPhotoBrowserDelegate
+    // MARK: UIViewControllerMWPhotoBrowserProtocol
     var photos: [MWPhoto]?
     var thumbnails: [MWPhoto]?
     var photoIndex: Int?

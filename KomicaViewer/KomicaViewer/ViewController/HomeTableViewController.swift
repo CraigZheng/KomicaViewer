@@ -15,7 +15,7 @@ import SVPullToRefresh
 import SVWebViewController
 import GoogleMobileAds
 
-class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol, UIViewControllerMWPhotoBrowserDelegate {
+class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol, UIViewControllerMWPhotoBrowserProtocol {
     
     @IBOutlet weak var adBannerTableViewHeaderView: UIView!
     @IBOutlet weak var adBannerView: GADBannerView! {
@@ -27,7 +27,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     }
     @IBOutlet weak var adDescriptionLabel: UILabel!
     
-    // MARK: UIViewControllerMWPhotoBrowserDelegate
+    // MARK: UIViewControllerMWPhotoBrowserProtocol
     var photos: [MWPhoto]?
     var thumbnails: [MWPhoto]?
     var photoIndex: Int?
