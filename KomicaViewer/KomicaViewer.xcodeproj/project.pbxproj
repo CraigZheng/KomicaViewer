@@ -47,7 +47,10 @@
 		44BD39801D5B5E180070E0CB /* ThreadTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD397F1D5B5E180070E0CB /* ThreadTableViewController.swift */; };
 		44BD39821D5B5F310070E0CB /* ThreadTableViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39811D5B5F310070E0CB /* ThreadTableViewControllerProtocol.swift */; };
 		44BD39861D5B74ED0070E0CB /* UIView+SuperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39851D5B74ED0070E0CB /* UIView+SuperCell.swift */; };
+		44C25D1D1D8998650066888E /* DTCoreText.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44C25D191D89984C0066888E /* DTCoreText.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		44F48EBC1D5D3F0700519C1B /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F48EBB1D5D3F0700519C1B /* ProgressHUD.swift */; };
+		44FBD8251D899D1800ACA2C8 /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44FBD81E1D899D0A00ACA2C8 /* DTFoundation.framework */; };
+		44FBD8261D899D2100ACA2C8 /* DTFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44FBD81E1D899D0A00ACA2C8 /* DTFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A626FE4C1E96D311C76B1EF2 /* Pods_KomicaViewer_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9888890F89082B45414F82C /* Pods_KomicaViewer_KomicaViewerTests.framework */; };
 		B20E87BADB21FFDFDA78476B /* Pods_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B832635AE945C0A0AE7FB38 /* Pods_KomicaViewerTests.framework */; };
 		BCE55B9E9BB5B372EA0A346B /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -76,19 +79,264 @@
 			remoteGlobalIDString = 4453D1E31CB662A10076ABE7;
 			remoteInfo = KomicaEngineTests;
 		};
-		44655D431D5AD16400229404 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 44655D3A1D5AD15400229404 /* KomicaEngine.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4453D1D81CB662A10076ABE7;
-			remoteInfo = KomicaEngine;
-		};
 		44655D491D5AD24700229404 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 44655D3A1D5AD15400229404 /* KomicaEngine.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 4453D1D81CB662A10076ABE7;
 			remoteInfo = KomicaEngine;
+		};
+		44C25D0C1D89984C0066888E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
+			remoteInfo = DemoApp;
+		};
+		44C25D0E1D89984C0066888E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A70F11DE148632CD009202BF;
+			remoteInfo = "Static Library";
+		};
+		44C25D101D89984C0066888E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A788CA681486456100E1AFD9;
+			remoteInfo = UnitTest;
+		};
+		44C25D121D89984C0066888E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A78D9F781965B7DD00C80986;
+			remoteInfo = MacUnitTest;
+		};
+		44C25D141D89984C0066888E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7F7EFCD1573603100F5A4D0;
+			remoteInfo = "Static Library (no DTFoundation)";
+		};
+		44C25D161D89984C0066888E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E2262DC61638331500BFDAD7;
+			remoteInfo = "DTCoreText (Mac)";
+		};
+		44C25D181D89984C0066888E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A79BA6201B46A1FB0086C2F6;
+			remoteInfo = "DTCoreText (iOS)";
+		};
+		44FBD7CB1D899C1900ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A79BA61F1B46A1FB0086C2F6;
+			remoteInfo = "DTCoreText (iOS)";
+		};
+		44FBD7ED1D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A70B4CE71486637E00873A4A;
+			remoteInfo = "Static Library";
+		};
+		44FBD7EF1D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 384470EB1BA3330F0037C68D;
+			remoteInfo = "Static Library (tvOS)";
+		};
+		44FBD7F11D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A710A5001607556000437D36;
+			remoteInfo = "Static Library (Mac)";
+		};
+		44FBD7F31D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7AC21AF196417830009E1B9;
+			remoteInfo = "DTAnimatedGIF (iOS)";
+		};
+		44FBD7F51D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A79D999C1792D1F50082BC06;
+			remoteInfo = "DTAWS (iOS)";
+		};
+		44FBD7F71D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FA9CB80C17ABDEF200A596C5;
+			remoteInfo = "DTASN1 (iOS)";
+		};
+		44FBD7F91D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7E383C2160DFEDB00CF72D6;
+			remoteInfo = "DTHTMLParser (iOS)";
+		};
+		44FBD7FB1D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D7CE547166613B60028D339;
+			remoteInfo = "DTHTMLParser (Mac)";
+		};
+		44FBD7FD1D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F88FF6801920A83300120808;
+			remoteInfo = "DTProgressHUD (iOS)";
+		};
+		44FBD7FF1D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A72121DA173BFFB1003C6F0A;
+			remoteInfo = "DTReachability (iOS)";
+		};
+		44FBD8011D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A72121EA173BFFED003C6F0A;
+			remoteInfo = "DTReachability (Mac)";
+		};
+		44FBD8031D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7C92B7A174FB8900019D70A;
+			remoteInfo = "DTSQLite (iOS)";
+		};
+		44FBD8051D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7C92B8C174FB9720019D70A;
+			remoteInfo = "DTSQLite (Mac)";
+		};
+		44FBD8071D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A78220BA168060CA005B602D;
+			remoteInfo = "DTUTI (iOS)";
+		};
+		44FBD8091D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7E889A416A9B190009EF0DF;
+			remoteInfo = "DTUTI (Mac)";
+		};
+		44FBD80B1D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7E383DA160DFF8600CF72D6;
+			remoteInfo = "DTZipArchive (iOS)";
+		};
+		44FBD80D1D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7D8C7C21723174600025675;
+			remoteInfo = "DTZipArchive (Mac)";
+		};
+		44FBD80F1D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A78381C31963F8D700AF09D3;
+			remoteInfo = "DTAnimatedGIF Demo";
+		};
+		44FBD8111D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F88FF6A51920AAB600120808;
+			remoteInfo = "DTProgressHUD Demo";
+		};
+		44FBD8131D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7D9D62D1758C89800C29B6F;
+			remoteInfo = "DTReachability Demo";
+		};
+		44FBD8151D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A70D74D01743AFBC00E6E626;
+			remoteInfo = "DTSidePanels Demo";
+		};
+		44FBD8171D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FAF37A2017AFDD93009AC27C;
+			remoteInfo = "DTZipArchive Demo";
+		};
+		44FBD8191D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FAC284E619B84B5F0010C385;
+			remoteInfo = "DTActionSheet Demo";
+		};
+		44FBD81B1D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7917C77191A312600964D63;
+			remoteInfo = "Unit Tests";
+		};
+		44FBD81D1D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7EA07B81A2B2F6A00B61CCE;
+			remoteInfo = "DTFoundation (iOS)";
+		};
+		44FBD81F1D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7EA07391A2B215200B61CCE;
+			remoteInfo = "DTFoundation (OSX)";
+		};
+		44FBD8211D899D0A00ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 384471551BA33ED80037C68D;
+			remoteInfo = "DTFoundation (tvOS)";
+		};
+		44FBD8231D899D1100ACA2C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A7EA07B71A2B2F6A00B61CCE;
+			remoteInfo = "DTFoundation (iOS)";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -99,6 +347,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				44FBD8261D899D2100ACA2C8 /* DTFoundation.framework in Embed Frameworks */,
+				44C25D1D1D8998650066888E /* DTCoreText.framework in Embed Frameworks */,
 				44655D481D5AD24700229404 /* KomicaEngine.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -156,7 +406,10 @@
 		44BD397F1D5B5E180070E0CB /* ThreadTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadTableViewController.swift; sourceTree = "<group>"; };
 		44BD39811D5B5F310070E0CB /* ThreadTableViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreadTableViewControllerProtocol.swift; path = KomicaViewer/View/ThreadTableViewControllerProtocol.swift; sourceTree = SOURCE_ROOT; };
 		44BD39851D5B74ED0070E0CB /* UIView+SuperCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SuperCell.swift"; sourceTree = "<group>"; };
+		44C25D011D89984C0066888E /* DTCoreText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTCoreText.xcodeproj; path = ../../KomicaEngine/Externals/DTCoreText/DTCoreText.xcodeproj; sourceTree = "<group>"; };
 		44F48EBB1D5D3F0700519C1B /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
+		44FBD7C91D899C0500ACA2C8 /* DTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DTFoundation.framework; path = "../../KomicaEngine/Externals/DTCoreText/Externals/DTFoundation/build/Debug-iphoneos/DTFoundation.framework"; sourceTree = "<group>"; };
+		44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTFoundation.xcodeproj; path = ../../KomicaEngine/Externals/DTCoreText/Externals/DTFoundation/DTFoundation.xcodeproj; sourceTree = "<group>"; };
 		5B832635AE945C0A0AE7FB38 /* Pods_KomicaViewerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KomicaViewerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F0A0392FA0DA6C1927ACC66 /* Pods-KomicaViewerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B9888890F89082B45414F82C /* Pods_KomicaViewer_KomicaViewerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KomicaViewer_KomicaViewerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +423,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44FBD8251D899D1800ACA2C8 /* DTFoundation.framework in Frameworks */,
 				44655D471D5AD24700229404 /* KomicaEngine.framework in Frameworks */,
 				FCE2F305F7F4C1FA09B39D36 /* Pods_KomicaViewer.framework in Frameworks */,
 			);
@@ -213,6 +467,8 @@
 			isa = PBXGroup;
 			children = (
 				44A65A9B1D5DBB7200A4DDE6 /* KomicaViewer-bridging-header.h */,
+				44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */,
+				44C25D011D89984C0066888E /* DTCoreText.xcodeproj */,
 				44655D3A1D5AD15400229404 /* KomicaEngine.xcodeproj */,
 				44496F511D5985A6005875DD /* KomicaViewer */,
 				44496F661D5985A6005875DD /* KomicaViewerTests */,
@@ -337,9 +593,58 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		44C25D021D89984C0066888E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				44C25D0D1D89984C0066888E /* RTDemoApp.app */,
+				44C25D0F1D89984C0066888E /* libDTCoreText.a */,
+				44C25D111D89984C0066888E /* UnitTest.xctest */,
+				44C25D131D89984C0066888E /* MacUnitTest.xctest */,
+				44C25D151D89984C0066888E /* libDTCoreText_no_DTFoundation.a */,
+				44C25D171D89984C0066888E /* DTCoreText.framework */,
+				44C25D191D89984C0066888E /* DTCoreText.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		44FBD7CF1D899D0A00ACA2C8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				44FBD7EE1D899D0A00ACA2C8 /* libDTFoundation.a */,
+				44FBD7F01D899D0A00ACA2C8 /* libStatic Library (tvOS).a */,
+				44FBD7F21D899D0A00ACA2C8 /* libDTFoundation_Mac.a */,
+				44FBD7F41D899D0A00ACA2C8 /* libDTAnimatedGIF.a */,
+				44FBD7F61D899D0A00ACA2C8 /* libDTAWS.a */,
+				44FBD7F81D899D0A00ACA2C8 /* libDTASN1.a */,
+				44FBD7FA1D899D0A00ACA2C8 /* libDTHTMLParser_iOS.a */,
+				44FBD7FC1D899D0A00ACA2C8 /* libDTHTMLParser_Mac.a */,
+				44FBD7FE1D899D0A00ACA2C8 /* libDTProgressHUD_iOS.a */,
+				44FBD8001D899D0A00ACA2C8 /* libDTReachability_iOS.a */,
+				44FBD8021D899D0A00ACA2C8 /* libDTReachability_Mac.a */,
+				44FBD8041D899D0A00ACA2C8 /* libDTSQLite_iOS.a */,
+				44FBD8061D899D0A00ACA2C8 /* libDTSQLite_Mac.a */,
+				44FBD8081D899D0A00ACA2C8 /* libDTUTI_iOS.a */,
+				44FBD80A1D899D0A00ACA2C8 /* libDTUTI_Mac.a */,
+				44FBD80C1D899D0A00ACA2C8 /* libDTZipArchive_iOS.a */,
+				44FBD80E1D899D0A00ACA2C8 /* libDTZipArchive_Mac.a */,
+				44FBD8101D899D0A00ACA2C8 /* DTAnimatedGIF Demo.app */,
+				44FBD8121D899D0A00ACA2C8 /* DTProgressHUD Demo.app */,
+				44FBD8141D899D0A00ACA2C8 /* DTReachability Demo.app */,
+				44FBD8161D899D0A00ACA2C8 /* DTSidePanels Demo.app */,
+				44FBD8181D899D0A00ACA2C8 /* DTZipArchive.app */,
+				44FBD81A1D899D0A00ACA2C8 /* DTActionSheet Demo.app */,
+				44FBD81C1D899D0A00ACA2C8 /* Unit Tests.xctest */,
+				44FBD81E1D899D0A00ACA2C8 /* DTFoundation.framework */,
+				44FBD8201D899D0A00ACA2C8 /* DTFoundation.framework */,
+				44FBD8221D899D0A00ACA2C8 /* DTFoundation.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		EB66FD301D4D76270A8DC709 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				44FBD7C91D899C0500ACA2C8 /* DTFoundation.framework */,
 				21C3A364A9DD0DDE230355EF /* Pods_KomicaViewer.framework */,
 				B9888890F89082B45414F82C /* Pods_KomicaViewer_KomicaViewerTests.framework */,
 				5B832635AE945C0A0AE7FB38 /* Pods_KomicaViewerTests.framework */,
@@ -366,7 +671,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				44655D441D5AD16400229404 /* PBXTargetDependency */,
+				44FBD8241D899D1100ACA2C8 /* PBXTargetDependency */,
+				44FBD7CC1D899C1900ACA2C8 /* PBXTargetDependency */,
 				44655D4A1D5AD24700229404 /* PBXTargetDependency */,
 			);
 			name = KomicaViewer;
@@ -429,6 +735,14 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 44C25D021D89984C0066888E /* Products */;
+					ProjectRef = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
+				},
+				{
+					ProductGroup = 44FBD7CF1D899D0A00ACA2C8 /* Products */;
+					ProjectRef = 44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */;
+				},
+				{
 					ProductGroup = 44655D3B1D5AD15400229404 /* Products */;
 					ProjectRef = 44655D3A1D5AD15400229404 /* KomicaEngine.xcodeproj */;
 				},
@@ -454,6 +768,244 @@
 			fileType = wrapper.cfbundle;
 			path = KomicaEngineTests.xctest;
 			remoteRef = 44655D411D5AD15400229404 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44C25D0D1D89984C0066888E /* RTDemoApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = RTDemoApp.app;
+			remoteRef = 44C25D0C1D89984C0066888E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44C25D0F1D89984C0066888E /* libDTCoreText.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTCoreText.a;
+			remoteRef = 44C25D0E1D89984C0066888E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44C25D111D89984C0066888E /* UnitTest.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTest.xctest;
+			remoteRef = 44C25D101D89984C0066888E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44C25D131D89984C0066888E /* MacUnitTest.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = MacUnitTest.xctest;
+			remoteRef = 44C25D121D89984C0066888E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44C25D151D89984C0066888E /* libDTCoreText_no_DTFoundation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTCoreText_no_DTFoundation.a;
+			remoteRef = 44C25D141D89984C0066888E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44C25D171D89984C0066888E /* DTCoreText.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DTCoreText.framework;
+			remoteRef = 44C25D161D89984C0066888E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44C25D191D89984C0066888E /* DTCoreText.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DTCoreText.framework;
+			remoteRef = 44C25D181D89984C0066888E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD7EE1D899D0A00ACA2C8 /* libDTFoundation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTFoundation.a;
+			remoteRef = 44FBD7ED1D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD7F01D899D0A00ACA2C8 /* libStatic Library (tvOS).a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libStatic Library (tvOS).a";
+			remoteRef = 44FBD7EF1D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD7F21D899D0A00ACA2C8 /* libDTFoundation_Mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTFoundation_Mac.a;
+			remoteRef = 44FBD7F11D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD7F41D899D0A00ACA2C8 /* libDTAnimatedGIF.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTAnimatedGIF.a;
+			remoteRef = 44FBD7F31D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD7F61D899D0A00ACA2C8 /* libDTAWS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTAWS.a;
+			remoteRef = 44FBD7F51D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD7F81D899D0A00ACA2C8 /* libDTASN1.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTASN1.a;
+			remoteRef = 44FBD7F71D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD7FA1D899D0A00ACA2C8 /* libDTHTMLParser_iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTHTMLParser_iOS.a;
+			remoteRef = 44FBD7F91D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD7FC1D899D0A00ACA2C8 /* libDTHTMLParser_Mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTHTMLParser_Mac.a;
+			remoteRef = 44FBD7FB1D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD7FE1D899D0A00ACA2C8 /* libDTProgressHUD_iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTProgressHUD_iOS.a;
+			remoteRef = 44FBD7FD1D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD8001D899D0A00ACA2C8 /* libDTReachability_iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTReachability_iOS.a;
+			remoteRef = 44FBD7FF1D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD8021D899D0A00ACA2C8 /* libDTReachability_Mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTReachability_Mac.a;
+			remoteRef = 44FBD8011D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD8041D899D0A00ACA2C8 /* libDTSQLite_iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTSQLite_iOS.a;
+			remoteRef = 44FBD8031D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD8061D899D0A00ACA2C8 /* libDTSQLite_Mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTSQLite_Mac.a;
+			remoteRef = 44FBD8051D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD8081D899D0A00ACA2C8 /* libDTUTI_iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTUTI_iOS.a;
+			remoteRef = 44FBD8071D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD80A1D899D0A00ACA2C8 /* libDTUTI_Mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTUTI_Mac.a;
+			remoteRef = 44FBD8091D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD80C1D899D0A00ACA2C8 /* libDTZipArchive_iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTZipArchive_iOS.a;
+			remoteRef = 44FBD80B1D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD80E1D899D0A00ACA2C8 /* libDTZipArchive_Mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTZipArchive_Mac.a;
+			remoteRef = 44FBD80D1D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD8101D899D0A00ACA2C8 /* DTAnimatedGIF Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "DTAnimatedGIF Demo.app";
+			remoteRef = 44FBD80F1D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD8121D899D0A00ACA2C8 /* DTProgressHUD Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "DTProgressHUD Demo.app";
+			remoteRef = 44FBD8111D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD8141D899D0A00ACA2C8 /* DTReachability Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "DTReachability Demo.app";
+			remoteRef = 44FBD8131D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD8161D899D0A00ACA2C8 /* DTSidePanels Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "DTSidePanels Demo.app";
+			remoteRef = 44FBD8151D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD8181D899D0A00ACA2C8 /* DTZipArchive.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = DTZipArchive.app;
+			remoteRef = 44FBD8171D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD81A1D899D0A00ACA2C8 /* DTActionSheet Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "DTActionSheet Demo.app";
+			remoteRef = 44FBD8191D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD81C1D899D0A00ACA2C8 /* Unit Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Unit Tests.xctest";
+			remoteRef = 44FBD81B1D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD81E1D899D0A00ACA2C8 /* DTFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DTFoundation.framework;
+			remoteRef = 44FBD81D1D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD8201D899D0A00ACA2C8 /* DTFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DTFoundation.framework;
+			remoteRef = 44FBD81F1D899D0A00ACA2C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44FBD8221D899D0A00ACA2C8 /* DTFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DTFoundation.framework;
+			remoteRef = 44FBD8211D899D0A00ACA2C8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -645,15 +1197,20 @@
 			target = 44496F4E1D5985A6005875DD /* KomicaViewer */;
 			targetProxy = 44496F641D5985A6005875DD /* PBXContainerItemProxy */;
 		};
-		44655D441D5AD16400229404 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = KomicaEngine;
-			targetProxy = 44655D431D5AD16400229404 /* PBXContainerItemProxy */;
-		};
 		44655D4A1D5AD24700229404 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = KomicaEngine;
 			targetProxy = 44655D491D5AD24700229404 /* PBXContainerItemProxy */;
+		};
+		44FBD7CC1D899C1900ACA2C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "DTCoreText (iOS)";
+			targetProxy = 44FBD7CB1D899C1900ACA2C8 /* PBXContainerItemProxy */;
+		};
+		44FBD8241D899D1100ACA2C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "DTFoundation (iOS)";
+			targetProxy = 44FBD8231D899D1100ACA2C8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -777,7 +1334,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = KomicaViewer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
@@ -800,7 +1357,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = KomicaViewer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
