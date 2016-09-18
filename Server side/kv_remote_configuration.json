@@ -6,7 +6,7 @@
   "timeout": 20,
   "thumbnailWidth": 50,
   "remoteDebug": true,
-  "announcement": "If this app is crashing, please let me know by submitting a bug report.",
+  "announcement": "",
   "remoteActions": [
     {
       "Contact Developer": "http://weibo.com/u/3868827431/"
@@ -19,6 +19,9 @@
     },
     {
       "My Other Apps": "https://itunes.apple.com/au/developer/haozheng-zheng/id530032325?mt=8"
+    },
+    {
+      "Project Repository": "https://bitbucket.org/CraigZheng/komicaengine/overview"
     }
   ]
 }
