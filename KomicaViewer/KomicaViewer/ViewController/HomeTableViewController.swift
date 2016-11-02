@@ -225,6 +225,8 @@ extension HomeTableViewController {
     private func openImageWithIndex(index: Int) {
         // Present
         photoURLs = [threads[index].imageURL ?? NSURL()]
+        // Home table view controller has only 1 photo URL.
+        photoIndex = 0
         presentPhotos()
     }
     

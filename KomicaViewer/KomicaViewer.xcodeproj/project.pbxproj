@@ -40,6 +40,7 @@
 		44A65AA21D5DDA3300A4DDE6 /* UIColor+RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A65AA11D5DDA3300A4DDE6 /* UIColor+RGB.swift */; };
 		44A65AAB1D5DEE1000A4DDE6 /* UIViewController+ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A65AAA1D5DEE1000A4DDE6 /* UIViewController+ProgressBar.swift */; };
 		44ADCC081D85951600699BAC /* ShowForumQRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ADCC071D85951600699BAC /* ShowForumQRCodeViewController.swift */; };
+		44B1E5E31DC9F58F00CCF6F0 /* WebMPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B1E5E21DC9F58F00CCF6F0 /* WebMPlayerViewController.swift */; };
 		44BB92821D88ED7A00A29EB5 /* UIViewControllerMWPhotoBrowserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BB92811D88ED7A00A29EB5 /* UIViewControllerMWPhotoBrowserProtocol.swift */; };
 		44BD39751D5B1E510070E0CB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39741D5B1E510070E0CB /* Logger.swift */; };
 		44BD39791D5B27690070E0CB /* ThreadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39781D5B27690070E0CB /* ThreadTableViewCell.swift */; };
@@ -399,6 +400,7 @@
 		44A65AA11D5DDA3300A4DDE6 /* UIColor+RGB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+RGB.swift"; sourceTree = "<group>"; };
 		44A65AAA1D5DEE1000A4DDE6 /* UIViewController+ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ProgressBar.swift"; sourceTree = "<group>"; };
 		44ADCC071D85951600699BAC /* ShowForumQRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowForumQRCodeViewController.swift; sourceTree = "<group>"; };
+		44B1E5E21DC9F58F00CCF6F0 /* WebMPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebMPlayerViewController.swift; sourceTree = "<group>"; };
 		44BB92811D88ED7A00A29EB5 /* UIViewControllerMWPhotoBrowserProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerMWPhotoBrowserProtocol.swift; sourceTree = "<group>"; };
 		44BD39741D5B1E510070E0CB /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		44BD39781D5B27690070E0CB /* ThreadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadTableViewCell.swift; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 				44902F0E1D857B3E003848AF /* ForumQRScannerViewController.swift */,
 				44ADCC071D85951600699BAC /* ShowForumQRCodeViewController.swift */,
 				44BB92811D88ED7A00A29EB5 /* UIViewControllerMWPhotoBrowserProtocol.swift */,
+				44B1E5E21DC9F58F00CCF6F0 /* WebMPlayerViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1046,7 +1049,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		68104A70DA5FA7686066341C /* [CP] Embed Pods Frameworks */ = {
@@ -1076,7 +1079,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7C2A12900AD7C31E84A470E7 /* Embed Pods Frameworks */ = {
@@ -1178,6 +1181,7 @@
 				44397D581D670A80005B44AA /* WebViewGuardDog.swift in Sources */,
 				44BD39861D5B74ED0070E0CB /* UIView+SuperCell.swift in Sources */,
 				449B210C1D7D1A21006AA091 /* BlockedUserManager.swift in Sources */,
+				44B1E5E31DC9F58F00CCF6F0 /* WebMPlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
