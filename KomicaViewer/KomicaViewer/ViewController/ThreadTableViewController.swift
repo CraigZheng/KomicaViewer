@@ -143,8 +143,14 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         var estimatedHeight = CGFloat(44)
         if let threadContent = threads[indexPath.row].content {
             let estimatedTextSize = threadContent.string.boundingRectWithSize(CGSizeMake(CGRectGetWidth(view.frame), CGFloat(MAXFLOAT)), options: .UsesLineFragmentOrigin, attributes: nil, context: nil).size
-            estimatedHeight += estimatedTextSize.height + 80
-            estimatedHeight += threads[indexPath.row].thumbnailURL == nil ? 0 : 100
+            estimatedHeight += estimatedTextSize.height + 50
+            // If thumbnail image is not nil, include the thumbnail image.
+            if let thumbnailURL = threads[indexPath.row].thumbnailURL {
+                if SDWebImageManager.sharedManager().cachedImageExistsForURL(thumbnailURL) {
+                    let cachedImage = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(SDWebImageManager.sharedManager().cacheKeyForURL(thumbnailURL))
+                    estimatedHeight += cachedImage.size.height
+                }
+            }
         }
         return estimatedHeight
     }
