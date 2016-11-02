@@ -45,6 +45,8 @@ class ThreadTableViewCell: UITableViewCell {
     @IBOutlet weak var parasitePostViewZeroHeight: NSLayoutConstraint?
     @IBOutlet weak var dateLabel: UILabel?
     @IBOutlet weak var warningLabel: UILabel?
+    @IBOutlet weak var imageFormatLabel: UILabel!
+    @IBOutlet weak var mediaLinkLabel: UILabel!
     
     // MARK: Override to return customisable UI elements.
     
@@ -70,6 +72,7 @@ class ThreadTableViewCell: UITableViewCell {
     }
         
     func layoutWithThread(thread: Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol) {
+        // Make a copy of the incoming thread.
         var thread = thread
         userID = thread.UID
         if BlockedUserManager.sharedManager.isUserIDBlocked(thread.UID ?? "") {
