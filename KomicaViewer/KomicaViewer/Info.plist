@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>1.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.1.10</string>
+	<string>1.2.1</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -31,6 +31,14 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Use bluetooth device to post content.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Select a date to be reminded about.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Scan QR code with your camera.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Select a QR code from your photo library.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -45,14 +53,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>Scan QR code with your camera.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Select a QR code from your photo library.</string>
-	<key>NSCalendarsUsageDescription</key>
-	<string>Select a date to be reminded about.</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Use bluetooth device to post content.</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
