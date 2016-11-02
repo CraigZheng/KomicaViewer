@@ -15,6 +15,7 @@ class ForumPickerTableViewController: UITableViewController {
 
     private let cellIdentifier = "cellIdentifier"
     private let remoteActionCellIdentifier = "remoteActionCellIdentifier"
+    private let selectedIndexPathKey = "selectedIndexPathKey"
     private var lastSectionIndex: Int {
         return numberOfSectionsInTableView(tableView) - 1
     }
@@ -26,6 +27,7 @@ class ForumPickerTableViewController: UITableViewController {
         let forums = section == 0 ? Forums.customForumGroup.forums : forumGroups[section - 1].forums
         return forums
     }
+    private static var scrollOffset: CGPoint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +47,11 @@ class ForumPickerTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        // If user has previously selected an index, let's roll to the previous position.
+        if let scrollOffset = ForumPickerTableViewController.scrollOffset
+        {
+            tableView.setContentOffset(scrollOffset, animated: false)
+        }
     }
 
     // MARK: - Table view data source
@@ -129,6 +136,7 @@ class ForumPickerTableViewController: UITableViewController {
         } else if let forums = forumsForSection(indexPath.section) where indexPath.row < forums.count
         {
             Forums.selectedForum = forums[indexPath.row]
+            ForumPickerTableViewController.scrollOffset = tableView.contentOffset
         }
         // Dismiss self.
         dismissViewControllerAnimated(true, completion: nil)
