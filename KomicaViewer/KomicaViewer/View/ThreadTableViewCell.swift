@@ -122,10 +122,18 @@ class ThreadTableViewCell: UITableViewCell {
                     }
                     })
             }
+            // Show imageFormatLabel, and set the text to the pathExtension.
+            if let imageURLString = thread.imageURL?.absoluteString {
+                imageFormatLabel.hidden = false
+                imageFormatLabel.text = (imageURLString as NSString).pathExtension.uppercaseString
+            }
         } else {
             imageView?.image = nil
             imageViewZeroHeight?.priority = 999
+            imageFormatLabel.hidden = true
         }
+        // When videoLinks is not empty, show mediaLinkLabel.
+        mediaLinkLabel.hidden = !(thread.videoLinks?.isEmpty == false)
         // Parasite post.
         if shouldShowParasitePost, let parasitePosts = thread.pushPost,
             let firstParasitePost = parasitePosts.first
