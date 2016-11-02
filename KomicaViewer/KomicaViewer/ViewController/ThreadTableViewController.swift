@@ -70,7 +70,6 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
             strongSelf.threads.appendContentsOf(t)
             // Necessary to reload for the data change.
             strongSelf.tableView.reloadData()
-            ProgressHUD.showMessage("Loading completed")
         } else {
             ProgressHUD.showMessage("Loading failed")
         }

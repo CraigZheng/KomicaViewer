@@ -24,7 +24,7 @@ class ProgressHUD: MBProgressHUD {
                 // Move to bottm center.
                 hud.xOffset = 0
                 hud.yOffset = Float(CGRectGetHeight(UIScreen.mainScreen().bounds) / 2 - 60)
-                hud.hide(true, afterDelay: 3.0)
+                hud.hide(true, afterDelay: 2.0)
             }
         }
     }
