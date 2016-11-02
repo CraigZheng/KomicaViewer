@@ -13,6 +13,7 @@ import SDWebImage
 import SVPullToRefresh
 import SVWebViewController
 import GoogleMobileAds
+import Firebase
 
 class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol, UIViewControllerMWPhotoBrowserProtocol {
     
@@ -249,6 +250,10 @@ extension HomeTableViewController {
         threads.removeAll()
         tableView.reloadData()
         refreshWithPage(forum?.startingIndex ?? 0)
+        if let forum = forum {
+            FIRAnalytics.logEventWithName(kFIREventViewItem, parameters: [kFIRParameterItemName: forum.name ?? ""
+                , "Forum URL": forum.indexURL ?? ""])
+        }
     }
     
 }
