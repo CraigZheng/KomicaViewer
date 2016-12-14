@@ -4,11 +4,26 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11762"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="ZFn-7v-jya">
+            <objects>
+                <navigationController id="CkH-PR-Wvs" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PsU-DL-Dr0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="xH6-KG-ldd" kind="relationship" relationship="rootViewController" id="qDL-Qu-KjS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cGI-jl-dVc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="662" y="241"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="ng1-yI-Rpj">
             <objects>
@@ -104,8 +119,8 @@
                                     <variation key="default">
                                         <mask key="constraints">
                                             <exclude reference="XLr-Gz-nWZ"/>
-                                            <exclude reference="VBO-gD-AJp"/>
                                             <exclude reference="UXT-4h-KbJ"/>
+                                            <exclude reference="VBO-gD-AJp"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -120,25 +135,11 @@
                             <outlet property="delegate" destination="xH6-KG-ldd" id="qLe-vW-unS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Settings" id="tDF-sV-ntH">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="6f0-5D-hda">
-                            <connections>
-                                <segue destination="yh1-T9-Wsk" kind="unwind" unwindAction="unwindToHomeSegue:" id="PVr-Gc-2wj"/>
-                            </connections>
-                        </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem image="settings.png" id="TM5-5E-hxJ"/>
-                            <barButtonItem systemItem="add" id="GYw-EZ-A54"/>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Settings" id="tDF-sV-ntH"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MQJ-W3-pdD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="yh1-T9-Wsk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1492" y="241"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="settings.png" width="20" height="20"/>
-    </resources>
 </document>
