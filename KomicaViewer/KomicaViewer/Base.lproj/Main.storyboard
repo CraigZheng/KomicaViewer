@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bHi-6s-LSD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bHi-6s-LSD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -68,7 +69,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="byH-eZ-zxY" userLabel="Ad Banner Header View">
-                            <rect key="frame" x="0.0" y="64" width="375" height="80"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IFY-eJ-06f" customClass="GADBannerView">
@@ -146,7 +147,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Scz-fp-U5u" userLabel="Ad Banner Header View">
-                            <rect key="frame" x="0.0" y="64" width="375" height="80"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="asv-Yy-NHf" customClass="GADBannerView">
@@ -368,17 +369,32 @@
                                 <segue destination="KpS-1d-mSQ" kind="unwind" unwindAction="unwindToHomeSegue:" id="9Mr-nt-ZAg"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2ic-c5-pAJ">
-                            <connections>
-                                <segue destination="eeK-7e-v92" kind="show" id="KDO-j9-6KL"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="settings.png" id="Pk7-kA-bp9">
+                                <connections>
+                                    <segue destination="d1w-Ki-ubd" kind="show" id="DWd-Y5-rCv"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="add" id="2ic-c5-pAJ">
+                                <connections>
+                                    <segue destination="eeK-7e-v92" kind="show" id="KDO-j9-6KL"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pu-mG-bIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="KpS-1d-mSQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2311" y="631"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="Dsa-uK-Sck">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="d1w-Ki-ubd" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fyH-vs-b51" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2946" y="571"/>
         </scene>
         <!--AddForum-->
         <scene sceneID="uAF-rP-nnc">
@@ -432,4 +448,7 @@
             <point key="canvasLocation" x="671" y="-146"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="settings.png" width="20" height="20"/>
+    </resources>
 </document>

@@ -24,6 +24,10 @@
 		44496F5A1D5985A6005875DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44496F591D5985A6005875DD /* Assets.xcassets */; };
 		44496F5D1D5985A6005875DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44496F5B1D5985A6005875DD /* LaunchScreen.storyboard */; };
 		44496F681D5985A6005875DD /* KomicaViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44496F671D5985A6005875DD /* KomicaViewerTests.swift */; };
+		44575A2F1E01822F00B3A941 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 44575A2C1E01822F00B3A941 /* settings.png */; };
+		44575A301E01822F00B3A941 /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44575A2D1E01822F00B3A941 /* settings@2x.png */; };
+		44575A311E01822F00B3A941 /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44575A2E1E01822F00B3A941 /* settings@3x.png */; };
+		44575A331E01826700B3A941 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44575A321E01826700B3A941 /* Settings.storyboard */; };
 		445A305F1D864EF0007FFE0C /* ThreadTableViewCellUIActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445A305E1D864EF0007FFE0C /* ThreadTableViewCellUIActions.swift */; };
 		44655D471D5AD24700229404 /* KomicaEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D401D5AD15400229404 /* KomicaEngine.framework */; };
 		44655D481D5AD24700229404 /* KomicaEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D401D5AD15400229404 /* KomicaEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -382,6 +386,10 @@
 		44496F631D5985A6005875DD /* KomicaViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KomicaViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44496F671D5985A6005875DD /* KomicaViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KomicaViewerTests.swift; sourceTree = "<group>"; };
 		44496F691D5985A6005875DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44575A2C1E01822F00B3A941 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		44575A2D1E01822F00B3A941 /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
+		44575A2E1E01822F00B3A941 /* settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@3x.png"; sourceTree = "<group>"; };
+		44575A321E01826700B3A941 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		445A305E1D864EF0007FFE0C /* ThreadTableViewCellUIActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadTableViewCellUIActions.swift; sourceTree = "<group>"; };
 		44655D3A1D5AD15400229404 /* KomicaEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KomicaEngine.xcodeproj; path = ../../komicaengine/KomicaEngine.xcodeproj; sourceTree = "<group>"; };
 		44655D741D5AEF7900229404 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
@@ -460,7 +468,9 @@
 		44397D6E1D695AB6005B44AA /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				44496F561D5985A6005875DD /* Main.storyboard */,
 				44397D6B1D695AA5005B44AA /* AddForum.storyboard */,
+				44575A321E01826700B3A941 /* Settings.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -493,16 +503,16 @@
 			isa = PBXGroup;
 			children = (
 				4411C74A1D76C28400047660 /* GoogleService-Info.plist */,
-				44397D6E1D695AB6005B44AA /* Storyboard */,
-				44496F521D5985A6005875DD /* AppDelegate.swift */,
-				44496F561D5985A6005875DD /* Main.storyboard */,
-				44496F591D5985A6005875DD /* Assets.xcassets */,
-				44496F5B1D5985A6005875DD /* LaunchScreen.storyboard */,
-				44BD39771D5B27430070E0CB /* View */,
-				44BD39731D5B1E510070E0CB /* Util */,
-				44655D781D5AF9F300229404 /* Model */,
-				44655D731D5AEF7900229404 /* ViewController */,
 				44496F5E1D5985A6005875DD /* Info.plist */,
+				44496F521D5985A6005875DD /* AppDelegate.swift */,
+				44496F591D5985A6005875DD /* Assets.xcassets */,
+				44575A2B1E01821900B3A941 /* Images */,
+				44496F5B1D5985A6005875DD /* LaunchScreen.storyboard */,
+				44655D781D5AF9F300229404 /* Model */,
+				44397D6E1D695AB6005B44AA /* Storyboard */,
+				44BD39731D5B1E510070E0CB /* Util */,
+				44BD39771D5B27430070E0CB /* View */,
+				44655D731D5AEF7900229404 /* ViewController */,
 			);
 			path = KomicaViewer;
 			sourceTree = "<group>";
@@ -514,6 +524,16 @@
 				44496F691D5985A6005875DD /* Info.plist */,
 			);
 			path = KomicaViewerTests;
+			sourceTree = "<group>";
+		};
+		44575A2B1E01821900B3A941 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				44575A2C1E01822F00B3A941 /* settings.png */,
+				44575A2D1E01822F00B3A941 /* settings@2x.png */,
+				44575A2E1E01822F00B3A941 /* settings@3x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		44655D3B1D5AD15400229404 /* Products */ = {
@@ -1019,11 +1039,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				44496F5D1D5985A6005875DD /* LaunchScreen.storyboard in Resources */,
+				44575A311E01822F00B3A941 /* settings@3x.png in Resources */,
+				44575A2F1E01822F00B3A941 /* settings.png in Resources */,
 				44496F5A1D5985A6005875DD /* Assets.xcassets in Resources */,
 				44496F581D5985A6005875DD /* Main.storyboard in Resources */,
 				44397D6C1D695AA5005B44AA /* AddForum.storyboard in Resources */,
+				44575A301E01822F00B3A941 /* settings@2x.png in Resources */,
 				44BD397D1D5B5AA70070E0CB /* ThreadTableViewCell.xib in Resources */,
 				4411C74B1D76C28400047660 /* GoogleService-Info.plist in Resources */,
+				44575A331E01826700B3A941 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1225,6 +1249,7 @@
 				44496F571D5985A6005875DD /* Base */,
 			);
 			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		44496F5B1D5985A6005875DD /* LaunchScreen.storyboard */ = {
