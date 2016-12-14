@@ -28,6 +28,7 @@
 		44575A301E01822F00B3A941 /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44575A2D1E01822F00B3A941 /* settings@2x.png */; };
 		44575A311E01822F00B3A941 /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44575A2E1E01822F00B3A941 /* settings@3x.png */; };
 		44575A331E01826700B3A941 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44575A321E01826700B3A941 /* Settings.storyboard */; };
+		44575A351E01834E00B3A941 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44575A341E01834E00B3A941 /* SettingsTableViewController.swift */; };
 		445A305F1D864EF0007FFE0C /* ThreadTableViewCellUIActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445A305E1D864EF0007FFE0C /* ThreadTableViewCellUIActions.swift */; };
 		44655D471D5AD24700229404 /* KomicaEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D401D5AD15400229404 /* KomicaEngine.framework */; };
 		44655D481D5AD24700229404 /* KomicaEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D401D5AD15400229404 /* KomicaEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -390,6 +391,7 @@
 		44575A2D1E01822F00B3A941 /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		44575A2E1E01822F00B3A941 /* settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@3x.png"; sourceTree = "<group>"; };
 		44575A321E01826700B3A941 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		44575A341E01834E00B3A941 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		445A305E1D864EF0007FFE0C /* ThreadTableViewCellUIActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadTableViewCellUIActions.swift; sourceTree = "<group>"; };
 		44655D3A1D5AD15400229404 /* KomicaEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KomicaEngine.xcodeproj; path = ../../komicaengine/KomicaEngine.xcodeproj; sourceTree = "<group>"; };
 		44655D741D5AEF7900229404 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
@@ -550,6 +552,7 @@
 			children = (
 				44655D741D5AEF7900229404 /* HomeTableViewController.swift */,
 				44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */,
+				44575A341E01834E00B3A941 /* SettingsTableViewController.swift */,
 				44BD397F1D5B5E180070E0CB /* ThreadTableViewController.swift */,
 				44BD39811D5B5F310070E0CB /* ThreadTableViewControllerProtocol.swift */,
 				447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */,
@@ -1179,6 +1182,7 @@
 				44A65AA21D5DDA3300A4DDE6 /* UIColor+RGB.swift in Sources */,
 				44397D5F1D6942E7005B44AA /* SVWebViewProtocol.swift in Sources */,
 				44A65A981D5DBB0100A4DDE6 /* UIView+Util.m in Sources */,
+				44575A351E01834E00B3A941 /* SettingsTableViewController.swift in Sources */,
 				44BD39751D5B1E510070E0CB /* Logger.swift in Sources */,
 				44655D7A1D5AFDAB00229404 /* Forums.swift in Sources */,
 				44655D751D5AEF7900229404 /* HomeTableViewController.swift in Sources */,
