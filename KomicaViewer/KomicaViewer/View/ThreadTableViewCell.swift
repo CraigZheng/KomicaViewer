@@ -43,6 +43,7 @@ class ThreadTableViewCell: UITableViewCell {
     @IBOutlet weak var parasitePostTextLabel: UILabel?
     @IBOutlet weak var parasitePostCountLabel: UILabel?
     @IBOutlet weak var parasitePostViewZeroHeight: NSLayoutConstraint?
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel?
     @IBOutlet weak var warningLabel: UILabel?
     @IBOutlet weak var imageFormatLabel: UILabel!
@@ -102,6 +103,13 @@ class ThreadTableViewCell: UITableViewCell {
                                                     }
             })
             textView?.attributedText = mutableAttributedString
+        }
+        // Set title, and hide it when title is empty.
+        self.titleLabel.text = thread.title
+        if self.titleLabel.text?.isEmpty ?? true {
+            NSLayoutConstraint.deactivateConstraints(self.titleLabel.constraints)
+        } else {
+            NSLayoutConstraint.activateConstraints(self.titleLabel.constraints)
         }
         if let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController
         {

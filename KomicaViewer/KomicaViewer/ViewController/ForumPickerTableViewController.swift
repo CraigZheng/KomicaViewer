@@ -57,6 +57,11 @@ class ForumPickerTableViewController: UITableViewController {
             tableView.setContentOffset(scrollOffset, animated: false)
         }
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
 
     // MARK: - Table view data source
 
