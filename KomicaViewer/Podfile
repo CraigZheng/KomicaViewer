@@ -25,7 +25,7 @@ target 'KomicaViewer' do
   pod 'Firebase/Core'
   pod 'Firebase/AdMob'
   pod 'Firebase/Crash'
-  pod "OGVKit/WebM", "~> 0.5pre"
+  pod "OGVKit"
   target 'KomicaViewerTests' do
    inherit! :search_paths
     # Pods for testing

@@ -52,6 +52,10 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.0)
   - libnestegg (0.1)
   - libogg (1.3.2)
+  - liboggz (1.1.1):
+    - libogg (>= 1.0)
+  - libtheora (1.1.1):
+    - libogg (>= 1.1)
   - libvorbis (1.3.5):
     - libogg (>= 1.0)
   - libvpx (1.5.0-1021-g59ae167)
@@ -60,24 +64,53 @@ PODS:
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
-  - OGVKit/Core (0.5pre)
-  - OGVKit/VorbisDecoder (0.5pre):
+  - OGVKit (0.5.4):
+    - OGVKit/Core (= 0.5.4)
+    - OGVKit/libskeleton (= 0.5.4)
+    - OGVKit/Ogg (= 0.5.4)
+    - OGVKit/OggDemuxer (= 0.5.4)
+    - OGVKit/TheoraDecoder (= 0.5.4)
+    - OGVKit/VorbisDecoder (= 0.5.4)
+    - OGVKit/VP8Decoder (= 0.5.4)
+    - OGVKit/WebM (= 0.5.4)
+    - OGVKit/WebMDemuxer (= 0.5.4)
+  - OGVKit/Core (0.5.4)
+  - OGVKit/libskeleton (0.5.4):
+    - libogg
+  - OGVKit/Ogg (0.5.4):
+    - OGVKit/Ogg/Theora (= 0.5.4)
+    - OGVKit/Ogg/Vorbis (= 0.5.4)
+  - OGVKit/Ogg/Theora (0.5.4):
+    - OGVKit/OggDemuxer
+    - OGVKit/TheoraDecoder
+    - OGVKit/VorbisDecoder
+  - OGVKit/Ogg/Vorbis (0.5.4):
+    - OGVKit/OggDemuxer
+    - OGVKit/VorbisDecoder
+  - OGVKit/OggDemuxer (0.5.4):
+    - liboggz
+    - OGVKit/Core
+    - OGVKit/libskeleton (~> 0.4)
+  - OGVKit/TheoraDecoder (0.5.4):
+    - libtheora
+    - OGVKit/Core
+  - OGVKit/VorbisDecoder (0.5.4):
     - libvorbis
     - OGVKit/Core
-  - OGVKit/VP8Decoder (0.5pre):
+  - OGVKit/VP8Decoder (0.5.4):
     - libvpx (~> 1.5.0-1021-g59ae167)
     - OGVKit/Core
-  - OGVKit/WebM (0.5pre):
-    - OGVKit/WebM/Vorbis (= 0.5pre)
-    - OGVKit/WebM/VP8 (= 0.5pre)
-  - OGVKit/WebM/Vorbis (0.5pre):
+  - OGVKit/WebM (0.5.4):
+    - OGVKit/WebM/Vorbis (= 0.5.4)
+    - OGVKit/WebM/VP8 (= 0.5.4)
+  - OGVKit/WebM/Vorbis (0.5.4):
     - OGVKit/VorbisDecoder
     - OGVKit/WebMDemuxer
-  - OGVKit/WebM/VP8 (0.5pre):
+  - OGVKit/WebM/VP8 (0.5.4):
     - OGVKit/VorbisDecoder
     - OGVKit/VP8Decoder
     - OGVKit/WebMDemuxer
-  - OGVKit/WebMDemuxer (0.5pre):
+  - OGVKit/WebMDemuxer (0.5.4):
     - libnestegg
     - OGVKit/Core
   - PureLayout (3.0.2)
@@ -94,7 +127,7 @@ DEPENDENCIES:
   - Firebase/Crash
   - MBProgressHUD
   - MWPhotoBrowser (~> 2.1.2)
-  - OGVKit/WebM (~> 0.5pre)
+  - OGVKit
   - PureLayout
   - SVPullToRefresh (from `https://github.com/samvermette/SVPullToRefresh.git`)
   - SVWebViewController (from `https://github.com/TransitApp/SVWebViewController.git`)
@@ -127,16 +160,18 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   libnestegg: 29be3e4d84978423ab8a282476c099aa221d1c4e
   libogg: 924cd993b3fcf4d93568f7d582496061ef82716e
+  liboggz: 6605f8cd394de0fe330957507179f6bdcce716d1
+  libtheora: cf6fb3c5c0db661460d0d54d0a343bc38dc766d3
   libvorbis: ce9ba21bbef15c2060e31e1e33dcdeb3762427b0
   libvpx: a5eeb44d068ae2f597eddf27a9fc097ac423b208
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
-  OGVKit: 9c77c0d7853a9cc497dfa773996d0baea0852ed6
+  OGVKit: 868dd4a337ff7a14ac3db58628092fa7871bdb9d
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SVWebViewController: aa2e18a41ff5f45be7aeec8e92ca5bcc50b5ebb1
 
-PODFILE CHECKSUM: 9cec26d0a23971855e1eb872732f207778ba9797
+PODFILE CHECKSUM: a4359aca8b3d903ef2f026770d89e2c4acf38ed6
 
 COCOAPODS: 1.1.1
