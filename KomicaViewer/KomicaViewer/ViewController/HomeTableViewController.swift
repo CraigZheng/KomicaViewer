@@ -253,7 +253,7 @@ extension HomeTableViewController {
         if let forum = forum {
             FIRAnalytics.logEventWithName(kFIREventViewItem, parameters: [
                 kFIRParameterContentType: "SELECT",
-                kFIRParameterItemCategory: "FORUM"
+                kFIRParameterItemCategory: "FORUM",
                 kFIRParameterItemName: forum.name ?? "",
                 "FORUM URL": forum.indexURL ?? ""])
         }
