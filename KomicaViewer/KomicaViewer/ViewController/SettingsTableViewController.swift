@@ -28,11 +28,17 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         let productIdentifiers: Set<ProductIdentifier> = [iapRemoveAd]
         IAPHelper.sharedInstance.requestProducts(productIdentifiers) { [weak self] (response, error) in
-            if let response = response,
-                !response.products.isEmpty {
-                // Reload tableView with the newly downloaded product.
-                self?.iapProducts.append(contentsOf: response.products)
-                self?.tableView.reloadData()
+            DispatchQueue.main.async {
+                if let response = response,
+                    !response.products.isEmpty {
+                    // Reload tableView with the newly downloaded product.
+                    self?.iapProducts.append(contentsOf: response.products)
+                    if let product = self?.iapProducts.first {
+                        self?.removeAdCell.textLabel?.text = product.localizedTitle
+                        self?.removeAdCell.detailTextLabel?.text = product.localizedPrice()
+                    }
+                    self?.tableView.reloadData()
+                }
             }
         }
     }
