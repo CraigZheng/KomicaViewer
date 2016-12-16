@@ -35,12 +35,17 @@ class SettingsTableViewController: UITableViewController {
         case .settings:
             return 0
         case .remoteActions:
-            return Configuration.singleton.remoteActions.count
+            return 1
         }
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return CGFloat(Configuration.singleton.remoteActions.count * 44) + 20
+        switch Section(rawValue: section)! {
+        case .settings:
+            return UITableViewAutomaticDimension
+        case .remoteActions:
+            return CGFloat(Configuration.singleton.remoteActions.count * 44) + 20
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -58,7 +63,7 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Remote action section.
-        if indexPath.section == lastSectionIndex,
+        if indexPath.section == .remoteActions,
             let urlString = Configuration.singleton.remoteActions[indexPath.row].values.first,
             let url = NSURL(string: urlString)
         {

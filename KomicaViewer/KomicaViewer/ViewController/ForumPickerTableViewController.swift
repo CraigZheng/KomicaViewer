@@ -16,9 +16,7 @@ class ForumPickerTableViewController: UITableViewController {
     private let cellIdentifier = "cellIdentifier"
     private let remoteActionCellIdentifier = "remoteActionCellIdentifier"
     private let selectedIndexPathKey = "selectedIndexPathKey"
-    private var lastSectionIndex: Int {
-        return numberOfSectionsInTableView(tableView) - 1
-    }
+
     private var shouldShowCustomForums: Bool {
         let should = Forums.customForumGroup.forums?.isEmpty != nil ?? false
         return should
@@ -66,16 +64,12 @@ class ForumPickerTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // +1 for the remote actions section, +1 for the custom forums section.
-        let sections = forumGroups.count + 2
+        // +1 for the custom forums section.
+        let sections = forumGroups.count + 1
         return sections
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Last section is the settings section.
-        if section == lastSectionIndex {
-            return 1
-        }
         return forumsForSection(section)?.count ?? 0
     }
     
@@ -92,41 +86,29 @@ class ForumPickerTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.section == lastSectionIndex {
-            return CGFloat(Configuration.singleton.remoteActions.count * 44 + 20)
-        } else {
-            return UITableViewAutomaticDimension
-        }
+        return UITableViewAutomaticDimension
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == lastSectionIndex {
-            let cell = tableView.dequeueReusableCellWithIdentifier(remoteActionCellIdentifier, forIndexPath: indexPath)
-            cell.textLabel?.text = "App Version: " + Configuration.bundleVersion
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
-            // If section == 0 and custom forums not empty, show the customForumGroup.
-            let forums = forumsForSection(indexPath.section)
-            if let forums = forums where !forums.isEmpty {
-                cell.textLabel?.text = forums[indexPath.row].name
-                if let indexURLString = forums[indexPath.row].indexURL,
-                    let indexURL = NSURL(string: indexURLString)
-                {
-                    cell.detailTextLabel?.text = indexURL.host ?? ""
-                } else {
-                    cell.detailTextLabel?.text = ""
-                }
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+        // If section == 0 and custom forums not empty, show the customForumGroup.
+        let forums = forumsForSection(indexPath.section)
+        if let forums = forums where !forums.isEmpty {
+            cell.textLabel?.text = forums[indexPath.row].name
+            if let indexURLString = forums[indexPath.row].indexURL,
+                let indexURL = NSURL(string: indexURLString)
+            {
+                cell.detailTextLabel?.text = indexURL.host ?? ""
+            } else {
+                cell.detailTextLabel?.text = ""
             }
-            return cell
         }
+        return cell
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             return (Forums.customForumGroup.forums?.isEmpty != nil ?? false) ? "" : "Custom Boards"
-        } else if section == lastSectionIndex {
-            return "Settings"
         } else if section - 1 < forumGroups.count {
             return forumGroups[section - 1].name
         }
@@ -134,15 +116,8 @@ class ForumPickerTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // Remote action section.
-        if indexPath.section == lastSectionIndex,
-            let urlString = Configuration.singleton.remoteActions[indexPath.row].values.first,
-            let url = NSURL(string: urlString)
-        {
-            if UIApplication.sharedApplication().canOpenURL(url) {
-                UIApplication.sharedApplication().openURL(url)
-            }
-        } else if let forums = forumsForSection(indexPath.section) where indexPath.row < forums.count
+        if let forums = forumsForSection(indexPath.section)
+            where indexPath.row < forums.count
         {
             Forums.selectedForum = forums[indexPath.row]
             ForumPickerTableViewController.scrollOffset = tableView.contentOffset
