@@ -143,6 +143,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
             let thread = threads[indexPath.row]
             // Home view does not show parasite view.
             cell.shouldShowParasitePost = false
+            cell.shouldShowImage = Configuration.singleton.showImage
             cell.layoutWithThread(thread, forTableViewController: self)
         }
         return cell

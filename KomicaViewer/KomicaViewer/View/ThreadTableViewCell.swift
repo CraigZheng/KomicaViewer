@@ -21,6 +21,7 @@ class ThreadTableViewCell: UITableViewCell {
     private let defaultFont = UIFont.systemFontOfSize(17)
     
     var shouldShowParasitePost = true
+    var shouldShowImage = true
     var alertController: UIAlertController?
     var userID: String?
     var links: [NSURL] {
@@ -111,7 +112,7 @@ class ThreadTableViewCell: UITableViewCell {
         } else {
             NSLayoutConstraint.activateConstraints(self.titleLabel.constraints)
         }
-        if let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController
+        if let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController where shouldShowImage
         {
             imageViewZeroHeight?.priority = 1
             if SDWebImageManager.sharedManager().cachedImageExistsForURL(imageURL) {

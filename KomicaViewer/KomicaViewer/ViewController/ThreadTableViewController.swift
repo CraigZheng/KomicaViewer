@@ -133,6 +133,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         let cell = tableView.dequeueReusableCellWithIdentifier(ThreadTableViewCell.identifier, forIndexPath: indexPath)
         if let cell = cell as? ThreadTableViewCell {
             let thread = threads[indexPath.row]
+            cell.shouldShowImage = Configuration.singleton.showImage
             cell.layoutWithThread(thread, forTableViewController: self)
         }
         return cell
