@@ -58,6 +58,10 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch Section(rawValue: indexPath.section)! {
         case .settings:
+            // When IAP product is empty, don't show the removeAdCell and restorePurchaseCell.
+            if iapProducts.isEmpty || AdConfiguration.singleton.isAdRemovePurchased, tableView.indexPath(for: removeAdCell) == indexPath || tableView.indexPath(for: restorePurchaseCell) == indexPath {
+                return 0
+            }
             return UITableViewAutomaticDimension
         case .remoteActions:
             return CGFloat(Configuration.singleton.remoteActions.count * 44) + 20
@@ -85,6 +89,18 @@ class SettingsTableViewController: UITableViewController {
         {
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.openURL(url)
+            }
+        } else {
+            if let cell = tableView.cellForRow(at: indexPath) {
+                switch cell {
+                case removeAdCell:
+                    // Initiate purchasing.
+                    break
+                case restorePurchaseCell:
+                    break
+                default:
+                    break
+                }
             }
         }
     }
