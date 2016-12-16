@@ -119,15 +119,15 @@ class ThreadTableViewCell: UITableViewCell {
                 let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: SDWebImageManager.shared().cacheKey(for: imageURL))
                 imageView?.image = cachedImage
             } else {
-                imageView?.sd_setImageWithURL(imageURL, placeholderImage: nil, completed: { [weak self](image, error, cacheType, imageURL) in
+                imageView?.sd_setImage(with: imageURL, placeholderImage: nil, options: SDWebImageOptions.retryFailed, completed: { [weak self](image, error, cacheType, imageURL) in
                     guard let strongCell = self else { return }
                     // If its been downloaded from the web, reload this 
-                    if image != nil && cacheType == SDImageCacheType.None {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            if let indexPath = tableViewController.tableView.indexPathForCell(strongCell) {
+                    if image != nil && cacheType == SDImageCacheType.none {
+                        DispatchQueue.main.async {
+                            if let indexPath = tableViewController.tableView.indexPath(for: strongCell) {
                                 (tableViewController as! TableViewControllerBulkUpdateProtocol).addPendingIndexPaths(indexPath)
                             }
-                        })
+                        }
                     }
                     })
             }
