@@ -25,19 +25,6 @@ class SettingsTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch Section(rawValue: section)! {
-        case .settings:
-            return 0
-        case .remoteActions:
-            return 1
-        }
-    }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch Section(rawValue: indexPath.section)! {
@@ -52,9 +39,9 @@ class SettingsTableViewController: UITableViewController {
         switch Section(rawValue: indexPath.section)! {
         case .settings:
             // TODO: settings.
-            return UITableViewCell()
+            return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         case .remoteActions:
-            let cell = tableView.dequeueReusableCellWithIdentifier(remoteActionCellIdentifier, forIndexPath: indexPath)
+            let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
             cell.textLabel?.text = "App Version: " + Configuration.bundleVersion
             return cell
         }
