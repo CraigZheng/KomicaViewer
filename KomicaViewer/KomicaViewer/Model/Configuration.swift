@@ -34,6 +34,21 @@ class Configuration: NSObject {
     var announcement: String?
     var updatedWithServer = false
     
+    // MARK: user define settings.
+    var showImage: Bool {
+        set {
+            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "showImage")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+        get {
+            if NSUserDefaults.standardUserDefaults().objectForKey("showImage") != nil {
+                return NSUserDefaults.standardUserDefaults().boolForKey("showImage")
+            } else {
+                return true
+            }
+        }
+    }
+    
     var timeout: NSTimeInterval = 20
     var thumbnailWidth = 50.0
     var debug: Bool {
