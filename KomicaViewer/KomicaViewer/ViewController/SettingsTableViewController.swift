@@ -20,8 +20,18 @@ class SettingsTableViewController: UITableViewController {
         case settings, remoteActions
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    // MARK: - UI elements.
+    
+    @IBOutlet weak var showImageSwitch: UISwitch! {
+        didSet {
+            showImageSwitch.setOn(Configuration.singleton.showImage, animated: false)
+        }
+    }
+    
+    // MARK: - UI actions.
+    
+    @IBAction func showImageSwitchAction(sender: AnyObject) {
+        Configuration.singleton.showImage = showImageSwitch.on
     }
     
     // MARK: - Table view data source

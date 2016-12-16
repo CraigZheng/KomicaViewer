@@ -12,7 +12,7 @@
         <scene sceneID="ZFn-7v-jya">
             <objects>
                 <navigationController id="CkH-PR-Wvs" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PsU-DL-Dr0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="PsU-DL-Dr0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -33,7 +33,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="GlT-Uv-Z6w">
-                            <rect key="frame" x="0.0" y="250" width="375" height="1"/>
+                            <rect key="frame" x="0.0" y="294" width="375" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
@@ -67,12 +67,42 @@
                                             <color key="backgroundColor" red="1" green="1" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellIdentifier" id="LUB-cO-ENE">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LUB-cO-ENE" id="bq3-CW-kfN">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Show Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eg2-6O-O0U">
+                                                    <rect key="frame" x="20" y="11" width="89" height="20"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yQB-Vd-zYR">
+                                                    <rect key="frame" x="306" y="6.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="showImageSwitchAction:" destination="xH6-KG-ldd" eventType="valueChanged" id="02C-6U-kv6"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="1" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="yQB-Vd-zYR" secondAttribute="trailing" constant="20" symbolic="YES" id="6b6-FR-Z4Q"/>
+                                                <constraint firstItem="yQB-Vd-zYR" firstAttribute="centerY" secondItem="bq3-CW-kfN" secondAttribute="centerY" id="M9v-g1-byN"/>
+                                                <constraint firstItem="Eg2-6O-O0U" firstAttribute="leading" secondItem="bq3-CW-kfN" secondAttribute="leading" constant="20" symbolic="YES" id="cwu-Bo-Lwg"/>
+                                                <constraint firstItem="Eg2-6O-O0U" firstAttribute="centerY" secondItem="bq3-CW-kfN" secondAttribute="centerY" id="zTv-zY-aJd"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle=" " id="3U2-W7-g0B" userLabel="Remote">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="remoteActionCellIdentifier" rowHeight="150" id="gg1-rf-MiG" customClass="ActionTableViewCell" customModule="KomicaViewer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="100" width="375" height="150"/>
+                                        <rect key="frame" x="0.0" y="144" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gg1-rf-MiG" id="NRX-jd-bco">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
@@ -149,6 +179,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="tDF-sV-ntH"/>
+                    <connections>
+                        <outlet property="showImageSwitch" destination="yQB-Vd-zYR" id="Tch-qh-DUX"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MQJ-W3-pdD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
