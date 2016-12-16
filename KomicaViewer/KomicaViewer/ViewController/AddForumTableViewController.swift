@@ -173,7 +173,7 @@ extension AddForumTableViewController {
         } else {
             newForum.parserType = KomicaForum.parserTypes[parserPickerView.selectedRow(inComponent: 0)]
             Forums.addCustomForum(newForum)
-            navigationController?.popToRootViewController(animated: true)
+            _ = navigationController?.popToRootViewController(animated: true)
             // The forum has been added, reset the forum.
             newForum = KomicaForum()
             // Remove the paused forum from the user default.

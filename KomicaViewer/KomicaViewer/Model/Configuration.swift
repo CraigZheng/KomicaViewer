@@ -114,7 +114,7 @@ class Configuration: NSObject {
         sessionManager.dataTask(with: URLRequest(url: remoteConfigurationURL)) { response, responseObject, error in
             DLog("Updating completed.")
             if error == nil, let responseObject = responseObject as? Data {
-                self.parseJSONData(responseObject)
+                _ = self.parseJSONData(responseObject)
                 self.updatedWithServer = true
             }
             if let completion = completion {
@@ -133,7 +133,7 @@ class Configuration: NSObject {
         if let defaultJsonURL = Bundle.main.url(forResource: defaultConfiguration, withExtension: "json"),
             let defaultJsonData = try? Data(contentsOf: defaultJsonURL)
         {
-            parseJSONData(defaultJsonData)
+            _ = parseJSONData(defaultJsonData)
         }
         
         // Schedule a timer to update once in a while.

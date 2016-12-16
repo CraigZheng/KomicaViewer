@@ -14,7 +14,7 @@ extension ThreadTableViewCell {
         DLog("")
         // If there's another alertController, don't do anything.
         if alertController == nil {
-            if let userID = userID, BlockedUserManager.sharedManager.isUserIDBlocked(userID ?? "") {
+            if let userID = userID, BlockedUserManager.sharedManager.isUserIDBlocked(userID) {
                 alertController = UIAlertController(title: "User blocked: \(userID)", message: "Would you like to unblock this user?", preferredStyle: .actionSheet)
                 alertController?.addAction(UIAlertAction(title: "Unblock", style: .default, handler: { (_) in
                     self.alertController = nil

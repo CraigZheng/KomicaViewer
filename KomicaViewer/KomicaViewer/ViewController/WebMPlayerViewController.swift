@@ -31,7 +31,7 @@ class WebMPlayerViewController: UIViewController {
 
     @IBAction func doneAction(_ sender: AnyObject) {
         playerView.pause()
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
     

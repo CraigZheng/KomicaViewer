@@ -46,7 +46,7 @@ class ForumTextInputViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ForumTextInputViewController.handlekeyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ForumTextInputViewController.handleKeyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         // Configure the text view.
-        insertBarButtonItem.isEnabled = pageSpecifier?.isEmpty == false ?? false
+        insertBarButtonItem.isEnabled = pageSpecifier?.isEmpty == false
         if !allowEditing {
             textView.isEditable = false
             insertBarButtonItem.isEnabled = false
@@ -86,7 +86,7 @@ extension ForumTextInputViewController {
                 ProgressHUD.showMessage("Cannot save, \(pageSpecifier) is required.")
             } else {
                 delegate?.forumDetailEntered(self, enteredDetails: enteredText, forField: field)
-                navigationController?.popViewController(animated: true)
+                _ = navigationController?.popViewController(animated: true)
             }
         }
     }

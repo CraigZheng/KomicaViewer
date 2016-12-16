@@ -34,9 +34,9 @@ class ForumQRScannerViewController: UIViewController {
                 } else {
                     // No permission, inform user about the permission issue, or quit.
                     let alertController = UIAlertController(title: "\(UIApplication.appName) Would Like To Use Your Camera", message: nil, preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+                    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { [weak self] _ in
                         // Dismiss self.
-                        self.navigationController?.popToRootViewController(animated: true)
+                        _ = self?.navigationController?.popToRootViewController(animated: true)
                     }))
                     alertController.addAction(UIAlertAction(title: "Settings", style: .default, handler: { _ in
                         let settingsUrl = URL(string: UIApplicationOpenSettingsURLString)
