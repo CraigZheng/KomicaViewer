@@ -14,6 +14,15 @@ class AdConfiguration: NSObject {
     var weeklyAdClickLimit = 9
     var monthlyAdClickLimit = 18
     var adDescription: String?
+    var isAdRemovePurchased: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: "AdRemovePurchased")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "AdRemovePurchased")
+            UserDefaults.standard.synchronize()
+        }
+    }
     var shouldDisplayAds: Bool {
         var should = enableAd
         if should {
