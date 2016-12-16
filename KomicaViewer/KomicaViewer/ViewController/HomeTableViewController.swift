@@ -117,18 +117,28 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         // Add handler for blocked user updated notification.
         NSNotificationCenter.defaultCenter().addObserverForName(BlockedUserManager.updatedNotification,
                                                                 object: nil,
-                                                                queue: NSOperationQueue.mainQueue()) { (_) in
-                                                                    self.tableView.reloadData()
+                                                                queue: NSOperationQueue.mainQueue()) { [weak self] (_) in
+                                                                    self?.tableView.reloadData()
+        }
+        // Configuration updated.
+        NSNotificationCenter.defaultCenter().addObserverForName(Configuration.updatedNotification,
+                                                                object: nil,
+                                                                queue: NSOperationQueue.mainQueue()) { [weak self] (_) in
+                                                                    self?.tableView.reloadData()
         }
         // Ad configuration update notification
         NSNotificationCenter.defaultCenter().addObserverForName(AdConfiguration.adConfigurationUpdatedNotification,
                                                                 object: nil,
-                                                                queue: NSOperationQueue.mainQueue()) { (_) in
-                                                                    self.attemptLoadRequest()
+                                                                queue: NSOperationQueue.mainQueue()) { [weak self] (_) in
+                                                                    self?.attemptLoadRequest()
         }
         tableView.addPullToRefreshWithActionHandler({
             self.refreshWithPage(self.pageIndex + 1)
         }, position: .Bottom)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     // MARK: - Table view data source

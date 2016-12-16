@@ -99,14 +99,20 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         // Block user updated notification.
         NSNotificationCenter.defaultCenter().addObserverForName(BlockedUserManager.updatedNotification,
                                                                 object: nil,
-                                                                queue: NSOperationQueue.mainQueue()) { (_) in
-                                                                    self.tableView.reloadData()
+                                                                queue: NSOperationQueue.mainQueue()) { [weak self] (_) in
+                                                                    self?.tableView.reloadData()
+        }
+        // Configuration updated.
+        NSNotificationCenter.defaultCenter().addObserverForName(Configuration.updatedNotification,
+                                                                object: nil,
+                                                                queue: NSOperationQueue.mainQueue()) { [weak self] (_) in
+                                                                    self?.tableView.reloadData()
         }
         // Ad configuration update notification
         NSNotificationCenter.defaultCenter().addObserverForName(AdConfiguration.adConfigurationUpdatedNotification,
                                                                 object: nil,
-                                                                queue: NSOperationQueue.mainQueue()) { (_) in
-                                                                    self.attemptLoadRequest()
+                                                                queue: NSOperationQueue.mainQueue()) { [weak self] (_) in
+                                                                    self?.attemptLoadRequest()
         }
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self,

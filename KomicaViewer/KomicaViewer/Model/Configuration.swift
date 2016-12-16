@@ -39,6 +39,7 @@ class Configuration: NSObject {
         set {
             NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "showImage")
             NSUserDefaults.standardUserDefaults().synchronize()
+            NSNotificationCenter.defaultCenter().postNotificationName(Configuration.updatedNotification, object: nil)
         }
         get {
             if NSUserDefaults.standardUserDefaults().objectForKey("showImage") != nil {
