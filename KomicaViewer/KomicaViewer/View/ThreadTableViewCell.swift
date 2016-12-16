@@ -13,22 +13,22 @@ import SDWebImage
 
 class ThreadTableViewCell: UITableViewCell {
     static let identifier = "threadCellIdentifier"
-    private struct TextColour {
+    fileprivate struct TextColour {
         static let standard = UIColor(red: 182/255.0, green: 78/255.0, blue: 4/255.0, alpha: 1.0)
         static let warning = UIColor(red: 237/255.0, green: 8/255.0, blue: 25/255.0, alpha: 1.0)
-        static let blocked = UIColor.lightGrayColor()
+        static let blocked = UIColor.lightGray
     }
-    private let defaultFont = UIFont.systemFontOfSize(17)
+    fileprivate let defaultFont = UIFont.systemFont(ofSize: 17)
     
     var shouldShowParasitePost = true
     var shouldShowImage = true
     var alertController: UIAlertController?
     var userID: String?
-    var links: [NSURL] {
-        var links = [NSURL]()
-        if let linkDetector = try? NSDataDetector(types: NSTextCheckingType.Link.rawValue), let text = textView?.text {
-            for match in linkDetector.matchesInString(text, options: [], range: NSMakeRange(0, text.characters.count)) {
-                if match.resultType == NSTextCheckingType.Link, let url = match.URL {
+    var links: [URL] {
+        var links = [URL]()
+        if let linkDetector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue), let text = textView?.text {
+            for match in linkDetector.matches(in: text, options: [], range: NSMakeRange(0, text.characters.count)) {
+                if match.resultType == NSTextCheckingResult.CheckingType.link, let url = match.url {
                     links.append(url)
                 }
             }
@@ -73,7 +73,7 @@ class ThreadTableViewCell: UITableViewCell {
         contentView.addGestureRecognizer(longPressGestureRecognizer)
     }
         
-    func layoutWithThread(thread: Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol) {
+    func layoutWithThread(_ thread: KomicaEngine.Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol) {
         // Make a copy of the incoming thread.
         var thread = thread
         userID = thread.UID
@@ -108,11 +108,11 @@ class ThreadTableViewCell: UITableViewCell {
         // Set title, and hide it when title is empty.
         self.titleLabel.text = thread.title
         if self.titleLabel.text?.isEmpty ?? true {
-            NSLayoutConstraint.deactivateConstraints(self.titleLabel.constraints)
+            NSLayoutConstraint.deactivate(self.titleLabel.constraints)
         } else {
-            NSLayoutConstraint.activateConstraints(self.titleLabel.constraints)
+            NSLayoutConstraint.activate(self.titleLabel.constraints)
         }
-        if let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController where shouldShowImage
+        if let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController, shouldShowImage
         {
             imageViewZeroHeight?.priority = 1
             if SDWebImageManager.sharedManager().cachedImageExistsForURL(imageURL) {
@@ -133,13 +133,13 @@ class ThreadTableViewCell: UITableViewCell {
             }
             // Show imageFormatLabel, and set the text to the pathExtension.
             if let imageURLString = thread.imageURL?.absoluteString {
-                imageFormatLabel.hidden = false
+                imageFormatLabel.isHidden = false
                 imageFormatLabel.text = (imageURLString as NSString).pathExtension.uppercaseString
             }
         } else {
             imageView?.image = nil
             imageViewZeroHeight?.priority = 999
-            imageFormatLabel.hidden = true
+            imageFormatLabel.isHidden = true
         }
         // When videoLinks is not empty, show mediaLinkLabel.
         mediaLinkLabel.hidden = !(thread.videoLinks?.isEmpty == false)

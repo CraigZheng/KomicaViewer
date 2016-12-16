@@ -19,8 +19,7 @@ class ShowForumQRCodeViewController: UIViewController {
 
         if let forum = forum,
             let jsonString = forum.jsonEncode(),
-            let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
-            where !jsonString.isEmpty
+            let jsonData = jsonString.data(using: String.Encoding.utf8), !jsonString.isEmpty
         {
             title = forum.name
             qrImageView.image = qrForData(jsonData)
@@ -28,12 +27,12 @@ class ShowForumQRCodeViewController: UIViewController {
     }
 
     // Copied from http://stackoverflow.com/questions/12051118/is-there-a-way-to-generate-qr-code-image-on-ios and mofieid.
-    private func qrForData(data: NSData) -> UIImage? {
+    fileprivate func qrForData(_ data: Data) -> UIImage? {
         let filter = CIFilter(name: "CIQRCodeGenerator")
         filter?.setValue(data, forKey: "inputMessage")
         if let rawOutput = filter?.outputImage {
-            let outputImage = rawOutput.imageByApplyingTransform(CGAffineTransformMakeScale(10.0, 10.0))
-            return UIImage(CIImage: outputImage)
+            let outputImage = rawOutput.applying(CGAffineTransform(scaleX: 10.0, y: 10.0))
+            return UIImage(ciImage: outputImage)
         } else {
             return nil
         }

@@ -12,7 +12,7 @@ import OGVKit
 
 class WebMPlayerViewController: UIViewController {
     
-    var webMSourceURL: NSURL!
+    var webMSourceURL: URL!
 
     @IBOutlet weak var playerView: OGVPlayerView!
     
@@ -22,22 +22,22 @@ class WebMPlayerViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         playerView.delegate = self
         playerView.sourceURL = webMSourceURL
         playerView.play()
     }
 
-    @IBAction func doneAction(sender: AnyObject) {
+    @IBAction func doneAction(_ sender: AnyObject) {
         playerView.pause()
-        navigationController?.popViewControllerAnimated(true)
-        dismissViewControllerAnimated(true, completion: nil)
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func safariAction(sender: AnyObject) {
+    @IBAction func safariAction(_ sender: AnyObject) {
         if webMSourceURL != nil {
-            UIApplication.sharedApplication().openURL(webMSourceURL)
+            UIApplication.shared.openURL(webMSourceURL)
         }
     }
     

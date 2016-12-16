@@ -9,7 +9,7 @@
 import UIKit
 
 protocol WebViewGuardDogDelegate: class {
-    func blockedRequest(request: NSURLRequest)
+    func blockedRequest(_ request: URLRequest)
 }
 
 /**
@@ -23,10 +23,10 @@ class WebViewGuardDog: NSObject, UIWebViewDelegate {
     var delegate: WebViewGuardDogDelegate?
     // MARK: UIWebViewDelegate
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         var should = true
         if let home = home {
-            if request.URL?.host != home && navigationType == .LinkClicked{
+            if request.url?.host != home && navigationType == .linkClicked{
                 should = false
                 delegate?.blockedRequest(request)
                 if showWarningOnBlock && !onBlockMessage.isEmpty {

@@ -11,17 +11,17 @@ import UIKit
 class BlockedUserManager: NSObject {
     static let sharedManager = BlockedUserManager()
     static let updatedNotification = "BlockedUserUpdatedNotification"
-    private let BlockedUserIDKey = "BlockedUserIDKey"
+    fileprivate let BlockedUserIDKey = "BlockedUserIDKey"
     
-    private var blockedUserIDs = [String]()
+    fileprivate var blockedUserIDs = [String]()
     
-    private func save() {
-        NSUserDefaults.standardUserDefaults().setObject(blockedUserIDs, forKey: BlockedUserIDKey)
-        NSUserDefaults.standardUserDefaults().synchronize()
+    fileprivate func save() {
+        UserDefaults.standard.set(blockedUserIDs, forKey: BlockedUserIDKey)
+        UserDefaults.standard.synchronize()
     }
     
-    private func restore() {
-        if let restoredObjects = NSUserDefaults.standardUserDefaults().objectForKey(BlockedUserIDKey) as? [String] {
+    fileprivate func restore() {
+        if let restoredObjects = UserDefaults.standard.object(forKey: BlockedUserIDKey) as? [String] {
             blockedUserIDs = restoredObjects
         }
     }
@@ -31,23 +31,23 @@ class BlockedUserManager: NSObject {
         restore()
     }
     
-    func blockUserID(id: String) {
+    func blockUserID(_ id: String) {
         blockedUserIDs.append(id)
         // A bit of safty measure, when more than 9999, drop the first entity.
         if blockedUserIDs.count > 9999 {
             blockedUserIDs.removeFirst()
         }
         save()
-        NSNotificationCenter.defaultCenter().postNotificationName(BlockedUserManager.updatedNotification, object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: BlockedUserManager.updatedNotification), object: nil)
     }
     
-    func unblockUserID(id: String) {
+    func unblockUserID(_ id: String) {
         blockedUserIDs.removeObject(id)
         save()
-        NSNotificationCenter.defaultCenter().postNotificationName(BlockedUserManager.updatedNotification, object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: BlockedUserManager.updatedNotification), object: nil)
     }
     
-    func isUserIDBlocked(id: String) -> Bool {
+    func isUserIDBlocked(_ id: String) -> Bool {
         return blockedUserIDs.contains(id)
     }
 }

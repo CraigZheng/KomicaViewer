@@ -28,16 +28,16 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     @IBOutlet weak var adDescriptionLabel: UILabel!
     
     // MARK: UIViewControllerMWPhotoBrowserProtocol
-    var photoURLs: [NSURL]?
-    var thumbnailURLs: [NSURL]?
+    var photoURLs: [URL]?
+    var thumbnailURLs: [URL]?
     var photoIndex: Int?
     
     // MARK: ThreadTableViewControllerProtocol
-    var threads = [Thread]()
+    var threads: [KomicaEngine.Thread] = []
     func refresh() {
         refreshWithPage(forum?.startingIndex ?? 0)
     }
-    func refreshWithPage(page: Int) {
+    func refreshWithPage(_ page: Int) {
         DLog(" - \(page)")
         loadThreadsWithPage(page)
     }
@@ -73,14 +73,14 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     var targetTableView: UITableView {
         return self.tableView
     }
-    var bulkUpdateTimer: NSTimer?
-    var pendingIndexPaths: [NSIndexPath] = [NSIndexPath]()
+    var bulkUpdateTimer: Timer?
+    var pendingIndexPaths: [IndexPath] = [IndexPath]()
     
-    private var currentURL: NSURL? {
+    fileprivate var currentURL: URL? {
         return forum?.listURLForPage(pageIndex)
     }
     // MARK: SVWebViewProtocol
-    var svWebViewURL: NSURL? {
+    var svWebViewURL: URL? {
         set {}
         get {
             return currentURL
@@ -95,60 +95,60 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         }
     }
     
-    private let _guardDog = WebViewGuardDog()
-    private var originalContentInset: UIEdgeInsets?
-    private var pageIndex = 0
-    private let showThreadSegue = "showThread"
+    fileprivate let _guardDog = WebViewGuardDog()
+    fileprivate var originalContentInset: UIEdgeInsets?
+    fileprivate var pageIndex = 0
+    fileprivate let showThreadSegue = "showThread"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self,
                                   action: #selector(HomeTableViewController.refresh),
-                                  forControlEvents: UIControlEvents.ValueChanged)
+                                  for: UIControlEvents.valueChanged)
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
-        tableView.registerNib(UINib(nibName: "ThreadTableViewCell", bundle: nil), forCellReuseIdentifier: ThreadTableViewCell.identifier)
+        tableView.register(UINib(nibName: "ThreadTableViewCell", bundle: nil), forCellReuseIdentifier: ThreadTableViewCell.identifier)
         // Add handler for Forum selected notification.
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
                                                          selector: #selector(HomeTableViewController.handleForumSelectedNotification(_:)),
-                                                         name: Forums.selectionUpdatedNotification,
+                                                         name: NSNotification.Name(rawValue: Forums.selectionUpdatedNotification),
                                                          object: nil)
         // Add handler for blocked user updated notification.
-        NSNotificationCenter.defaultCenter().addObserverForName(BlockedUserManager.updatedNotification,
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: BlockedUserManager.updatedNotification),
                                                                 object: nil,
-                                                                queue: NSOperationQueue.mainQueue()) { [weak self] (_) in
+                                                                queue: OperationQueue.main) { [weak self] (_) in
                                                                     self?.tableView.reloadData()
         }
         // Configuration updated.
-        NSNotificationCenter.defaultCenter().addObserverForName(Configuration.updatedNotification,
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Configuration.updatedNotification),
                                                                 object: nil,
-                                                                queue: NSOperationQueue.mainQueue()) { [weak self] (_) in
+                                                                queue: OperationQueue.main) { [weak self] (_) in
                                                                     self?.tableView.reloadData()
         }
         // Ad configuration update notification
-        NSNotificationCenter.defaultCenter().addObserverForName(AdConfiguration.adConfigurationUpdatedNotification,
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: AdConfiguration.adConfigurationUpdatedNotification),
                                                                 object: nil,
-                                                                queue: NSOperationQueue.mainQueue()) { [weak self] (_) in
+                                                                queue: OperationQueue.main) { [weak self] (_) in
                                                                     self?.attemptLoadRequest()
         }
-        tableView.addPullToRefreshWithActionHandler({
+        tableView.addPullToRefresh(actionHandler: {
             self.refreshWithPage(self.pageIndex + 1)
-        }, position: .Bottom)
+        }, position: .bottom)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Table view data source
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return threads.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(ThreadTableViewCell.identifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ThreadTableViewCell.identifier, for: indexPath)
         if let cell = cell as? ThreadTableViewCell {
             let thread = threads[indexPath.row]
             // Home view does not show parasite view.
@@ -159,10 +159,10 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         return cell
     }
     
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         var estimatedHeight = CGFloat(44)
         if let threadContent = threads[indexPath.row].content {
-            let estimatedTextSize = threadContent.string.boundingRectWithSize(CGSizeMake(CGRectGetWidth(view.frame), CGFloat(MAXFLOAT)), options: .UsesLineFragmentOrigin, attributes: nil, context: nil).size
+            let estimatedTextSize = threadContent.string.boundingRectWithSize(CGSize(width: (view.frame).width, height: CGFloat(MAXFLOAT)), options: .UsesLineFragmentOrigin, attributes: nil, context: nil).size
             estimatedHeight += estimatedTextSize.height + ((threads[indexPath.row].title?.isEmpty ?? true) ? 50 : 82)
             // If thumbnail image is not nil, include the thumbnail image.
             if let thumbnailURL = threads[indexPath.row].thumbnailURL {
@@ -175,8 +175,8 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         return estimatedHeight
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier(showThreadSegue, sender: tableView.cellForRowAtIndexPath(indexPath))
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: showThreadSegue, sender: tableView.cellForRow(at: indexPath))
     }
     
 }
@@ -184,10 +184,10 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
 // MARK: Prepare for segue.
 extension HomeTableViewController {
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let selectedCell = sender as? UITableViewCell,
-            let destinationViewController = segue.destinationViewController as? ThreadTableViewController,
-            let indexPath = tableView.indexPathForCell(selectedCell)
+            let destinationViewController = segue.destination as? ThreadTableViewController,
+            let indexPath = tableView.indexPath(for: selectedCell)
         {
             destinationViewController.selectedThread = threads[indexPath.row]
         }
@@ -198,54 +198,54 @@ extension HomeTableViewController {
 // MARK: UIActions.
 extension HomeTableViewController {
     
-    @IBAction func openInSafariAction(sender: AnyObject) {
+    @IBAction func openInSafariAction(_ sender: AnyObject) {
         // Open in browser.
         presentSVWebView()
     }
 
-    @IBAction func unwindToHomeSegue(segue: UIStoryboardSegue) {
+    @IBAction func unwindToHomeSegue(_ segue: UIStoryboardSegue) {
         // Unwind to home.
     }
     
-    @IBAction func tapOnImageView(sender: AnyObject) {
+    @IBAction func tapOnImageView(_ sender: AnyObject) {
         if let sender = sender as? UIView,
             let cell = sender.superCell(),
-            let indexPath = tableView.indexPathForCell(cell)
+            let indexPath = tableView.indexPath(for: cell)
         {
             if threads[indexPath.row].videoLinks?.isEmpty == false, let videoLink = threads[indexPath.row].videoLinks?.first
             {
                 // When image is available, allow selecting either image or video.
-                let openMediaAlertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .ActionSheet)
+                let openMediaAlertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .actionSheet)
                 if threads[indexPath.row].imageURL != nil {
-                    openMediaAlertController.addAction(UIAlertAction(title: "Open Image", style: .Default, handler: { (_) in
+                    openMediaAlertController.addAction(UIAlertAction(title: "Open Image", style: .default, handler: { (_) in
                         self.openImageWithIndex(indexPath.row)
                     }))
                 }
                 openMediaAlertController.addAction(UIAlertAction(title: "Video: \(videoLink)", style: .Default, handler: { (_) in
                     self.openVideoWithLink(videoLink)
                 }))
-                openMediaAlertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                openMediaAlertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 openMediaAlertController.popoverPresentationController?.sourceView = view
                 openMediaAlertController.popoverPresentationController?.sourceRect = view.bounds
-                presentViewController(openMediaAlertController, animated: true, completion: nil)
+                present(openMediaAlertController, animated: true, completion: nil)
             } else {
                 openImageWithIndex(indexPath.row)
             }
         }
     }
     
-    private func openImageWithIndex(index: Int) {
+    fileprivate func openImageWithIndex(_ index: Int) {
         // Present
-        photoURLs = [threads[index].imageURL ?? NSURL()]
+        photoURLs = [threads[index].imageURL ?? URL()]
         // Home table view controller has only 1 photo URL.
         photoIndex = 0
         presentPhotos()
     }
     
-    private func openVideoWithLink(link: String) {
-        if let videoURL = NSURL(string: link) where UIApplication.sharedApplication().canOpenURL(videoURL)
+    fileprivate func openVideoWithLink(_ link: String) {
+        if let videoURL = URL(string: link), UIApplication.shared.canOpenURL(videoURL)
         {
-            UIApplication.sharedApplication().openURL(videoURL)
+            UIApplication.shared.openURL(videoURL)
         } else {
             ProgressHUD.showMessage("Cannot open: \(link)")
         }
@@ -256,17 +256,17 @@ extension HomeTableViewController {
 // MARK: Forum selected notification handler.
 extension HomeTableViewController {
     
-    func handleForumSelectedNotification(notification: NSNotification) {
+    func handleForumSelectedNotification(_ notification: Notification) {
         title = forum?.name
         threads.removeAll()
         tableView.reloadData()
         refreshWithPage(forum?.startingIndex ?? 0)
         if let forum = forum {
-            FIRAnalytics.logEventWithName(kFIREventViewItem, parameters: [
-                kFIRParameterContentType: "SELECT",
-                kFIRParameterItemCategory: "FORUM",
-                kFIRParameterItemName: forum.name ?? "",
-                "FORUM URL": forum.indexURL ?? ""])
+            FIRAnalytics.logEvent(withName: kFIREventViewItem, parameters: [
+                kFIRParameterContentType: "SELECT" as NSObject,
+                kFIRParameterItemCategory: "FORUM" as NSObject,
+                kFIRParameterItemName: forum.name as NSObject? ?? "" as NSObject,
+                "FORUM URL": forum.indexURL as NSObject? ?? "" as NSObject])
         }
     }
     
@@ -275,25 +275,25 @@ extension HomeTableViewController {
 // MAKR: GADBannerViewDelegate
 extension HomeTableViewController: GADBannerViewDelegate {
     
-    func adViewWillLeaveApplication(bannerView: GADBannerView!) {
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView!) {
         DLog("")
         AdConfiguration.singleton.clickedAd()
     }
     
-    func toggleAdBanner(show: Bool) {
-        dispatch_async(dispatch_get_main_queue()) {
+    func toggleAdBanner(_ show: Bool) {
+        DispatchQueue.main.async {
             if (show) {
                 self.adDescriptionLabel.text = AdConfiguration.singleton.adDescription
-                self.adBannerView.hidden = false
-                self.adDescriptionLabel.hidden = false
+                self.adBannerView.isHidden = false
+                self.adDescriptionLabel.isHidden = false
                 self.adDescriptionLabel.setNeedsLayout()
                 self.adDescriptionLabel.layoutIfNeeded()
                 self.adBannerTableViewHeaderView.frame.size.height = 50
-                self.adBannerTableViewHeaderView.frame.size.height += CGRectGetHeight(self.adDescriptionLabel.frame)
+                self.adBannerTableViewHeaderView.frame.size.height += self.adDescriptionLabel.frame.height
             } else {
                 self.adDescriptionLabel.text = nil
-                self.adBannerView.hidden = true
-                self.adDescriptionLabel.hidden = true
+                self.adBannerView.isHidden = true
+                self.adDescriptionLabel.isHidden = true
                 self.adBannerTableViewHeaderView.frame.size.height = 0
             }
         }
@@ -305,7 +305,7 @@ extension HomeTableViewController: GADBannerViewDelegate {
             #if DEBUG
                 request.testDevices = [kGADSimulatorID, "4fa1b332e0290930b2ae511c65ff8947"]
             #endif
-            adBannerView.loadRequest(request)
+            adBannerView.load(request)
             toggleAdBanner(true)
         } else {
             toggleAdBanner(false)

@@ -10,24 +10,24 @@ import UIKit
 
 protocol TableViewControllerBulkUpdateProtocol: class {
     var targetTableView: UITableView { get }
-    var bulkUpdateTimer: NSTimer? { get set }
-    var pendingIndexPaths: [NSIndexPath] { get set }
+    var bulkUpdateTimer: Timer? { get set }
+    var pendingIndexPaths: [IndexPath] { get set }
     
-    func addPendingIndexPaths(indexPath: NSIndexPath)
+    func addPendingIndexPaths(_ indexPath: IndexPath)
 }
 
 extension TableViewControllerBulkUpdateProtocol  where Self: UITableViewController {
     
-    func addPendingIndexPaths(indexPath: NSIndexPath) {
+    func addPendingIndexPaths(_ indexPath: IndexPath) {
         DLog("")
         pendingIndexPaths.append(indexPath)
         // If buildUpdateTimer is not currently active, schedule an update for 0.2 seconds later.
-        if bulkUpdateTimer == nil || bulkUpdateTimer?.valid == false {
-            bulkUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(0.2),
-                                                                    target: NSBlockOperation(block: {
+        if bulkUpdateTimer == nil || bulkUpdateTimer?.isValid == false {
+            bulkUpdateTimer = Timer.scheduledTimer(timeInterval: TimeInterval(0.2),
+                                                                    target: BlockOperation(block: {
                                                                         self.commitUpdates()
                                                                     }),
-                                                                    selector: #selector(NSBlockOperation.main),
+                                                                    selector: #selector(BlockOperation.main),
                                                                     userInfo: nil,
                                                                     repeats: false)
         }
@@ -35,9 +35,9 @@ extension TableViewControllerBulkUpdateProtocol  where Self: UITableViewControll
     
     func commitUpdates() {
         DLog("")
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             // Commit the updates, then remove them from the pendingIndexPaths and invalidate the timer.
-            self.targetTableView.reloadRowsAtIndexPaths(self.pendingIndexPaths, withRowAnimation: .Automatic)
+            self.targetTableView.reloadRows(at: self.pendingIndexPaths, with: .automatic)
             self.pendingIndexPaths.removeAll()
             self.bulkUpdateTimer?.invalidate()
         }

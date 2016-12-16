@@ -10,13 +10,13 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
-    private let cellIdentifier = "cellIdentifier"
-    private let remoteActionCellIdentifier = "remoteActionCellIdentifier"
-    private let selectedIndexPathKey = "selectedIndexPathKey"
-    private var lastSectionIndex: Int {
-        return numberOfSectionsInTableView(tableView) - 1
+    fileprivate let cellIdentifier = "cellIdentifier"
+    fileprivate let remoteActionCellIdentifier = "remoteActionCellIdentifier"
+    fileprivate let selectedIndexPathKey = "selectedIndexPathKey"
+    fileprivate var lastSectionIndex: Int {
+        return numberOfSections(in: tableView) - 1
     }
-    private enum Section: Int {
+    fileprivate enum Section: Int {
         case settings, remoteActions
     }
     
@@ -30,13 +30,13 @@ class SettingsTableViewController: UITableViewController {
     
     // MARK: - UI actions.
     
-    @IBAction func showImageSwitchAction(sender: AnyObject) {
-        Configuration.singleton.showImage = showImageSwitch.on
+    @IBAction func showImageSwitchAction(_ sender: AnyObject) {
+        Configuration.singleton.showImage = showImageSwitch.isOn
     }
     
     // MARK: - Table view data source
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch Section(rawValue: indexPath.section)! {
         case .settings:
             return UITableViewAutomaticDimension
@@ -45,27 +45,27 @@ class SettingsTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch Section(rawValue: indexPath.section)! {
         case .settings:
             // TODO: settings.
-            return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            return super.tableView(tableView, cellForRowAt: indexPath)
         case .remoteActions:
-            let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.textLabel?.text = "App Version: " + Configuration.bundleVersion
             return cell
         }
 
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Remote action section.
         if indexPath.section == lastSectionIndex,
             let urlString = Configuration.singleton.remoteActions[indexPath.row].values.first,
-            let url = NSURL(string: urlString)
+            let url = URL(string: urlString)
         {
-            if UIApplication.sharedApplication().canOpenURL(url) {
-                UIApplication.sharedApplication().openURL(url)
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.openURL(url)
             }
         }
     }

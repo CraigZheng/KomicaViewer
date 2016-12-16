@@ -10,11 +10,11 @@ import UIKit
 
 class CustomForumManagerTableViewController: UITableViewController {
 
-    private struct CellIdentifier {
+    fileprivate struct CellIdentifier {
         static let customForum = "customForumCell"
     }
     
-    private struct SegueIdentifier {
+    fileprivate struct SegueIdentifier {
         static let addForum = "addForum"
         static let scanQRCode = "scanQRCode"
         static let showForum = "showForum"
@@ -25,7 +25,7 @@ class CustomForumManagerTableViewController: UITableViewController {
 
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setToolbarHidden(false, animated: animated)
         // Colours.
@@ -33,24 +33,24 @@ class CustomForumManagerTableViewController: UITableViewController {
         self.navigationController?.toolbar.tintColor = self.navigationController?.navigationBar.tintColor
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setToolbarHidden(true, animated: animated)
     }
 
     // MARK: - Table view data source
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Forums.customForumGroup.forums?.count ?? 0
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.customForum, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.customForum, for: indexPath)
 
         if let forum = Forums.customForumGroup.forums?[indexPath.row] {
             cell.textLabel?.text = forum.name
             if let indexURLString = forum.indexURL,
-                let indexURL = NSURL(string: indexURLString)
+                let indexURL = URL(string: indexURLString)
             {
                 cell.detailTextLabel?.text = indexURL.host ?? ""
             } else {
@@ -62,19 +62,19 @@ class CustomForumManagerTableViewController: UITableViewController {
     
     // MARK: UITableView delegate
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            Forums.customForumGroup.forums?.removeAtIndex(indexPath.row)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            Forums.customForumGroup.forums?.remove(at: indexPath.row)
             Forums.saveCustomForums()
             tableView.reloadData()
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueIdentifier.showForum,
-            let destinationViewController = segue.destinationViewController as? AddForumTableViewController,
+            let destinationViewController = segue.destination as? AddForumTableViewController,
             let tableViewCell = sender as? UITableViewCell,
-            let indexPath = tableView.indexPathForCell(tableViewCell),
+            let indexPath = tableView.indexPath(for: tableViewCell),
             let customForum = Forums.customForumGroup.forums?[indexPath.row]
         {
             destinationViewController.displayType = .readonly
@@ -88,21 +88,21 @@ class CustomForumManagerTableViewController: UITableViewController {
 // MARK: UI actions.
 extension CustomForumManagerTableViewController {
     
-    @IBAction func editButtonAction(sender: AnyObject) {
-        tableView.setEditing(!tableView.editing, animated: true)
+    @IBAction func editButtonAction(_ sender: AnyObject) {
+        tableView.setEditing(!tableView.isEditing, animated: true)
     }
     
-    @IBAction func addButtonAction(sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: "Add a board...", message: nil, preferredStyle: .ActionSheet)
-        alertController.addAction(UIAlertAction(title: "Manually", style: .Default, handler: { (_) in
-            self.performSegueWithIdentifier(SegueIdentifier.addForum, sender: sender)
+    @IBAction func addButtonAction(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Add a board...", message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Manually", style: .default, handler: { (_) in
+            self.performSegue(withIdentifier: SegueIdentifier.addForum, sender: sender)
         }))
-        alertController.addAction(UIAlertAction(title: "Scan QR Code", style: .Default, handler: { (_) in
-            self.performSegueWithIdentifier(SegueIdentifier.scanQRCode, sender: sender)
+        alertController.addAction(UIAlertAction(title: "Scan QR Code", style: .default, handler: { (_) in
+            self.performSegue(withIdentifier: SegueIdentifier.scanQRCode, sender: sender)
         }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alertController.popoverPresentationController?.sourceView = view
         alertController.popoverPresentationController?.barButtonItem = sender
-        self .presentViewController(alertController, animated: true, completion: nil)
+        self .present(alertController, animated: true, completion: nil)
     }
 }

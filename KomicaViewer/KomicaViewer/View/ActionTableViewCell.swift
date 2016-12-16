@@ -17,7 +17,7 @@ class ActionTableViewCell: UITableViewCell {
     }
     @IBOutlet weak var _textLabel: UILabel!
 
-    private let remoteActionDelegate = RemoteActionTableViewDelegate()
+    fileprivate let remoteActionDelegate = RemoteActionTableViewDelegate()
     
     override var textLabel: UILabel? {
         get { return _textLabel }
@@ -33,29 +33,29 @@ class ActionTableViewCell: UITableViewCell {
 class RemoteActionTableViewDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
     let actionCellIdentifier = "actionCellIdentifier"
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let count = Configuration.singleton.remoteActions.count
         return count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(actionCellIdentifier, forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: actionCellIdentifier, for: indexPath)
         let dict = Configuration.singleton.remoteActions[indexPath.row]
         cell.textLabel?.text = dict.keys.first
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dict = Configuration.singleton.remoteActions[indexPath.row]
         if let key = dict.keys.first,
             let object = dict[key]
         {
-            if let actionURL = NSURL(string: object) where UIApplication.sharedApplication().canOpenURL(actionURL) {
-                UIApplication.sharedApplication().openURL(actionURL)
+            if let actionURL = URL(string: object), UIApplication.shared.canOpenURL(actionURL) {
+                UIApplication.shared.openURL(actionURL)
             }
         }
     }

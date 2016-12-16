@@ -26,12 +26,12 @@ import UIKit
         // Rounded corner border.
         layer.cornerRadius = 5
         layer.borderWidth = 1
-        layer.borderColor = tintColor.CGColor
+        layer.borderColor = tintColor.cgColor
     }
     
     // Intrinsic content size must include the title edge insets.
-    override func intrinsicContentSize() -> CGSize {
-        var intrinsicSize = super.intrinsicContentSize()
+    override var intrinsicContentSize : CGSize {
+        var intrinsicSize = super.intrinsicContentSize
         intrinsicSize.width += titleEdgeInsets.left + titleEdgeInsets.right
         intrinsicSize.height += titleEdgeInsets.top + titleEdgeInsets.bottom
         return intrinsicSize

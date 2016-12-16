@@ -92,6 +92,13 @@
 			remoteGlobalIDString = 4453D1D81CB662A10076ABE7;
 			remoteInfo = KomicaEngine;
 		};
+		447664D81E03EB7E00A06138 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 94D24B961D4AFE7800C7F33C;
+			remoteInfo = "DTCoreText (tvOS)";
+		};
 		44C25D0C1D89984C0066888E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
@@ -629,6 +636,7 @@
 				44C25D151D89984C0066888E /* libDTCoreText_no_DTFoundation.a */,
 				44C25D171D89984C0066888E /* DTCoreText.framework */,
 				44C25D191D89984C0066888E /* DTCoreText.framework */,
+				447664D91E03EB7E00A06138 /* DTCoreText.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -740,7 +748,7 @@
 					44496F4E1D5985A6005875DD = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 9EBE9MWW9X;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 					};
 					44496F621D5985A6005875DD = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -794,6 +802,13 @@
 			fileType = wrapper.cfbundle;
 			path = KomicaEngineTests.xctest;
 			remoteRef = 44655D411D5AD15400229404 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		447664D91E03EB7E00A06138 /* DTCoreText.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DTCoreText.framework;
+			remoteRef = 447664D81E03EB7E00A06138 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		44C25D0D1D89984C0066888E /* RTDemoApp.app */ = {
@@ -1378,7 +1393,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1401,7 +1416,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
