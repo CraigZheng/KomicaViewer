@@ -12,24 +12,24 @@ import AFNetworking
 
 class Configuration: NSObject {
     // MARK: constants
-    private let defaultConfiguration = "defaultConfiguration"
-    private let remoteConfigurationURL = NSURL(string: "http://civ.atwebpages.com/KomicaViewer/kv_remote_configuration.php?bundleVersion=\(Configuration.bundleVersion)")! // 100% sure not optional.
-    private var updateTimer: NSTimer?
+    fileprivate let defaultConfiguration = "defaultConfiguration"
+    fileprivate let remoteConfigurationURL = URL(string: "http://civ.atwebpages.com/KomicaViewer/kv_remote_configuration.php?bundleVersion=\(Configuration.bundleVersion)")! // 100% sure not optional.
+    fileprivate var updateTimer: Timer?
     static let debugChangedNotification = "debugChangedNotification"
     static let updatedNotification = "Configuration.updatedNotification"
     static var bundleVersion: String {
         // Won't be nil.
-        let bundleVersion = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion")!
-        let versionString = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")!
+        let bundleVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion")!
+        let versionString = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")!
         return "\(versionString)(\(bundleVersion))"
     }
     
-    private let sessionManager = AFHTTPSessionManager.sessionManager()
+    fileprivate let sessionManager = AFHTTPSessionManager.sessionManager()
     
     // MARK: public properties.
-    var reportURL: NSURL?
-    var addForumHelpURL: NSURL?
-    var scanForumQRHelpURL: NSURL?
+    var reportURL: URL?
+    var addForumHelpURL: URL?
+    var scanForumQRHelpURL: URL?
     var remoteActions = [[String: String]]()
     var announcement: String?
     var updatedWithServer = false
@@ -37,32 +37,32 @@ class Configuration: NSObject {
     // MARK: user define settings.
     var showImage: Bool {
         set {
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "showImage")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            NSNotificationCenter.defaultCenter().postNotificationName(Configuration.updatedNotification, object: nil)
+            UserDefaults.standard.set(newValue, forKey: "showImage")
+            UserDefaults.standard.synchronize()
+            NotificationCenter.default.post(name: Notification.Name(rawValue: Configuration.updatedNotification), object: nil)
         }
         get {
-            if NSUserDefaults.standardUserDefaults().objectForKey("showImage") != nil {
-                return NSUserDefaults.standardUserDefaults().boolForKey("showImage")
+            if UserDefaults.standard.object(forKey: "showImage") != nil {
+                return UserDefaults.standard.bool(forKey: "showImage")
             } else {
                 return true
             }
         }
     }
     
-    var timeout: NSTimeInterval = 20
+    var timeout: TimeInterval = 20
     var thumbnailWidth = 50.0
     var debug: Bool {
         get {
-            if NSUserDefaults.standardUserDefaults().objectForKey("DEBUG") != nil {
-                return NSUserDefaults.standardUserDefaults().boolForKey("DEBUG")
+            if UserDefaults.standard.object(forKey: "DEBUG") != nil {
+                return UserDefaults.standard.bool(forKey: "DEBUG")
             }
             return false
         }
         set {
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "DEBUG")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            NSNotificationCenter.defaultCenter().postNotificationName(Configuration.debugChangedNotification, object: nil)
+            UserDefaults.standard.set(newValue, forKey: "DEBUG")
+            UserDefaults.standard.synchronize()
+            NotificationCenter.default.post(name: Notification.Name(rawValue: Configuration.debugChangedNotification), object: nil)
         }
     }
 
@@ -70,38 +70,38 @@ class Configuration: NSObject {
     
     // MARK: JSON parsing.
     
-    func parseJSONData(jsonData: NSData)->Bool {
+    func parseJSONData(_ jsonData: Data)->Bool {
         var parseSuccessful = false
-        if let jsonDictionary = (try? NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableContainers)) as? NSDictionary {
+        if let jsonDictionary = (try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)) as? NSDictionary {
             parseJSONDictionary(jsonDictionary)
             parseSuccessful = true
         }
         return parseSuccessful
     }
     
-    func parseJSONDictionary(jsonDictionary: NSDictionary) {
+    func parseJSONDictionary(_ jsonDictionary: NSDictionary) {
         if let timeout = jsonDictionary["timeout"] as? NSNumber {
-            self.timeout = NSTimeInterval(timeout.doubleValue)
+            self.timeout = TimeInterval(timeout.doubleValue)
         }
-        if let reportURL = jsonDictionary["reportURL"] as? String where !reportURL.isEmpty {
-            self.reportURL = NSURL(string: reportURL)
+        if let reportURL = jsonDictionary["reportURL"] as? String, !reportURL.isEmpty {
+            self.reportURL = URL(string: reportURL)
         }
         if let thumbnailWidth = jsonDictionary["thumbnailWidth"] as? NSNumber {
             self.thumbnailWidth = Double(thumbnailWidth.doubleValue)
         }
-        if let announcement = jsonDictionary["announcement"] as? String where !announcement.isEmpty {
+        if let announcement = jsonDictionary["announcement"] as? String, !announcement.isEmpty {
             self.announcement = announcement
         }
         if let remoteActions = jsonDictionary["remoteActions"] as? [[String: String]] {
             self.remoteActions = remoteActions
         }
-        if let addForumHelpURL = jsonDictionary["addForumHelpURL"] as? String where !addForumHelpURL.isEmpty {
-            self.addForumHelpURL = NSURL(string: addForumHelpURL)
+        if let addForumHelpURL = jsonDictionary["addForumHelpURL"] as? String, !addForumHelpURL.isEmpty {
+            self.addForumHelpURL = URL(string: addForumHelpURL)
         } else {
             self.addForumHelpURL = nil
         }
-        if let scanForumQRHelpURL = jsonDictionary["scanForumQRHelpURL"] as? String where !scanForumQRHelpURL.isEmpty {
-            self.scanForumQRHelpURL = NSURL(string: scanForumQRHelpURL)
+        if let scanForumQRHelpURL = jsonDictionary["scanForumQRHelpURL"] as? String, !scanForumQRHelpURL.isEmpty {
+            self.scanForumQRHelpURL = URL(string: scanForumQRHelpURL)
         } else {
             self.scanForumQRHelpURL = nil
         }
@@ -109,19 +109,19 @@ class Configuration: NSObject {
     
     // MARK: Update.
     
-    func updateWithCompletion(completion: (()->())?) {
+    func updateWithCompletion(_ completion: (()->())?) {
         DLog("Updating configuration.")
-        sessionManager.dataTaskWithRequest(NSURLRequest(URL: remoteConfigurationURL)) { response, responseObject, error in
+        sessionManager.dataTask(with: URLRequest(url: remoteConfigurationURL)) { response, responseObject, error in
             DLog("Updating completed.")
-            if error == nil, let responseObject = responseObject as? NSData {
-                self.parseJSONData(responseObject)
+            if error == nil, let responseObject = responseObject as? Data {
+                _ = self.parseJSONData(responseObject)
                 self.updatedWithServer = true
             }
             if let completion = completion {
                 completion()
             }
             // Configuration updated notification.
-            NSNotificationCenter.defaultCenter().postNotificationName(Configuration.updatedNotification, object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: Configuration.updatedNotification), object: nil)
         }.resume()
     }
     
@@ -130,31 +130,31 @@ class Configuration: NSObject {
     override init() {
         super.init()
         // Init with defaultConfiguration.json file.
-        if let defaultJsonURL = NSBundle.mainBundle().URLForResource(defaultConfiguration, withExtension: "json"),
-            defaultJsonData = NSData(contentsOfURL: defaultJsonURL)
+        if let defaultJsonURL = Bundle.main.url(forResource: defaultConfiguration, withExtension: "json"),
+            let defaultJsonData = try? Data(contentsOf: defaultJsonURL)
         {
-            parseJSONData(defaultJsonData)
+            _ = parseJSONData(defaultJsonData)
         }
         
         // Schedule a timer to update once in a while.
         // This solution is copied from http://stackoverflow.com/questions/14924892/nstimer-with-anonymous-function-block
-        updateTimer = NSTimer.scheduledTimerWithTimeInterval(60 * 10,
-                                                             target: NSBlockOperation(block: {
+        updateTimer = Timer.scheduledTimer(timeInterval: 60 * 10,
+                                                             target: BlockOperation(block: {
                                                                 self.updateWithCompletion(nil)
                                                              }),
-                                                             selector: #selector(NSOperation.main),
+                                                             selector: #selector(Operation.main),
                                                              userInfo: nil,
                                                              repeats: true)
-        NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationDidBecomeActiveNotification,
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidBecomeActive,
                                                                 object: nil,
-                                                                queue: NSOperationQueue.mainQueue()) { _ in
+                                                                queue: OperationQueue.main) { _ in
                                                                     if !self.updatedWithServer {
                                                                         // Update with remote configuration.
                                                                         // Update with remote configuration.
                                                                         self.updateWithCompletion({
                                                                             DLog("Remote notification updates.")
-                                                                            if let announcement = self.announcement where !announcement.isEmpty {
-                                                                                dispatch_async(dispatch_get_main_queue(), {
+                                                                            if let announcement = self.announcement, !announcement.isEmpty {
+                                                                                DispatchQueue.main.async(execute: {
                                                                                     ProgressHUD.showMessage(announcement)
                                                                                 })
                                                                             }

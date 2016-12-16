@@ -35,6 +35,7 @@
 		44655D751D5AEF7900229404 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D741D5AEF7900229404 /* HomeTableViewController.swift */; };
 		44655D771D5AEF8E00229404 /* ForumPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */; };
 		44655D7A1D5AFDAB00229404 /* Forums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D791D5AFDAB00229404 /* Forums.swift */; };
+		447664F71E03F48F00A06138 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447664F61E03F48F00A06138 /* IAPHelper.swift */; };
 		447EF1C31D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */; };
 		448C1E781D76CE5D007187DB /* AdConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C1E771D76CE5D007187DB /* AdConfiguration.swift */; };
 		44902F0F1D857B3E003848AF /* ForumQRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44902F0E1D857B3E003848AF /* ForumQRScannerViewController.swift */; };
@@ -91,6 +92,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4453D1D81CB662A10076ABE7;
 			remoteInfo = KomicaEngine;
+		};
+		447664D81E03EB7E00A06138 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 94D24B961D4AFE7800C7F33C;
+			remoteInfo = "DTCoreText (tvOS)";
 		};
 		44C25D0C1D89984C0066888E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -397,6 +405,7 @@
 		44655D741D5AEF7900229404 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumPickerTableViewController.swift; sourceTree = "<group>"; };
 		44655D791D5AFDAB00229404 /* Forums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forums.swift; sourceTree = "<group>"; };
+		447664F61E03F48F00A06138 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerBulkUpdateProtocol.swift; sourceTree = "<group>"; };
 		448C1E771D76CE5D007187DB /* AdConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdConfiguration.swift; sourceTree = "<group>"; };
 		44902F0E1D857B3E003848AF /* ForumQRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumQRScannerViewController.swift; sourceTree = "<group>"; };
@@ -595,6 +604,7 @@
 		44BD39731D5B1E510070E0CB /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				447664F61E03F48F00A06138 /* IAPHelper.swift */,
 				443342A61D5F576F00EDFA8F /* AFHTTPSessionManager+Util.swift */,
 				44F48EBB1D5D3F0700519C1B /* ProgressHUD.swift */,
 				44BD39851D5B74ED0070E0CB /* UIView+SuperCell.swift */,
@@ -629,6 +639,7 @@
 				44C25D151D89984C0066888E /* libDTCoreText_no_DTFoundation.a */,
 				44C25D171D89984C0066888E /* DTCoreText.framework */,
 				44C25D191D89984C0066888E /* DTCoreText.framework */,
+				447664D91E03EB7E00A06138 /* DTCoreText.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -734,13 +745,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Craig;
 				TargetAttributes = {
 					44496F4E1D5985A6005875DD = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 9EBE9MWW9X;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 					};
 					44496F621D5985A6005875DD = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -794,6 +805,13 @@
 			fileType = wrapper.cfbundle;
 			path = KomicaEngineTests.xctest;
 			remoteRef = 44655D411D5AD15400229404 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		447664D91E03EB7E00A06138 /* DTCoreText.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DTCoreText.framework;
+			remoteRef = 447664D81E03EB7E00A06138 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		44C25D0D1D89984C0066888E /* RTDemoApp.app */ = {
@@ -1209,6 +1227,7 @@
 				44397D581D670A80005B44AA /* WebViewGuardDog.swift in Sources */,
 				44BD39861D5B74ED0070E0CB /* UIView+SuperCell.swift in Sources */,
 				449B210C1D7D1A21006AA091 /* BlockedUserManager.swift in Sources */,
+				447664F71E03F48F00A06138 /* IAPHelper.swift in Sources */,
 				44B1E5E31DC9F58F00CCF6F0 /* WebMPlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1281,8 +1300,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1328,8 +1349,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1349,6 +1372,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "KomicaViewer-bridging-header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1358,9 +1382,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC7DAB90B7018AB9E394882B /* Pods-KomicaViewer.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1373,7 +1397,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1381,9 +1405,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1F999914BCD5E6DBD4D5D973 /* Pods-KomicaViewer.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1396,7 +1420,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

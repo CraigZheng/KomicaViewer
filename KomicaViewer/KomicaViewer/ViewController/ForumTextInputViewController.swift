@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ForumTextInputViewControllerProtocol {
-    func forumDetailEntered(inputViewController: ForumTextInputViewController, enteredDetails: String, forField: ForumField)
+    func forumDetailEntered(_ inputViewController: ForumTextInputViewController, enteredDetails: String, forField: ForumField)
 }
 
 class ForumTextInputViewController: UIViewController {
@@ -43,14 +43,14 @@ class ForumTextInputViewController: UIViewController {
             textView.text = prefilledString
         }
         // Keyboard events observer.
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ForumTextInputViewController.handlekeyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ForumTextInputViewController.handleKeyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ForumTextInputViewController.handlekeyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ForumTextInputViewController.handleKeyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         // Configure the text view.
-        insertBarButtonItem.enabled = pageSpecifier?.isEmpty == false ?? false
+        insertBarButtonItem.isEnabled = pageSpecifier?.isEmpty == false
         if !allowEditing {
-            textView.editable = false
-            insertBarButtonItem.enabled = false
-            saveBarButtonItem.enabled = false
+            textView.isEditable = false
+            insertBarButtonItem.isEnabled = false
+            saveBarButtonItem.isEnabled = false
         } else {
             textView.becomeFirstResponder()
         }
@@ -60,17 +60,16 @@ class ForumTextInputViewController: UIViewController {
 
 extension ForumTextInputViewController: UITextViewDelegate {
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         
     }
     
-    func textViewDidChange(textView: UITextView) {
+    func textViewDidChange(_ textView: UITextView) {
         // When page specifier is not empty.
-        if let pageSpecifier = pageSpecifier
-            where !pageSpecifier.isEmpty
+        if let pageSpecifier = pageSpecifier, !pageSpecifier.isEmpty
         {
             // Insert button enables itself when the textView.text does not contain the page specifier.
-            insertBarButtonItem.enabled = (textView.text as NSString).rangeOfString(pageSpecifier).location == NSNotFound
+            insertBarButtonItem.isEnabled = (textView.text as NSString).range(of: pageSpecifier).location == NSNotFound
         }
     }
     
@@ -79,34 +78,34 @@ extension ForumTextInputViewController: UITextViewDelegate {
 // MARK: UI actions.
 extension ForumTextInputViewController {
     
-    @IBAction func saveAction(sender: AnyObject) {
+    @IBAction func saveAction(_ sender: AnyObject) {
         textView.resignFirstResponder()
-        if let enteredText = textView.text where !enteredText.isEmpty {
+        if let enteredText = textView.text, !enteredText.isEmpty {
             // If page specifier is not empty and the enteredText does not contain it, show a warning.
-            if let pageSpecifier = pageSpecifier where !pageSpecifier.isEmpty && !enteredText.containsString(pageSpecifier) {
+            if let pageSpecifier = pageSpecifier, !pageSpecifier.isEmpty && !enteredText.contains(pageSpecifier) {
                 ProgressHUD.showMessage("Cannot save, \(pageSpecifier) is required.")
             } else {
                 delegate?.forumDetailEntered(self, enteredDetails: enteredText, forField: field)
-                navigationController?.popViewControllerAnimated(true)
+                _ = navigationController?.popViewController(animated: true)
             }
         }
     }
     
-    @IBAction func insertAction(sender: AnyObject) {
-        let alertController = UIAlertController(title: "Insert \(pageSpecifier ?? "")", message: "Insert the tag specifier to the current position", preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: {_ in
-            if let pageSpecifier = self.pageSpecifier where !pageSpecifier.isEmpty {
-                let generalPasteboard = UIPasteboard.generalPasteboard()
+    @IBAction func insertAction(_ sender: AnyObject) {
+        let alertController = UIAlertController(title: "Insert \(pageSpecifier ?? "")", message: "Insert the tag specifier to the current position", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
+            if let pageSpecifier = self.pageSpecifier, !pageSpecifier.isEmpty {
+                let generalPasteboard = UIPasteboard.general
                 let items = generalPasteboard.items
                 generalPasteboard.string = pageSpecifier
                 self.textView.paste(self)
                 generalPasteboard.items = items
             }
         }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alertController.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
         if let topViewController = UIApplication.topViewController {
-            topViewController.presentViewController(alertController, animated: true, completion: nil)
+            topViewController.present(alertController, animated: true, completion: nil)
         }
     }
 }
@@ -114,16 +113,16 @@ extension ForumTextInputViewController {
 // MARK: keyboard events.
 extension ForumTextInputViewController {
     
-    func handlekeyboardWillShow(notification: NSNotification) {
+    func handlekeyboardWillShow(_ notification: Notification) {
         if let keyboardValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
         {
-            let keyboardRect = view.convertRect(keyboardValue.CGRectValue(), fromView: nil)
+            let keyboardRect = view.convert(keyboardValue.cgRectValue, from: nil)
             textViewBottomConstraint.constant = keyboardRect.size.height
             toolbarBottomConstraint.constant = keyboardRect.size.height
         }
     }
     
-    func handleKeyboardWillHide(notification: NSNotification) {
+    func handleKeyboardWillHide(_ notification: Notification) {
         textViewBottomConstraint.constant = 0
         toolbarBottomConstraint.constant = 0
     }

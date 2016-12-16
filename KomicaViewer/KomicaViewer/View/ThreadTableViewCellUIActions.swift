@@ -14,13 +14,13 @@ extension ThreadTableViewCell {
         DLog("")
         // If there's another alertController, don't do anything.
         if alertController == nil {
-            if let userID = userID where BlockedUserManager.sharedManager.isUserIDBlocked(userID ?? "") {
-                alertController = UIAlertController(title: "User blocked: \(userID)", message: "Would you like to unblock this user?", preferredStyle: .ActionSheet)
-                alertController?.addAction(UIAlertAction(title: "Unblock", style: .Default, handler: { (_) in
+            if let userID = userID, BlockedUserManager.sharedManager.isUserIDBlocked(userID) {
+                alertController = UIAlertController(title: "User blocked: \(userID)", message: "Would you like to unblock this user?", preferredStyle: .actionSheet)
+                alertController?.addAction(UIAlertAction(title: "Unblock", style: .default, handler: { (_) in
                     self.alertController = nil
                     BlockedUserManager.sharedManager.unblockUserID(userID)
                 }))
-                alertController?.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (_) in
+                alertController?.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
                     self.alertController = nil
                 }))
                 if let topViewController = UIApplication.topViewController,
@@ -28,22 +28,22 @@ extension ThreadTableViewCell {
                 {
                     alertController.popoverPresentationController?.sourceView = contentView
                     alertController.popoverPresentationController?.sourceRect = contentView.bounds
-                    topViewController.presentViewController(alertController, animated: true, completion: nil)
+                    topViewController.present(alertController, animated: true, completion: nil)
                 }
             } else {
-                alertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .ActionSheet)
+                alertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .actionSheet)
                 if let alertController = alertController {
-                    let copyIDAction = UIAlertAction(title: "Copy ID: \(userID ?? "")", style: .Default) { (_) in
+                    let copyIDAction = UIAlertAction(title: "Copy ID: \(userID ?? "")", style: .default) { (_) in
                         if let text = self.textLabel?.text {
-                            UIPasteboard.generalPasteboard().string = text
+                            UIPasteboard.general.string = text
                             ProgressHUD.showMessage("ID Copied")
                         }
                         // Set alertController to nil, so this cell is ready for another alertController.
                         self.alertController = nil
                     }
-                    let copyContentAction = UIAlertAction(title: "Copy Content", style: .Default) { (_) in
+                    let copyContentAction = UIAlertAction(title: "Copy Content", style: .default) { (_) in
                         if let text = self.textView?.text {
-                            UIPasteboard.generalPasteboard().string = text
+                            UIPasteboard.general.string = text
                             ProgressHUD.showMessage("Content Copied")
                         }
                         // Set alertController to nil, so this cell is ready for another alertController.
@@ -51,31 +51,31 @@ extension ThreadTableViewCell {
                     }
                     var blockUserAction: UIAlertAction?
                     if let userID = userID {
-                        blockUserAction = UIAlertAction(title: "Block \(userID)", style: .Default, handler: { (_) in
+                        blockUserAction = UIAlertAction(title: "Block \(userID)", style: .default, handler: { (_) in
                             self.alertController = nil
                             if !BlockedUserManager.sharedManager.isUserIDBlocked(userID) {
                                 BlockedUserManager.sharedManager.blockUserID(userID)
                             }
                         })
                     }
-                    let openAction = UIAlertAction(title: "Open Links", style: .Default) { _ in
+                    let openAction = UIAlertAction(title: "Open Links", style: .default) { _ in
                         self.alertController = nil
                         if !self.links.isEmpty {
                             // Secondary alert controller.
-                            let alertController = UIAlertController(title: "Which Link?", message: nil, preferredStyle: .ActionSheet)
+                            let alertController = UIAlertController(title: "Which Link?", message: nil, preferredStyle: .actionSheet)
                             for link in self.links {
-                                let linkAction = UIAlertAction(title: link.absoluteString, style: .Default) { _ in
-                                    if UIApplication.sharedApplication().canOpenURL(link) {
-                                        UIApplication.sharedApplication().openURL(link)
+                                let linkAction = UIAlertAction(title: link.absoluteString, style: .default) { _ in
+                                    if UIApplication.shared.canOpenURL(link as URL) {
+                                        UIApplication.shared.openURL(link as URL)
                                     }
                                 }
                                 alertController.addAction(linkAction)
                             }
-                            alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                             alertController.popoverPresentationController?.sourceView = self.contentView
                             alertController.popoverPresentationController?.sourceRect = self.contentView.bounds
                             if let topViewController = UIApplication.topViewController {
-                                topViewController.presentViewController(alertController, animated: true, completion: nil)
+                                topViewController.present(alertController, animated: true, completion: nil)
                             }
                         }
                     }
@@ -87,11 +87,11 @@ extension ThreadTableViewCell {
                     if !links.isEmpty {
                         alertController.addAction(openAction)
                     }
-                    alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: {_ in self.alertController = nil}))
+                    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {_ in self.alertController = nil}))
                     alertController.popoverPresentationController?.sourceView = contentView
                     alertController.popoverPresentationController?.sourceRect = contentView.bounds
                     if let topViewController = UIApplication.topViewController {
-                        topViewController.presentViewController(alertController, animated: true, completion: nil)
+                        topViewController.present(alertController, animated: true, completion: nil)
                     }
                 }
             }

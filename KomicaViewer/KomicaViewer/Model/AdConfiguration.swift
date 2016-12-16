@@ -18,22 +18,22 @@ class AdConfiguration: NSObject {
         var should = enableAd
         if should {
             // If user has clicked the ads many times, return false.
-            let yesterDay = NSDate().dateByAddingTimeInterval(-(24 * 3600))
-            let lastWeek = NSDate().dateByAddingTimeInterval(-(7 * 24 * 3600))
-            let lastMonth = NSDate().dateByAddingTimeInterval(-(30 * 7 * 24 * 3600))
+            let yesterDay = Date().addingTimeInterval(-(24 * 3600))
+            let lastWeek = Date().addingTimeInterval(-(7 * 24 * 3600))
+            let lastMonth = Date().addingTimeInterval(-(30 * 7 * 24 * 3600))
             var dayClicks = 0
             var weekClicks = 0
             var monthClicks = 0
             // Calculate the clicks for each time period.
-            for clickedDate in historyOfClicks.reverse() {
-                if clickedDate.compare(yesterDay) == .OrderedDescending {
+            for clickedDate in historyOfClicks.reversed() {
+                if clickedDate.compare(yesterDay) == .orderedDescending {
                     dayClicks += 1
                     weekClicks += 1
                     monthClicks += 1
-                } else if clickedDate.compare(lastWeek) == .OrderedDescending {
+                } else if clickedDate.compare(lastWeek) == .orderedDescending {
                     weekClicks += 1
                     monthClicks += 1
-                } else if clickedDate.compare(lastMonth) == .OrderedDescending {
+                } else if clickedDate.compare(lastMonth) == .orderedDescending {
                     monthClicks += 1
                 }
             }
@@ -43,7 +43,7 @@ class AdConfiguration: NSObject {
         }
         return should
     }
-    var historyOfClicks = [NSDate]()
+    var historyOfClicks = [Date]()
     static let singleton = AdConfiguration()
     static let adConfigurationUpdatedNotification = "adConfigurationUpdatedNotification"
     
@@ -53,11 +53,11 @@ class AdConfiguration: NSObject {
     }
     
     // Private properties.
-    private let defaultConfiguration = "defaultAdConfiguration"
-    private let historyKey = "AdConfiguration.historyOfClicks"
-    private let defaultSession = NSURLSession(configuration: .defaultSessionConfiguration())
-    private let remoteConfigurationURL = NSURL(string: "http://civ.atwebpages.com/KomicaViewer/kv_remote_ad_configuration.php")!
-    private struct DictionaryKey {
+    fileprivate let defaultConfiguration = "defaultAdConfiguration"
+    fileprivate let historyKey = "AdConfiguration.historyOfClicks"
+    fileprivate let defaultSession = URLSession(configuration: .default)
+    fileprivate let remoteConfigurationURL = URL(string: "http://civ.atwebpages.com/KomicaViewer/kv_remote_ad_configuration.php")!
+    fileprivate struct DictionaryKey {
         static let enableAd = "enableAd"
         static let dailyAdClickLimit = "dailyAdClickLimit"
         static let weeklyAdClickLimit = "weeklyAdClickLimit"
@@ -68,58 +68,58 @@ class AdConfiguration: NSObject {
     override init() {
         super.init()
         // Init with defaultConfiguration.json file.
-        if let defaultJsonURL = NSBundle.mainBundle().URLForResource(defaultConfiguration, withExtension: "json"),
-            defaultJsonData = NSData(contentsOfURL: defaultJsonURL)
+        if let defaultJsonURL = Bundle.main.url(forResource: defaultConfiguration, withExtension: "json"),
+            let defaultJsonData = try? Data(contentsOf: defaultJsonURL)
         {
             parseJSONData(defaultJsonData)
         }
         // Restore historyOfClicks array.
-        if let historyOfClicks = NSUserDefaults.standardUserDefaults().arrayForKey(historyKey) as? [NSDate] {
+        if let historyOfClicks = UserDefaults.standard.array(forKey: historyKey) as? [Date] {
             self.historyOfClicks = historyOfClicks
         }
         // Update with remote configuration.
         updateAdConfiguration({
-            NSNotificationCenter.defaultCenter().postNotificationName(AdConfiguration.adConfigurationUpdatedNotification,
+            NotificationCenter.default.post(name: Notification.Name(rawValue: AdConfiguration.adConfigurationUpdatedNotification),
                 object: nil)
         })
     }
     
-    func updateAdConfiguration(completion: (()->())?) {
+    func updateAdConfiguration(_ completion: (()->())?) {
         DLog("")
-        defaultSession.dataTaskWithRequest(NSURLRequest(URL: remoteConfigurationURL)) { (responseObject, response, error) in
+        defaultSession.dataTask(with: URLRequest(url: remoteConfigurationURL), completionHandler: { (responseObject, response, error) in
             if let responseObject = responseObject {
                 self.parseJSONData(responseObject)
             }
             DLog("")
             completion?()
-        }.resume()
+        }) .resume()
     }
     
     func clickedAd() {
-        historyOfClicks.append(NSDate())
+        historyOfClicks.append(Date())
         // Save history.
-        NSUserDefaults.standardUserDefaults().setObject(historyOfClicks, forKey: historyKey)
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.set(historyOfClicks, forKey: historyKey)
+        UserDefaults.standard.synchronize()
         // History updated.
-        NSNotificationCenter.defaultCenter().postNotificationName(AdConfiguration.adConfigurationUpdatedNotification,
+        NotificationCenter.default.post(name: Notification.Name(rawValue: AdConfiguration.adConfigurationUpdatedNotification),
                                                                   object: nil)
     }
     
     // MARK: Private methods.
-    private func parseJSONData(jsonData: NSData) {
-        if let rawDict = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableContainers) as? [String: AnyObject],
+    fileprivate func parseJSONData(_ jsonData: Data) {
+        if let rawDict = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers) as? [String: AnyObject],
             let jsonDict = rawDict {
             if let enableAd = jsonDict[DictionaryKey.enableAd] as? NSNumber {
                 self.enableAd = enableAd.boolValue
             }
             if let dailyAdClickLimit = jsonDict[DictionaryKey.dailyAdClickLimit] as? NSNumber {
-                self.dailyAdClickLimit = dailyAdClickLimit.integerValue
+                self.dailyAdClickLimit = dailyAdClickLimit.intValue
             }
             if let weeklyAdClickLimit = jsonDict[DictionaryKey.weeklyAdClickLimit] as? NSNumber {
-                self.weeklyAdClickLimit = weeklyAdClickLimit.integerValue
+                self.weeklyAdClickLimit = weeklyAdClickLimit.intValue
             }
             if let monthlyAdClickLimit = jsonDict[DictionaryKey.monthlyAdClickLimit] as? NSNumber {
-                self.monthlyAdClickLimit = monthlyAdClickLimit.integerValue
+                self.monthlyAdClickLimit = monthlyAdClickLimit.intValue
             }
             if let adDescription = jsonDict[DictionaryKey.adDescription] as? String {
                 self.adDescription = adDescription

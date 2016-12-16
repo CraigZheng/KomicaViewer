@@ -11,7 +11,7 @@ import Foundation
 extension UIApplication {
     
     class var topViewController: UIViewController? {
-        var topViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
+        var topViewController = UIApplication.shared.keyWindow?.rootViewController
         while topViewController?.presentedViewController != nil {
             topViewController = topViewController?.presentedViewController
         }
@@ -19,6 +19,6 @@ extension UIApplication {
     }
     
     class var appName: String {
-        return NSBundle.mainBundle().infoDictionary!["CFBundleDisplayName"] as! String
+        return Bundle.main.infoDictionary!["CFBundleDisplayName"] as! String
     }
 }
