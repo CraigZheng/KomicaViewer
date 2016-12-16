@@ -8,16 +8,33 @@
 
 import UIKit
 
+import StoreKit
+
 class SettingsTableViewController: UITableViewController {
 
-    private let cellIdentifier = "cellIdentifier"
-    private let remoteActionCellIdentifier = "remoteActionCellIdentifier"
-    private let selectedIndexPathKey = "selectedIndexPathKey"
-    private var lastSectionIndex: Int {
-        return numberOfSectionsInTableView(tableView) - 1
+    fileprivate let cellIdentifier = "cellIdentifier"
+    fileprivate let remoteActionCellIdentifier = "remoteActionCellIdentifier"
+    fileprivate let selectedIndexPathKey = "selectedIndexPathKey"
+    fileprivate let iapRemoveAd = "com.craig.KomicaViewer.removeAdvertisement"
+    fileprivate var lastSectionIndex: Int {
+        return numberOfSections(in: tableView) - 1
     }
-    private enum Section: Int {
+    fileprivate var iapProducts: [SKProduct] = []
+    fileprivate enum Section: Int {
         case settings, remoteActions
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let productIdentifiers: Set<ProductIdentifier> = [iapRemoveAd]
+        IAPHelper.sharedInstance.requestProducts(productIdentifiers) { [weak self] (response, error) in
+            if let response = response,
+                !response.products.isEmpty {
+                // Reload tableView with the newly downloaded product.
+                self?.iapProducts.append(contentsOf: response.products)
+                self?.tableView.reloadData()
+            }
+        }
     }
     
     // MARK: - UI elements.
