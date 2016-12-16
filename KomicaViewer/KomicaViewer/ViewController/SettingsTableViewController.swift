@@ -45,6 +45,8 @@ class SettingsTableViewController: UITableViewController {
         }
     }
     
+    @IBOutlet weak var removeAdCell: UITableViewCell!
+    @IBOutlet weak var restorePurchaseCell: UITableViewCell!
     // MARK: - UI actions.
     
     @IBAction func showImageSwitchAction(_ sender: AnyObject) {
