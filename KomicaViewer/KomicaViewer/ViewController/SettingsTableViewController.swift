@@ -40,7 +40,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        switch Section(rawValue: section)! {
+        switch Section(rawValue: indexPath.section)! {
         case .settings:
             return UITableViewAutomaticDimension
         case .remoteActions:
@@ -63,7 +63,7 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Remote action section.
-        if indexPath.section == .remoteActions,
+        if indexPath.section == lastSectionIndex,
             let urlString = Configuration.singleton.remoteActions[indexPath.row].values.first,
             let url = NSURL(string: urlString)
         {
