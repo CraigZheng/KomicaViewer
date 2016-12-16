@@ -50,6 +50,10 @@ class AdConfiguration: NSObject {
                 should = false
             }
         }
+        // When AdRemove is purchased, always set to false.
+        if isAdRemovePurchased {
+            should = false
+        }
         return should
     }
     var historyOfClicks = [Date]()
