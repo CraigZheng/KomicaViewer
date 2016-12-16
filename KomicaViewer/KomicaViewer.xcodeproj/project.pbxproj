@@ -35,6 +35,7 @@
 		44655D751D5AEF7900229404 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D741D5AEF7900229404 /* HomeTableViewController.swift */; };
 		44655D771D5AEF8E00229404 /* ForumPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */; };
 		44655D7A1D5AFDAB00229404 /* Forums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D791D5AFDAB00229404 /* Forums.swift */; };
+		447664F71E03F48F00A06138 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447664F61E03F48F00A06138 /* IAPHelper.swift */; };
 		447EF1C31D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */; };
 		448C1E781D76CE5D007187DB /* AdConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C1E771D76CE5D007187DB /* AdConfiguration.swift */; };
 		44902F0F1D857B3E003848AF /* ForumQRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44902F0E1D857B3E003848AF /* ForumQRScannerViewController.swift */; };
@@ -404,6 +405,7 @@
 		44655D741D5AEF7900229404 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumPickerTableViewController.swift; sourceTree = "<group>"; };
 		44655D791D5AFDAB00229404 /* Forums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forums.swift; sourceTree = "<group>"; };
+		447664F61E03F48F00A06138 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerBulkUpdateProtocol.swift; sourceTree = "<group>"; };
 		448C1E771D76CE5D007187DB /* AdConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdConfiguration.swift; sourceTree = "<group>"; };
 		44902F0E1D857B3E003848AF /* ForumQRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumQRScannerViewController.swift; sourceTree = "<group>"; };
@@ -602,6 +604,7 @@
 		44BD39731D5B1E510070E0CB /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				447664F61E03F48F00A06138 /* IAPHelper.swift */,
 				443342A61D5F576F00EDFA8F /* AFHTTPSessionManager+Util.swift */,
 				44F48EBB1D5D3F0700519C1B /* ProgressHUD.swift */,
 				44BD39851D5B74ED0070E0CB /* UIView+SuperCell.swift */,
@@ -1224,6 +1227,7 @@
 				44397D581D670A80005B44AA /* WebViewGuardDog.swift in Sources */,
 				44BD39861D5B74ED0070E0CB /* UIView+SuperCell.swift in Sources */,
 				449B210C1D7D1A21006AA091 /* BlockedUserManager.swift in Sources */,
+				447664F71E03F48F00A06138 /* IAPHelper.swift in Sources */,
 				44B1E5E31DC9F58F00CCF6F0 /* WebMPlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
