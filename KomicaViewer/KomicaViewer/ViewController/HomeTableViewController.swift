@@ -33,7 +33,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     var photoIndex: Int?
     
     // MARK: ThreadTableViewControllerProtocol
-    var threads: [KomicaEngine.Thread] = []
+    var threads:[KomicaEngine.Thread] = []
     func refresh() {
         refreshWithPage(forum?.startingIndex ?? 0)
     }
@@ -162,13 +162,13 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         var estimatedHeight = CGFloat(44)
         if let threadContent = threads[indexPath.row].content {
-            let estimatedTextSize = threadContent.string.boundingRectWithSize(CGSize(width: (view.frame).width, height: CGFloat(MAXFLOAT)), options: .UsesLineFragmentOrigin, attributes: nil, context: nil).size
+            let estimatedTextSize = threadContent.string.boundingRect(with: CGSize(width: (view.frame).width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: nil, context: nil).size
             estimatedHeight += estimatedTextSize.height + ((threads[indexPath.row].title?.isEmpty ?? true) ? 50 : 82)
             // If thumbnail image is not nil, include the thumbnail image.
             if let thumbnailURL = threads[indexPath.row].thumbnailURL {
-                if SDWebImageManager.sharedManager().cachedImageExistsForURL(thumbnailURL) {
-                    let cachedImage = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(SDWebImageManager.sharedManager().cacheKeyForURL(thumbnailURL))
-                    estimatedHeight += cachedImage.size.height
+                if SDWebImageManager.shared().cachedImageExists(for: thumbnailURL) {
+                    let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: SDWebImageManager.shared().cacheKey(for: thumbnailURL))
+                    estimatedHeight += (cachedImage?.size.height)!
                 }
             }
         }
@@ -221,7 +221,7 @@ extension HomeTableViewController {
                         self.openImageWithIndex(indexPath.row)
                     }))
                 }
-                openMediaAlertController.addAction(UIAlertAction(title: "Video: \(videoLink)", style: .Default, handler: { (_) in
+                openMediaAlertController.addAction(UIAlertAction(title: "Video: \(videoLink)", style: .default, handler: { (_) in
                     self.openVideoWithLink(videoLink)
                 }))
                 openMediaAlertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -236,7 +236,9 @@ extension HomeTableViewController {
     
     fileprivate func openImageWithIndex(_ index: Int) {
         // Present
-        photoURLs = [threads[index].imageURL ?? URL()]
+        if let imageURL = threads[index].imageURL {
+            photoURLs = [imageURL]
+        }
         // Home table view controller has only 1 photo URL.
         photoIndex = 0
         presentPhotos()
@@ -275,7 +277,7 @@ extension HomeTableViewController {
 // MAKR: GADBannerViewDelegate
 extension HomeTableViewController: GADBannerViewDelegate {
     
-    func adViewWillLeaveApplication(_ bannerView: GADBannerView!) {
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
         DLog("")
         AdConfiguration.singleton.clickedAd()
     }

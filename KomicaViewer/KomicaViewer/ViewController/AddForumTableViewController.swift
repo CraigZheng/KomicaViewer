@@ -179,7 +179,7 @@ extension AddForumTableViewController {
             // Remove the paused forum from the user default.
             UserDefaults.standard.removeObject(forKey: self.pausedForumKey)
             UserDefaults.standard.synchronize()
-            OperationQueue.main.addOperationWithBlock({
+            OperationQueue.main.addOperation({
                 ProgressHUD.showMessage("\(self.newForum.name ?? "A new board") has been added")
             })
         }

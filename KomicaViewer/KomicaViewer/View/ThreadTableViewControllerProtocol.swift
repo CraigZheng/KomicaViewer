@@ -13,7 +13,7 @@ import SVPullToRefresh
 
 protocol ThreadTableViewControllerProtocol: class {
     var forum: KomicaForum? { get }
-    var threads: [Thread] { get set }
+    var threads: [KomicaEngine.Thread] { get set }
     var downloader: KomicaDownloader? { get }
     var completion: KomicaDownloaderHandler? { get }
     var postCompletion: KomicaDownloaderHandler? { get set }
@@ -32,7 +32,7 @@ extension ThreadTableViewControllerProtocol where Self: UITableViewController {
                     // If page is 0, reset the threads.
                     self?.threads.removeAll()
                 }
-                self?.threads.appendContentsOf(t)
+                self?.threads.append(contentsOf: t)
             }
             DispatchQueue.main.async {
                 self?.tableView.reloadData()

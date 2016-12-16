@@ -51,9 +51,9 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     fileprivate let showParasitePostSegue = "showParasitePosts"
     // Get the threadID from the selectedThread.ID.
     fileprivate var threadID: Int? {
-        if let stringArray = selectedThread.ID?.componentsSeparatedByCharactersInSet(
-            CharacterSet.decimalDigitCharacterSet().invertedSet) {
-            let threadID = Int(stringArray.joinWithSeparator(""))
+        if let stringArray = selectedThread.ID?.components(
+            separatedBy: CharacterSet.decimalDigits.inverted) {
+            let threadID = Int(stringArray.joined(separator: ""))
             return threadID
         }
         return 0
@@ -67,7 +67,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
                 // If page is 0, reset the threads.
                 strongSelf.threads = [strongSelf.selectedThread]
             }
-            strongSelf.threads.appendContentsOf(t)
+            strongSelf.threads.append(contentsOf: t)
             // Necessary to reload for the data change.
             strongSelf.tableView.reloadData()
         } else {
@@ -148,13 +148,13 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         var estimatedHeight = CGFloat(44)
         if let threadContent = threads[indexPath.row].content {
-            let estimatedTextSize = threadContent.string.boundingRectWithSize(CGSize(width: (view.frame).width, height: CGFloat(MAXFLOAT)), options: .UsesLineFragmentOrigin, attributes: nil, context: nil).size
+            let estimatedTextSize = threadContent.string.boundingRect(with: CGSize(width: (view.frame).width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: nil, context: nil).size
             estimatedHeight += estimatedTextSize.height + 50
             // If thumbnail image is not nil, include the thumbnail image.
             if let thumbnailURL = threads[indexPath.row].thumbnailURL {
-                if SDWebImageManager.sharedManager().cachedImageExistsForURL(thumbnailURL) {
-                    let cachedImage = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(SDWebImageManager.sharedManager().cacheKeyForURL(thumbnailURL))
-                    estimatedHeight += cachedImage.size.height
+                if SDWebImageManager.shared().cachedImageExists(for: thumbnailURL) {
+                    let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: SDWebImageManager.shared().cacheKey(for: thumbnailURL))
+                    estimatedHeight += (cachedImage?.size.height)!
                 }
             }
         }
@@ -223,7 +223,7 @@ extension ThreadTableViewController: UIAlertViewDelegate {
                         self.openImageWithIndex(indexPath.row)
                     }))
                 }
-                openMediaAlertController.addAction(UIAlertAction(title: "Video: \(videoLink)", style: .Default, handler: { (_) in
+                openMediaAlertController.addAction(UIAlertAction(title: "Video: \(videoLink)", style: .default, handler: { (_) in
                     self.openVideoWithLink(videoLink)
                 }))
                 openMediaAlertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -238,13 +238,13 @@ extension ThreadTableViewController: UIAlertViewDelegate {
     
     fileprivate func openImageWithIndex(_ index: Int) {
         // Present
-        photoURLs = imageThreads.map({ (thread) -> URL in
-            return thread.imageURL ?? URL()
-        })
-        thumbnailURLs = imageThreads.map({ (thread) -> URL in
-            return thread.thumbnailURL ?? URL()
-        })
-        if let index = imageThreads.indexOf(threads[index]) {
+        photoURLs = imageThreads.map({ (thread) -> URL? in
+            return thread.imageURL
+        }).flatMap({ $0 })
+        thumbnailURLs = imageThreads.map({ (thread) -> URL? in
+            return thread.thumbnailURL
+        }).flatMap({ $0 })
+        if let index = imageThreads.index(of: threads[index]) {
             photoIndex = index
         }
         presentPhotos()
@@ -306,7 +306,7 @@ extension ThreadTableViewController: UIAlertViewDelegate {
 // MAKR: GADBannerViewDelegate
 extension ThreadTableViewController: GADBannerViewDelegate {
     
-    func adViewWillLeaveApplication(_ bannerView: GADBannerView!) {
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
         DLog("")
         AdConfiguration.singleton.clickedAd()
     }

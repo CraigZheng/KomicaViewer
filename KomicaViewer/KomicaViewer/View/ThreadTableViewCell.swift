@@ -97,8 +97,8 @@ class ThreadTableViewCell: UITableViewCell {
                                            range: NSMakeRange(0, mutableAttributedString.length))
             // Add the font colour attributes back to the attributed string.
             attributedString.enumerateAttribute(NSForegroundColorAttributeName,
-                                                inRange: NSMakeRange(0, attributedString.length),
-                                                options: [], usingBlock: { (attributeValue, range, stop) in
+                                                in: NSMakeRange(0, attributedString.length),
+                                                options: [], using: { (attributeValue, range, stop) in
                                                     if let attribute = attributeValue as? UIColor {
                                                         mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: attribute, range: range)
                                                     }
@@ -115,8 +115,8 @@ class ThreadTableViewCell: UITableViewCell {
         if let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController, shouldShowImage
         {
             imageViewZeroHeight?.priority = 1
-            if SDWebImageManager.sharedManager().cachedImageExistsForURL(imageURL) {
-                let cachedImage = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(SDWebImageManager.sharedManager().cacheKeyForURL(imageURL))
+            if SDWebImageManager.shared().cachedImageExists(for: imageURL) {
+                let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: SDWebImageManager.shared().cacheKey(for: imageURL))
                 imageView?.image = cachedImage
             } else {
                 imageView?.sd_setImageWithURL(imageURL, placeholderImage: nil, completed: { [weak self](image, error, cacheType, imageURL) in
@@ -134,7 +134,7 @@ class ThreadTableViewCell: UITableViewCell {
             // Show imageFormatLabel, and set the text to the pathExtension.
             if let imageURLString = thread.imageURL?.absoluteString {
                 imageFormatLabel.isHidden = false
-                imageFormatLabel.text = (imageURLString as NSString).pathExtension.uppercaseString
+                imageFormatLabel.text = (imageURLString as NSString).pathExtension.uppercased()
             }
         } else {
             imageView?.image = nil
@@ -142,7 +142,7 @@ class ThreadTableViewCell: UITableViewCell {
             imageFormatLabel.isHidden = true
         }
         // When videoLinks is not empty, show mediaLinkLabel.
-        mediaLinkLabel.hidden = !(thread.videoLinks?.isEmpty == false)
+        mediaLinkLabel.isHidden = !(thread.videoLinks?.isEmpty == false)
         // Parasite post.
         if shouldShowParasitePost, let parasitePosts = thread.pushPost,
             let firstParasitePost = parasitePosts.first
@@ -157,7 +157,7 @@ class ThreadTableViewCell: UITableViewCell {
         }
         dateLabel?.text = thread.postDateString ?? ""
         if !thread.warnings.isEmpty {
-            warningLabel?.text = thread.warnings.joinWithSeparator("\n")
+            warningLabel?.text = thread.warnings.joined(separator: "\n")
         } else {
             warningLabel?.text = ""
         }
