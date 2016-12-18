@@ -101,6 +101,20 @@ class SettingsTableViewController: UITableViewController {
                 switch cell {
                 case removeAdCell:
                     // Initiate purchasing.
+                    if let product = self.iapProducts.first {
+                        IAPHelper.sharedInstance.purchaseProduct(product.productIdentifier) { [weak self] (purchasedIdentifier, error) in
+                            if let purchasedIdentifier = purchasedIdentifier, !purchasedIdentifier.isEmpty {
+                                // Inform success.
+                                AdConfiguration.singleton.isAdRemovePurchased = true
+                                self?.tableView.reloadData()
+                            } else if let error = error as? NSError, SKError.Code(rawValue: error.code) == SKError.Code.paymentCancelled {
+                                // User cancelled the transaction, no need to display any error.
+                            } else {
+                                // Generic error.
+                                
+                            }
+                        }
+                    }
                     break
                 case restorePurchaseCell:
                     break
