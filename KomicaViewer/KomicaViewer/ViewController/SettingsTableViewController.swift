@@ -110,7 +110,7 @@ class SettingsTableViewController: UITableViewController {
                                 AdConfiguration.singleton.isAdRemovePurchased = true
                                 self?.tableView.reloadData()
                                 MessagePopup.showMessage(title: "Payment Made",
-                                                         message: "You've purchased this item: \(product.localizedTitle), \(product.localizedDescription)",
+                                                         message: "You've acquired this item: \(product.localizedTitle)",
                                                          layout: .CardView,
                                                          theme: .error,
                                                          position: .bottom,
@@ -136,7 +136,7 @@ class SettingsTableViewController: UITableViewController {
                                 AdConfiguration.singleton.isAdRemovePurchased = true
                                 self?.tableView.reloadData()
                                 MessagePopup.showMessage(title: "Restoration Successful",
-                                                         message: "You've purchased this item: \(product.localizedTitle), \(product.localizedDescription)",
+                                                         message: "You've acquired this item: \(product.localizedTitle)",
                                     layout: .CardView,
                                     theme: .error,
                                     position: .bottom,
