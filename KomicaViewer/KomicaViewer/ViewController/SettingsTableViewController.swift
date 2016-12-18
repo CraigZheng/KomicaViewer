@@ -9,6 +9,7 @@
 import UIKit
 
 import StoreKit
+import SwiftMessages
 
 class SettingsTableViewController: UITableViewController {
 
@@ -102,21 +103,45 @@ class SettingsTableViewController: UITableViewController {
                 case removeAdCell:
                     // Initiate purchasing.
                     if let product = self.iapProducts.first {
+                        showLoading()
                         IAPHelper.sharedInstance.purchaseProduct(product.productIdentifier) { [weak self] (purchasedIdentifier, error) in
                             if let purchasedIdentifier = purchasedIdentifier, !purchasedIdentifier.isEmpty {
                                 // Inform success.
                                 AdConfiguration.singleton.isAdRemovePurchased = true
                                 self?.tableView.reloadData()
-                            } else if let error = error as? NSError, SKError.Code(rawValue: error.code) == SKError.Code.paymentCancelled {
-                                // User cancelled the transaction, no need to display any error.
                             } else {
-                                // Generic error.
-                                
+                                self?.handle(error)
                             }
+                            self?.hideLoading()
                         }
                     }
                     break
                 case restorePurchaseCell:
+                    // Restore purchase.
+                    if let product = self.iapProducts.first {
+                        showLoading()
+                        IAPHelper.sharedInstance.restorePurchases({ [weak self] (productIdentifiers, error) in
+                            self?.hideLoading()
+                            if productIdentifiers.contains(product.productIdentifier) {
+                                // Restoration successful.
+                                AdConfiguration.singleton.isAdRemovePurchased = true
+                                self?.tableView.reloadData()
+                            } else if let error = error {
+                                self?.handle(error)
+                            } else {
+                                // Network transaction was successful, but no purchase is recorded.
+                                MessagePopup.showMessage(title: "Failed to restore",
+                                                         message: "There is no previous payment made by this account, please verify and try again.",
+                                                         layout: .CardView,
+                                                         theme: .error,
+                                                         position: .bottom,
+                                                         buttonTitle: "OK",
+                                                         buttonActionHandler: { _ in
+                                                            SwiftMessages.hide()
+                                })
+                            }
+                        })
+                    }
                     break
                 default:
                     break
@@ -125,4 +150,37 @@ class SettingsTableViewController: UITableViewController {
         }
     }
     
+    
+    private func handle(_ error: Error?) {
+        if let error = error as? NSError, let errorCode = SKError.Code(rawValue: error.code) {
+            // If user cancels the transaction, no need to display any error.
+            var message: String?
+            switch errorCode {
+            case .paymentCancelled:
+                message = nil
+            default:
+                message = error.localizedFailureReason ?? error.localizedDescription
+            }
+            if let message = message, !message.isEmpty {
+                MessagePopup.showMessage(title: "Failed to purchase",
+                                         message: "Cannot make a payment due to the following reason: \n\(message)",
+                    layout: .CardView,
+                    theme: .error,
+                    position: .bottom,
+                    buttonTitle: "OK",
+                    buttonActionHandler: nil)
+            }
+        } else {
+            // Generic error.
+            MessagePopup.showMessage(title: "Failed to connect to server",
+                                     message: "The connection to the server seems to be broken, please try again later.",
+                                     layout: .CardView,
+                                     theme: .error,
+                                     position: .bottom,
+                                     buttonTitle: "OK",
+                                     buttonActionHandler: { _ in
+                                        SwiftMessages.hide()
+            })
+        }
+    }
 }
