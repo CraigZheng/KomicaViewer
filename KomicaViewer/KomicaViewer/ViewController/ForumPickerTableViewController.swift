@@ -30,13 +30,18 @@ class ForumPickerTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 44
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Configuration.updatedNotification),
+                                               object: nil,
+                                               queue: OperationQueue.main) { [weak self] _ in
+                                                self?.tableView.reloadData()
+        }
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Forums.forumsUpdatedNotification),
                                                                 object: nil,
-                                                                queue: OperationQueue.main) { (_) in
+                                                                queue: OperationQueue.main) { [weak self] (_) in
                                                                     // If remote forums is available, reload remote forums.
                                                                     if let remoteForumGroups = Forums.remoteForumGroups, remoteForumGroups.count > 0 {
-                                                                        self.forumGroups = remoteForumGroups
-                                                                        self.tableView.reloadData()
+                                                                        self?.forumGroups = remoteForumGroups
+                                                                        self?.tableView.reloadData()
                                                                         DLog("Remote Forums Updated.")
                                                                     }
         }

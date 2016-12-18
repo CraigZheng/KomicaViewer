@@ -49,6 +49,11 @@ class SettingsTableViewController: UITableViewController {
                 }
             }
         }
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Configuration.updatedNotification),
+                                               object: nil,
+                                               queue: OperationQueue.main) { [weak self] _ in
+                                                self?.tableView.reloadData()
+        }
     }
     
     override func showLoading() {
