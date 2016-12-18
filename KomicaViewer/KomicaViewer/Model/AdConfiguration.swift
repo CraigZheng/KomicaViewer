@@ -21,6 +21,8 @@ class AdConfiguration: NSObject {
         set {
             UserDefaults.standard.set(newValue, forKey: "AdRemovePurchased")
             UserDefaults.standard.synchronize()
+            NotificationCenter.default.post(name: Notification.Name(rawValue: AdConfiguration.adConfigurationUpdatedNotification),
+                                            object: nil)
         }
     }
     var shouldDisplayAds: Bool {
