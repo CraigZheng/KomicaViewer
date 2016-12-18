@@ -264,11 +264,9 @@ extension HomeTableViewController {
         tableView.reloadData()
         refreshWithPage(forum?.startingIndex ?? 0)
         if let forum = forum {
-            FIRAnalytics.logEvent(withName: kFIREventViewItem, parameters: [
-                kFIRParameterContentType: "SELECT" as NSObject,
-                kFIRParameterItemCategory: "FORUM" as NSObject,
-                kFIRParameterItemName: forum.name as NSObject? ?? "" as NSObject,
-                "FORUM URL": forum.indexURL as NSObject? ?? "" as NSObject])
+            FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
+                kFIRParameterContentType: "FORUM" as NSObject,
+                kFIRParameterItemName: "\(forum.name ?? "name undefined") - \(forum.indexURL ?? "url undefined")" as NSObject])
         }
     }
     
