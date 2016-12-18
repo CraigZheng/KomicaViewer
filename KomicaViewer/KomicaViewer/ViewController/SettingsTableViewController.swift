@@ -10,6 +10,7 @@ import UIKit
 
 import StoreKit
 import SwiftMessages
+import MBProgressHUD
 
 class SettingsTableViewController: UITableViewController {
 
@@ -21,6 +22,8 @@ class SettingsTableViewController: UITableViewController {
         return numberOfSections(in: tableView) - 1
     }
     fileprivate var iapProducts: [SKProduct] = []
+    fileprivate var isDownloading = false
+    fileprivate var overrideLoadingIndicator = true
     fileprivate enum Section: Int {
         case settings, remoteActions
     }
@@ -28,8 +31,12 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let productIdentifiers: Set<ProductIdentifier> = [iapRemoveAd]
+        overrideLoadingIndicator = false
+        showLoading()
         IAPHelper.sharedInstance.requestProducts(productIdentifiers) { [weak self] (response, error) in
             DispatchQueue.main.async {
+                self?.hideLoading()
+                self?.overrideLoadingIndicator = true
                 if let response = response,
                     !response.products.isEmpty {
                     // Reload tableView with the newly downloaded product.
@@ -42,6 +49,22 @@ class SettingsTableViewController: UITableViewController {
                 }
             }
         }
+    }
+    
+    override func showLoading() {
+        isDownloading = true
+        if overrideLoadingIndicator {
+            // Show on the highest level, block all user interactions.
+            MBProgressHUD.showAdded(to: self.navigationController?.view ?? self.view, animated: true)
+        } else {
+            super.showLoading()
+        }
+    }
+    
+    override func hideLoading() {
+        isDownloading = false
+        MBProgressHUD.hideAllHUDs(for: self.navigationController?.view ?? self.view, animated: true)
+        super.hideLoading()
     }
     
     // MARK: - UI elements.
@@ -95,6 +118,10 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // When the app is performing network task, don't interrupt.
+        if isDownloading {
+            return
+        }
         // Remote action section.
         if indexPath.section == lastSectionIndex,
             let urlString = Configuration.singleton.remoteActions[indexPath.row].values.first,
