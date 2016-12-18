@@ -15,9 +15,9 @@ class Forums {
     static let selectionUpdatedNotification = "Forums.selectionUpdatedNotification"
     static let forumsUpdatedNotification = "Forums.forumsUpdatedNotification"
     
-    private static let sharedInstance = Forums()
-    private static let customForumsKey = "customForumsKey"
-    private var selectedForum: KomicaForum?
+    fileprivate static let sharedInstance = Forums()
+    fileprivate static let customForumsKey = "customForumsKey"
+    fileprivate var selectedForum: KomicaForum?
     
     static var selectedForum: KomicaForum? {
         get {
@@ -27,7 +27,7 @@ class Forums {
             if sharedInstance.selectedForum != newValue {
                 sharedInstance.selectedForum = newValue
                 // Selection updated, send a notification for this.
-                NSNotificationCenter.defaultCenter().postNotificationName(selectionUpdatedNotification, object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: selectionUpdatedNotification), object: nil)
             }
         }
     }
@@ -48,12 +48,12 @@ class Forums {
             if let groups = groups {
                 remoteForumGroups = groups
                 // Remote forums updated, send a notification.
-                NSNotificationCenter.defaultCenter().postNotificationName(forumsUpdatedNotification, object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: forumsUpdatedNotification), object: nil)
             }
         })
     }
 
-    class func addCustomForum(forum: KomicaForum) {
+    class func addCustomForum(_ forum: KomicaForum) {
         customForumGroup.forums?.append(forum)
         saveCustomForums()
     }
@@ -68,22 +68,22 @@ class Forums {
             })
             if !jsonStrings.isEmpty {
                 // Save to user default for now.
-                NSUserDefaults.standardUserDefaults().setObject(jsonStrings, forKey: Forums.customForumsKey)
-                NSUserDefaults.standardUserDefaults().synchronize()
+                UserDefaults.standard.set(jsonStrings, forKey: Forums.customForumsKey)
+                UserDefaults.standard.synchronize()
             } else {
                 // Remove everything.
-                NSUserDefaults.standardUserDefaults().removeObjectForKey(Forums.customForumsKey)
-                NSUserDefaults.standardUserDefaults().synchronize()
+                UserDefaults.standard.removeObject(forKey: Forums.customForumsKey)
+                UserDefaults.standard.synchronize()
             }
         }
     }
     
-    private class func restoreCustomForums() -> [KomicaForum]? {
-        if let jsonStrings = NSUserDefaults.standardUserDefaults().objectForKey(Forums.customForumsKey) as? [String] {
+    fileprivate class func restoreCustomForums() -> [KomicaForum]? {
+        if let jsonStrings = UserDefaults.standard.object(forKey: Forums.customForumsKey) as? [String] {
             var forums = [KomicaForum]()
             jsonStrings.forEach({jsonString in
-                if let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding),
-                    let rawDict = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: .AllowFragments) as? Dictionary<String, AnyObject>,
+                if let jsonData = jsonString.data(using: String.Encoding.utf8),
+                    let rawDict = try? JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? Dictionary<String, AnyObject>,
                     let jsonDict = rawDict
                 {
                     let forum = KomicaForum(jsonDict: jsonDict)

@@ -12,7 +12,7 @@ extension UIViewController {
     func showLoading() {
         hideLoading()
         DLog("showLoading()")
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
         activityIndicator.startAnimating()
         let indicatorBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         if var rightBarButtonItems = navigationItem.rightBarButtonItems {
@@ -29,7 +29,7 @@ extension UIViewController {
             var BarButtonItemsWithoutActivityIndicator = rightBarButtonItems
             for button in rightBarButtonItems {
                 if let customView = button.customView {
-                    if customView.isKindOfClass(UIActivityIndicatorView) {
+                    if customView.isKind(of: UIActivityIndicatorView.self) {
                         // Remove the bar button with an activity indicator as the custom view.
                         BarButtonItemsWithoutActivityIndicator.removeObject(button)
                     }
@@ -44,12 +44,12 @@ extension UIViewController {
     }
 }
 
-extension RangeReplaceableCollectionType where Generator.Element : Equatable {
+extension RangeReplaceableCollection where Iterator.Element : Equatable {
     
     // Remove first collection element that is equal to the given `object`:
-    mutating func removeObject(object : Generator.Element) {
-        if let index = self.indexOf(object) {
-            self.removeAtIndex(index)
+    mutating func removeObject(_ object : Iterator.Element) {
+        if let index = self.index(of: object) {
+            self.remove(at: index)
         }
     }
 }

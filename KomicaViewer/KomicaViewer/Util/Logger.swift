@@ -8,13 +8,13 @@
 
 import Foundation
 
-func DLog(message: String, filename: String = #file, function: String = #function, line: Int = #line) {
+func DLog(_ message: String, filename: String = #file, function: String = #function, line: Int = #line) {
     #if DEBUG
         NSLog("%@","[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(message)")
     #endif
 }
 
-func DLog(error: ErrorType?, filename: String = #file, function: String = #function, line: Int = #line) {
+func DLog(_ error: Error?, filename: String = #file, function: String = #function, line: Int = #line) {
     if let error = error {
         DLog("\(error)", filename: filename, function: function, line: line)
     } else {

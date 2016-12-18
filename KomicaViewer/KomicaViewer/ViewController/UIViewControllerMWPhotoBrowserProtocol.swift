@@ -12,15 +12,15 @@ import KomicaEngine
 import MWPhotoBrowser
 
 protocol UIViewControllerMWPhotoBrowserProtocol {
-    var photoURLs: [NSURL]? { get set }
-    var thumbnailURLs: [NSURL]? { get set }
+    var photoURLs: [URL]? { get set }
+    var thumbnailURLs: [URL]? { get set }
     var photoIndex: Int? { get set }
     func presentPhotos()
 }
 
 extension UIViewControllerMWPhotoBrowserProtocol where Self: UIViewController {
     
-    private var photoBrowser: MWPhotoBrowser {
+    fileprivate var photoBrowser: MWPhotoBrowser {
         PhotoBrowserDelegate.singleton.photoURLs = photoURLs ?? []
         PhotoBrowserDelegate.singleton.thumbnailURLs = thumbnailURLs
         let photoBrowser = MWPhotoBrowser(delegate: PhotoBrowserDelegate.singleton)
@@ -36,19 +36,18 @@ extension UIViewControllerMWPhotoBrowserProtocol where Self: UIViewController {
         photoBrowser!.hidesBottomBarWhenPushed = true;
 
         if let photoIndex = photoIndex {
-            photoBrowser.setCurrentPhotoIndex(UInt(photoIndex))
+            photoBrowser?.setCurrentPhotoIndex(UInt(photoIndex))
         }
-        return photoBrowser
+        return photoBrowser!
     }
 
     func presentPhotos() {
-        if let photoURLs = photoURLs where !photoURLs.isEmpty {
-            if let photoIndex = photoIndex
-                where (photoURLs[photoIndex].absoluteString! as NSString).pathExtension.lowercaseString == "webm" {
+        if let photoURLs = photoURLs, !photoURLs.isEmpty {
+            if let photoIndex = photoIndex, (photoURLs[photoIndex].absoluteString as NSString).pathExtension.lowercased() == "webm" {
                 // Open webm file.
-                if let webMPlayerViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("WebMPlayerViewController") as? WebMPlayerViewController {
+                if let webMPlayerViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WebMPlayerViewController") as? WebMPlayerViewController {
                     webMPlayerViewController.webMSourceURL = photoURLs[photoIndex]
-                    navigationController?.presentViewController(webMPlayerViewController, animated: true, completion: nil)
+                    navigationController?.present(webMPlayerViewController, animated: true, completion: nil)
                 }
             } else {
                 navigationController?.pushViewController(photoBrowser, animated:true)
@@ -61,20 +60,20 @@ extension UIViewControllerMWPhotoBrowserProtocol where Self: UIViewController {
 private class PhotoBrowserDelegate: NSObject, MWPhotoBrowserDelegate {
     static let singleton = PhotoBrowserDelegate()
     
-    var photoURLs: [NSURL]!
-    var thumbnailURLs: [NSURL]?
+    var photoURLs: [URL]!
+    var thumbnailURLs: [URL]?
     
-    @objc func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+    @objc func numberOfPhotos(in photoBrowser: MWPhotoBrowser!) -> UInt {
         return UInt(photoURLs.count)
     }
     
-    @objc func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
-        return MWPhoto(URL: photoURLs[Int(index)])
+    @objc func photoBrowser(_ photoBrowser: MWPhotoBrowser!, photoAt index: UInt) -> MWPhotoProtocol! {
+        return MWPhoto(url: photoURLs[Int(index)])
     }
     
-    @objc private func photoBrowser(photoBrowser: MWPhotoBrowser!, thumbPhotoAtIndex index: UInt) -> MWPhotoProtocol! {
+    @objc fileprivate func photoBrowser(_ photoBrowser: MWPhotoBrowser!, thumbPhotoAt index: UInt) -> MWPhotoProtocol! {
         let url = (thumbnailURLs != nil) ? thumbnailURLs?[Int(index)] : photoURLs[Int(index)]
-        return MWPhoto(URL: url)
+        return MWPhoto(url: url)
     }
     
 }

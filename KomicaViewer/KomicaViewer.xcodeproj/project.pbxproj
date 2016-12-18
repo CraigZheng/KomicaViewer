@@ -24,12 +24,19 @@
 		44496F5A1D5985A6005875DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44496F591D5985A6005875DD /* Assets.xcassets */; };
 		44496F5D1D5985A6005875DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44496F5B1D5985A6005875DD /* LaunchScreen.storyboard */; };
 		44496F681D5985A6005875DD /* KomicaViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44496F671D5985A6005875DD /* KomicaViewerTests.swift */; };
+		44575A2F1E01822F00B3A941 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 44575A2C1E01822F00B3A941 /* settings.png */; };
+		44575A301E01822F00B3A941 /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44575A2D1E01822F00B3A941 /* settings@2x.png */; };
+		44575A311E01822F00B3A941 /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44575A2E1E01822F00B3A941 /* settings@3x.png */; };
+		44575A331E01826700B3A941 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44575A321E01826700B3A941 /* Settings.storyboard */; };
+		44575A351E01834E00B3A941 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44575A341E01834E00B3A941 /* SettingsTableViewController.swift */; };
 		445A305F1D864EF0007FFE0C /* ThreadTableViewCellUIActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445A305E1D864EF0007FFE0C /* ThreadTableViewCellUIActions.swift */; };
 		44655D471D5AD24700229404 /* KomicaEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D401D5AD15400229404 /* KomicaEngine.framework */; };
 		44655D481D5AD24700229404 /* KomicaEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D401D5AD15400229404 /* KomicaEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		44655D751D5AEF7900229404 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D741D5AEF7900229404 /* HomeTableViewController.swift */; };
 		44655D771D5AEF8E00229404 /* ForumPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */; };
 		44655D7A1D5AFDAB00229404 /* Forums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D791D5AFDAB00229404 /* Forums.swift */; };
+		447664F71E03F48F00A06138 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447664F61E03F48F00A06138 /* IAPHelper.swift */; };
+		447665561E067A7D00A06138 /* MessagePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447665551E067A7D00A06138 /* MessagePopup.swift */; };
 		447EF1C31D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */; };
 		448C1E781D76CE5D007187DB /* AdConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C1E771D76CE5D007187DB /* AdConfiguration.swift */; };
 		44902F0F1D857B3E003848AF /* ForumQRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44902F0E1D857B3E003848AF /* ForumQRScannerViewController.swift */; };
@@ -86,6 +93,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4453D1D81CB662A10076ABE7;
 			remoteInfo = KomicaEngine;
+		};
+		447664D81E03EB7E00A06138 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 94D24B961D4AFE7800C7F33C;
+			remoteInfo = "DTCoreText (tvOS)";
 		};
 		44C25D0C1D89984C0066888E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -382,11 +396,18 @@
 		44496F631D5985A6005875DD /* KomicaViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KomicaViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44496F671D5985A6005875DD /* KomicaViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KomicaViewerTests.swift; sourceTree = "<group>"; };
 		44496F691D5985A6005875DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44575A2C1E01822F00B3A941 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		44575A2D1E01822F00B3A941 /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
+		44575A2E1E01822F00B3A941 /* settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@3x.png"; sourceTree = "<group>"; };
+		44575A321E01826700B3A941 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		44575A341E01834E00B3A941 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		445A305E1D864EF0007FFE0C /* ThreadTableViewCellUIActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadTableViewCellUIActions.swift; sourceTree = "<group>"; };
 		44655D3A1D5AD15400229404 /* KomicaEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KomicaEngine.xcodeproj; path = ../../komicaengine/KomicaEngine.xcodeproj; sourceTree = "<group>"; };
 		44655D741D5AEF7900229404 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumPickerTableViewController.swift; sourceTree = "<group>"; };
 		44655D791D5AFDAB00229404 /* Forums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forums.swift; sourceTree = "<group>"; };
+		447664F61E03F48F00A06138 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		447665551E067A7D00A06138 /* MessagePopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagePopup.swift; sourceTree = "<group>"; };
 		447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerBulkUpdateProtocol.swift; sourceTree = "<group>"; };
 		448C1E771D76CE5D007187DB /* AdConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdConfiguration.swift; sourceTree = "<group>"; };
 		44902F0E1D857B3E003848AF /* ForumQRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumQRScannerViewController.swift; sourceTree = "<group>"; };
@@ -460,7 +481,9 @@
 		44397D6E1D695AB6005B44AA /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				44496F561D5985A6005875DD /* Main.storyboard */,
 				44397D6B1D695AA5005B44AA /* AddForum.storyboard */,
+				44575A321E01826700B3A941 /* Settings.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -493,16 +516,16 @@
 			isa = PBXGroup;
 			children = (
 				4411C74A1D76C28400047660 /* GoogleService-Info.plist */,
-				44397D6E1D695AB6005B44AA /* Storyboard */,
-				44496F521D5985A6005875DD /* AppDelegate.swift */,
-				44496F561D5985A6005875DD /* Main.storyboard */,
-				44496F591D5985A6005875DD /* Assets.xcassets */,
-				44496F5B1D5985A6005875DD /* LaunchScreen.storyboard */,
-				44BD39771D5B27430070E0CB /* View */,
-				44BD39731D5B1E510070E0CB /* Util */,
-				44655D781D5AF9F300229404 /* Model */,
-				44655D731D5AEF7900229404 /* ViewController */,
 				44496F5E1D5985A6005875DD /* Info.plist */,
+				44496F521D5985A6005875DD /* AppDelegate.swift */,
+				44496F591D5985A6005875DD /* Assets.xcassets */,
+				44575A2B1E01821900B3A941 /* Images */,
+				44496F5B1D5985A6005875DD /* LaunchScreen.storyboard */,
+				44655D781D5AF9F300229404 /* Model */,
+				44397D6E1D695AB6005B44AA /* Storyboard */,
+				44BD39731D5B1E510070E0CB /* Util */,
+				44BD39771D5B27430070E0CB /* View */,
+				44655D731D5AEF7900229404 /* ViewController */,
 			);
 			path = KomicaViewer;
 			sourceTree = "<group>";
@@ -514,6 +537,16 @@
 				44496F691D5985A6005875DD /* Info.plist */,
 			);
 			path = KomicaViewerTests;
+			sourceTree = "<group>";
+		};
+		44575A2B1E01821900B3A941 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				44575A2C1E01822F00B3A941 /* settings.png */,
+				44575A2D1E01822F00B3A941 /* settings@2x.png */,
+				44575A2E1E01822F00B3A941 /* settings@3x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		44655D3B1D5AD15400229404 /* Products */ = {
@@ -530,6 +563,7 @@
 			children = (
 				44655D741D5AEF7900229404 /* HomeTableViewController.swift */,
 				44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */,
+				44575A341E01834E00B3A941 /* SettingsTableViewController.swift */,
 				44BD397F1D5B5E180070E0CB /* ThreadTableViewController.swift */,
 				44BD39811D5B5F310070E0CB /* ThreadTableViewControllerProtocol.swift */,
 				447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */,
@@ -573,11 +607,13 @@
 			isa = PBXGroup;
 			children = (
 				443342A61D5F576F00EDFA8F /* AFHTTPSessionManager+Util.swift */,
-				44F48EBB1D5D3F0700519C1B /* ProgressHUD.swift */,
-				44BD39851D5B74ED0070E0CB /* UIView+SuperCell.swift */,
+				447664F61E03F48F00A06138 /* IAPHelper.swift */,
 				44BD39741D5B1E510070E0CB /* Logger.swift */,
-				44A65AA11D5DDA3300A4DDE6 /* UIColor+RGB.swift */,
+				447665551E067A7D00A06138 /* MessagePopup.swift */,
+				44F48EBB1D5D3F0700519C1B /* ProgressHUD.swift */,
 				44397D661D6953FB005B44AA /* UIApplication+Util.swift */,
+				44A65AA11D5DDA3300A4DDE6 /* UIColor+RGB.swift */,
+				44BD39851D5B74ED0070E0CB /* UIView+SuperCell.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -606,6 +642,7 @@
 				44C25D151D89984C0066888E /* libDTCoreText_no_DTFoundation.a */,
 				44C25D171D89984C0066888E /* DTCoreText.framework */,
 				44C25D191D89984C0066888E /* DTCoreText.framework */,
+				447664D91E03EB7E00A06138 /* DTCoreText.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -711,13 +748,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Craig;
 				TargetAttributes = {
 					44496F4E1D5985A6005875DD = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 9EBE9MWW9X;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 					};
 					44496F621D5985A6005875DD = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -771,6 +808,13 @@
 			fileType = wrapper.cfbundle;
 			path = KomicaEngineTests.xctest;
 			remoteRef = 44655D411D5AD15400229404 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		447664D91E03EB7E00A06138 /* DTCoreText.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DTCoreText.framework;
+			remoteRef = 447664D81E03EB7E00A06138 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		44C25D0D1D89984C0066888E /* RTDemoApp.app */ = {
@@ -1019,11 +1063,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				44496F5D1D5985A6005875DD /* LaunchScreen.storyboard in Resources */,
+				44575A311E01822F00B3A941 /* settings@3x.png in Resources */,
+				44575A2F1E01822F00B3A941 /* settings.png in Resources */,
 				44496F5A1D5985A6005875DD /* Assets.xcassets in Resources */,
 				44496F581D5985A6005875DD /* Main.storyboard in Resources */,
 				44397D6C1D695AA5005B44AA /* AddForum.storyboard in Resources */,
+				44575A301E01822F00B3A941 /* settings@2x.png in Resources */,
 				44BD397D1D5B5AA70070E0CB /* ThreadTableViewCell.xib in Resources */,
 				4411C74B1D76C28400047660 /* GoogleService-Info.plist in Resources */,
+				44575A331E01826700B3A941 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1155,6 +1203,8 @@
 				44A65AA21D5DDA3300A4DDE6 /* UIColor+RGB.swift in Sources */,
 				44397D5F1D6942E7005B44AA /* SVWebViewProtocol.swift in Sources */,
 				44A65A981D5DBB0100A4DDE6 /* UIView+Util.m in Sources */,
+				447665561E067A7D00A06138 /* MessagePopup.swift in Sources */,
+				44575A351E01834E00B3A941 /* SettingsTableViewController.swift in Sources */,
 				44BD39751D5B1E510070E0CB /* Logger.swift in Sources */,
 				44655D7A1D5AFDAB00229404 /* Forums.swift in Sources */,
 				44655D751D5AEF7900229404 /* HomeTableViewController.swift in Sources */,
@@ -1181,6 +1231,7 @@
 				44397D581D670A80005B44AA /* WebViewGuardDog.swift in Sources */,
 				44BD39861D5B74ED0070E0CB /* UIView+SuperCell.swift in Sources */,
 				449B210C1D7D1A21006AA091 /* BlockedUserManager.swift in Sources */,
+				447664F71E03F48F00A06138 /* IAPHelper.swift in Sources */,
 				44B1E5E31DC9F58F00CCF6F0 /* WebMPlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1225,6 +1276,7 @@
 				44496F571D5985A6005875DD /* Base */,
 			);
 			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		44496F5B1D5985A6005875DD /* LaunchScreen.storyboard */ = {
@@ -1252,8 +1304,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1299,8 +1353,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1320,6 +1376,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "KomicaViewer-bridging-header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1329,9 +1386,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC7DAB90B7018AB9E394882B /* Pods-KomicaViewer.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1344,7 +1401,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1352,9 +1409,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1F999914BCD5E6DBD4D5D973 /* Pods-KomicaViewer.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1367,7 +1424,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
