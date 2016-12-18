@@ -119,6 +119,7 @@ PODS:
   - SDWebImage/Core (3.8.2)
   - SVPullToRefresh (0.4.1)
   - SVWebViewController (1.0)
+  - SwiftMessages (3.1.1)
 
 DEPENDENCIES:
   - AFNetworking
@@ -131,6 +132,7 @@ DEPENDENCIES:
   - PureLayout
   - SVPullToRefresh (from `https://github.com/samvermette/SVPullToRefresh.git`)
   - SVWebViewController (from `https://github.com/TransitApp/SVWebViewController.git`)
+  - SwiftMessages
 
 EXTERNAL SOURCES:
   SVPullToRefresh:
@@ -171,7 +173,8 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SVWebViewController: aa2e18a41ff5f45be7aeec8e92ca5bcc50b5ebb1
+  SwiftMessages: 1216ea6bdf8d92ff0f6f98a23e5442711b1e71ac
 
-PODFILE CHECKSUM: a4359aca8b3d903ef2f026770d89e2c4acf38ed6
+PODFILE CHECKSUM: abed6fe8264392f095f8ba39f85afede26561c8e
 
 COCOAPODS: 1.2.0.beta.1
