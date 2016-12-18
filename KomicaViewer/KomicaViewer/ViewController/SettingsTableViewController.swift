@@ -54,6 +54,7 @@ class SettingsTableViewController: UITableViewController {
     
     @IBOutlet weak var removeAdCell: UITableViewCell!
     @IBOutlet weak var restorePurchaseCell: UITableViewCell!
+    @IBOutlet weak var noAdvertisementCell: UITableViewCell!
     // MARK: - UI actions.
     
     @IBAction func showImageSwitchAction(_ sender: AnyObject) {
@@ -65,11 +66,16 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch Section(rawValue: indexPath.section)! {
         case .settings:
-            // When IAP product is empty, don't show the removeAdCell and restorePurchaseCell.
-            if iapProducts.isEmpty || AdConfiguration.singleton.isAdRemovePurchased, tableView.indexPath(for: removeAdCell) == indexPath || tableView.indexPath(for: restorePurchaseCell) == indexPath {
-                return 0
+            // When IAP product is empty or the product is already purchased, don't show the removeAdCell and restorePurchaseCell.
+            let cell = super.tableView(tableView, cellForRowAt: indexPath)
+            switch cell {
+            case restorePurchaseCell, removeAdCell:
+                return iapProducts.isEmpty || AdConfiguration.singleton.isAdRemovePurchased ? 0 : UITableViewAutomaticDimension
+            case noAdvertisementCell:
+                return AdConfiguration.singleton.isAdRemovePurchased ? UITableViewAutomaticDimension : 0
+            default:
+                return UITableViewAutomaticDimension
             }
-            return UITableViewAutomaticDimension
         case .remoteActions:
             return CGFloat(Configuration.singleton.remoteActions.count * 44) + 20
         }
