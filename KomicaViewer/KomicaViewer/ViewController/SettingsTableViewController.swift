@@ -109,6 +109,15 @@ class SettingsTableViewController: UITableViewController {
                                 // Inform success.
                                 AdConfiguration.singleton.isAdRemovePurchased = true
                                 self?.tableView.reloadData()
+                                MessagePopup.showMessage(title: "Payment Made",
+                                                         message: "You've purchased this item: \(product.localizedTitle), \(product.localizedDescription)",
+                                                         layout: .CardView,
+                                                         theme: .error,
+                                                         position: .bottom,
+                                                         buttonTitle: "OK",
+                                                         buttonActionHandler: { _ in
+                                                            SwiftMessages.hide()
+                                })
                             } else {
                                 self?.handle(error)
                             }
@@ -126,12 +135,21 @@ class SettingsTableViewController: UITableViewController {
                                 // Restoration successful.
                                 AdConfiguration.singleton.isAdRemovePurchased = true
                                 self?.tableView.reloadData()
+                                MessagePopup.showMessage(title: "Restoration Successful",
+                                                         message: "You've purchased this item: \(product.localizedTitle), \(product.localizedDescription)",
+                                    layout: .CardView,
+                                    theme: .error,
+                                    position: .bottom,
+                                    buttonTitle: "OK",
+                                    buttonActionHandler: { _ in
+                                        SwiftMessages.hide()
+                                })
                             } else if let error = error {
                                 self?.handle(error)
                             } else {
                                 // Network transaction was successful, but no purchase is recorded.
-                                MessagePopup.showMessage(title: "Failed to restore",
-                                                         message: "There is no previous payment made by this account, please verify and try again.",
+                                MessagePopup.showMessage(title: "Failed To Restore",
+                                                         message: "There is no previous payment made by this account, please verify your account and try again.",
                                                          layout: .CardView,
                                                          theme: .error,
                                                          position: .bottom,
@@ -162,7 +180,7 @@ class SettingsTableViewController: UITableViewController {
                 message = error.localizedFailureReason ?? error.localizedDescription
             }
             if let message = message, !message.isEmpty {
-                MessagePopup.showMessage(title: "Failed to purchase",
+                MessagePopup.showMessage(title: "Failed To Purchase",
                                          message: "Cannot make a payment due to the following reason: \n\(message)",
                     layout: .CardView,
                     theme: .error,
@@ -172,7 +190,7 @@ class SettingsTableViewController: UITableViewController {
             }
         } else {
             // Generic error.
-            MessagePopup.showMessage(title: "Failed to connect to server",
+            MessagePopup.showMessage(title: "Failed To Connect",
                                      message: "The connection to the server seems to be broken, please try again later.",
                                      layout: .CardView,
                                      theme: .error,
