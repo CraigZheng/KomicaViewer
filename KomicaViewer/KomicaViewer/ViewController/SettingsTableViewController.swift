@@ -118,7 +118,7 @@ class SettingsTableViewController: UITableViewController {
                                 MessagePopup.showMessage(title: "Payment Made",
                                                          message: "You've acquired this item: \(product.localizedTitle)",
                                                          layout: .CardView,
-                                                         theme: .error,
+                                                         theme: .success,
                                                          position: .bottom,
                                                          buttonTitle: "OK",
                                                          buttonActionHandler: { _ in
@@ -144,7 +144,7 @@ class SettingsTableViewController: UITableViewController {
                                 MessagePopup.showMessage(title: "Restoration Successful",
                                                          message: "You've acquired this item: \(product.localizedTitle)",
                                     layout: .CardView,
-                                    theme: .error,
+                                    theme: .success,
                                     position: .bottom,
                                     buttonTitle: "OK",
                                     buttonActionHandler: { _ in
@@ -192,7 +192,9 @@ class SettingsTableViewController: UITableViewController {
                     theme: .error,
                     position: .bottom,
                     buttonTitle: "OK",
-                    buttonActionHandler: nil)
+                    buttonActionHandler: { _ in
+                        SwiftMessages.hide()
+                })
             }
         } else {
             // Generic error.
