@@ -36,9 +36,12 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     var threads:[KomicaEngine.Thread] = []
     func refresh() {
         if let forum = forum {
-            FIRAnalytics.logEvent(withName: "REFRESH FORUM", parameters: ["FORUM NAME": "\(forum.name ?? "name undefined")" as NSString,
-                                                                         "FORUM INDEX URL": "\(forum.indexURL ?? "url undefined")" as NSString,
-                                                                         "FORUM RESPONSE URL": "\(forum.responseURL ?? "url undefined")" as NSString])
+            FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
+                kFIRParameterContentType: "REFRESH FORUM" as NSObject,
+                kFIRParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
+                kFIRParameterItemName: "\(forum.name ?? "name undefined")" as NSString,
+                "FORUM INDEX URL": "\(forum.indexURL ?? "url undefined")" as NSString,
+                "FORUM RESPONSE URL": "\(forum.responseURL ?? "url undefined")" as NSString])
         }
         refreshWithPage(forum?.startingIndex ?? 0)
     }
@@ -269,9 +272,12 @@ extension HomeTableViewController {
         tableView.reloadData()
         refreshWithPage(forum?.startingIndex ?? 0)
         if let forum = forum {
-            FIRAnalytics.logEvent(withName: "SELECT FORUM", parameters: ["FORUM NAME": "\(forum.name ?? "name undefined")" as NSString,
-                                                                         "FORUM INDEX URL": "\(forum.indexURL ?? "url undefined")" as NSString,
-                                                                         "FORUM RESPONSE URL": "\(forum.responseURL ?? "url undefined")" as NSString])
+            FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
+                kFIRParameterContentType: "SELECT FORUM" as NSObject,
+                kFIRParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
+                kFIRParameterItemName: "\(forum.name ?? "name undefined")" as NSString,
+                "FORUM INDEX URL": "\(forum.indexURL ?? "url undefined")" as NSString,
+                "FORUM RESPONSE URL": "\(forum.responseURL ?? "url undefined")" as NSString])
         }
     }
     
