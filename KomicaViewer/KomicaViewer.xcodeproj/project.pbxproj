@@ -94,13 +94,6 @@
 			remoteGlobalIDString = 4453D1D81CB662A10076ABE7;
 			remoteInfo = KomicaEngine;
 		};
-		447664D81E03EB7E00A06138 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 94D24B961D4AFE7800C7F33C;
-			remoteInfo = "DTCoreText (tvOS)";
-		};
 		44C25D0C1D89984C0066888E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
@@ -642,7 +635,6 @@
 				44C25D151D89984C0066888E /* libDTCoreText_no_DTFoundation.a */,
 				44C25D171D89984C0066888E /* DTCoreText.framework */,
 				44C25D191D89984C0066888E /* DTCoreText.framework */,
-				447664D91E03EB7E00A06138 /* DTCoreText.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -808,13 +800,6 @@
 			fileType = wrapper.cfbundle;
 			path = KomicaEngineTests.xctest;
 			remoteRef = 44655D411D5AD15400229404 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		447664D91E03EB7E00A06138 /* DTCoreText.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = DTCoreText.framework;
-			remoteRef = 447664D81E03EB7E00A06138 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		44C25D0D1D89984C0066888E /* RTDemoApp.app */ = {
@@ -1293,6 +1278,7 @@
 		44496F6A1D5985A6005875DD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1332,6 +1318,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "KomicaViewer-bridging-header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1342,6 +1329,7 @@
 		44496F6B1D5985A6005875DD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1374,6 +1362,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "KomicaViewer-bridging-header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1386,7 +1375,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC7DAB90B7018AB9E394882B /* Pods-KomicaViewer.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -1397,7 +1386,7 @@
 				INFOPLIST_FILE = KomicaViewer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-D DEBUG";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)";
@@ -1409,7 +1398,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1F999914BCD5E6DBD4D5D973 /* Pods-KomicaViewer.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -1420,7 +1409,7 @@
 				INFOPLIST_FILE = KomicaViewer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-D DEBUG";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)";
