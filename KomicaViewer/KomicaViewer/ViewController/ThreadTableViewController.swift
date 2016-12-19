@@ -12,6 +12,7 @@ import KomicaEngine
 import SDWebImage
 import SVWebViewController
 import GoogleMobileAds
+import Firebase
 
 class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol, UIViewControllerMWPhotoBrowserProtocol {
     
@@ -125,6 +126,12 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         refreshWithPage(0)
         // Load ad.
         attemptLoadRequest()
+        if let forum = forum {
+            FIRAnalytics.logEvent(withName: "SELECT THREAD", parameters: ["THREAD ID": "\(threadID ?? 0)" as NSString,
+                                                                         "THREAD URL": "\(forum.responseURLForThreadID(threadID ?? 0)?.absoluteString ?? "url undefined")" as NSString,
+                                                                         "THREAD CONTENT": "\(selectedThread.content?.string ?? "no text content")" as NSString,
+                                                                         "THREAD IMAGE URL": "\(selectedThread.imageURL?.absoluteString ?? "no image content")" as NSString])
+        }
     }
     
     deinit {
