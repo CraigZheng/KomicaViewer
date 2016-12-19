@@ -37,7 +37,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     func refresh() {
         if let forum = forum {
             FIRAnalytics.logEvent(withName: kFIREventViewItem, parameters: [
-                kFIRParameterItemCategory: "REFRESH FORUM" as NSString,
+                kFIRParameterItemCategory: "FORUM" as NSString,
                 kFIRParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
                 kFIRParameterItemName: "\(forum.name ?? "name undefined")" as NSString,
                 kFIRParameterDestination: "\(forum.indexURL ?? "url undefined")" as NSString])
@@ -272,7 +272,7 @@ extension HomeTableViewController {
         refreshWithPage(forum?.startingIndex ?? 0)
         if let forum = forum {
             FIRAnalytics.logEvent(withName: kFIREventViewItem, parameters: [
-                kFIRParameterItemCategory: "SELECT FORUM" as NSString,
+                kFIRParameterItemCategory: "FORUM" as NSString,
                 kFIRParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
                 kFIRParameterItemName: "\(forum.name ?? "name undefined")" as NSString,
                 kFIRParameterDestination: "\(forum.indexURL ?? "url undefined")" as NSString])

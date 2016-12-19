@@ -128,7 +128,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         attemptLoadRequest()
         if let forum = forum {
             FIRAnalytics.logEvent(withName: kFIREventViewItem, parameters: [
-                kFIRParameterItemCategory: "SELECT THREAD" as NSString,
+                kFIRParameterItemCategory: "THREAD" as NSString,
                 kFIRParameterItemID: "\(threadID ?? 0)" as NSString,
                 kFIRParameterItemName: "\(threadID ?? 0)" as NSString,
                 kFIRParameterDestination: "\(forum.responseURLForThreadID(threadID ?? 0)?.absoluteString ?? "url undefined")" as NSString])
