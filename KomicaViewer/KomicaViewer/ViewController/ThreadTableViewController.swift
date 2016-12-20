@@ -127,11 +127,13 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         // Load ad.
         attemptLoadRequest()
         if let forum = forum {
-            FIRAnalytics.logEvent(withName: kFIREventViewItem, parameters: [
-                kFIRParameterItemCategory: "SELECT THREAD" as NSString,
+            FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
+                kFIRParameterContentType: "SELECT THREAD" as NSObject,
                 kFIRParameterItemID: "\(threadID ?? 0)" as NSString,
                 kFIRParameterItemName: "\(threadID ?? 0)" as NSString,
-                kFIRParameterDestination: "\(forum.responseURLForThreadID(threadID ?? 0)?.absoluteString ?? "url undefined")" as NSString])
+                "THREAD URL": "\(forum.responseURLForThreadID(threadID ?? 0)?.absoluteString ?? "url undefined")" as NSString,
+                "THREAD IMAGE URL": "\(selectedThread.imageURL?.absoluteString ?? "no image content")" as NSString,
+                "THREAD CONTENT": "\(selectedThread.content?.string ?? "no text content")" as NSString])
         }
     }
     
