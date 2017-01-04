@@ -131,8 +131,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
             FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
                 kFIRParameterContentType: "SELECT THREAD" as NSObject,
                 kFIRParameterItemID: "\(forumName) - \(threadID ?? 0)" as NSString,
-                kFIRParameterItemName: "\(forumName) - \(threadID ?? 0)" as NSString,
-                kFIRParameterValue: "\(forum.responseURLForThreadID(threadID ?? 0)?.absoluteString ?? "url undefined")" as NSString])
+                kFIRParameterItemName: "\(forumName) - \(threadID ?? 0)" as NSString])
         }
     }
     

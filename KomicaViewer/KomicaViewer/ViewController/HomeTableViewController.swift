@@ -39,8 +39,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
             FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
                 kFIRParameterContentType: "REFRESH FORUM" as NSObject,
                 kFIRParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
-                kFIRParameterItemName: "\(forum.name ?? "name undefined")" as NSString,
-                kFIRParameterValue: (forum.jsonEncode() ?? "") as NSString])
+                kFIRParameterItemName: "\(forum.name ?? "name undefined")" as NSString])
         }
         refreshWithPage(forum?.startingIndex ?? 0)
     }
@@ -274,8 +273,7 @@ extension HomeTableViewController {
             FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
                 kFIRParameterContentType: "SELECT FORUM" as NSObject,
                 kFIRParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
-                kFIRParameterItemName: "\(forum.name ?? "name undefined")" as NSString,
-                kFIRParameterValue: (forum.jsonEncode() ?? "") as NSString]
+                kFIRParameterItemName: "\(forum.name ?? "name undefined")" as NSString]
             )
         }
     }
