@@ -40,8 +40,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
                 kFIRParameterContentType: "REFRESH FORUM" as NSObject,
                 kFIRParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
                 kFIRParameterItemName: "\(forum.name ?? "name undefined")" as NSString,
-                "FORUM INDEX URL": "\(forum.indexURL ?? "url undefined")" as NSString,
-                "FORUM RESPONSE URL": "\(forum.responseURL ?? "url undefined")" as NSString])
+                kFIRParameterValue: (forum.jsonEncode() ?? "") as NSString])
         }
         refreshWithPage(forum?.startingIndex ?? 0)
     }
@@ -276,8 +275,8 @@ extension HomeTableViewController {
                 kFIRParameterContentType: "SELECT FORUM" as NSObject,
                 kFIRParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
                 kFIRParameterItemName: "\(forum.name ?? "name undefined")" as NSString,
-                "FORUM INDEX URL": "\(forum.indexURL ?? "url undefined")" as NSString,
-                "FORUM RESPONSE URL": "\(forum.responseURL ?? "url undefined")" as NSString])
+                kFIRParameterValue: (forum.jsonEncode() ?? "") as NSString]
+            )
         }
     }
     
