@@ -13,21 +13,22 @@ import SDWebImage
 
 class ThreadTableViewCell: UITableViewCell {
     static let identifier = "threadCellIdentifier"
-    private struct TextColour {
+    fileprivate struct TextColour {
         static let standard = UIColor(red: 182/255.0, green: 78/255.0, blue: 4/255.0, alpha: 1.0)
         static let warning = UIColor(red: 237/255.0, green: 8/255.0, blue: 25/255.0, alpha: 1.0)
-        static let blocked = UIColor.lightGrayColor()
+        static let blocked = UIColor.lightGray
     }
-    private let defaultFont = UIFont.systemFontOfSize(17)
+    fileprivate let defaultFont = UIFont.systemFont(ofSize: 17)
     
     var shouldShowParasitePost = true
+    var shouldShowImage = true
     var alertController: UIAlertController?
     var userID: String?
-    var links: [NSURL] {
-        var links = [NSURL]()
-        if let linkDetector = try? NSDataDetector(types: NSTextCheckingType.Link.rawValue), let text = textView?.text {
-            for match in linkDetector.matchesInString(text, options: [], range: NSMakeRange(0, text.characters.count)) {
-                if match.resultType == NSTextCheckingType.Link, let url = match.URL {
+    var links: [URL] {
+        var links = [URL]()
+        if let linkDetector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue), let text = textView?.text {
+            for match in linkDetector.matches(in: text, options: [], range: NSMakeRange(0, text.characters.count)) {
+                if match.resultType == NSTextCheckingResult.CheckingType.link, let url = match.url {
                     links.append(url)
                 }
             }
@@ -43,6 +44,7 @@ class ThreadTableViewCell: UITableViewCell {
     @IBOutlet weak var parasitePostTextLabel: UILabel?
     @IBOutlet weak var parasitePostCountLabel: UILabel?
     @IBOutlet weak var parasitePostViewZeroHeight: NSLayoutConstraint?
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel?
     @IBOutlet weak var warningLabel: UILabel?
     @IBOutlet weak var imageFormatLabel: UILabel!
@@ -71,7 +73,7 @@ class ThreadTableViewCell: UITableViewCell {
         contentView.addGestureRecognizer(longPressGestureRecognizer)
     }
         
-    func layoutWithThread(thread: Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol) {
+    func layoutWithThread(_ thread: KomicaEngine.Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol) {
         // Make a copy of the incoming thread.
         var thread = thread
         userID = thread.UID
@@ -95,45 +97,52 @@ class ThreadTableViewCell: UITableViewCell {
                                            range: NSMakeRange(0, mutableAttributedString.length))
             // Add the font colour attributes back to the attributed string.
             attributedString.enumerateAttribute(NSForegroundColorAttributeName,
-                                                inRange: NSMakeRange(0, attributedString.length),
-                                                options: [], usingBlock: { (attributeValue, range, stop) in
+                                                in: NSMakeRange(0, attributedString.length),
+                                                options: [], using: { (attributeValue, range, stop) in
                                                     if let attribute = attributeValue as? UIColor {
                                                         mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: attribute, range: range)
                                                     }
             })
             textView?.attributedText = mutableAttributedString
         }
-        if let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController
+        // Set title, and hide it when title is empty.
+        self.titleLabel.text = thread.title
+        if self.titleLabel.text?.isEmpty ?? true {
+            NSLayoutConstraint.deactivate(self.titleLabel.constraints)
+        } else {
+            NSLayoutConstraint.activate(self.titleLabel.constraints)
+        }
+        if let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController, shouldShowImage
         {
             imageViewZeroHeight?.priority = 1
-            if SDWebImageManager.sharedManager().cachedImageExistsForURL(imageURL) {
-                let cachedImage = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(SDWebImageManager.sharedManager().cacheKeyForURL(imageURL))
+            if SDWebImageManager.shared().cachedImageExists(for: imageURL) {
+                let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: SDWebImageManager.shared().cacheKey(for: imageURL))
                 imageView?.image = cachedImage
             } else {
-                imageView?.sd_setImageWithURL(imageURL, placeholderImage: nil, completed: { [weak self](image, error, cacheType, imageURL) in
+                imageView?.sd_setImage(with: imageURL, placeholderImage: nil, options: SDWebImageOptions.retryFailed, completed: { [weak self](image, error, cacheType, imageURL) in
                     guard let strongCell = self else { return }
                     // If its been downloaded from the web, reload this 
-                    if image != nil && cacheType == SDImageCacheType.None {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            if let indexPath = tableViewController.tableView.indexPathForCell(strongCell) {
+                    if image != nil && cacheType == SDImageCacheType.none {
+                        DispatchQueue.main.async {
+                            if let indexPath = tableViewController.tableView.indexPath(for: strongCell) {
                                 (tableViewController as! TableViewControllerBulkUpdateProtocol).addPendingIndexPaths(indexPath)
                             }
-                        })
+                        }
                     }
                     })
             }
             // Show imageFormatLabel, and set the text to the pathExtension.
             if let imageURLString = thread.imageURL?.absoluteString {
-                imageFormatLabel.hidden = false
-                imageFormatLabel.text = (imageURLString as NSString).pathExtension.uppercaseString
+                imageFormatLabel.isHidden = false
+                imageFormatLabel.text = (imageURLString as NSString).pathExtension.uppercased()
             }
         } else {
             imageView?.image = nil
             imageViewZeroHeight?.priority = 999
-            imageFormatLabel.hidden = true
+            imageFormatLabel.isHidden = true
         }
         // When videoLinks is not empty, show mediaLinkLabel.
-        mediaLinkLabel.hidden = !(thread.videoLinks?.isEmpty == false)
+        mediaLinkLabel.isHidden = !(thread.videoLinks?.isEmpty == false)
         // Parasite post.
         if shouldShowParasitePost, let parasitePosts = thread.pushPost,
             let firstParasitePost = parasitePosts.first
@@ -148,7 +157,7 @@ class ThreadTableViewCell: UITableViewCell {
         }
         dateLabel?.text = thread.postDateString ?? ""
         if !thread.warnings.isEmpty {
-            warningLabel?.text = thread.warnings.joinWithSeparator("\n")
+            warningLabel?.text = thread.warnings.joined(separator: "\n")
         } else {
             warningLabel?.text = ""
         }

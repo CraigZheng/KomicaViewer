@@ -12,7 +12,7 @@ import SVWebViewController
 
 protocol SVWebViewProtocol: class {
     var svWebViewGuardDog: WebViewGuardDog? { get set }
-    var svWebViewURL: NSURL? { get set }
+    var svWebViewURL: URL? { get set }
     
     func presentSVWebView()
 }
@@ -21,13 +21,13 @@ extension SVWebViewProtocol where Self: UIViewController {
     
     func presentSVWebView() {
         if let svWebViewURL = svWebViewURL {
-            let webViewController = SVModalWebViewController(URL: svWebViewURL)
-            webViewController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
-            webViewController.barsTintColor = navigationController?.navigationBar.barTintColor
-            webViewController.webViewDelegate = svWebViewGuardDog
-            webViewController.popoverPresentationController?.sourceView = self.view
-            webViewController.popoverPresentationController?.sourceRect = self.view.bounds
-            self.presentViewController(webViewController, animated: true, completion: nil)
+            let webViewController = SVModalWebViewController(url: svWebViewURL)
+            webViewController?.navigationBar.tintColor = navigationController?.navigationBar.tintColor
+            webViewController?.barsTintColor = navigationController?.navigationBar.barTintColor
+            webViewController?.webViewDelegate = svWebViewGuardDog
+            webViewController?.popoverPresentationController?.sourceView = self.view
+            webViewController?.popoverPresentationController?.sourceRect = self.view.bounds
+            self.present(webViewController!, animated: true, completion: nil)
         }
     }
     

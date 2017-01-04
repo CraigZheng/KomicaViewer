@@ -15,33 +15,33 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - DACircularProgress (2.3.1)
-  - Firebase/AdMob (3.8.0):
+  - Firebase/AdMob (3.11.0):
     - Firebase/Core
-    - Google-Mobile-Ads-SDK (= 7.13.0)
-  - Firebase/Core (3.8.0):
-    - FirebaseAnalytics (= 3.5.1)
-    - FirebaseCore (= 3.4.4)
-  - Firebase/Crash (3.8.0):
+    - Google-Mobile-Ads-SDK (= 7.16.0)
+  - Firebase/Core (3.11.0):
+    - FirebaseAnalytics (= 3.6.0)
+    - FirebaseCore (= 3.4.6)
+  - Firebase/Crash (3.11.0):
     - Firebase/Core
-    - FirebaseCrash (= 1.1.3)
-  - FirebaseAnalytics (3.5.1):
+    - FirebaseCrash (= 1.1.4)
+  - FirebaseAnalytics (3.6.0):
     - FirebaseCore (~> 3.4)
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCore (3.4.4):
+  - FirebaseCore (3.4.6):
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCrash (1.1.3):
-    - FirebaseAnalytics (~> 3.4)
+  - FirebaseCrash (1.1.4):
+    - FirebaseAnalytics (~> 3.5)
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseInstanceID (1.0.8)
-  - Google-Mobile-Ads-SDK (7.13.0)
+  - Google-Mobile-Ads-SDK (7.16.0)
   - GoogleInterchangeUtilities (1.2.2):
     - GoogleSymbolUtilities (~> 1.1)
   - GoogleSymbolUtilities (1.1.2)
@@ -52,6 +52,10 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.0)
   - libnestegg (0.1)
   - libogg (1.3.2)
+  - liboggz (1.1.1):
+    - libogg (>= 1.0)
+  - libtheora (1.1.1):
+    - libogg (>= 1.1)
   - libvorbis (1.3.5):
     - libogg (>= 1.0)
   - libvpx (1.5.0-1021-g59ae167)
@@ -60,24 +64,53 @@ PODS:
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
-  - OGVKit/Core (0.5pre)
-  - OGVKit/VorbisDecoder (0.5pre):
+  - OGVKit (0.5.4):
+    - OGVKit/Core (= 0.5.4)
+    - OGVKit/libskeleton (= 0.5.4)
+    - OGVKit/Ogg (= 0.5.4)
+    - OGVKit/OggDemuxer (= 0.5.4)
+    - OGVKit/TheoraDecoder (= 0.5.4)
+    - OGVKit/VorbisDecoder (= 0.5.4)
+    - OGVKit/VP8Decoder (= 0.5.4)
+    - OGVKit/WebM (= 0.5.4)
+    - OGVKit/WebMDemuxer (= 0.5.4)
+  - OGVKit/Core (0.5.4)
+  - OGVKit/libskeleton (0.5.4):
+    - libogg
+  - OGVKit/Ogg (0.5.4):
+    - OGVKit/Ogg/Theora (= 0.5.4)
+    - OGVKit/Ogg/Vorbis (= 0.5.4)
+  - OGVKit/Ogg/Theora (0.5.4):
+    - OGVKit/OggDemuxer
+    - OGVKit/TheoraDecoder
+    - OGVKit/VorbisDecoder
+  - OGVKit/Ogg/Vorbis (0.5.4):
+    - OGVKit/OggDemuxer
+    - OGVKit/VorbisDecoder
+  - OGVKit/OggDemuxer (0.5.4):
+    - liboggz
+    - OGVKit/Core
+    - OGVKit/libskeleton (~> 0.4)
+  - OGVKit/TheoraDecoder (0.5.4):
+    - libtheora
+    - OGVKit/Core
+  - OGVKit/VorbisDecoder (0.5.4):
     - libvorbis
     - OGVKit/Core
-  - OGVKit/VP8Decoder (0.5pre):
+  - OGVKit/VP8Decoder (0.5.4):
     - libvpx (~> 1.5.0-1021-g59ae167)
     - OGVKit/Core
-  - OGVKit/WebM (0.5pre):
-    - OGVKit/WebM/Vorbis (= 0.5pre)
-    - OGVKit/WebM/VP8 (= 0.5pre)
-  - OGVKit/WebM/Vorbis (0.5pre):
+  - OGVKit/WebM (0.5.4):
+    - OGVKit/WebM/Vorbis (= 0.5.4)
+    - OGVKit/WebM/VP8 (= 0.5.4)
+  - OGVKit/WebM/Vorbis (0.5.4):
     - OGVKit/VorbisDecoder
     - OGVKit/WebMDemuxer
-  - OGVKit/WebM/VP8 (0.5pre):
+  - OGVKit/WebM/VP8 (0.5.4):
     - OGVKit/VorbisDecoder
     - OGVKit/VP8Decoder
     - OGVKit/WebMDemuxer
-  - OGVKit/WebMDemuxer (0.5pre):
+  - OGVKit/WebMDemuxer (0.5.4):
     - libnestegg
     - OGVKit/Core
   - PureLayout (3.0.2)
@@ -86,6 +119,7 @@ PODS:
   - SDWebImage/Core (3.8.2)
   - SVPullToRefresh (0.4.1)
   - SVWebViewController (1.0)
+  - SwiftMessages (3.1.1)
 
 DEPENDENCIES:
   - AFNetworking
@@ -94,10 +128,11 @@ DEPENDENCIES:
   - Firebase/Crash
   - MBProgressHUD
   - MWPhotoBrowser (~> 2.1.2)
-  - OGVKit/WebM (~> 0.5pre)
+  - OGVKit
   - PureLayout
   - SVPullToRefresh (from `https://github.com/samvermette/SVPullToRefresh.git`)
   - SVWebViewController (from `https://github.com/TransitApp/SVWebViewController.git`)
+  - SwiftMessages
 
 EXTERNAL SOURCES:
   SVPullToRefresh:
@@ -116,27 +151,30 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
-  Firebase: fdbecadb7b5cbef2774852d4fa659b9daf11f2af
-  FirebaseAnalytics: 6e58fc9b397664369ac7617fb0ba93fab6ba7b5b
-  FirebaseCore: d0ed25f27b6f9158eccc439f1be6f92e81207e28
-  FirebaseCrash: bafd94cd9c9373b6eb8c631705680e891f54bdb3
+  Firebase: b8134e285eb33201115bc688bc5d7f112923bc1f
+  FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
+  FirebaseCore: 03da1cb32615569bbc2830a22f9ad753d9a02ef5
+  FirebaseCrash: 34f0349908ec87945a5ae96c402e7201a3f3aede
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  Google-Mobile-Ads-SDK: b0cac2909229e8f13fb30e03537cdefbd7be28fa
+  Google-Mobile-Ads-SDK: 92dff0e9ce1cfdfe640d9d80ab86d5e4371e478f
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   libnestegg: 29be3e4d84978423ab8a282476c099aa221d1c4e
   libogg: 924cd993b3fcf4d93568f7d582496061ef82716e
+  liboggz: 6605f8cd394de0fe330957507179f6bdcce716d1
+  libtheora: cf6fb3c5c0db661460d0d54d0a343bc38dc766d3
   libvorbis: ce9ba21bbef15c2060e31e1e33dcdeb3762427b0
   libvpx: a5eeb44d068ae2f597eddf27a9fc097ac423b208
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
-  OGVKit: 9c77c0d7853a9cc497dfa773996d0baea0852ed6
+  OGVKit: 868dd4a337ff7a14ac3db58628092fa7871bdb9d
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SVWebViewController: aa2e18a41ff5f45be7aeec8e92ca5bcc50b5ebb1
+  SwiftMessages: 1216ea6bdf8d92ff0f6f98a23e5442711b1e71ac
 
-PODFILE CHECKSUM: 9cec26d0a23971855e1eb872732f207778ba9797
+PODFILE CHECKSUM: abed6fe8264392f095f8ba39f85afede26561c8e
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0.beta.1
