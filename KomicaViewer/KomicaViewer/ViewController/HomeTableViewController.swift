@@ -26,6 +26,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         }
     }
     @IBOutlet weak var adDescriptionLabel: UILabel!
+    @IBOutlet weak var actionBarButton: UIBarButtonItem!
     
     // MARK: UIViewControllerMWPhotoBrowserProtocol
     var photoURLs: [URL]?
@@ -269,6 +270,8 @@ extension HomeTableViewController {
         threads.removeAll()
         tableView.reloadData()
         refreshWithPage(forum?.startingIndex ?? 0)
+        // Disable/enable the webview bar button.
+        actionBarButton.isEnabled = currentURL != nil
         if let forum = forum {
             FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
                 kFIRParameterContentType: "SELECT FORUM" as NSObject,
