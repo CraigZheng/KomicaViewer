@@ -48,7 +48,12 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     var svWebViewURL: URL?
     var svWebViewGuardDog: WebViewGuardDog?
     // MARK: private properties.
-    fileprivate let _guardDog = WebViewGuardDog()
+    fileprivate var _guardDog: WebViewGuardDog {
+        let guardDog = WebViewGuardDog()
+        guardDog.showWarningOnBlock = true
+        guardDog.home = currentURL?.host
+        return guardDog
+    }
     fileprivate let showParasitePostSegue = "showParasitePosts"
     // Get the threadID from the selectedThread.ID.
     fileprivate var threadID: Int? {
