@@ -8,6 +8,8 @@
 
 import UIKit
 
+import Firebase
+
 extension ThreadTableViewCell {
     
     func longPressAction() {
@@ -67,6 +69,10 @@ extension ThreadTableViewCell {
                                 let linkAction = UIAlertAction(title: link.absoluteString, style: .default) { _ in
                                     if UIApplication.shared.canOpenURL(link as URL) {
                                         UIApplication.shared.openURL(link as URL)
+                                        FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
+                                            kFIRParameterContentType: "SELECT REMOTE URL" as NSObject,
+                                            kFIRParameterItemID: "\(link.absoluteString)" as NSString,
+                                            kFIRParameterItemName: "\(link.absoluteString)" as NSString])
                                     }
                                 }
                                 alertController.addAction(linkAction)

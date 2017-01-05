@@ -267,6 +267,10 @@ extension ThreadTableViewController: UIAlertViewDelegate {
         if let videoURL = URL(string: link), UIApplication.shared.canOpenURL(videoURL)
         {
             UIApplication.shared.openURL(videoURL)
+            FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
+                kFIRParameterContentType: "SELECT REMOTE URL" as NSObject,
+                kFIRParameterItemID: "\(videoURL.absoluteString)" as NSString,
+                kFIRParameterItemName: "\(videoURL.absoluteString)" as NSString])
         } else {
             ProgressHUD.showMessage("Cannot open: \(link)")
         }

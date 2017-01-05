@@ -10,6 +10,7 @@ import UIKit
 
 import AVFoundation
 import KomicaEngine
+import Firebase
 
 class ForumQRScannerViewController: UIViewController {
     
@@ -103,7 +104,11 @@ extension ForumQRScannerViewController: UIImagePickerControllerDelegate, UINavig
     @IBAction func scanQRHelpBarButtonItemAction(_ sender: AnyObject) {
         if let scanForumQRHelpURL = Configuration.singleton.scanForumQRHelpURL, UIApplication.shared.canOpenURL(scanForumQRHelpURL as URL)
         {
-            UIApplication.shared.openURL(scanForumQRHelpURL as URL)
+            UIApplication.shared.openURL(scanForumQRHelpURL)
+            FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
+                kFIRParameterContentType: "SELECT REMOTE URL" as NSObject,
+                kFIRParameterItemID: "\(scanForumQRHelpURL.absoluteString)" as NSString,
+                kFIRParameterItemName: "\(scanForumQRHelpURL.absoluteString)" as NSString])
         }
     }
     
