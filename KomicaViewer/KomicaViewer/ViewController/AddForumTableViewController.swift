@@ -9,6 +9,7 @@
 import UIKit
 
 import KomicaEngine
+import DTCoreText
 
 enum ForumField: String {
     case name = "Name"
@@ -155,6 +156,27 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
         addButton.isEnabled = displayType == .edit
         resetButton.isEnabled = displayType == .edit
     }
+    
+    fileprivate func reportAdded(_ customForum: KomicaForum) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let timeString = dateFormatter.string(from: Date())
+        let nameString = "KV_ADD_CUSTOM_FORUM"
+        if let vendorIDString = UIDevice.current.identifierForVendor?.uuidString,
+            let contentString = customForum.jsonEncode(),
+            let targetURL = URL(string: "http://civ.atwebpages.com/php/feedback.php"),
+            var targetURLComponent = URLComponents(url: targetURL, resolvingAgainstBaseURL: false) {
+            let vendorQueryItem = URLQueryItem(name: "vendorID", value: vendorIDString)
+            let nameQueryItem = URLQueryItem(name: "name", value: nameString)
+            let timeQueryItem = URLQueryItem(name: "time", value: timeString)
+            let contentQueryItem = URLQueryItem(name: "content", value: contentString)
+            targetURLComponent.queryItems = [vendorQueryItem, nameQueryItem, timeQueryItem, contentQueryItem]
+            // Create a quick and dirty connection to upload the content to server.
+            if let url = targetURLComponent.url {
+                NSURLConnection.sendAsynchronousRequest(URLRequest(url: url), queue: OperationQueue.main) {(response, data, error) in }
+            }
+        }
+    }
 }
 
 // MARK: UI actions.
@@ -173,6 +195,8 @@ extension AddForumTableViewController {
         } else {
             newForum.parserType = KomicaForum.parserTypes[parserPickerView.selectedRow(inComponent: 0)]
             Forums.addCustomForum(newForum)
+            // Report a custom forum has been added.
+            reportAdded(newForum)
             _ = navigationController?.popToRootViewController(animated: true)
             // The forum has been added, reset the forum.
             newForum = KomicaForum()

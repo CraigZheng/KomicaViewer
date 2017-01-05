@@ -48,7 +48,12 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     var svWebViewURL: URL?
     var svWebViewGuardDog: WebViewGuardDog?
     // MARK: private properties.
-    fileprivate let _guardDog = WebViewGuardDog()
+    fileprivate var _guardDog: WebViewGuardDog {
+        let guardDog = WebViewGuardDog()
+        guardDog.showWarningOnBlock = true
+        guardDog.home = currentURL?.host
+        return guardDog
+    }
     fileprivate let showParasitePostSegue = "showParasitePosts"
     // Get the threadID from the selectedThread.ID.
     fileprivate var threadID: Int? {
@@ -126,14 +131,12 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         refreshWithPage(0)
         // Load ad.
         attemptLoadRequest()
-        if let forum = forum {
+        if let forum = forum,
+            let forumName = forum.name {
             FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
                 kFIRParameterContentType: "SELECT THREAD" as NSObject,
-                kFIRParameterItemID: "\(threadID ?? 0)" as NSString,
-                kFIRParameterItemName: "\(threadID ?? 0)" as NSString,
-                "THREAD URL": "\(forum.responseURLForThreadID(threadID ?? 0)?.absoluteString ?? "url undefined")" as NSString,
-                "THREAD IMAGE URL": "\(selectedThread.imageURL?.absoluteString ?? "no image content")" as NSString,
-                "THREAD CONTENT": "\(selectedThread.content?.string ?? "no text content")" as NSString])
+                kFIRParameterItemID: "\(forumName) - \(threadID ?? 0)" as NSString,
+                kFIRParameterItemName: "\(forumName) - \(threadID ?? 0)" as NSString])
         }
     }
     
