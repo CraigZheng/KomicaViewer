@@ -64,62 +64,62 @@ PODS:
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
-  - OGVKit (0.5.7):
-    - OGVKit/AVDecoder (= 0.5.7)
-    - OGVKit/Core (= 0.5.7)
-    - OGVKit/libskeleton (= 0.5.7)
-    - OGVKit/MP3 (= 0.5.7)
-    - OGVKit/MP4 (= 0.5.7)
-    - OGVKit/Ogg (= 0.5.7)
-    - OGVKit/OggDemuxer (= 0.5.7)
-    - OGVKit/TheoraDecoder (= 0.5.7)
-    - OGVKit/VorbisDecoder (= 0.5.7)
-    - OGVKit/VP8Decoder (= 0.5.7)
-    - OGVKit/WebM (= 0.5.7)
-    - OGVKit/WebMDemuxer (= 0.5.7)
-  - OGVKit/AVDecoder (0.5.7):
+  - OGVKit (0.5.9):
+    - OGVKit/AVDecoder (= 0.5.9)
+    - OGVKit/Core (= 0.5.9)
+    - OGVKit/libskeleton (= 0.5.9)
+    - OGVKit/MP3 (= 0.5.9)
+    - OGVKit/MP4 (= 0.5.9)
+    - OGVKit/Ogg (= 0.5.9)
+    - OGVKit/OggDemuxer (= 0.5.9)
+    - OGVKit/TheoraDecoder (= 0.5.9)
+    - OGVKit/VorbisDecoder (= 0.5.9)
+    - OGVKit/VP8Decoder (= 0.5.9)
+    - OGVKit/WebM (= 0.5.9)
+    - OGVKit/WebMDemuxer (= 0.5.9)
+  - OGVKit/AVDecoder (0.5.9):
     - OGVKit/Core
-  - OGVKit/Core (0.5.7)
-  - OGVKit/libskeleton (0.5.7):
+  - OGVKit/Core (0.5.9)
+  - OGVKit/libskeleton (0.5.9):
     - libogg
-  - OGVKit/MP3 (0.5.7):
+  - OGVKit/MP3 (0.5.9):
     - OGVKit/AVDecoder
-  - OGVKit/MP4 (0.5.7):
+  - OGVKit/MP4 (0.5.9):
     - OGVKit/AVDecoder
-  - OGVKit/Ogg (0.5.7):
-    - OGVKit/Ogg/Theora (= 0.5.7)
-    - OGVKit/Ogg/Vorbis (= 0.5.7)
-  - OGVKit/Ogg/Theora (0.5.7):
+  - OGVKit/Ogg (0.5.9):
+    - OGVKit/Ogg/Theora (= 0.5.9)
+    - OGVKit/Ogg/Vorbis (= 0.5.9)
+  - OGVKit/Ogg/Theora (0.5.9):
     - OGVKit/OggDemuxer
     - OGVKit/TheoraDecoder
     - OGVKit/VorbisDecoder
-  - OGVKit/Ogg/Vorbis (0.5.7):
+  - OGVKit/Ogg/Vorbis (0.5.9):
     - OGVKit/OggDemuxer
     - OGVKit/VorbisDecoder
-  - OGVKit/OggDemuxer (0.5.7):
+  - OGVKit/OggDemuxer (0.5.9):
     - liboggz
     - OGVKit/Core
     - OGVKit/libskeleton (~> 0.4)
-  - OGVKit/TheoraDecoder (0.5.7):
+  - OGVKit/TheoraDecoder (0.5.9):
     - libtheora
     - OGVKit/Core
-  - OGVKit/VorbisDecoder (0.5.7):
+  - OGVKit/VorbisDecoder (0.5.9):
     - libvorbis
     - OGVKit/Core
-  - OGVKit/VP8Decoder (0.5.7):
+  - OGVKit/VP8Decoder (0.5.9):
     - libvpx (~> 1.5.0-1021-g59ae167)
     - OGVKit/Core
-  - OGVKit/WebM (0.5.7):
-    - OGVKit/WebM/Vorbis (= 0.5.7)
-    - OGVKit/WebM/VP8 (= 0.5.7)
-  - OGVKit/WebM/Vorbis (0.5.7):
+  - OGVKit/WebM (0.5.9):
+    - OGVKit/WebM/Vorbis (= 0.5.9)
+    - OGVKit/WebM/VP8 (= 0.5.9)
+  - OGVKit/WebM/Vorbis (0.5.9):
     - OGVKit/VorbisDecoder
     - OGVKit/WebMDemuxer
-  - OGVKit/WebM/VP8 (0.5.7):
+  - OGVKit/WebM/VP8 (0.5.9):
     - OGVKit/VorbisDecoder
     - OGVKit/VP8Decoder
     - OGVKit/WebMDemuxer
-  - OGVKit/WebMDemuxer (0.5.7):
+  - OGVKit/WebMDemuxer (0.5.9):
     - libnestegg
     - OGVKit/Core
   - PureLayout (3.0.2)
@@ -128,7 +128,7 @@ PODS:
   - SDWebImage/Core (3.8.2)
   - SVPullToRefresh (0.4.1)
   - SVWebViewController (1.0)
-  - SwiftMessages (3.1.2)
+  - SwiftMessages (3.1.3)
 
 DEPENDENCIES:
   - AFNetworking
@@ -177,13 +177,13 @@ SPEC CHECKSUMS:
   libvpx: a5eeb44d068ae2f597eddf27a9fc097ac423b208
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
-  OGVKit: 55565dc519bdde102ecb9a18a01f8551858168e8
+  OGVKit: a7323b234ede2b6a4825097dd8a7f2075c71125b
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SVWebViewController: aa2e18a41ff5f45be7aeec8e92ca5bcc50b5ebb1
-  SwiftMessages: 87816be9b0b6dc37ff0e84ce3ff4555144554c32
+  SwiftMessages: 9d03bb95d394ac60f9c20335e2305dfea9cac70a
 
 PODFILE CHECKSUM: abed6fe8264392f095f8ba39f85afede26561c8e
 
-COCOAPODS: 1.2.0.beta.1
+COCOAPODS: 1.1.1
