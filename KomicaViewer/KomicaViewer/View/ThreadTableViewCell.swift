@@ -143,6 +143,11 @@ class ThreadTableViewCell: UITableViewCell {
         }
         // When videoLinks is not empty, show mediaLinkLabel.
         mediaLinkLabel.isHidden = !(thread.videoLinks?.isEmpty == false)
+        // When video link is not empty, but there's no preview image, then give it a default play button image.
+        if !(thread.videoLinks?.isEmpty ?? true), imageView?.image == nil {
+            imageView?.image = UIImage(named: "youtube-play-button.png")
+            imageViewZeroHeight?.priority = 1
+        }
         // Parasite post.
         if shouldShowParasitePost, let parasitePosts = thread.pushPost,
             let firstParasitePost = parasitePosts.first

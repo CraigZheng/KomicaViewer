@@ -35,6 +35,7 @@
 		44655D751D5AEF7900229404 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D741D5AEF7900229404 /* HomeTableViewController.swift */; };
 		44655D771D5AEF8E00229404 /* ForumPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */; };
 		44655D7A1D5AFDAB00229404 /* Forums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D791D5AFDAB00229404 /* Forums.swift */; };
+		446714441E531B33002C6339 /* youtube-play-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 446714431E531B32002C6339 /* youtube-play-button.png */; };
 		447664F71E03F48F00A06138 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447664F61E03F48F00A06138 /* IAPHelper.swift */; };
 		447665561E067A7D00A06138 /* MessagePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447665551E067A7D00A06138 /* MessagePopup.swift */; };
 		447EF1C31D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */; };
@@ -399,6 +400,7 @@
 		44655D741D5AEF7900229404 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumPickerTableViewController.swift; sourceTree = "<group>"; };
 		44655D791D5AFDAB00229404 /* Forums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forums.swift; sourceTree = "<group>"; };
+		446714431E531B32002C6339 /* youtube-play-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube-play-button.png"; sourceTree = "<group>"; };
 		447664F61E03F48F00A06138 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		447665551E067A7D00A06138 /* MessagePopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagePopup.swift; sourceTree = "<group>"; };
 		447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerBulkUpdateProtocol.swift; sourceTree = "<group>"; };
@@ -535,6 +537,7 @@
 		44575A2B1E01821900B3A941 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				446714431E531B32002C6339 /* youtube-play-button.png */,
 				44575A2C1E01822F00B3A941 /* settings.png */,
 				44575A2D1E01822F00B3A941 /* settings@2x.png */,
 				44575A2E1E01822F00B3A941 /* settings@3x.png */,
@@ -1048,6 +1051,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44496F5D1D5985A6005875DD /* LaunchScreen.storyboard in Resources */,
+				446714441E531B33002C6339 /* youtube-play-button.png in Resources */,
 				44575A311E01822F00B3A941 /* settings@3x.png in Resources */,
 				44575A2F1E01822F00B3A941 /* settings.png in Resources */,
 				44496F5A1D5985A6005875DD /* Assets.xcassets in Resources */,
