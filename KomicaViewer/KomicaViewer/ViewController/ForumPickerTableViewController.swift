@@ -11,7 +11,19 @@ import UIKit
 import KomicaEngine
 
 class ForumPickerTableViewController: UITableViewController {
-    var forumGroups = Forums.remoteForumGroups ?? Forums.defaultForumsGroups
+    
+    // MARK: - UI elements.
+    
+    @IBOutlet weak var sourceSegmentedControl: UISegmentedControl!
+    
+    var forumGroups: [KomicaForumGroup] {
+        switch sourceSegmentedControl.selectedSegmentIndex {
+        case 0: // Komica source.
+            return Forums.remoteForumGroups ?? Forums.defaultForumsGroups
+        default:
+            return Forums.futabaForumGroup ?? []
+        }
+    }
 
     fileprivate let cellIdentifier = "cellIdentifier"
     fileprivate let remoteActionCellIdentifier = "remoteActionCellIdentifier"
@@ -26,6 +38,7 @@ class ForumPickerTableViewController: UITableViewController {
         return forums
     }
     fileprivate static var scrollOffset: CGPoint?
+    fileprivate static var selectedSegmentControlIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +53,6 @@ class ForumPickerTableViewController: UITableViewController {
                                                                 queue: OperationQueue.main) { [weak self] (_) in
                                                                     // If remote forums is available, reload remote forums.
                                                                     if let remoteForumGroups = Forums.remoteForumGroups, remoteForumGroups.count > 0 {
-                                                                        self?.forumGroups = remoteForumGroups
                                                                         self?.tableView.reloadData()
                                                                         DLog("Remote Forums Updated.")
                                                                     }
@@ -54,6 +66,10 @@ class ForumPickerTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        // Select previous segmented control index.
+        if let selectedIndex = ForumPickerTableViewController.selectedSegmentControlIndex {
+            sourceSegmentedControl.selectedSegmentIndex = selectedIndex
+        }
         // If user has previously selected an index, let's roll to the previous position.
         if let scrollOffset = ForumPickerTableViewController.scrollOffset
         {
@@ -64,6 +80,13 @@ class ForumPickerTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+    }
+    
+    // MARK: - UI actions.
+    
+    @IBAction func segmentedControlValueChanged(_ sender: Any) {
+        ForumPickerTableViewController.selectedSegmentControlIndex = sourceSegmentedControl.selectedSegmentIndex
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
