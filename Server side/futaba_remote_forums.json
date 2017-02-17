@@ -1,0 +1,69 @@
+{
+  "sections": [
+    {
+      "name": "ふたば",
+      "forums": [
+        {
+          "name": "野球＠ふたば",
+          "header": "",
+          "listURL": "https://zip.2chan.net/1/<PAGE>.htm",
+          "indexURL": "https://zip.2chan.net/1/futaba.htm",
+          "responseURL": "https://zip.2chan.net/1/res/<ID>.htm",
+          "postURL": "",
+          "replyURL": "",
+          "parserType": 5
+        },
+        {
+          "name": "サッカー＠ふたば",
+          "header": "",
+          "listURL": "https://zip.2chan.net/12/<PAGE>.htm",
+          "indexURL": "https://zip.2chan.net/12/futaba.htm",
+          "responseURL": "https://zip.2chan.net/12/res/<ID>.htm",
+          "postURL": "",
+          "replyURL": "",
+          "parserType": 5
+        },
+        {
+          "name": "麻雀＠ふたば",
+          "header": "",
+          "listURL": "https://may.2chan.net/25/<PAGE>.htm",
+          "indexURL": "https://may.2chan.net/25/futaba.htm",
+          "responseURL": "https://may.2chan.net/25/res/<ID>.htm",
+          "postURL": "",
+          "replyURL": "",
+          "parserType": 5
+        },
+        {
+          "name": "料理＠ふたば",
+          "header": "",
+          "listURL": "https://dat.2chan.net/t/<PAGE>.htm",
+          "indexURL": "https://dat.2chan.net/t/futaba.htm",
+          "responseURL": "https://dat.2chan.net/t/res/<ID>.htm",
+          "postURL": "",
+          "replyURL": "",
+          "parserType": 5
+        },
+        {
+          "name": "政治＠ふたば",
+          "header": "",
+          "listURL": "https://nov.2chan.net/35/<PAGE>.htm",
+          "indexURL": "https://nov.2chan.net/35/futaba.htm",
+          "responseURL": "https://nov.2chan.net/35/res/<ID>.htm",
+          "postURL": "",
+          "replyURL": "",
+          "parserType": 5
+        },
+        {
+          "name": "韓国経済＠ふたば",
+          "header": "",
+          "listURL": "https://dat.2chan.net/38/<PAGE>.htm",
+          "indexURL": "https://dat.2chan.net/38/futaba.htm",
+          "responseURL": "https://dat.2chan.net/38/res/<ID>.htm",
+          "postURL": "",
+          "replyURL": "",
+          "parserType": 5
+        }
+      ]
+    }
+  ]
+}
