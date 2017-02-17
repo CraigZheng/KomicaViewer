@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         GADMobileAds.configure(withApplicationID: "ca-app-pub-2081665256237089~8156537252")
         Forums.updateRemoteForums()
+        Forums.updateRemoteFutabaForums()
         // Initialise Configuration singletons.
         _ = Configuration.singleton
         _ = AdConfiguration.singleton

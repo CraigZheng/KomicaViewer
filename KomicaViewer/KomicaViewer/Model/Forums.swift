@@ -17,6 +17,7 @@ class Forums {
     
     fileprivate static let sharedInstance = Forums()
     fileprivate static let customForumsKey = "customForumsKey"
+    fileprivate static let futabaUpdateURL = URL(string: "http://civ.atwebpages.com/KomicaViewer/futaba_remote_forums.php")
     fileprivate var selectedForum: KomicaForum?
     
     static var selectedForum: KomicaForum? {
@@ -43,6 +44,8 @@ class Forums {
         }
         return group
     }()
+    static var futabaForumGroup: [KomicaForumGroup]?
+    
     static func updateRemoteForums() {
         KomicaForumFinder.sharedInstance.loadRemoteForumsWithCompletion({ (success, groups, error) in
             if let groups = groups {
@@ -51,6 +54,16 @@ class Forums {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: forumsUpdatedNotification), object: nil)
             }
         })
+    }
+    
+    static func updateRemoteFutabaForums() {
+        KomicaForumFinder.sharedInstance.loadRemoteForumsFrom(url: futabaUpdateURL!) { (success, forumGroups, error) in
+            if success, let forumGroups = forumGroups {
+                futabaForumGroup = forumGroups
+                // Remote forums updated, send a notification.
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: forumsUpdatedNotification), object: nil)
+            }
+        }
     }
 
     class func addCustomForum(_ forum: KomicaForum) {
