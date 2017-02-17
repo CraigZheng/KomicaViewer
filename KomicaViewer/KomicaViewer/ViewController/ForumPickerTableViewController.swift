@@ -38,6 +38,7 @@ class ForumPickerTableViewController: UITableViewController {
         return forums
     }
     fileprivate static var scrollOffset: CGPoint?
+    fileprivate static var selectedSegmentControlIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +66,10 @@ class ForumPickerTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        // Select previous segmented control index.
+        if let selectedIndex = ForumPickerTableViewController.selectedSegmentControlIndex {
+            sourceSegmentedControl.selectedSegmentIndex = selectedIndex
+        }
         // If user has previously selected an index, let's roll to the previous position.
         if let scrollOffset = ForumPickerTableViewController.scrollOffset
         {
@@ -80,6 +85,7 @@ class ForumPickerTableViewController: UITableViewController {
     // MARK: - UI actions.
     
     @IBAction func segmentedControlValueChanged(_ sender: Any) {
+        ForumPickerTableViewController.selectedSegmentControlIndex = sourceSegmentedControl.selectedSegmentIndex
         tableView.reloadData()
     }
 
