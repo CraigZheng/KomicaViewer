@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bHi-6s-LSD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bHi-6s-LSD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -253,7 +253,7 @@
             </objects>
             <point key="canvasLocation" x="3148" y="-146"/>
         </scene>
-        <!--Board-->
+        <!--Forum Picker Table View Controller-->
         <scene sceneID="edd-3u-bqG">
             <objects>
                 <tableViewController id="aq2-d7-B7B" customClass="ForumPickerTableViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
@@ -364,12 +364,24 @@
                             <outlet property="delegate" destination="aq2-d7-B7B" id="u04-Jd-a7Z"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Board" id="ALv-R4-0mx">
+                    <navigationItem key="navigationItem" id="ALv-R4-0mx">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Zzc-Of-cVE">
                             <connections>
                                 <segue destination="KpS-1d-mSQ" kind="unwind" unwindAction="unwindToHomeSegue:" id="9Mr-nt-ZAg"/>
                             </connections>
                         </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Gaf-Vr-Uiz">
+                            <rect key="frame" x="112" y="7" width="151" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Komica"/>
+                                <segment title="2chan.net"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentedControlValueChanged:" destination="aq2-d7-B7B" eventType="valueChanged" id="DpY-SQ-K51"/>
+                            </connections>
+                        </segmentedControl>
                         <rightBarButtonItems>
                             <barButtonItem image="settings.png" id="Pk7-kA-bp9">
                                 <connections>
@@ -383,6 +395,9 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="sourceSegmentedControl" destination="Gaf-Vr-Uiz" id="FOo-6w-wd4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pu-mG-bIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="KpS-1d-mSQ" userLabel="Exit" sceneMemberID="exit"/>

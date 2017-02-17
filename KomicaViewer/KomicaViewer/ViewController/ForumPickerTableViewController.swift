@@ -11,7 +11,19 @@ import UIKit
 import KomicaEngine
 
 class ForumPickerTableViewController: UITableViewController {
-    var forumGroups = Forums.remoteForumGroups ?? Forums.defaultForumsGroups
+    
+    // MARK: - UI elements.
+    
+    @IBOutlet weak var sourceSegmentedControl: UISegmentedControl!
+    
+    var forumGroups: [KomicaForumGroup] {
+        switch sourceSegmentedControl.selectedSegmentIndex {
+        case 0: // Komica source.
+            return Forums.remoteForumGroups ?? Forums.defaultForumsGroups
+        default:
+            return Forums.futabaForumGroup ?? []
+        }
+    }
 
     fileprivate let cellIdentifier = "cellIdentifier"
     fileprivate let remoteActionCellIdentifier = "remoteActionCellIdentifier"
@@ -40,7 +52,6 @@ class ForumPickerTableViewController: UITableViewController {
                                                                 queue: OperationQueue.main) { [weak self] (_) in
                                                                     // If remote forums is available, reload remote forums.
                                                                     if let remoteForumGroups = Forums.remoteForumGroups, remoteForumGroups.count > 0 {
-                                                                        self?.forumGroups = remoteForumGroups
                                                                         self?.tableView.reloadData()
                                                                         DLog("Remote Forums Updated.")
                                                                     }
@@ -64,6 +75,12 @@ class ForumPickerTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+    }
+    
+    // MARK: - UI actions.
+    
+    @IBAction func segmentedControlValueChanged(_ sender: Any) {
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
