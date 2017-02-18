@@ -62,6 +62,46 @@
           "postURL": "",
           "replyURL": "",
           "parserType": 5
+        },
+        {
+          "name": "軍＠ふたば",
+          "header": "",
+          "listURL": "https://cgi.2chan.net/f/<PAGE>.htm?",
+          "indexURL": "https://cgi.2chan.net/f/futaba.htm",
+          "responseURL": "https://cgi.2chan.net/f/res/<ID>.htm",
+          "postURL": "",
+          "replyURL": "",
+          "parserType": 5
+        },
+        {
+          "name": "二次元画像掲示板＠ふたば",
+          "header": "",
+          "listURL": "https://dat.2chan.net/img2/<PAGE>.htm?",
+          "indexURL": "https://dat.2chan.net/img2/futaba.htm",
+          "responseURL": "https://dat.2chan.net/img2/res/<ID>.htm",
+          "postURL": "",
+          "replyURL": "",
+          "parserType": 5
+        },
+        {
+          "name": "二次元業界＠ふたば",
+          "header": "",
+          "listURL": "https://dat.2chan.net/43/<PAGE>.htm?",
+          "indexURL": "https://dat.2chan.net/43/futaba.htm",
+          "responseURL": "https://dat.2chan.net/43/res/<ID>.htm",
+          "postURL": "",
+          "replyURL": "",
+          "parserType": 5
+        },
+        {
+          "name": "ゲーム＠ふたば",
+          "header": "",
+          "listURL": "https://jun.2chan.net/31/<PAGE>.htm?",
+          "indexURL": "https://jun.2chan.net/31/futaba.htm",
+          "responseURL": "https://jun.2chan.net/31/res/<ID>.htm",
+          "postURL": "",
+          "replyURL": "",
+          "parserType": 5
         }
       ]
     }
