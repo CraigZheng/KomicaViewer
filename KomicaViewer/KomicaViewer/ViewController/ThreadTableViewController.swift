@@ -368,7 +368,12 @@ extension ThreadTableViewController: GADBannerViewDelegate {
 extension ThreadTableViewController: ThreadTableViewCellRespondable {
     
     func pressedQuotedNumberButton(button: UIButton, quotedNumber: Int) {
-        
+        for index in 0 ..< threads.count {
+            if let ID = threads[index].ID?.numericValue(), ID == quotedNumber {
+                // TODO: display the quoted content.
+                break
+            }
+        }
     }
     
 }
