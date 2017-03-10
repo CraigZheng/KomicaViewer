@@ -154,6 +154,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
             let thread = threads[indexPath.row]
             cell.shouldShowImage = Configuration.singleton.showImage
             cell.layoutWithThread(thread, forTableViewController: self)
+            cell.delegate = self
         }
         return cell
     }
@@ -359,6 +360,15 @@ extension ThreadTableViewController: GADBannerViewDelegate {
             toggleAdBanner(false)
         }
         tableView.reloadData()
+    }
+    
+}
+
+// MARK: ThreadTableViewCellRespondable
+extension ThreadTableViewController: ThreadTableViewCellRespondable {
+    
+    func pressedQuotedNumberButton(button: UIButton, quotedNumber: Int) {
+        
     }
     
 }

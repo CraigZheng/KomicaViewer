@@ -10,6 +10,10 @@ import UIKit
 
 import Firebase
 
+protocol ThreadTableViewCellRespondable {
+    func pressedQuotedNumberButton(button: UIButton, quotedNumber: Int)
+}
+
 extension ThreadTableViewCell {
     
     func longPressAction() {
