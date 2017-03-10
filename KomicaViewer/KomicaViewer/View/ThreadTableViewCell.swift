@@ -93,7 +93,7 @@ class ThreadTableViewCell: UITableViewCell {
                     let convertedRect = contentView.convert(rangeRect, from: textView)
                     let quotedButton = UIButton(frame: convertedRect)
                     quotedButton.tag = quotedNumber
-                    quotedButton.backgroundColor = UIColor.blue.withAlphaComponent(0.5)
+                    quotedButton.backgroundColor = UIColor.blue.withAlphaComponent(0.05)
                     quotedButton.addTarget(self, action: #selector(ThreadTableViewCell.pressedQuotedNumberButton(button:)), for: .touchUpInside)
                     contentView.addSubview(quotedButton)
                 }
