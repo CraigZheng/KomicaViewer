@@ -19,6 +19,8 @@ class ThreadTableViewCell: UITableViewCell {
         static let blocked = UIColor.lightGray
     }
     fileprivate let defaultFont = UIFont.systemFont(ofSize: 17)
+    fileprivate var quotedNumbers = [Int]()
+    fileprivate var quotedNumberButtons = [UIButton]()
     
     var shouldShowParasitePost = true
     var shouldShowImage = true
@@ -35,6 +37,7 @@ class ThreadTableViewCell: UITableViewCell {
         }
         return links
     }
+    var delegate: ThreadTableViewCellRespondable?
     
     @IBOutlet weak var _detailTextLabel: UILabel!
     @IBOutlet weak var _textLabel: UILabel?
@@ -72,7 +75,32 @@ class ThreadTableViewCell: UITableViewCell {
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ThreadTableViewCell.longPressAction))
         contentView.addGestureRecognizer(longPressGestureRecognizer)
     }
-        
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if delegate != nil {
+            quotedNumberButtons.forEach { (button) in
+                button.removeFromSuperview()
+            }
+            quotedNumberButtons.removeAll()
+            quotedNumbers.forEach { (quotedNumber) in
+                let quotedString = String(quotedNumber)
+                if let textView = textView,
+                    let range = (textView.attributedText.string as NSString?)?.range(of: quotedString),
+                    (range.location + range.length) <= textView.attributedText.string.characters.count,
+                    let rangeRect = textView.rectOfRange(range)
+                {
+                    let convertedRect = contentView.convert(rangeRect, from: textView)
+                    let quotedButton = UIButton(frame: convertedRect)
+                    quotedButton.tag = quotedNumber
+                    quotedButton.backgroundColor = UIColor.blue.withAlphaComponent(0.5)
+                    quotedButton.addTarget(self, action: #selector(ThreadTableViewCell.pressedQuotedNumberButton(button:)), for: .touchUpInside)
+                    contentView.addSubview(quotedButton)
+                }
+            }
+        }
+    }
+    
     func layoutWithThread(_ thread: KomicaEngine.Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol) {
         // Make a copy of the incoming thread.
         var thread = thread
@@ -166,5 +194,21 @@ class ThreadTableViewCell: UITableViewCell {
         } else {
             warningLabel?.text = ""
         }
+        // Quoted numbers.
+        quotedNumbers = thread.quotedNumbers
     }
+}
+
+fileprivate extension UITextView {
+    
+    func rectOfRange(_ range: NSRange) -> CGRect? {
+        if let start = self.position(from: beginningOfDocument, offset: range.location),
+            let end = self.position(from: start, offset: range.length),
+            let textRange = textRange(from: start, to: end)
+        {
+            return firstRect(for: textRange)
+        }
+        return nil
+    }
+    
 }

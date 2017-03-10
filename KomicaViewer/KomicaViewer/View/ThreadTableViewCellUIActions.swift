@@ -107,5 +107,9 @@ extension ThreadTableViewCell {
             }
         }
     }
+    
+    func pressedQuotedNumberButton(button: UIButton) {
+        delegate?.pressedQuotedNumberButton(button: button, quotedNumber: button.tag)
+    }
 
 }
