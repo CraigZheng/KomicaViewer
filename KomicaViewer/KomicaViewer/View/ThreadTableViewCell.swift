@@ -96,6 +96,7 @@ class ThreadTableViewCell: UITableViewCell {
                     quotedButton.backgroundColor = UIColor.blue.withAlphaComponent(0.05)
                     quotedButton.addTarget(self, action: #selector(ThreadTableViewCell.pressedQuotedNumberButton(button:)), for: .touchUpInside)
                     contentView.addSubview(quotedButton)
+                    quotedNumberButtons.append(quotedButton)
                 }
             }
         }
