@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4411C74B1D76C28400047660 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4411C74A1D76C28400047660 /* GoogleService-Info.plist */; };
+		4421C1B21E72C8DE00BD48C4 /* PartialTransparentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4421C1B11E72C8DE00BD48C4 /* PartialTransparentView.m */; };
 		442A502A1D8570A600769A2A /* CustomForumManagerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A50291D8570A600769A2A /* CustomForumManagerTableViewController.swift */; };
 		443342A41D5F568B00EDFA8F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443342A31D5F568B00EDFA8F /* Configuration.swift */; };
 		443342A71D5F576F00EDFA8F /* AFHTTPSessionManager+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443342A61D5F576F00EDFA8F /* AFHTTPSessionManager+Util.swift */; };
@@ -370,6 +371,8 @@
 		1F999914BCD5E6DBD4D5D973 /* Pods-KomicaViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer.release.xcconfig"; sourceTree = "<group>"; };
 		21C3A364A9DD0DDE230355EF /* Pods_KomicaViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KomicaViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4411C74A1D76C28400047660 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4421C1B01E72C8DE00BD48C4 /* PartialTransparentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartialTransparentView.h; sourceTree = "<group>"; };
+		4421C1B11E72C8DE00BD48C4 /* PartialTransparentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartialTransparentView.m; sourceTree = "<group>"; };
 		442A50291D8570A600769A2A /* CustomForumManagerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomForumManagerTableViewController.swift; sourceTree = "<group>"; };
 		443342A31D5F568B00EDFA8F /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		443342A61D5F576F00EDFA8F /* AFHTTPSessionManager+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AFHTTPSessionManager+Util.swift"; sourceTree = "<group>"; };
@@ -607,6 +610,8 @@
 				44BD39741D5B1E510070E0CB /* Logger.swift */,
 				447665551E067A7D00A06138 /* MessagePopup.swift */,
 				44F48EBB1D5D3F0700519C1B /* ProgressHUD.swift */,
+				4421C1B01E72C8DE00BD48C4 /* PartialTransparentView.h */,
+				4421C1B11E72C8DE00BD48C4 /* PartialTransparentView.m */,
 				44397D661D6953FB005B44AA /* UIApplication+Util.swift */,
 				44A65AA11D5DDA3300A4DDE6 /* UIColor+RGB.swift */,
 				44BD39851D5B74ED0070E0CB /* UIView+SuperCell.swift */,
@@ -1204,6 +1209,7 @@
 				44ADCC081D85951600699BAC /* ShowForumQRCodeViewController.swift in Sources */,
 				443342A91D5F5A3800EDFA8F /* ActionTableViewCell.swift in Sources */,
 				44F48EBC1D5D3F0700519C1B /* ProgressHUD.swift in Sources */,
+				4421C1B21E72C8DE00BD48C4 /* PartialTransparentView.m in Sources */,
 				44655D771D5AEF8E00229404 /* ForumPickerTableViewController.swift in Sources */,
 				44BB92821D88ED7A00A29EB5 /* UIViewControllerMWPhotoBrowserProtocol.swift in Sources */,
 				443342A41D5F568B00EDFA8F /* Configuration.swift in Sources */,
