@@ -164,7 +164,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
         let nameString = "KV_ADD_CUSTOM_FORUM"
         if let vendorIDString = UIDevice.current.identifierForVendor?.uuidString,
             let contentString = customForum.jsonEncode(),
-            let targetURL = URL(string: "http://civ.atwebpages.com/php/feedback.php"),
+            let targetURL = URL(string: "http://civ.atwebpages.com/KomicaViewer/kv_add_custom_forum.php"),
             var targetURLComponent = URLComponents(url: targetURL, resolvingAgainstBaseURL: false) {
             let vendorQueryItem = URLQueryItem(name: "vendorID", value: vendorIDString)
             let nameQueryItem = URLQueryItem(name: "name", value: nameString)
