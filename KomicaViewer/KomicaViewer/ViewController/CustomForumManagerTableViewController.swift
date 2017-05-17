@@ -77,7 +77,6 @@ class CustomForumManagerTableViewController: UITableViewController {
             let indexPath = tableView.indexPath(for: tableViewCell),
             let customForum = Forums.customForumGroup.forums?[indexPath.row]
         {
-            destinationViewController.displayType = .readonly
             destinationViewController.newForum = customForum
         }
     }

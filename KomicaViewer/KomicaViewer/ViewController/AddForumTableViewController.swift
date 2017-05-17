@@ -44,6 +44,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     @IBOutlet weak var qrButtonTableViewCell: UITableViewCell!
     
     var newForum: KomicaForum!
+    var unmodifiedForum: KomicaForum?
     var displayType = AddForumViewControllerType.edit
     
     // MARK: Private.
@@ -86,6 +87,9 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
                 // Cannot read from cache, create a new KomicaForum object.
                 newForum = KomicaForum()
             }
+        } else {
+            unmodifiedForum = newForum
+            addButton.setTitle("Edit", for: .normal)
         }
         reload()
     }
@@ -194,6 +198,11 @@ extension AddForumTableViewController {
             ProgressHUD.showMessage(warning)
         } else {
             newForum.parserType = KomicaForum.parserTypes[parserPickerView.selectedRow(inComponent: 0)]
+            // Remove the original unmodified forum when it's presented.
+            if let unmodifiedForum = unmodifiedForum {
+                Forums.customForumGroup.forums?.removeObject(unmodifiedForum)
+                Forums.saveCustomForums()
+            }
             Forums.addCustomForum(newForum)
             // Report a custom forum has been added.
             reportAdded(newForum)
