@@ -3,8 +3,6 @@
 
 	//connect to DB
 	include_once 'connect_db.php';
-	include_once 'update_response.php';
-	include_once 'generate_blacklist.php';
 	
 	//request is make with GET
 	$access_token = "";
