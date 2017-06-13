@@ -14,13 +14,17 @@ default_platform :ios
 # don't worry, fastlane will prompt you for required
 # info which you can add here later
 lane :beta do
-  # cocoapods
+  cocoapods
 
-  # increment_build_number
+  increment_version_number(
+    bump_type: "patch"
+)
+
+  commit_version_bump
 
   # build your iOS app
   gym(
-    # scheme: “KomicaViewer”,
+    # scheme: "KomicaViewer",
     export_method: "app-store"
   )
 
