@@ -25,6 +25,8 @@ lane :beta do
   # build your iOS app
   gym(
     scheme: "KomicaViewer",
+    workspace: "KomicaViewer.xcworkspace",
+    clean: true,
     export_method: "app-store"
   )
 
