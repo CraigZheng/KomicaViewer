@@ -1,0 +1,33 @@
+# More documentation about how to customize your build
+# can be found here:
+# https://docs.fastlane.tools
+fastlane_version "1.109.0"
+
+# This value helps us track success metrics for Fastfiles
+# we automatically generate. Feel free to remove this line
+# once you get things running smoothly!
+generated_fastfile_id "7d7c1f35-8b6a-43bd-9b4d-87733cc9cce2"
+
+default_platform :ios
+
+# Fastfile actions accept additional configuration, but
+# don't worry, fastlane will prompt you for required
+# info which you can add here later
+lane :beta do
+  # cocoapods
+
+  # increment_build_number
+
+  # build your iOS app
+  gym(
+    # scheme: “KomicaViewer”,
+    export_method: "app-store"
+  )
+
+  # upload to Testflight
+  pilot(skip_waiting_for_build_processing: true)
+
+  # slack(
+  #   slack_url: "https://hooks.slack.com/services/IDS"
+  # )
+end
