@@ -31,8 +31,8 @@
 		44575A331E01826700B3A941 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44575A321E01826700B3A941 /* Settings.storyboard */; };
 		44575A351E01834E00B3A941 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44575A341E01834E00B3A941 /* SettingsTableViewController.swift */; };
 		445A305F1D864EF0007FFE0C /* ThreadTableViewCellUIActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445A305E1D864EF0007FFE0C /* ThreadTableViewCellUIActions.swift */; };
-		44655D471D5AD24700229404 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D401D5AD15400229404 /* KomicaEngine.framework */; };
-		44655D481D5AD24700229404 /* ReferenceProxy in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D401D5AD15400229404 /* KomicaEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		44655D471D5AD24700229404 /* KomicaEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D401D5AD15400229404 /* KomicaEngine.framework */; };
+		44655D481D5AD24700229404 /* KomicaEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44655D401D5AD15400229404 /* KomicaEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		44655D751D5AEF7900229404 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D741D5AEF7900229404 /* HomeTableViewController.swift */; };
 		44655D771D5AEF8E00229404 /* ForumPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */; };
 		44655D7A1D5AFDAB00229404 /* Forums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D791D5AFDAB00229404 /* Forums.swift */; };
@@ -57,10 +57,10 @@
 		44BD39801D5B5E180070E0CB /* ThreadTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD397F1D5B5E180070E0CB /* ThreadTableViewController.swift */; };
 		44BD39821D5B5F310070E0CB /* ThreadTableViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39811D5B5F310070E0CB /* ThreadTableViewControllerProtocol.swift */; };
 		44BD39861D5B74ED0070E0CB /* UIView+SuperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39851D5B74ED0070E0CB /* UIView+SuperCell.swift */; };
-		44C25D1D1D8998650066888E /* ReferenceProxy in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44C25D191D89984C0066888E /* DTCoreText.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		44C25D1D1D8998650066888E /* DTCoreText.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44C25D191D89984C0066888E /* DTCoreText.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		44F48EBC1D5D3F0700519C1B /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F48EBB1D5D3F0700519C1B /* ProgressHUD.swift */; };
-		44FBD8251D899D1800ACA2C8 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 44FBD81E1D899D0A00ACA2C8 /* DTFoundation.framework */; };
-		44FBD8261D899D2100ACA2C8 /* ReferenceProxy in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44FBD81E1D899D0A00ACA2C8 /* DTFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		44FBD8251D899D1800ACA2C8 /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44FBD81E1D899D0A00ACA2C8 /* DTFoundation.framework */; };
+		44FBD8261D899D2100ACA2C8 /* DTFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44FBD81E1D899D0A00ACA2C8 /* DTFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8E7FE4381DD014DA47A44100 /* Pods_KomicaViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21C3A364A9DD0DDE230355EF /* Pods_KomicaViewer.framework */; };
 		A626FE4C1E96D311C76B1EF2 /* Pods_KomicaViewer_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9888890F89082B45414F82C /* Pods_KomicaViewer_KomicaViewerTests.framework */; };
 		B20E87BADB21FFDFDA78476B /* Pods_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B832635AE945C0A0AE7FB38 /* Pods_KomicaViewerTests.framework */; };
@@ -357,9 +357,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				44FBD8261D899D2100ACA2C8 /* ReferenceProxy in Embed Frameworks */,
-				44C25D1D1D8998650066888E /* ReferenceProxy in Embed Frameworks */,
-				44655D481D5AD24700229404 /* ReferenceProxy in Embed Frameworks */,
+				44FBD8261D899D2100ACA2C8 /* DTFoundation.framework in Embed Frameworks */,
+				44C25D1D1D8998650066888E /* DTCoreText.framework in Embed Frameworks */,
+				44655D481D5AD24700229404 /* KomicaEngine.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,8 +444,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44FBD8251D899D1800ACA2C8 /* ReferenceProxy in Frameworks */,
-				44655D471D5AD24700229404 /* ReferenceProxy in Frameworks */,
+				44FBD8251D899D1800ACA2C8 /* DTFoundation.framework in Frameworks */,
+				44655D471D5AD24700229404 /* KomicaEngine.framework in Frameworks */,
 				8E7FE4381DD014DA47A44100 /* Pods_KomicaViewer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1091,7 +1091,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		68104A70DA5FA7686066341C /* [CP] Embed Pods Frameworks */ = {
@@ -1121,7 +1121,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7C2A12900AD7C31E84A470E7 /* Embed Pods Frameworks */ = {
