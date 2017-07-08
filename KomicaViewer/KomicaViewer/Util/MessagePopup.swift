@@ -99,6 +99,10 @@ import SwiftMessages
 
 class MessagePopup: NSObject {
     
+    class func hide() {
+        SwiftMessages.hide()
+    }
+    
     class func showMessage(title: String?, message: String?) {
         showMessage(title: title, message: message, layout: .CardView)
     }
@@ -108,6 +112,12 @@ class MessagePopup: NSObject {
     }
     
     class func showMessage(title: String?, message: String?, layout: MessageView.Layout = .CardView, theme: Theme = .info, position: SwiftMessages.PresentationStyle = .top, buttonTitle: String? = nil, buttonActionHandler: ((_ button: UIButton) -> Void)? = nil) {
+        var layout = layout
+        if layout == MessageView.Layout.MessageView,
+            let systemVersion = Double(UIDevice.current.systemVersion),
+            systemVersion < 9.0 {
+            layout = MessageView.Layout.MessageViewIOS8
+        }
         let messageView = MessageView.viewFromNib(layout: layout)
         messageView.configureTheme(theme)
         messageView.configureContent(title: title ?? "", body: message ?? "")
@@ -117,7 +127,7 @@ class MessagePopup: NSObject {
             messageView.button?.isHidden = false
             messageView.button?.setTitle(buttonTitle, for: .normal)
             messageView.buttonTapHandler = buttonActionHandler
-            config.duration = .forever
+            config.duration = .seconds(seconds: 5)
         } else {
             messageView.button?.isHidden = true
             config.duration = .automatic
