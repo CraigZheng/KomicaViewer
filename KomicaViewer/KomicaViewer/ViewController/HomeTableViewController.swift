@@ -14,6 +14,7 @@ import SVPullToRefresh
 import SVWebViewController
 import GoogleMobileAds
 import Firebase
+import TTTAttributedLabel
 
 class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol, UIViewControllerMWPhotoBrowserProtocol {
     
@@ -162,7 +163,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
             cell.shouldShowParasitePost = false
             cell.shouldShowImage = Configuration.singleton.showImage
             cell.layoutWithThread(thread, forTableViewController: self)
-            cell.textView?.delegate = self
+            cell.textContentLabel?.delegate = self
         }
         return cell
     }
@@ -331,10 +332,10 @@ extension HomeTableViewController: GADBannerViewDelegate {
     
 }
 
-extension HomeTableViewController: UITextViewDelegate {
+extension HomeTableViewController: TTTAttributedLabelDelegate {
     
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        return false
+    func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
+        
     }
     
 }

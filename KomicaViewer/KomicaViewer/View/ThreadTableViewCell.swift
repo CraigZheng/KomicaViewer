@@ -10,6 +10,7 @@ import UIKit
 
 import KomicaEngine
 import SDWebImage
+import TTTAttributedLabel
 
 class ThreadTableViewCell: UITableViewCell {
     static let identifier = "threadCellIdentifier"
@@ -25,13 +26,13 @@ class ThreadTableViewCell: UITableViewCell {
             // Add a link to the quotedNumbers when one is found.
             quotedNumbers.forEach { (quotedNumber) in
                 let quotedString = String(quotedNumber)
-                if let textView = textView,
-                    let range = (textView.attributedText.string as NSString?)?.range(of: quotedString),
-                    (range.location + range.length) <= textView.attributedText.string.characters.count
+                if let textContentLabel = textContentLabel,
+                    let range = (textContentLabel.attributedText.string as NSString?)?.range(of: quotedString),
+                    (range.location + range.length) <= textContentLabel.attributedText.string.characters.count
                 {
-                    guard let mutableAttributedText = textView.attributedText.mutableCopy() as? NSMutableAttributedString else { return }
+                    guard let mutableAttributedText = textContentLabel.attributedText.mutableCopy() as? NSMutableAttributedString else { return }
                     mutableAttributedText.addAttributes([NSLinkAttributeName: "quotedContent://\(quotedString)"], range: range)
-                    textView.attributedText = mutableAttributedText
+                    textContentLabel.setText(mutableAttributedText)
                 }
             }
         }
@@ -43,7 +44,7 @@ class ThreadTableViewCell: UITableViewCell {
     var userID: String?
     var links: [URL] {
         var links = [URL]()
-        if let linkDetector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue), let text = textView?.text {
+        if let linkDetector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue), let text = textContentLabel?.text {
             for match in linkDetector.matches(in: text, options: [], range: NSMakeRange(0, text.characters.count)) {
                 if match.resultType == NSTextCheckingResult.CheckingType.link, let url = match.url {
                     links.append(url)
@@ -56,7 +57,7 @@ class ThreadTableViewCell: UITableViewCell {
     @IBOutlet weak var _detailTextLabel: UILabel!
     @IBOutlet weak var _textLabel: UILabel?
     @IBOutlet weak var _imageView: UIImageView!
-    @IBOutlet weak var textView: UITextView?
+    @IBOutlet weak var textContentLabel: TTTAttributedLabel?
     @IBOutlet weak var imageViewHeight: NSLayoutConstraint?
     @IBOutlet weak var parasitePostTextLabel: UILabel?
     @IBOutlet weak var parasitePostCountLabel: UILabel?
@@ -88,6 +89,8 @@ class ThreadTableViewCell: UITableViewCell {
         super.awakeFromNib()
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ThreadTableViewCell.longPressAction))
         contentView.addGestureRecognizer(longPressGestureRecognizer)
+        // The TTTAttributedLabel self.textContentLabel should be updated with new paragrah attribute.
+        textContentLabel?.lineSpacing = 4.0
     }
     
     func layoutWithThread(_ thread: KomicaEngine.Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol) {
@@ -120,7 +123,7 @@ class ThreadTableViewCell: UITableViewCell {
                                                         mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: attribute, range: range)
                                                     }
             })
-            textView?.attributedText = mutableAttributedString
+            textContentLabel?.setText(mutableAttributedString)
         }
         // Set title, and hide it when title is empty.
         self.titleLabel.text = thread.title

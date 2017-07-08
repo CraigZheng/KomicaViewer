@@ -44,7 +44,7 @@ extension ThreadTableViewCell {
                         self.alertController = nil
                     }
                     let copyContentAction = UIAlertAction(title: "Copy Content", style: .default) { (_) in
-                        if let text = self.textView?.text {
+                        if let text = self.textContentLabel?.text {
                             UIPasteboard.general.string = text
                             ProgressHUD.showMessage("Content Copied")
                         }
