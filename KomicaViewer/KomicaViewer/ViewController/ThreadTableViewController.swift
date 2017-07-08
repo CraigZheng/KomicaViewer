@@ -174,7 +174,6 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
             // If thumbnail image is not nil, include the thumbnail image.
             if let thumbnailURL = threads[indexPath.row].thumbnailURL {
                 if SDWebImageManager.shared().cachedImageExists(for: thumbnailURL) {
-                    let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: SDWebImageManager.shared().cacheKey(for: thumbnailURL))
                     estimatedHeight += 140
                 }
             }

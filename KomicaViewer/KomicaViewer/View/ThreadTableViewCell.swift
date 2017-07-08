@@ -95,7 +95,7 @@ class ThreadTableViewCell: UITableViewCell {
         textContentLabel?.lineSpacing = 4.0
     }
     
-    func layoutWithThread(_ thread: KomicaEngine.Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol) {
+    func layoutWithThread(_ thread: KomicaEngine.Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol?) {
         // Make a copy of the incoming thread.
         var thread = thread
         userID = thread.UID
