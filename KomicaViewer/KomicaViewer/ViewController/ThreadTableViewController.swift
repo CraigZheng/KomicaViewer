@@ -27,17 +27,11 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     }
     @IBOutlet weak var adDescriptionLabel: UILabel!
     
+    
     var selectedThread: KomicaEngine.Thread! {
         didSet {
             title = selectedThread.title
         }
-    }
-    
-    fileprivate var currentURL: URL? {
-        if let threadID = threadID {
-            return forum?.responseURLForThreadID(threadID)
-        }
-        return nil
     }
     
     // MARK: UIViewControllerMWPhotoBrowserProtocol
@@ -55,7 +49,12 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         guardDog.home = currentURL?.host
         return guardDog
     }
-    fileprivate let showParasitePostSegue = "showParasitePosts"
+    
+    enum SegueIdentifier: String {
+        case parasitePosts
+        case popupThread
+    }
+    
     // Get the threadID from the selectedThread.ID.
     fileprivate var threadID: Int? {
         if let stringArray = selectedThread.ID?.components(
@@ -64,6 +63,13 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
             return threadID
         }
         return 0
+    }
+    fileprivate var quotedThread: KomicaEngine.Thread?
+    fileprivate var currentURL: URL? {
+        if let threadID = threadID {
+            return forum?.responseURLForThreadID(threadID)
+        }
+        return nil
     }
     // MARK: ThreadTableViewControllerProtocol
     lazy var postCompletion: KomicaDownloaderHandler? = {
@@ -169,7 +175,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
             if let thumbnailURL = threads[indexPath.row].thumbnailURL {
                 if SDWebImageManager.shared().cachedImageExists(for: thumbnailURL) {
                     let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: SDWebImageManager.shared().cacheKey(for: thumbnailURL))
-                    estimatedHeight += (cachedImage?.size.height)!
+                    estimatedHeight += 140
                 }
             }
         }
@@ -191,18 +197,24 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     // MARK: Segue events.
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let parasitePostTableViewController = segue.destination as? ParasitePostTableViewController,
-            let superCell = (sender as? UIView)?.superCell(),
-            let indexPath = tableView.indexPath(for: superCell),
-            let parasitePosts = threads[indexPath.row].pushPost
-        {
-            parasitePostTableViewController.parasitePosts = parasitePosts
+        guard let segueIdentifier = segue.identifier, !segueIdentifier.isEmpty else { return }
+        switch SegueIdentifier(rawValue: segueIdentifier)! {
+        case .parasitePosts:
+            if let parasitePostTableViewController = segue.destination as? ParasitePostTableViewController,
+                let superCell = (sender as? UIView)?.superCell(),
+                let indexPath = tableView.indexPath(for: superCell),
+                let parasitePosts = threads[indexPath.row].pushPost
+            {
+                parasitePostTableViewController.parasitePosts = parasitePosts
+            }
+        case .popupThread:
+            break
         }
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         var should = true
-        if identifier == showParasitePostSegue,
+        if identifier == SegueIdentifier.parasitePosts.rawValue,
             let superCell = (sender as? UIView)?.superCell(),
             let indexPath = tableView.indexPath(for: superCell),
             let parasitePosts = threads[indexPath.row].pushPost
@@ -219,8 +231,8 @@ extension ThreadTableViewController: UIAlertViewDelegate {
     
     @IBAction func tapOnParasitePostView(_ sender: UIButton) {
         // User tap on parasite post view, show all parasite posts.
-        if shouldPerformSegue(withIdentifier: showParasitePostSegue, sender: sender) {
-            performSegue(withIdentifier: showParasitePostSegue, sender: sender)
+        if shouldPerformSegue(withIdentifier: SegueIdentifier.parasitePosts.rawValue, sender: sender) {
+            performSegue(withIdentifier: SegueIdentifier.parasitePosts.rawValue, sender: sender)
         }
     }
     
@@ -372,10 +384,9 @@ extension ThreadTableViewController: TTTAttributedLabelDelegate {
             UIApplication.shared.openURL(url)
         } else if (url.absoluteString.hasPrefix(ThreadTableViewCell.quotedIdentifier)) {
             guard let quotedNumber = url.absoluteString.numericValue() else { return }
-            let quotedThread = threads.first(where: { thread -> Bool in
-                return thread.ID?.numericValue() == quotedNumber
-            })
-            // TODO: show content of quotedThread.
+            guard let quotedThread = threads.first(where: { return $0.ID?.numericValue() == quotedNumber }) else { return }
+            self.quotedThread = quotedThread
+            performSegue(withIdentifier: SegueIdentifier.popupThread.rawValue, sender: nil)
         }
     }
     
