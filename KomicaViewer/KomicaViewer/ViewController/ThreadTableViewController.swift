@@ -207,22 +207,29 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
                 parasitePostTableViewController.parasitePosts = parasitePosts
             }
         case .popupThread:
-            break
+            guard let quotedContentViewController = segue.destination as? QuotedContentTableViewController else { return }
+            quotedContentViewController.quotedThread = quotedThread
+            // Quoted thread is now consumed.
+            quotedThread = nil
         }
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         var should = true
-        if identifier == SegueIdentifier.parasitePosts.rawValue,
-            let superCell = (sender as? UIView)?.superCell(),
-            let indexPath = tableView.indexPath(for: superCell),
-            let parasitePosts = threads[indexPath.row].pushPost
-        {
-            should = parasitePosts.count > 0
+        switch SegueIdentifier(rawValue: identifier)! {
+        case .parasitePosts:
+            if let superCell = (sender as? UIView)?.superCell(),
+                let indexPath = tableView.indexPath(for: superCell),
+                let parasitePosts = threads[indexPath.row].pushPost
+            {
+                should = parasitePosts.count > 0
+            }
+        case .popupThread:
+            should = quotedThread != nil
         }
         return should
     }
-
+    
 }
 
 // MARK: UIActions.

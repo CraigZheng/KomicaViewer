@@ -13,6 +13,13 @@ import KomicaEngine
 class QuotedContentTableViewController: UITableViewController {
     
     var quotedThread: KomicaEngine.Thread!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.register(UINib(nibName: "ThreadTableViewCell",
+                                 bundle: nil),
+                           forCellReuseIdentifier: ThreadTableViewCell.identifier)
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
