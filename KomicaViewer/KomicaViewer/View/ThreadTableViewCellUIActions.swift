@@ -10,10 +10,6 @@ import UIKit
 
 import Firebase
 
-protocol ThreadTableViewCellRespondable {
-    func pressedQuotedNumberButton(button: UIButton, quotedNumber: Int)
-}
-
 extension ThreadTableViewCell {
     
     func longPressAction() {
@@ -107,9 +103,4 @@ extension ThreadTableViewCell {
             }
         }
     }
-    
-    func pressedQuotedNumberButton(button: UIButton) {
-        delegate?.pressedQuotedNumberButton(button: button, quotedNumber: button.tag)
-    }
-
 }

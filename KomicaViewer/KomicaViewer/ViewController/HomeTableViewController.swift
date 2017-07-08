@@ -162,6 +162,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
             cell.shouldShowParasitePost = false
             cell.shouldShowImage = Configuration.singleton.showImage
             cell.layoutWithThread(thread, forTableViewController: self)
+            cell.textView?.delegate = self
         }
         return cell
     }
@@ -326,6 +327,14 @@ extension HomeTableViewController: GADBannerViewDelegate {
             toggleAdBanner(false)
         }
         tableView.reloadData()
+    }
+    
+}
+
+extension HomeTableViewController: UITextViewDelegate {
+    
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        return false
     }
     
 }

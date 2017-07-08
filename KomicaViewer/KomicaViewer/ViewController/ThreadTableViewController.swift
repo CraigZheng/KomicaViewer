@@ -154,7 +154,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
             let thread = threads[indexPath.row]
             cell.shouldShowImage = Configuration.singleton.showImage
             cell.layoutWithThread(thread, forTableViewController: self)
-            cell.delegate = self
+            cell.textView?.delegate = self
         }
         return cell
     }
@@ -364,16 +364,10 @@ extension ThreadTableViewController: GADBannerViewDelegate {
     
 }
 
-// MARK: ThreadTableViewCellRespondable
-extension ThreadTableViewController: ThreadTableViewCellRespondable {
+extension ThreadTableViewController: UITextViewDelegate {
     
-    func pressedQuotedNumberButton(button: UIButton, quotedNumber: Int) {
-        for index in 0 ..< threads.count {
-            if let ID = threads[index].ID?.numericValue(), ID == quotedNumber {
-                // TODO: display the quoted content.
-                break
-            }
-        }
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        return false
     }
     
 }

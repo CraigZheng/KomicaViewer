@@ -19,9 +19,24 @@ class ThreadTableViewCell: UITableViewCell {
         static let blocked = UIColor.lightGray
     }
     fileprivate let defaultFont = UIFont.systemFont(ofSize: 17)
-    fileprivate var quotedNumbers = [Int]()
-    fileprivate var quotedNumberButtons = [UIButton]()
-    
+    fileprivate var quotedNumbers = [Int]() {
+        didSet {
+            // When quotedNumbers has been set, look up text view and find them.
+            // Add a link to the quotedNumbers when one is found.
+            quotedNumbers.forEach { (quotedNumber) in
+                let quotedString = String(quotedNumber)
+                if let textView = textView,
+                    let range = (textView.attributedText.string as NSString?)?.range(of: quotedString),
+                    (range.location + range.length) <= textView.attributedText.string.characters.count
+                {
+                    guard let mutableAttributedText = textView.attributedText.mutableCopy() as? NSMutableAttributedString else { return }
+                    mutableAttributedText.addAttributes([NSLinkAttributeName: "quotedContent://\(quotedString)"], range: range)
+                    textView.attributedText = mutableAttributedText
+                }
+            }
+        }
+    }
+  
     var shouldShowParasitePost = true
     var shouldShowImage = true
     var alertController: UIAlertController?
@@ -37,8 +52,7 @@ class ThreadTableViewCell: UITableViewCell {
         }
         return links
     }
-    var delegate: ThreadTableViewCellRespondable?
-    
+  
     @IBOutlet weak var _detailTextLabel: UILabel!
     @IBOutlet weak var _textLabel: UILabel?
     @IBOutlet weak var _imageView: UIImageView!
@@ -74,32 +88,6 @@ class ThreadTableViewCell: UITableViewCell {
         super.awakeFromNib()
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ThreadTableViewCell.longPressAction))
         contentView.addGestureRecognizer(longPressGestureRecognizer)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        if delegate != nil {
-            quotedNumberButtons.forEach { (button) in
-                button.removeFromSuperview()
-            }
-            quotedNumberButtons.removeAll()
-            quotedNumbers.forEach { (quotedNumber) in
-                let quotedString = String(quotedNumber)
-                if let textView = textView,
-                    let range = (textView.attributedText.string as NSString?)?.range(of: quotedString),
-                    (range.location + range.length) <= textView.attributedText.string.characters.count,
-                    let rangeRect = textView.rectOfRange(range)
-                {
-                    let convertedRect = contentView.convert(rangeRect, from: textView)
-                    let quotedButton = UIButton(frame: convertedRect)
-                    quotedButton.tag = quotedNumber
-                    quotedButton.backgroundColor = UIColor.blue.withAlphaComponent(0.05)
-                    quotedButton.addTarget(self, action: #selector(ThreadTableViewCell.pressedQuotedNumberButton(button:)), for: .touchUpInside)
-                    contentView.addSubview(quotedButton)
-                    quotedNumberButtons.append(quotedButton)
-                }
-            }
-        }
     }
     
     func layoutWithThread(_ thread: KomicaEngine.Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol) {
@@ -178,8 +166,9 @@ class ThreadTableViewCell: UITableViewCell {
             imageViewHeight?.constant = 100
         }
         // Parasite post.
-        if shouldShowParasitePost, let parasitePosts = thread.pushPost,
-            let firstParasitePost = parasitePosts.first
+        if shouldShowParasitePost,
+          let parasitePosts = thread.pushPost,
+          let firstParasitePost = parasitePosts.first
         {
             parasitePostTextLabel?.text = firstParasitePost
             parasitePostCountLabel?.text = parasitePosts.count - 1 > 0 ? "..." : ""
