@@ -335,7 +335,9 @@ extension HomeTableViewController: GADBannerViewDelegate {
 extension HomeTableViewController: TTTAttributedLabelDelegate {
     
     func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
-        
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.openURL(url)
+        }
     }
     
 }

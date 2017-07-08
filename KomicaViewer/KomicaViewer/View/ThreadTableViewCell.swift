@@ -14,6 +14,8 @@ import TTTAttributedLabel
 
 class ThreadTableViewCell: UITableViewCell {
     static let identifier = "threadCellIdentifier"
+    static let quotedIdentifier = "quotedContent://"
+    
     fileprivate struct TextColour {
         static let standard = UIColor(red: 182/255.0, green: 78/255.0, blue: 4/255.0, alpha: 1.0)
         static let warning = UIColor(red: 237/255.0, green: 8/255.0, blue: 25/255.0, alpha: 1.0)
@@ -31,7 +33,7 @@ class ThreadTableViewCell: UITableViewCell {
                     (range.location + range.length) <= textContentLabel.attributedText.string.characters.count
                 {
                     guard let mutableAttributedText = textContentLabel.attributedText.mutableCopy() as? NSMutableAttributedString else { return }
-                    mutableAttributedText.addAttributes([NSLinkAttributeName: "quotedContent://\(quotedString)"], range: range)
+                    mutableAttributedText.addAttributes([NSLinkAttributeName: "\(ThreadTableViewCell.quotedIdentifier)\(quotedString)"], range: range)
                     textContentLabel.setText(mutableAttributedText)
                 }
             }

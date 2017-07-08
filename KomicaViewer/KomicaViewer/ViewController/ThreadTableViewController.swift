@@ -368,7 +368,15 @@ extension ThreadTableViewController: GADBannerViewDelegate {
 extension ThreadTableViewController: TTTAttributedLabelDelegate {
     
     func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
-        
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.openURL(url)
+        } else if (url.absoluteString.hasPrefix(ThreadTableViewCell.quotedIdentifier)) {
+            guard let quotedNumber = url.absoluteString.numericValue() else { return }
+            let quotedThread = threads.first(where: { thread -> Bool in
+                return thread.ID?.numericValue() == quotedNumber
+            })
+            // TODO: show content of quotedThread.
+        }
     }
     
 }
