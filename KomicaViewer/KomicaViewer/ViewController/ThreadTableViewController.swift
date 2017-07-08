@@ -133,10 +133,10 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         attemptLoadRequest()
         if let forum = forum,
             let forumName = forum.name {
-            FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-                kFIRParameterContentType: "SELECT THREAD" as NSObject,
-                kFIRParameterItemID: "\(forumName) - \(threadID ?? 0)" as NSString,
-                kFIRParameterItemName: "\(forumName) - \(threadID ?? 0)" as NSString])
+            Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                AnalyticsParameterContentType: "SELECT THREAD" as NSObject,
+                AnalyticsParameterItemID: "\(forumName) - \(threadID ?? 0)" as NSString,
+                AnalyticsParameterItemName: "\(forumName) - \(threadID ?? 0)" as NSString])
         }
     }
     
@@ -268,10 +268,10 @@ extension ThreadTableViewController: UIAlertViewDelegate {
         if let videoURL = URL(string: link), UIApplication.shared.canOpenURL(videoURL)
         {
             UIApplication.shared.openURL(videoURL)
-            FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-                kFIRParameterContentType: "SELECT REMOTE URL" as NSObject,
-                kFIRParameterItemID: "\(videoURL.absoluteString)" as NSString,
-                kFIRParameterItemName: "\(videoURL.absoluteString)" as NSString])
+            Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                AnalyticsParameterContentType: "SELECT REMOTE URL" as NSObject,
+                AnalyticsParameterItemID: "\(videoURL.absoluteString)" as NSString,
+                AnalyticsParameterItemName: "\(videoURL.absoluteString)" as NSString])
         } else {
             ProgressHUD.showMessage("Cannot open: \(link)")
         }

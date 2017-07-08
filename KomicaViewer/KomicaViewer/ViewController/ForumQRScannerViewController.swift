@@ -105,10 +105,10 @@ extension ForumQRScannerViewController: UIImagePickerControllerDelegate, UINavig
         if let scanForumQRHelpURL = Configuration.singleton.scanForumQRHelpURL, UIApplication.shared.canOpenURL(scanForumQRHelpURL as URL)
         {
             UIApplication.shared.openURL(scanForumQRHelpURL)
-            FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-                kFIRParameterContentType: "SELECT REMOTE URL" as NSObject,
-                kFIRParameterItemID: "\(scanForumQRHelpURL.absoluteString)" as NSString,
-                kFIRParameterItemName: "\(scanForumQRHelpURL.absoluteString)" as NSString])
+            Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                AnalyticsParameterContentType: "SELECT REMOTE URL" as NSObject,
+                AnalyticsParameterItemID: "\(scanForumQRHelpURL.absoluteString)" as NSString,
+                AnalyticsParameterItemName: "\(scanForumQRHelpURL.absoluteString)" as NSString])
         }
     }
     

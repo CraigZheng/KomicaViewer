@@ -37,10 +37,10 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     var threads:[KomicaEngine.Thread] = []
     func refresh() {
         if let forum = forum {
-            FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-                kFIRParameterContentType: "REFRESH FORUM" as NSObject,
-                kFIRParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
-                kFIRParameterItemName: "\(forum.name ?? "name undefined")" as NSString])
+            Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                AnalyticsParameterContentType: "REFRESH FORUM" as NSObject,
+                AnalyticsParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
+                AnalyticsParameterItemName: "\(forum.name ?? "name undefined")" as NSString])
         }
         refreshWithPage(forum?.startingIndex ?? 0)
     }
@@ -255,10 +255,10 @@ extension HomeTableViewController {
         if let videoURL = URL(string: link), UIApplication.shared.canOpenURL(videoURL)
         {
             UIApplication.shared.openURL(videoURL)
-            FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-                kFIRParameterContentType: "SELECT REMOTE URL" as NSObject,
-                kFIRParameterItemID: "\(videoURL.absoluteString)" as NSString,
-                kFIRParameterItemName: "\(videoURL.absoluteString)" as NSString])
+            Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                AnalyticsParameterContentType: "SELECT REMOTE URL" as NSObject,
+                AnalyticsParameterItemID: "\(videoURL.absoluteString)" as NSString,
+                AnalyticsParameterItemName: "\(videoURL.absoluteString)" as NSString])
         } else {
             ProgressHUD.showMessage("Cannot open: \(link)")
         }
@@ -277,10 +277,10 @@ extension HomeTableViewController {
         // Disable/enable the webview bar button.
         actionBarButton.isEnabled = currentURL != nil
         if let forum = forum {
-            FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-                kFIRParameterContentType: "SELECT FORUM" as NSObject,
-                kFIRParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
-                kFIRParameterItemName: "\(forum.name ?? "name undefined")" as NSString]
+            Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                AnalyticsParameterContentType: "SELECT FORUM" as NSObject,
+                AnalyticsParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
+                AnalyticsParameterItemName: "\(forum.name ?? "name undefined")" as NSString]
             )
         }
     }

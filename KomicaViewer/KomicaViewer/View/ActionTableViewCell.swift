@@ -58,10 +58,10 @@ class RemoteActionTableViewDelegate: NSObject, UITableViewDataSource, UITableVie
         {
             if let actionURL = URL(string: object), UIApplication.shared.canOpenURL(actionURL) {
                 UIApplication.shared.openURL(actionURL)
-                FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-                    kFIRParameterContentType: "SELECT REMOTE ACTION" as NSObject,
-                    kFIRParameterItemID: "\(key)" as NSString,
-                    kFIRParameterItemName: "\(key) - \(object)" as NSString])
+                Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                    AnalyticsParameterContentType: "SELECT REMOTE ACTION" as NSObject,
+                    AnalyticsParameterItemID: "\(key)" as NSString,
+                    AnalyticsParameterItemName: "\(key) - \(object)" as NSString])
             }
         }
     }
