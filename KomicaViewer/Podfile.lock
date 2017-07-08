@@ -92,6 +92,7 @@ PODS:
   - SVPullToRefresh (0.4.1)
   - SVWebViewController (1.0)
   - SwiftMessages (3.4.0)
+  - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
   - AFNetworking
@@ -105,6 +106,7 @@ DEPENDENCIES:
   - SVPullToRefresh (from `https://github.com/samvermette/SVPullToRefresh.git`)
   - SVWebViewController (from `https://github.com/TransitApp/SVWebViewController.git`)
   - SwiftMessages
+  - TTTAttributedLabel
 
 EXTERNAL SOURCES:
   SVPullToRefresh:
@@ -144,7 +146,8 @@ SPEC CHECKSUMS:
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SVWebViewController: aa2e18a41ff5f45be7aeec8e92ca5bcc50b5ebb1
   SwiftMessages: e20aa1557fde1525ea369361bec4943cc0d08e7c
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: ff45aaec307540528dce9f9e36ced898b7d3418d
+PODFILE CHECKSUM: a52c643bdb89755d62d83e848cffbbe8c2ef9333
 
 COCOAPODS: 1.2.1
