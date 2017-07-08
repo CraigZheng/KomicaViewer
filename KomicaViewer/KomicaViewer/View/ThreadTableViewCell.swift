@@ -134,12 +134,13 @@ class ThreadTableViewCell: UITableViewCell {
         } else {
             NSLayoutConstraint.activate(self.titleLabel.constraints)
         }
-        if let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController, shouldShowImage
+        if let imageURL = thread.thumbnailURL,
+            shouldShowImage
         {
             if SDWebImageManager.shared().cachedImageExists(for: imageURL) {
                 let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: SDWebImageManager.shared().cacheKey(for: imageURL))
                 imageView?.image = cachedImage
-            } else {
+            } else if let tableViewController = tableViewController as? UITableViewController {
                 imageView?.sd_setImage(with: imageURL, placeholderImage: nil, options: SDWebImageOptions.retryFailed, completed: { [weak self](image, error, cacheType, imageURL) in
                     guard let strongCell = self else { return }
                     // If its been downloaded from the web, reload this 
