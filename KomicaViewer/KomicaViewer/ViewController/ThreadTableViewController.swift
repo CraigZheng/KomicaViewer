@@ -14,6 +14,7 @@ import SVWebViewController
 import GoogleMobileAds
 import Firebase
 import TTTAttributedLabel
+import SwiftMessages
 
 class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol, UIViewControllerMWPhotoBrowserProtocol {
     
@@ -393,7 +394,18 @@ extension ThreadTableViewController: TTTAttributedLabelDelegate {
             UIApplication.shared.openURL(url)
         } else if (url.absoluteString.hasPrefix(ThreadTableViewCell.quotedIdentifier)) {
             guard let quotedNumber = url.absoluteString.numericValue() else { return }
-            guard let quotedThread = threads.first(where: { return $0.ID?.numericValue() == quotedNumber }) else { return }
+            guard let quotedThread = threads.first(where: { return $0.ID?.numericValue() == quotedNumber }) else {
+                MessagePopup.showMessage(title: "Cannot find id:\(quotedNumber)",
+                                         message: "Id:\(quotedNumber) cannot be found within this thread.",
+                                         layout: .CardView,
+                                         theme: .error,
+                                         position: .top,
+                                         buttonTitle: "OK",
+                                         buttonActionHandler: { _ in
+                                            SwiftMessages.hide()
+                })
+                return
+            }
             self.quotedThread = quotedThread
             performSegue(withIdentifier: SegueIdentifier.popupThread.rawValue, sender: nil)
         }
