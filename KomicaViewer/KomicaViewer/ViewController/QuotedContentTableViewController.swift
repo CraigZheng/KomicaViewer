@@ -16,9 +16,19 @@ class QuotedContentTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
         tableView.register(UINib(nibName: "ThreadTableViewCell",
                                  bundle: nil),
                            forCellReuseIdentifier: ThreadTableViewCell.identifier)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Layout early to set the frame.
+        tableView.setNeedsLayout()
+        tableView.layoutIfNeeded()
+        preferredContentSize = tableView.contentSize
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

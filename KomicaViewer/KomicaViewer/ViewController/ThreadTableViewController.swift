@@ -209,6 +209,9 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         case .popupThread:
             guard let quotedContentViewController = segue.destination as? QuotedContentTableViewController else { return }
             quotedContentViewController.quotedThread = quotedThread
+            quotedContentViewController.popoverPresentationController?.delegate = self;
+            quotedContentViewController.popoverPresentationController?.sourceView = view;
+            quotedContentViewController.popoverPresentationController?.sourceRect = view.bounds;
             // Quoted thread is now consumed.
             quotedThread = nil
         }
@@ -394,6 +397,14 @@ extension ThreadTableViewController: TTTAttributedLabelDelegate {
             self.quotedThread = quotedThread
             performSegue(withIdentifier: SegueIdentifier.popupThread.rawValue, sender: nil)
         }
+    }
+    
+}
+
+extension ThreadTableViewController: UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
     
 }

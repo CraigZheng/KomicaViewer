@@ -63,30 +63,22 @@
         <!--Quoted Content Table View Controller-->
         <scene sceneID="seQ-Id-b6i">
             <objects>
-                <tableViewController id="rcL-3Y-gfP" customClass="QuotedContentTableViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="overFullScreen" id="rcL-3Y-gfP" customClass="QuotedContentTableViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="h8A-jU-mFg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="threadCellIdentifier" id="jyL-9N-YEd" customClass="ThreadTableViewCell" customModule="KomicaViewer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jyL-9N-YEd" id="5Sn-WN-C6a">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <connections>
                             <outlet property="dataSource" destination="rcL-3Y-gfP" id="hnS-pv-zeX"/>
                             <outlet property="delegate" destination="rcL-3Y-gfP" id="EEQ-NK-Fhi"/>
                         </connections>
                     </tableView>
+                    <value key="contentSizeForViewInPopover" type="size" width="320" height="160"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NqX-Y7-XMF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3148" y="-834"/>
+            <point key="canvasLocation" x="3148" y="-967"/>
         </scene>
         <!--Home Table View Controller-->
         <scene sceneID="xVi-5c-5hD">
@@ -236,7 +228,9 @@
                         <outlet property="adBannerView" destination="asv-Yy-NHf" id="GMU-sO-EqP"/>
                         <outlet property="adDescriptionLabel" destination="qbB-ON-QVn" id="Ouf-dt-G9v"/>
                         <segue destination="PR8-ly-aaG" kind="show" identifier="parasitePosts" id="9fq-5Y-o5k"/>
-                        <segue destination="rcL-3Y-gfP" kind="presentation" identifier="popupThread" modalPresentationStyle="overFullScreen" id="Ak8-Fo-heQ"/>
+                        <segue destination="rcL-3Y-gfP" kind="popoverPresentation" identifier="popupThread" popoverAnchorBarButtonItem="UeO-Zh-80L" id="Ak8-Fo-heQ">
+                            <popoverArrowDirection key="popoverArrowDirection"/>
+                        </segue>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KN8-of-9oG" userLabel="First Responder" sceneMemberID="firstResponder"/>
