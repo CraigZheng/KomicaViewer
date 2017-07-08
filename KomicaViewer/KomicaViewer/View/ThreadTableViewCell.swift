@@ -58,7 +58,6 @@ class ThreadTableViewCell: UITableViewCell {
     @IBOutlet weak var _textLabel: UILabel?
     @IBOutlet weak var _imageView: UIImageView!
     @IBOutlet weak var textContentLabel: TTTAttributedLabel?
-    @IBOutlet weak var imageViewHeight: NSLayoutConstraint?
     @IBOutlet weak var parasitePostTextLabel: UILabel?
     @IBOutlet weak var parasitePostCountLabel: UILabel?
     @IBOutlet weak var parasitePostViewZeroHeight: NSLayoutConstraint?
@@ -67,6 +66,7 @@ class ThreadTableViewCell: UITableViewCell {
     @IBOutlet weak var warningLabel: UILabel?
     @IBOutlet weak var imageFormatLabel: UILabel!
     @IBOutlet weak var mediaLinkLabel: UILabel!
+    @IBOutlet weak var imageViewZeroHeight: NSLayoutConstraint!
     
     // MARK: Override to return customisable UI elements.
     
@@ -134,7 +134,6 @@ class ThreadTableViewCell: UITableViewCell {
         }
         if let imageURL = thread.thumbnailURL, let tableViewController = tableViewController as? UITableViewController, shouldShowImage
         {
-            imageViewHeight?.constant = 140
             if SDWebImageManager.shared().cachedImageExists(for: imageURL) {
                 let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: SDWebImageManager.shared().cacheKey(for: imageURL))
                 imageView?.image = cachedImage
@@ -155,18 +154,18 @@ class ThreadTableViewCell: UITableViewCell {
             if let imageURLString = thread.imageURL?.absoluteString {
                 imageFormatLabel.isHidden = false
                 imageFormatLabel.text = (imageURLString as NSString).pathExtension.uppercased()
+                imageViewZeroHeight.priority = 1
             }
         } else {
             imageView?.image = nil
-            imageViewHeight?.constant = 0
             imageFormatLabel.isHidden = true
+            imageViewZeroHeight.priority = 999
         }
         // When videoLinks is not empty, show mediaLinkLabel.
         mediaLinkLabel.isHidden = !(thread.videoLinks?.isEmpty == false)
         // When video link is not empty, but there's no preview image, then give it a default play button image.
         if !(thread.videoLinks?.isEmpty ?? true), imageView?.image == nil {
             imageView?.image = UIImage(named: "youtube-play-button.png")
-            imageViewHeight?.constant = 100
         }
         // Parasite post.
         if shouldShowParasitePost,
