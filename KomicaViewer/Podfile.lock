@@ -15,20 +15,20 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - DACircularProgress (2.3.1)
-  - Firebase/AdMob (4.0.2):
+  - Firebase/AdMob (4.0.3):
     - Firebase/Core
-    - Google-Mobile-Ads-SDK (= 7.20.0)
-  - Firebase/Core (4.0.2):
-    - FirebaseAnalytics (= 4.0.1)
-    - FirebaseCore (= 4.0.2)
-  - Firebase/Crash (4.0.2):
+    - Google-Mobile-Ads-SDK (= 7.21.0)
+  - Firebase/Core (4.0.3):
+    - FirebaseAnalytics (= 4.0.2)
+    - FirebaseCore (= 4.0.3)
+  - Firebase/Crash (4.0.3):
     - Firebase/Core
     - FirebaseCrash (= 2.0.0)
-  - FirebaseAnalytics (4.0.1):
+  - FirebaseAnalytics (4.0.2):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCore (4.0.2):
+  - FirebaseCore (4.0.3):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseCrash (2.0.0):
     - FirebaseAnalytics (~> 4.0)
@@ -38,7 +38,7 @@ PODS:
     - Protobuf (~> 3.1)
   - FirebaseInstanceID (2.0.0):
     - FirebaseCore (~> 4.0)
-  - Google-Mobile-Ads-SDK (7.20.0)
+  - Google-Mobile-Ads-SDK (7.21.0)
   - GoogleToolboxForMac/Defines (2.1.1)
   - GoogleToolboxForMac/Logger (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
@@ -46,13 +46,9 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - libnestegg (0.1)
   - libogg (1.3.2)
-  - liboggz (1.1.1):
-    - libogg (>= 1.0)
   - libopus (1.1):
     - libopus/float (= 1.1)
   - libopus/float (1.1)
-  - libtheora (1.1.1):
-    - libogg (>= 1.1)
   - libvorbis (1.3.5):
     - libogg (>= 1.0)
   - libvpx (1.5.0-1021-g59ae167)
@@ -61,48 +57,9 @@ PODS:
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
-  - OGVKit (0.5.11):
-    - OGVKit/AVDecoder (= 0.5.11)
-    - OGVKit/Core (= 0.5.11)
-    - OGVKit/libskeleton (= 0.5.11)
-    - OGVKit/MP3 (= 0.5.11)
-    - OGVKit/MP4 (= 0.5.11)
-    - OGVKit/Ogg (= 0.5.11)
-    - OGVKit/OggDemuxer (= 0.5.11)
-    - OGVKit/OpusDecoder (= 0.5.11)
-    - OGVKit/TheoraDecoder (= 0.5.11)
-    - OGVKit/VorbisDecoder (= 0.5.11)
-    - OGVKit/VP8Decoder (= 0.5.11)
-    - OGVKit/WebM (= 0.5.11)
-    - OGVKit/WebMDemuxer (= 0.5.11)
-  - OGVKit/AVDecoder (0.5.11):
-    - OGVKit/Core
   - OGVKit/Core (0.5.11)
-  - OGVKit/libskeleton (0.5.11):
-    - libogg
-  - OGVKit/MP3 (0.5.11):
-    - OGVKit/AVDecoder
-  - OGVKit/MP4 (0.5.11):
-    - OGVKit/AVDecoder
-  - OGVKit/Ogg (0.5.11):
-    - OGVKit/Ogg/Theora (= 0.5.11)
-    - OGVKit/Ogg/Vorbis (= 0.5.11)
-  - OGVKit/Ogg/Theora (0.5.11):
-    - OGVKit/OggDemuxer
-    - OGVKit/TheoraDecoder
-    - OGVKit/VorbisDecoder
-  - OGVKit/Ogg/Vorbis (0.5.11):
-    - OGVKit/OggDemuxer
-    - OGVKit/VorbisDecoder
-  - OGVKit/OggDemuxer (0.5.11):
-    - liboggz
-    - OGVKit/Core
-    - OGVKit/libskeleton (~> 0.4)
   - OGVKit/OpusDecoder (0.5.11):
     - libopus
-    - OGVKit/Core
-  - OGVKit/TheoraDecoder (0.5.11):
-    - libtheora
     - OGVKit/Core
   - OGVKit/VorbisDecoder (0.5.11):
     - libvorbis
@@ -134,7 +91,7 @@ PODS:
   - SDWebImage/Core (3.8.2)
   - SVPullToRefresh (0.4.1)
   - SVWebViewController (1.0)
-  - SwiftMessages (3.3.4)
+  - SwiftMessages (3.4.0)
 
 DEPENDENCIES:
   - AFNetworking
@@ -143,7 +100,7 @@ DEPENDENCIES:
   - Firebase/Crash
   - MBProgressHUD
   - MWPhotoBrowser (~> 2.1.2)
-  - OGVKit
+  - OGVKit/WebM
   - PureLayout
   - SVPullToRefresh (from `https://github.com/samvermette/SVPullToRefresh.git`)
   - SVWebViewController (from `https://github.com/TransitApp/SVWebViewController.git`)
@@ -166,18 +123,16 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
-  Firebase: c7ad0731eab26d18a3fc547dd048b0f7cd9c63ae
-  FirebaseAnalytics: 4d7040fefc3cd8b291cde35f12cf063d7963f15d
-  FirebaseCore: 1a8bf6c795ad07d2918278657954ffd2552e9c17
+  Firebase: 9e33fdfbca37cab635c693883caa90a4475b842b
+  FirebaseAnalytics: ad41720e3e67fc63fbe3d2948d3e26932a8de311
+  FirebaseCore: c709067051de07bdaffdc4e735cd7299a23c463a
   FirebaseCrash: 600ec2cbd8e10c3064a42de2c6ee7687bd02a076
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
-  Google-Mobile-Ads-SDK: 168312cdc167fa22746d4ea8e839fc4825dd2966
+  Google-Mobile-Ads-SDK: 4a6f1b43c8cc0e1e95a3b59d9f52a01671c6f9f3
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   libnestegg: 29be3e4d84978423ab8a282476c099aa221d1c4e
   libogg: 924cd993b3fcf4d93568f7d582496061ef82716e
-  liboggz: 6605f8cd394de0fe330957507179f6bdcce716d1
   libopus: ad5f060dcb8f30f139777244d70f9111f1c80863
-  libtheora: cf6fb3c5c0db661460d0d54d0a343bc38dc766d3
   libvorbis: ce9ba21bbef15c2060e31e1e33dcdeb3762427b0
   libvpx: a5eeb44d068ae2f597eddf27a9fc097ac423b208
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
@@ -188,8 +143,8 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SVWebViewController: aa2e18a41ff5f45be7aeec8e92ca5bcc50b5ebb1
-  SwiftMessages: 1172842c4d4af818704f90c50ec8dc597e55c9af
+  SwiftMessages: e20aa1557fde1525ea369361bec4943cc0d08e7c
 
-PODFILE CHECKSUM: abed6fe8264392f095f8ba39f85afede26561c8e
+PODFILE CHECKSUM: ff45aaec307540528dce9f9e36ced898b7d3418d
 
 COCOAPODS: 1.2.1
