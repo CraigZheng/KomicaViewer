@@ -276,10 +276,10 @@ extension ThreadTableViewController: UIAlertViewDelegate {
     fileprivate func openImageWithIndex(_ index: Int) {
         // Present
         photoURLs = imageThreads.map({ (thread) -> URL? in
-            return thread.imageURL
+            return thread.imageURL ?? thread.thumbnailURL
         }).flatMap({ $0 })
         thumbnailURLs = imageThreads.map({ (thread) -> URL? in
-            return thread.thumbnailURL
+            return thread.thumbnailURL ?? thread.imageURL
         }).flatMap({ $0 })
         if let index = imageThreads.index(of: threads[index]) {
             photoIndex = index
@@ -327,7 +327,7 @@ extension ThreadTableViewController: UIAlertViewDelegate {
     
     fileprivate var imageThreads: [KomicaEngine.Thread] {
         return self.threads.filter({ (thread) -> Bool in
-            return thread.imageURL != nil
+            return thread.imageURL != nil || thread.thumbnailURL != nil
         })
     }
     

@@ -245,7 +245,7 @@ extension HomeTableViewController {
     
     fileprivate func openImageWithIndex(_ index: Int) {
         // Present
-        if let imageURL = threads[index].imageURL {
+        if let imageURL = threads[index].imageURL ?? threads[index].thumbnailURL {
             photoURLs = [imageURL]
         }
         // Home table view controller has only 1 photo URL.
