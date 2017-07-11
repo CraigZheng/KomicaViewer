@@ -141,17 +141,7 @@ class ThreadTableViewCell: UITableViewCell {
                 let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: SDWebImageManager.shared().cacheKey(for: imageURL))
                 imageView?.image = cachedImage
             } else if let tableViewController = tableViewController as? UITableViewController {
-                imageView?.sd_setImage(with: imageURL, placeholderImage: nil, options: SDWebImageOptions.retryFailed, completed: { [weak self](image, error, cacheType, imageURL) in
-                    guard let strongCell = self else { return }
-                    // If its been downloaded from the web, reload this 
-                    if image != nil && cacheType == SDImageCacheType.none {
-                        DispatchQueue.main.async {
-                            if let indexPath = tableViewController.tableView.indexPath(for: strongCell) {
-                                (tableViewController as! TableViewControllerBulkUpdateProtocol).addPendingIndexPaths(indexPath)
-                            }
-                        }
-                    }
-                    })
+                imageView?.sd_setImage(with: imageURL, placeholderImage: nil, options: SDWebImageOptions.retryFailed, completed: nil)
             }
             // Show imageFormatLabel, and set the text to the pathExtension.
             if let imageURLString = thread.imageURL?.absoluteString {
@@ -169,6 +159,7 @@ class ThreadTableViewCell: UITableViewCell {
         // When video link is not empty, but there's no preview image, then give it a default play button image.
         if !(thread.videoLinks?.isEmpty ?? true), imageView?.image == nil {
             imageView?.image = UIImage(named: "youtube-play-button.png")
+            imageViewZeroHeight.priority = 1
         }
         // Parasite post.
         if shouldShowParasitePost,
