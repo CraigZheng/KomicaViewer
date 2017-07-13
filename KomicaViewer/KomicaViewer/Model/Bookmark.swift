@@ -95,7 +95,6 @@ extension Bookmark: Jsonable {
                 .flatMap({ return (try? JSONSerialization.jsonObject(with: $0,
                                                                     options: .allowFragments)) as? Dictionary<String, AnyObject> })
                 .flatMap({ return KomicaForum.jsonDecode(jsonDict: $0) }) as? KomicaForum,
-            
             let date = jsonDict["date"] as? Double
             else {
                 return nil

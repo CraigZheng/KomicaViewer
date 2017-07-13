@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UZr-hX-E8J">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pxs-rS-271" id="vIc-J4-jUt">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -31,9 +31,17 @@
                             <outlet property="delegate" destination="Zgb-yp-4tQ" id="UHg-0f-vs2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="wQ8-WP-xvf"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="wQ8-WP-xvf">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="bfE-16-8qg">
+                            <connections>
+                                <segue destination="qaG-84-7QC" kind="unwind" unwindAction="unwindToHomeSegue:" id="v4H-Vk-Tmu"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="AnS-Cr-BGz"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G0I-HB-kee" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="qaG-84-7QC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="532" y="180"/>
         </scene>
@@ -41,10 +49,16 @@
         <scene sceneID="dzJ-sT-Qh0">
             <objects>
                 <navigationController id="UZr-hX-E8J" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NGP-x0-e23">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="NGP-x0-e23">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="1" green="0.63375720099999999" blue="0.27949856020000002" alpha="0.88256318509999998" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2GE-J3-ZGA">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="Zgb-yp-4tQ" kind="relationship" relationship="rootViewController" id="pT3-l4-BjG"/>
                     </connections>
