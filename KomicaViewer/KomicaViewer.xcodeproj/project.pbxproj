@@ -40,6 +40,9 @@
 		447664F71E03F48F00A06138 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447664F61E03F48F00A06138 /* IAPHelper.swift */; };
 		447665561E067A7D00A06138 /* MessagePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447665551E067A7D00A06138 /* MessagePopup.swift */; };
 		447EF1C31D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */; };
+		44858FA91F172A2500069E52 /* Bookmark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44858FA81F172A2500069E52 /* Bookmark.storyboard */; };
+		44858FCE1F172B9100069E52 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44858FCD1F172B9100069E52 /* Bookmark.swift */; };
+		44858FD01F172C2700069E52 /* BookmarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44858FCF1F172C2700069E52 /* BookmarkManager.swift */; };
 		448C1E781D76CE5D007187DB /* AdConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C1E771D76CE5D007187DB /* AdConfiguration.swift */; };
 		44902F0F1D857B3E003848AF /* ForumQRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44902F0E1D857B3E003848AF /* ForumQRScannerViewController.swift */; };
 		449B210C1D7D1A21006AA091 /* BlockedUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449B210B1D7D1A21006AA091 /* BlockedUserManager.swift */; };
@@ -408,6 +411,9 @@
 		447664F61E03F48F00A06138 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		447665551E067A7D00A06138 /* MessagePopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagePopup.swift; sourceTree = "<group>"; };
 		447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerBulkUpdateProtocol.swift; sourceTree = "<group>"; };
+		44858FA81F172A2500069E52 /* Bookmark.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bookmark.storyboard; sourceTree = "<group>"; };
+		44858FCD1F172B9100069E52 /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
+		44858FCF1F172C2700069E52 /* BookmarkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkManager.swift; sourceTree = "<group>"; };
 		448C1E771D76CE5D007187DB /* AdConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdConfiguration.swift; sourceTree = "<group>"; };
 		44902F0E1D857B3E003848AF /* ForumQRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumQRScannerViewController.swift; sourceTree = "<group>"; };
 		449B210B1D7D1A21006AA091 /* BlockedUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockedUserManager.swift; sourceTree = "<group>"; };
@@ -484,6 +490,7 @@
 				44496F561D5985A6005875DD /* Main.storyboard */,
 				44397D6B1D695AA5005B44AA /* AddForum.storyboard */,
 				44575A321E01826700B3A941 /* Settings.storyboard */,
+				44858FA81F172A2500069E52 /* Bookmark.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -590,6 +597,8 @@
 				44655D791D5AFDAB00229404 /* Forums.swift */,
 				44397D571D670A80005B44AA /* WebViewGuardDog.swift */,
 				449B210B1D7D1A21006AA091 /* BlockedUserManager.swift */,
+				44858FCD1F172B9100069E52 /* Bookmark.swift */,
+				44858FCF1F172C2700069E52 /* BookmarkManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1062,6 +1071,7 @@
 				446714441E531B33002C6339 /* youtube-play-button.png in Resources */,
 				44575A311E01822F00B3A941 /* settings@3x.png in Resources */,
 				44575A2F1E01822F00B3A941 /* settings.png in Resources */,
+				44858FA91F172A2500069E52 /* Bookmark.storyboard in Resources */,
 				44496F5A1D5985A6005875DD /* Assets.xcassets in Resources */,
 				44496F581D5985A6005875DD /* Main.storyboard in Resources */,
 				44397D6C1D695AA5005B44AA /* AddForum.storyboard in Resources */,
@@ -1211,6 +1221,7 @@
 				442A502A1D8570A600769A2A /* CustomForumManagerTableViewController.swift in Sources */,
 				44ADCC081D85951600699BAC /* ShowForumQRCodeViewController.swift in Sources */,
 				443342A91D5F5A3800EDFA8F /* ActionTableViewCell.swift in Sources */,
+				44858FD01F172C2700069E52 /* BookmarkManager.swift in Sources */,
 				44F48EBC1D5D3F0700519C1B /* ProgressHUD.swift in Sources */,
 				4421C1B21E72C8DE00BD48C4 /* PartialTransparentView.m in Sources */,
 				44655D771D5AEF8E00229404 /* ForumPickerTableViewController.swift in Sources */,
@@ -1229,6 +1240,7 @@
 				44BD39801D5B5E180070E0CB /* ThreadTableViewController.swift in Sources */,
 				44397D581D670A80005B44AA /* WebViewGuardDog.swift in Sources */,
 				44BD39861D5B74ED0070E0CB /* UIView+SuperCell.swift in Sources */,
+				44858FCE1F172B9100069E52 /* Bookmark.swift in Sources */,
 				449B210C1D7D1A21006AA091 /* BlockedUserManager.swift in Sources */,
 				447664F71E03F48F00A06138 /* IAPHelper.swift in Sources */,
 				44B1E5E31DC9F58F00CCF6F0 /* WebMPlayerViewController.swift in Sources */,
