@@ -43,6 +43,7 @@
 		44858FA91F172A2500069E52 /* Bookmark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44858FA81F172A2500069E52 /* Bookmark.storyboard */; };
 		44858FCE1F172B9100069E52 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44858FCD1F172B9100069E52 /* Bookmark.swift */; };
 		44858FD01F172C2700069E52 /* BookmarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44858FCF1F172C2700069E52 /* BookmarkManager.swift */; };
+		44858FD21F17341D00069E52 /* Jsonable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44858FD11F17341D00069E52 /* Jsonable.swift */; };
 		448C1E781D76CE5D007187DB /* AdConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C1E771D76CE5D007187DB /* AdConfiguration.swift */; };
 		44902F0F1D857B3E003848AF /* ForumQRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44902F0E1D857B3E003848AF /* ForumQRScannerViewController.swift */; };
 		449B210C1D7D1A21006AA091 /* BlockedUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449B210B1D7D1A21006AA091 /* BlockedUserManager.swift */; };
@@ -414,6 +415,7 @@
 		44858FA81F172A2500069E52 /* Bookmark.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bookmark.storyboard; sourceTree = "<group>"; };
 		44858FCD1F172B9100069E52 /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		44858FCF1F172C2700069E52 /* BookmarkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkManager.swift; sourceTree = "<group>"; };
+		44858FD11F17341D00069E52 /* Jsonable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jsonable.swift; sourceTree = "<group>"; };
 		448C1E771D76CE5D007187DB /* AdConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdConfiguration.swift; sourceTree = "<group>"; };
 		44902F0E1D857B3E003848AF /* ForumQRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumQRScannerViewController.swift; sourceTree = "<group>"; };
 		449B210B1D7D1A21006AA091 /* BlockedUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockedUserManager.swift; sourceTree = "<group>"; };
@@ -599,6 +601,7 @@
 				449B210B1D7D1A21006AA091 /* BlockedUserManager.swift */,
 				44858FCD1F172B9100069E52 /* Bookmark.swift */,
 				44858FCF1F172C2700069E52 /* BookmarkManager.swift */,
+				44858FD11F17341D00069E52 /* Jsonable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1215,6 +1218,7 @@
 				44BD39751D5B1E510070E0CB /* Logger.swift in Sources */,
 				44655D7A1D5AFDAB00229404 /* Forums.swift in Sources */,
 				44655D751D5AEF7900229404 /* HomeTableViewController.swift in Sources */,
+				44858FD21F17341D00069E52 /* Jsonable.swift in Sources */,
 				443342A71D5F576F00EDFA8F /* AFHTTPSessionManager+Util.swift in Sources */,
 				44397D721D695C00005B44AA /* RoundCornerBorderedButton.swift in Sources */,
 				44496F531D5985A6005875DD /* AppDelegate.swift in Sources */,

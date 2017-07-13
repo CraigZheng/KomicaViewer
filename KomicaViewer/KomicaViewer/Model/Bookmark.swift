@@ -21,3 +21,23 @@ class Bookmark {
   }
   
 }
+
+extension KomicaForum: Jsonable {
+  
+  static func jsonDecode(jsonDict: Dictionary<String, AnyObject>) -> Jsonable? {
+    return KomicaForum.init(jsonDict: jsonDict)
+  }
+  
+}
+
+extension KomicaEngine.Thread: Jsonable {
+  
+  static func jsonDecode(jsonDict: Dictionary<String, AnyObject>) -> Jsonable? {
+    return nil
+  }
+  
+  func jsonEncode() -> String? {
+    return nil
+  }
+  
+}
