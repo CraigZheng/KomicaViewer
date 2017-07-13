@@ -69,6 +69,7 @@ class ThreadTableViewCell: UITableViewCell {
     @IBOutlet weak var imageFormatLabel: UILabel!
     @IBOutlet weak var mediaLinkLabel: UILabel!
     @IBOutlet weak var imageViewZeroHeight: NSLayoutConstraint!
+    @IBOutlet weak var blockView: UIView!
     
     // MARK: Override to return customisable UI elements.
     
@@ -99,11 +100,13 @@ class ThreadTableViewCell: UITableViewCell {
         // Make a copy of the incoming thread.
         var thread = thread
         userID = thread.UID
+        blockView.isHidden = true
         if BlockedUserManager.sharedManager.isUserIDBlocked(thread.UID ?? "") {
             thread = Thread()
             thread.UID = userID
-            // Set the text colour of attributed string to blocked colour.
-            thread.content = NSAttributedString(string: "Content Blocked\nTap and hold to unblock", attributes: [NSForegroundColorAttributeName: TextColour.blocked])
+            // FIXME: block content.
+            thread.rawHtmlContent = "\n\n\n\n"
+            blockView.isHidden = false
         }
         
         var titleText = (thread.ID ?? "")
