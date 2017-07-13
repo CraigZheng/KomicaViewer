@@ -55,6 +55,11 @@ class ThreadTableViewCell: UITableViewCell {
         }
         return links
     }
+    private let paragraphAttribute: NSParagraphStyle = {
+        let paragraphAttribute = NSMutableParagraphStyle()
+        paragraphAttribute.lineSpacing = 4
+        return paragraphAttribute
+    }()
   
     @IBOutlet weak var _detailTextLabel: UILabel!
     @IBOutlet weak var _textLabel: UILabel?
@@ -92,8 +97,6 @@ class ThreadTableViewCell: UITableViewCell {
         super.awakeFromNib()
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ThreadTableViewCell.longPressAction))
         contentView.addGestureRecognizer(longPressGestureRecognizer)
-        // The TTTAttributedLabel self.textContentLabel should be updated with new paragrah attribute.
-        textContentLabel?.lineSpacing = 4.0
     }
     
     func layoutWithThread(_ thread: KomicaEngine.Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol?) {
@@ -117,6 +120,7 @@ class ThreadTableViewCell: UITableViewCell {
         //
         if let attributedString = thread.content,
             let mutableAttributedString = thread.content?.mutableCopy() as? NSMutableAttributedString {
+            mutableAttributedString.addAttributes([NSParagraphStyleAttributeName: paragraphAttribute], range: NSMakeRange(0, attributedString.length))
             // Set the default font and colour.
             mutableAttributedString.addAttributes([NSFontAttributeName: defaultFont, NSForegroundColorAttributeName: TextColour.standard],
                                            range: NSMakeRange(0, mutableAttributedString.length))
