@@ -17,40 +17,64 @@ class KomicaViewerTests: XCTestCase {
     
     let forumString = "{\"name\":\"綜合學術討論\",\"header\":\"\",\"indexURL\":\"http://gzone-anime.info/UnitedSites/academic/\",\"listURL\":\"http://gzone-anime.info/UnitedSites/academic/<PAGE>.htm\",\"responseURL\":\"http://gzone-anime.info/UnitedSites/academic/pixmicat.php?res=<ID>\",\"postURL\":\"\",\"replyURL\":\"\",\"parserType\":0}"
     
+    lazy var forum: KomicaForum = {
+        return KomicaForum.jsonDecode(jsonDict: try! JSONSerialization.jsonObject(with: self.forumString.data(using: .utf8)!, options: .allowFragments) as! Dictionary<String, AnyObject>) as! KomicaForum
+    }()
+    
+    lazy var thread: KomicaEngine.Thread = {
+        let animeElement = ObjectiveGumbo.parseDocument(with: self.animeHtmlString).elements(withClass: "reply").first as! OGElement
+        return PixmicatThreadParser.threadWithOGElement(animeElement)!
+    }()
+    
+    
     func testThreadJsonEncoding() {
-        if let animeElement = ObjectiveGumbo.parseDocument(with: animeHtmlString).elements(withClass: "reply").first as? OGElement {
-            let thread = PixmicatThreadParser.threadWithOGElement(animeElement)
-            let jsonString = thread?.jsonEncode()!
-            let decodedThread = KomicaEngine.Thread.jsonDecode(jsonDict: try! JSONSerialization.jsonObject(with: (jsonString?.data(using: .utf8))!, options: .allowFragments) as! Dictionary<String, AnyObject>)
-            XCTAssert(decodedThread != nil)
-            
-            if let decodedThread = decodedThread as? KomicaEngine.Thread {
-                XCTAssert(thread?.title == decodedThread.title)
-                XCTAssert(thread?.content?.string == decodedThread.content?.string)
-                XCTAssert(thread?.ID == decodedThread.ID)
-                XCTAssert(thread?.UID == decodedThread.UID)
-                XCTAssert(thread?.postDateString == decodedThread.postDateString)
-                XCTAssert(thread?.thumbnailURL == decodedThread.thumbnailURL)
-                XCTAssert(thread?.imageURL == decodedThread.imageURL)
-                XCTAssert(thread?.warnings.count == decodedThread.warnings.count)
-            } else {
-                XCTFail()
-            }
+        let jsonString = thread.jsonEncode()!
+        let decodedThread = KomicaEngine.Thread.jsonDecode(jsonDict: try! JSONSerialization.jsonObject(with: jsonString.data(using: .utf8)!,
+                                                           options: .allowFragments) as! Dictionary<String, AnyObject>)
+        XCTAssert(decodedThread != nil)
+        
+        if let decodedThread = decodedThread as? KomicaEngine.Thread {
+            XCTAssert(thread.title == decodedThread.title)
+            XCTAssert(thread.content?.string == decodedThread.content?.string)
+            XCTAssert(thread.ID == decodedThread.ID)
+            XCTAssert(thread.UID == decodedThread.UID)
+            XCTAssert(thread.postDateString == decodedThread.postDateString)
+            XCTAssert(thread.thumbnailURL == decodedThread.thumbnailURL)
+            XCTAssert(thread.imageURL == decodedThread.imageURL)
+            XCTAssert(thread.warnings.count == decodedThread.warnings.count)
+        } else {
+            XCTFail()
         }
     }
     
     func testForumJsonEncoding() {
-        let forum = KomicaForum.jsonDecode(jsonDict: try! JSONSerialization.jsonObject(with: forumString.data(using: .utf8)!, options: .allowFragments) as! Dictionary<String, AnyObject>)
-        let jsonString = (forum?.jsonEncode())!
+        let jsonString = forum.jsonEncode()!
         let decodedForum = KomicaForum.jsonDecode(jsonDict: try! JSONSerialization.jsonObject(with: jsonString.data(using: .utf8)!, options: .allowFragments) as! Dictionary<String, AnyObject>)
         
-        XCTAssert(forum != nil && decodedForum != nil)
+        XCTAssert(decodedForum != nil)
         
-        if let forum = forum as? KomicaForum,
-            let decodedForum = decodedForum as? KomicaForum {
+        if let decodedForum = decodedForum as? KomicaForum {
             XCTAssert(decodedForum == forum)
         } else {
             XCTFail()
         }
+    }
+    
+    func testBookmarkJsonEncoding() {
+        let bookmark = Bookmark(forum: forum, thread: thread)
+        let jsonString = bookmark.jsonEncode()!
+        let decodedBookmark = Bookmark.jsonDecode(jsonDict: try! JSONSerialization.jsonObject(with: jsonString.data(using: .utf8)!,
+                                                                                              options: .allowFragments) as! Dictionary<String, AnyObject>) as! Bookmark
+        
+        XCTAssert(bookmark.date?.timeIntervalSince1970 == decodedBookmark.date?.timeIntervalSince1970)
+        XCTAssert(bookmark.forum == decodedBookmark.forum)
+        XCTAssert(bookmark.thread.title == decodedBookmark.thread.title)
+        XCTAssert(bookmark.thread.content?.string == decodedBookmark.thread.content?.string)
+        XCTAssert(bookmark.thread.ID == decodedBookmark.thread.ID)
+        XCTAssert(bookmark.thread.UID == decodedBookmark.thread.UID)
+        XCTAssert(bookmark.thread.postDateString == decodedBookmark.thread.postDateString)
+        XCTAssert(bookmark.thread.thumbnailURL == decodedBookmark.thread.thumbnailURL)
+        XCTAssert(bookmark.thread.imageURL == decodedBookmark.thread.imageURL)
+        XCTAssert(bookmark.thread.warnings.count == decodedBookmark.thread.warnings.count)
     }
 }
