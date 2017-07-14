@@ -129,7 +129,8 @@ extension Sequence where Iterator.Element == Bookmark {
             }
         }
         if jsonArray.count > 0,
-            let jsonData = try? JSONSerialization.data(withJSONObject: jsonArray, options: .prettyPrinted) {
+            let jsonData = try? JSONSerialization.data(withJSONObject: jsonArray, options: .prettyPrinted)
+        {
             return String(data: jsonData, encoding: .utf8)
         } else {
             return nil

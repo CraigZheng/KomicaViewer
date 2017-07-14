@@ -81,11 +81,25 @@ class KomicaViewerTests: XCTestCase {
         XCTAssert(bookmark.thread.warnings.count == decodedBookmark.thread.warnings.count)
     }
     
-    func testBookmarkManager() {
-        BookmarkManager.shared.add(bookmark)
-        let jsonString = BookmarkManager.shared.bookmarks.jsonEncode()!
-        let decodedBookmarks = [Bookmark].jsonDecode(jsonString: [jsonString])
+    func testBookmarkManagerAdd() {
+        if BookmarkManager.shared.bookmarks.count <= 0 {
+          BookmarkManager.shared.add(bookmark)
+        }
+        let jsonArray = BookmarkManager.shared.bookmarks.jsonEncode()!.data(using: .utf8).flatMap({ return try! JSONSerialization.jsonObject(with: $0, options: .allowFragments) }) as! [String]
+        let decodedBookmarks = [Bookmark].jsonDecode(jsonString: jsonArray)
       
-        XCTAssert(jsonString == decodedBookmarks?.jsonEncode())
+        XCTAssert(BookmarkManager.shared.bookmarks.jsonEncode() == decodedBookmarks?.jsonEncode())
     }
+  
+  func testBookmarkManagerRemove() {
+    let numberOfBookmarks = BookmarkManager.shared.bookmarks.count
+    if BookmarkManager.shared.bookmarks.count > 1 {
+      BookmarkManager.shared.remove(bookmark)
+    }
+    let jsonArray = BookmarkManager.shared.bookmarks.jsonEncode()!.data(using: .utf8).flatMap({ return try! JSONSerialization.jsonObject(with: $0, options: .allowFragments) }) as! [String]
+    let decodedBookmarks = [Bookmark].jsonDecode(jsonString: jsonArray)
+    
+    XCTAssert(numberOfBookmarks > BookmarkManager.shared.bookmarks.count)
+    XCTAssert(BookmarkManager.shared.bookmarks.jsonEncode() == decodedBookmarks?.jsonEncode())
+  }
 }
