@@ -12,6 +12,10 @@ class BookmarkTableViewController: UITableViewController {
     
     let manager = BookmarkManager.shared
     
+    private enum Segue: String {
+        case showThread
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -38,8 +42,22 @@ class BookmarkTableViewController: UITableViewController {
         }
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: Segue.showThread.rawValue, sender: tableView.cellForRow(at: indexPath))
+    }
 }
 
+// MARK: Prepare for segue.
 extension BookmarkTableViewController {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let selectedCell = sender as? UITableViewCell,
+            let destinationViewController = segue.destination as? ThreadTableViewController,
+            let indexPath = tableView.indexPath(for: selectedCell)
+        {
+            destinationViewController.selectedThread = manager.bookmarks[indexPath.row].thread
+        }
+    }
     
 }
