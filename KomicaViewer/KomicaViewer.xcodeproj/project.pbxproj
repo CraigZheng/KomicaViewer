@@ -37,6 +37,7 @@
 		44655D771D5AEF8E00229404 /* ForumPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */; };
 		44655D7A1D5AFDAB00229404 /* Forums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44655D791D5AFDAB00229404 /* Forums.swift */; };
 		446714441E531B33002C6339 /* youtube-play-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 446714431E531B32002C6339 /* youtube-play-button.png */; };
+		4475E6001F18F253004EC14D /* BookmarkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4475E5FF1F18F253004EC14D /* BookmarkTableViewController.swift */; };
 		447664F71E03F48F00A06138 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447664F61E03F48F00A06138 /* IAPHelper.swift */; };
 		447665561E067A7D00A06138 /* MessagePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447665551E067A7D00A06138 /* MessagePopup.swift */; };
 		447EF1C31D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */; };
@@ -407,6 +408,7 @@
 		44655D761D5AEF8E00229404 /* ForumPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumPickerTableViewController.swift; sourceTree = "<group>"; };
 		44655D791D5AFDAB00229404 /* Forums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forums.swift; sourceTree = "<group>"; };
 		446714431E531B32002C6339 /* youtube-play-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube-play-button.png"; sourceTree = "<group>"; };
+		4475E5FF1F18F253004EC14D /* BookmarkTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkTableViewController.swift; sourceTree = "<group>"; };
 		447664F61E03F48F00A06138 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		447665551E067A7D00A06138 /* MessagePopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagePopup.swift; sourceTree = "<group>"; };
 		447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerBulkUpdateProtocol.swift; sourceTree = "<group>"; };
@@ -583,6 +585,7 @@
 				44ADCC071D85951600699BAC /* ShowForumQRCodeViewController.swift */,
 				44BB92811D88ED7A00A29EB5 /* UIViewControllerMWPhotoBrowserProtocol.swift */,
 				44B1E5E21DC9F58F00CCF6F0 /* WebMPlayerViewController.swift */,
+				4475E5FF1F18F253004EC14D /* BookmarkTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1206,6 +1209,7 @@
 				44397D671D6953FB005B44AA /* UIApplication+Util.swift in Sources */,
 				44A65AAB1D5DEE1000A4DDE6 /* UIViewController+ProgressBar.swift in Sources */,
 				447EF1C31D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift in Sources */,
+				4475E6001F18F253004EC14D /* BookmarkTableViewController.swift in Sources */,
 				44A65AA21D5DDA3300A4DDE6 /* UIColor+RGB.swift in Sources */,
 				44397D5F1D6942E7005B44AA /* SVWebViewProtocol.swift in Sources */,
 				44A65A981D5DBB0100A4DDE6 /* UIView+Util.m in Sources */,
