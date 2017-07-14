@@ -118,3 +118,31 @@ extension Bookmark: Jsonable {
     }
     
 }
+
+extension Sequence where Iterator.Element == Bookmark {
+    
+    func jsonEncode() -> String? {
+        var jsonArray = [String]()
+        self.forEach { bookmark in
+            if let jsonString = bookmark.jsonEncode() {
+                jsonArray.append(jsonString)
+            }
+        }
+        if jsonArray.count > 0,
+            let jsonData = try? JSONSerialization.data(withJSONObject: jsonArray, options: .prettyPrinted) {
+            return String(data: jsonData, encoding: .utf8)
+        } else {
+            return nil
+        }
+    }
+    
+    func jsonDecode(jsonString: [String]) -> [Bookmark]? {
+        let bookmarks = jsonString.flatMap { string -> Bookmark? in
+            guard let jsonData = string.data(using: .utf8)
+                , let jsonDict = (try? JSONSerialization.jsonObject(with: jsonData, options: .allowFragments)) as? Dictionary<String, AnyObject> else { return nil }
+            return Bookmark.jsonDecode(jsonDict: jsonDict) as? Bookmark
+        }
+        return bookmarks
+    }
+    
+}
