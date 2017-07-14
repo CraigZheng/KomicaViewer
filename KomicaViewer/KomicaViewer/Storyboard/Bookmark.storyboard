@@ -43,17 +43,28 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="zia-IQ-lVa" kind="show" identifier="showThread" id="kK1-fz-wnJ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G0I-HB-kee" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="qaG-84-7QC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="532" y="180"/>
         </scene>
+        <!--Thread-->
+        <scene sceneID="ZBc-nQ-6vU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Thread" id="zia-IQ-lVa" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ynw-uz-4LC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1142" y="179"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="dzJ-sT-Qh0">
             <objects>
                 <navigationController id="UZr-hX-E8J" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="NGP-x0-e23">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NGP-x0-e23">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

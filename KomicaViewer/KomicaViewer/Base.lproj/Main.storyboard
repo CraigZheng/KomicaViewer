@@ -60,26 +60,6 @@
             </objects>
             <point key="canvasLocation" x="1488.8" y="-834.33283358320841"/>
         </scene>
-        <!--Quoted Content Table View Controller-->
-        <scene sceneID="seQ-Id-b6i">
-            <objects>
-                <tableViewController modalPresentationStyle="overFullScreen" id="rcL-3Y-gfP" customClass="QuotedContentTableViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="h8A-jU-mFg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <connections>
-                            <outlet property="dataSource" destination="rcL-3Y-gfP" id="hnS-pv-zeX"/>
-                            <outlet property="delegate" destination="rcL-3Y-gfP" id="EEQ-NK-Fhi"/>
-                        </connections>
-                    </tableView>
-                    <value key="contentSizeForViewInPopover" type="size" width="320" height="160"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NqX-Y7-XMF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3148" y="-967"/>
-        </scene>
         <!--Home Table View Controller-->
         <scene sceneID="xVi-5c-5hD">
             <objects>
@@ -160,129 +140,20 @@
                         <outlet property="adBannerTableViewHeaderView" destination="byH-eZ-zxY" id="egr-T0-0RW"/>
                         <outlet property="adBannerView" destination="IFY-eJ-06f" id="zFd-8w-SOe"/>
                         <outlet property="adDescriptionLabel" destination="9TU-iA-i0k" id="PFy-VJ-Vb6"/>
-                        <segue destination="Fxb-WB-Xzn" kind="show" identifier="showThread" id="xt5-yj-14A"/>
+                        <segue destination="HIf-Cq-3sq" kind="show" identifier="showThread" id="AmG-KF-bUz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2vI-jQ-CmA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1491" y="-146"/>
         </scene>
-        <!--Thread Table View Controller-->
-        <scene sceneID="l78-DI-aXJ">
+        <!--Thread-->
+        <scene sceneID="BIb-o1-8Ze">
             <objects>
-                <tableViewController id="Fxb-WB-Xzn" customClass="ThreadTableViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="YNq-xe-h2B">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="Scz-fp-U5u" userLabel="Ad Banner Header View">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="asv-Yy-NHf" customClass="GADBannerView">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
-                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbB-ON-QVn" userLabel="Ad Description Label">
-                                    <rect key="frame" x="0.0" y="80" width="375" height="0.0"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstItem="asv-Yy-NHf" firstAttribute="top" secondItem="Scz-fp-U5u" secondAttribute="top" id="2q1-6e-0l8"/>
-                                <constraint firstAttribute="bottom" secondItem="qbB-ON-QVn" secondAttribute="bottom" id="6Gh-NG-I1n"/>
-                                <constraint firstAttribute="trailing" secondItem="asv-Yy-NHf" secondAttribute="trailing" id="GsU-RT-o2T"/>
-                                <constraint firstItem="qbB-ON-QVn" firstAttribute="leading" secondItem="Scz-fp-U5u" secondAttribute="leading" id="R4d-l0-LOB"/>
-                                <constraint firstAttribute="bottom" secondItem="asv-Yy-NHf" secondAttribute="bottom" id="TII-2m-y3K"/>
-                                <constraint firstAttribute="trailing" secondItem="qbB-ON-QVn" secondAttribute="trailing" id="VK5-f3-x54"/>
-                                <constraint firstItem="asv-Yy-NHf" firstAttribute="leading" secondItem="Scz-fp-U5u" secondAttribute="leading" id="af9-PV-z46"/>
-                                <constraint firstItem="qbB-ON-QVn" firstAttribute="top" secondItem="asv-Yy-NHf" secondAttribute="bottom" id="pHH-EK-EtG"/>
-                            </constraints>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="TII-2m-y3K"/>
-                                </mask>
-                            </variation>
-                        </view>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="5RD-ac-21O">
-                                <rect key="frame" x="0.0" y="108" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5RD-ac-21O" id="vEw-0K-8CC">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Fxb-WB-Xzn" id="go1-vp-8AL"/>
-                            <outlet property="delegate" destination="Fxb-WB-Xzn" id="kSb-EK-137"/>
-                        </connections>
-                    </tableView>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="TxK-Ay-4qA">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="UeO-Zh-80L">
-                            <connections>
-                                <action selector="openInSafariAction:" destination="Fxb-WB-Xzn" id="yyf-Q8-XDL"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="adBannerTableViewHeaderView" destination="Scz-fp-U5u" id="YXd-aa-thi"/>
-                        <outlet property="adBannerView" destination="asv-Yy-NHf" id="GMU-sO-EqP"/>
-                        <outlet property="adDescriptionLabel" destination="qbB-ON-QVn" id="Ouf-dt-G9v"/>
-                        <segue destination="PR8-ly-aaG" kind="show" identifier="parasitePosts" id="9fq-5Y-o5k"/>
-                        <segue destination="rcL-3Y-gfP" kind="popoverPresentation" identifier="popupThread" popoverAnchorBarButtonItem="UeO-Zh-80L" id="Ak8-Fo-heQ">
-                            <popoverArrowDirection key="popoverArrowDirection"/>
-                        </segue>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KN8-of-9oG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Thread" id="HIf-Cq-3sq" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ySu-MV-fNL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2311" y="-146"/>
-        </scene>
-        <!--Parasite Post Table View Controller-->
-        <scene sceneID="W16-NV-Wfv">
-            <objects>
-                <tableViewController id="PR8-ly-aaG" customClass="ParasitePostTableViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="P1B-Bx-pQU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellIdentifier" textLabel="gEL-bC-yF0" style="IBUITableViewCellStyleDefault" id="avY-jQ-OV5">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="avY-jQ-OV5" id="tXh-F6-DBl">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gEL-bC-yF0">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" red="0.71372549019999998" green="0.30588235289999999" blue="0.015686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" red="1" green="1" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="PR8-ly-aaG" id="WHz-vD-Xga"/>
-                            <outlet property="delegate" destination="PR8-ly-aaG" id="d3G-JP-Gp2"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zBK-Lz-Qag" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3148" y="-146"/>
+            <point key="canvasLocation" x="2126" y="-147"/>
         </scene>
         <!--Forum Picker Table View Controller-->
         <scene sceneID="edd-3u-bqG">
