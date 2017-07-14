@@ -39,6 +39,7 @@
 		446714441E531B33002C6339 /* youtube-play-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 446714431E531B32002C6339 /* youtube-play-button.png */; };
 		4475E6001F18F253004EC14D /* BookmarkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4475E5FF1F18F253004EC14D /* BookmarkTableViewController.swift */; };
 		4475E6261F1906BB004EC14D /* Thread.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4475E6251F1906BB004EC14D /* Thread.storyboard */; };
+		4475E63E1F1916C1004EC14D /* BFWControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4475E6391F1916AF004EC14D /* BFWControls.framework */; };
 		447664F71E03F48F00A06138 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447664F61E03F48F00A06138 /* IAPHelper.swift */; };
 		447665561E067A7D00A06138 /* MessagePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447665551E067A7D00A06138 /* MessagePopup.swift */; };
 		447EF1C31D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */; };
@@ -100,6 +101,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4453D1D81CB662A10076ABE7;
 			remoteInfo = KomicaEngine;
+		};
+		4475E6381F1916AF004EC14D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4475E6331F1916AF004EC14D /* BFWControls.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E28BA9111E963F7800D5DE3D;
+			remoteInfo = BFWControls;
+		};
+		4475E63A1F1916AF004EC14D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4475E6331F1916AF004EC14D /* BFWControls.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E28BA9BA1E964BED00D5DE3D;
+			remoteInfo = "BFWControls Demo";
+		};
+		4475E63C1F1916BB004EC14D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4475E6331F1916AF004EC14D /* BFWControls.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E28BA9101E963F7800D5DE3D;
+			remoteInfo = BFWControls;
 		};
 		44C25D0C1D89984C0066888E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -411,6 +433,7 @@
 		446714431E531B32002C6339 /* youtube-play-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube-play-button.png"; sourceTree = "<group>"; };
 		4475E5FF1F18F253004EC14D /* BookmarkTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkTableViewController.swift; sourceTree = "<group>"; };
 		4475E6251F1906BB004EC14D /* Thread.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Thread.storyboard; sourceTree = "<group>"; };
+		4475E6331F1916AF004EC14D /* BFWControls.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BFWControls.xcodeproj; path = submodules/BFWControl/BFWControls.xcodeproj; sourceTree = "<group>"; };
 		447664F61E03F48F00A06138 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		447665551E067A7D00A06138 /* MessagePopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagePopup.swift; sourceTree = "<group>"; };
 		447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerBulkUpdateProtocol.swift; sourceTree = "<group>"; };
@@ -456,6 +479,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4475E63E1F1916C1004EC14D /* BFWControls.framework in Frameworks */,
 				44FBD8251D899D1800ACA2C8 /* DTFoundation.framework in Frameworks */,
 				44655D471D5AD24700229404 /* KomicaEngine.framework in Frameworks */,
 				8E7FE4381DD014DA47A44100 /* Pods_KomicaViewer.framework in Frameworks */,
@@ -502,6 +526,7 @@
 			isa = PBXGroup;
 			children = (
 				44A65A9B1D5DBB7200A4DDE6 /* KomicaViewer-bridging-header.h */,
+				4475E6331F1916AF004EC14D /* BFWControls.xcodeproj */,
 				44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */,
 				44C25D011D89984C0066888E /* DTCoreText.xcodeproj */,
 				44655D3A1D5AD15400229404 /* KomicaEngine.xcodeproj */,
@@ -606,6 +631,15 @@
 				44858FD11F17341D00069E52 /* Jsonable.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4475E6341F1916AF004EC14D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4475E6391F1916AF004EC14D /* BFWControls.framework */,
+				4475E63B1F1916AF004EC14D /* BFWControls Demo.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		44A65A921D5DBB0100A4DDE6 /* LoadFromNibView */ = {
@@ -728,6 +762,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4475E63D1F1916BB004EC14D /* PBXTargetDependency */,
 				44FBD8241D899D1100ACA2C8 /* PBXTargetDependency */,
 				44FBD7CC1D899C1900ACA2C8 /* PBXTargetDependency */,
 				44655D4A1D5AD24700229404 /* PBXTargetDependency */,
@@ -792,6 +827,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 4475E6341F1916AF004EC14D /* Products */;
+					ProjectRef = 4475E6331F1916AF004EC14D /* BFWControls.xcodeproj */;
+				},
+				{
 					ProductGroup = 44C25D021D89984C0066888E /* Products */;
 					ProjectRef = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
 				},
@@ -825,6 +864,20 @@
 			fileType = wrapper.cfbundle;
 			path = KomicaEngineTests.xctest;
 			remoteRef = 44655D411D5AD15400229404 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4475E6391F1916AF004EC14D /* BFWControls.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BFWControls.framework;
+			remoteRef = 4475E6381F1916AF004EC14D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4475E63B1F1916AF004EC14D /* BFWControls Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "BFWControls Demo.app";
+			remoteRef = 4475E63A1F1916AF004EC14D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		44C25D0D1D89984C0066888E /* RTDemoApp.app */ = {
@@ -1275,6 +1328,11 @@
 			isa = PBXTargetDependency;
 			name = KomicaEngine;
 			targetProxy = 44655D491D5AD24700229404 /* PBXContainerItemProxy */;
+		};
+		4475E63D1F1916BB004EC14D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BFWControls;
+			targetProxy = 4475E63C1F1916BB004EC14D /* PBXContainerItemProxy */;
 		};
 		44FBD7CC1D899C1900ACA2C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
