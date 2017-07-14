@@ -26,6 +26,10 @@ class KomicaViewerTests: XCTestCase {
         return PixmicatThreadParser.threadWithOGElement(animeElement)!
     }()
     
+    lazy var bookmark: Bookmark = {
+        return Bookmark(forum: self.forum, thread: self.thread)
+    }()
+
     
     func testThreadJsonEncoding() {
         let jsonString = thread.jsonEncode()!
@@ -61,7 +65,6 @@ class KomicaViewerTests: XCTestCase {
     }
     
     func testBookmarkJsonEncoding() {
-        let bookmark = Bookmark(forum: forum, thread: thread)
         let jsonString = bookmark.jsonEncode()!
         let decodedBookmark = Bookmark.jsonDecode(jsonDict: try! JSONSerialization.jsonObject(with: jsonString.data(using: .utf8)!,
                                                                                               options: .allowFragments) as! Dictionary<String, AnyObject>) as! Bookmark
@@ -76,5 +79,13 @@ class KomicaViewerTests: XCTestCase {
         XCTAssert(bookmark.thread.thumbnailURL == decodedBookmark.thread.thumbnailURL)
         XCTAssert(bookmark.thread.imageURL == decodedBookmark.thread.imageURL)
         XCTAssert(bookmark.thread.warnings.count == decodedBookmark.thread.warnings.count)
+    }
+    
+    func testBookmarkManager() {
+        BookmarkManager.shared.add(bookmark)
+        let jsonString = BookmarkManager.shared.bookmarks.jsonEncode()!
+        let decodedBookmarks = [Bookmark].jsonDecode(jsonString: [jsonString])
+      
+        XCTAssert(jsonString == decodedBookmarks?.jsonEncode())
     }
 }

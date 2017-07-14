@@ -136,7 +136,7 @@ extension Sequence where Iterator.Element == Bookmark {
         }
     }
     
-    func jsonDecode(jsonString: [String]) -> [Bookmark]? {
+    static func jsonDecode(jsonString: [String]) -> [Bookmark]? {
         let bookmarks = jsonString.flatMap { string -> Bookmark? in
             guard let jsonData = string.data(using: .utf8)
                 , let jsonDict = (try? JSONSerialization.jsonObject(with: jsonData, options: .allowFragments)) as? Dictionary<String, AnyObject> else { return nil }

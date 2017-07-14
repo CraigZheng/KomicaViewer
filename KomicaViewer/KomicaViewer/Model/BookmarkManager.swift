@@ -15,11 +15,11 @@ class BookmarkManager {
     
     var bookmarks: [Bookmark] {
         guard let jsonString = userDefault.string(forKey: bookmarkKey),
-            let jsonDictionary = jsonString.data(using: .utf8)
-                .flatMap({ return try? JSONSerialization.jsonObject(with: $0, options: .allowFragments) }) as? [Dictionary<String, AnyObject>] else { return [] }
-        return jsonDictionary.flatMap({ dictionary -> Bookmark? in
-            return Bookmark.jsonDecode(jsonDict: dictionary) as? Bookmark
-        })
+            let jsonArray = jsonString.data(using: .utf8)
+                .flatMap({ return try? JSONSerialization.jsonObject(with: $0, options: .allowFragments) }) as? [String] else {
+                  return []
+        }
+        return [Bookmark].jsonDecode(jsonString: jsonArray) ?? []
     }
     
     func add(_ bookmark: Bookmark) {
