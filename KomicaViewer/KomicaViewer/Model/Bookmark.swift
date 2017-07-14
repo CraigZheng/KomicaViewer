@@ -10,7 +10,7 @@ import Foundation
 
 import KomicaEngine
 
-class Bookmark {
+class Bookmark: Equatable {
     
     var forum: KomicaForum
     var thread: KomicaEngine.Thread
@@ -21,7 +21,12 @@ class Bookmark {
         self.thread = thread
         date = Date()
     }
-    
+  
+    static func ==(left: Bookmark, right: Bookmark) -> Bool {
+        return left.forum.isEqual(right.forum)
+          && left.thread.jsonEncode() == right.thread.jsonEncode()
+    }
+  
 }
 
 extension KomicaForum: Jsonable {

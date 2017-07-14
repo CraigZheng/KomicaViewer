@@ -32,9 +32,7 @@ class BookmarkManager {
     
     func remove(_ bookmark: Bookmark) {
         var bookmarks = self.bookmarks
-        if let index = bookmarks.index(where: { storedBookmark -> Bool in
-            return storedBookmark.jsonEncode() == bookmark.jsonEncode()
-        }) {
+        if let index = bookmarks.index(of: bookmark) {
             bookmarks.remove(at: index)
         }
         if let jsonString = bookmarks.jsonEncode() {
