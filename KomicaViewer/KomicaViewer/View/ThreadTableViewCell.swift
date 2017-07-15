@@ -97,6 +97,9 @@ class ThreadTableViewCell: UITableViewCell {
         super.awakeFromNib()
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ThreadTableViewCell.longPressAction))
         contentView.addGestureRecognizer(longPressGestureRecognizer)
+        // The TTTAttributedLabel self.textContentLabel should be updated with new paragrah attribute.
+        textContentLabel?.lineSpacing = 4.0
+        textContentLabel?.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
     }
     
     func layoutWithThread(_ thread: KomicaEngine.Thread, forTableViewController tableViewController: TableViewControllerBulkUpdateProtocol?) {
