@@ -27,7 +27,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         }
     }
     @IBOutlet weak var adDescriptionLabel: UILabel!
-    
+    @IBOutlet weak var bookmarkButtonItem: UIBarButtonItem!
     
     var selectedThread: KomicaEngine.Thread! {
         didSet {
@@ -49,6 +49,12 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         guardDog.showWarningOnBlock = true
         guardDog.home = currentURL?.host
         return guardDog
+    }
+    
+    fileprivate var isBookmarked: Bool {
+        guard let forum = forum else { return false }
+        let bookmark = Bookmark(forum: forum, thread: selectedThread)
+        return BookmarkManager.shared.bookmarks.contains(bookmark)
     }
     
     enum SegueIdentifier: String {
@@ -91,16 +97,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     lazy var threads: [KomicaEngine.Thread] = {
         return [self.selectedThread]
     }()
-    func refresh() {
-        refreshWithPage(0)
-    }
-    func refreshWithPage(_ page: Int) {
-        // For each thread ID, there is only 1 page.
-        if let threadID = threadID {
-            loadResponsesWithThreadID(threadID)
-        }
-    }
-
+    
     // MARK: TableViewControllerBulkUpdateProtocol
     var targetTableView: UITableView {
         return self.tableView
@@ -108,6 +105,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     var bulkUpdateTimer: Timer?
     var pendingIndexPaths: [IndexPath] = [IndexPath]()
     
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Block user updated notification.
@@ -146,6 +144,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
                 AnalyticsParameterItemID: "\(forumName) - \(threadID ?? 0)" as NSString,
                 AnalyticsParameterItemName: "\(forumName) - \(threadID ?? 0)" as NSString])
         }
+        updateBookmarkButton()
     }
     
     deinit {
@@ -234,6 +233,24 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         return should
     }
     
+    @IBAction func tappedBookmark(_ sender: UIBarButtonItem) {
+        guard let forum = forum else { return }
+        let bookmark = Bookmark(forum: forum, thread: selectedThread)
+        if isBookmarked {
+            BookmarkManager.shared.remove(bookmark)
+        } else {
+            BookmarkManager.shared.add(bookmark)
+        }
+        updateBookmarkButton()
+    }
+    
+    fileprivate func updateBookmarkButton() {
+        if isBookmarked {
+            bookmarkButtonItem.image = UIImage(named: "filled-star")
+        } else {
+            bookmarkButtonItem.image = UIImage(named: "empty-star")
+        }
+    }
 }
 
 // MARK: UIActions.
@@ -411,6 +428,21 @@ extension ThreadTableViewController: TTTAttributedLabelDelegate {
         }
     }
     
+}
+
+extension ThreadTableViewController {
+    
+    func refresh() {
+        refreshWithPage(0)
+    }
+    
+    func refreshWithPage(_ page: Int) {
+        // For each thread ID, there is only 1 page.
+        if let threadID = threadID {
+            loadResponsesWithThreadID(threadID)
+        }
+    }
+
 }
 
 extension ThreadTableViewController: UIPopoverPresentationControllerDelegate {

@@ -84,7 +84,11 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem image="empty-star" id="ohC-3U-PhY"/>
+                        <barButtonItem image="empty-star" id="ohC-3U-PhY">
+                            <connections>
+                                <action selector="tappedBookmark:" destination="gsu-pr-yM1" id="l0c-f9-gGM"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="bi2-pS-F6W">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="f60-Vw-A2v">
@@ -98,6 +102,7 @@
                         <outlet property="adBannerTableViewHeaderView" destination="wBX-n8-ONM" id="cft-Cb-Wn8"/>
                         <outlet property="adBannerView" destination="VSt-MG-9nE" id="h4w-M9-LF4"/>
                         <outlet property="adDescriptionLabel" destination="wjh-OX-owJ" id="17p-Xj-rdk"/>
+                        <outlet property="bookmarkButtonItem" destination="ohC-3U-PhY" id="iSY-QE-4Ik"/>
                         <segue destination="rtH-Vd-bQ0" kind="show" identifier="parasitePosts" id="S7S-Fp-7Yc">
                             <nil key="action"/>
                         </segue>
