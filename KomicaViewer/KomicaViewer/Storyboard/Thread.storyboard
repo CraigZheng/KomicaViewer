@@ -83,7 +83,9 @@
                             <outlet property="delegate" destination="gsu-pr-yM1" id="WIo-ht-VoJ"/>
                         </connections>
                     </tableView>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem image="empty-star" id="ohC-3U-PhY"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="bi2-pS-F6W">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="f60-Vw-A2v">
                             <connections>
@@ -148,4 +150,7 @@
             <point key="canvasLocation" x="3148" y="-146"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="empty-star" width="30" height="30"/>
+    </resources>
 </document>
