@@ -26,7 +26,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPx-I7-SNO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3148" y="-967"/>
+            <point key="canvasLocation" x="3148" y="-633"/>
         </scene>
         <!--Thread Table View Controller-->
         <scene sceneID="YTl-Qe-WgX">
@@ -106,14 +106,14 @@
                         <segue destination="rtH-Vd-bQ0" kind="show" identifier="parasitePosts" id="S7S-Fp-7Yc">
                             <nil key="action"/>
                         </segue>
-                        <segue destination="AX6-pl-jSp" kind="popoverPresentation" identifier="popupThread" popoverAnchorBarButtonItem="f60-Vw-A2v" id="SVJ-1u-r13">
+                        <segue destination="AX6-pl-jSp" kind="popoverPresentation" identifier="popupThread" popoverAnchorView="e2t-n3-gzZ" id="SVJ-1u-r13">
                             <popoverArrowDirection key="popoverArrowDirection"/>
                         </segue>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Wt-V0-9ZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2311" y="-146"/>
+            <point key="canvasLocation" x="2081" y="-146"/>
         </scene>
         <!--Parasite Post Table View Controller-->
         <scene sceneID="CdU-Rl-9qo">
@@ -152,7 +152,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f9n-ws-JhC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3148" y="-146"/>
+            <point key="canvasLocation" x="3148" y="203"/>
         </scene>
     </scenes>
     <resources>
