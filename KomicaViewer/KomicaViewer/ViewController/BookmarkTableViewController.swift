@@ -16,6 +16,10 @@ class BookmarkTableViewController: UITableViewController {
         case showThread
     }
     
+    fileprivate var bookmarks: [Bookmark] {
+        return manager.bookmarks.reversed()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -28,13 +32,13 @@ class BookmarkTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return manager.bookmarks.count
+        return bookmarks.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ThreadTableViewCell.identifier, for: indexPath)
         if let cell = cell as? ThreadTableViewCell {
-            let thread = manager.bookmarks[indexPath.row].thread
+            let thread = bookmarks[indexPath.row].thread
             // Home view does not show parasite view.
             cell.shouldShowParasitePost = false
             cell.shouldShowImage = Configuration.singleton.showImage
@@ -56,7 +60,7 @@ extension BookmarkTableViewController {
             let destinationViewController = segue.destination as? ThreadTableViewController,
             let indexPath = tableView.indexPath(for: selectedCell)
         {
-            destinationViewController.selectedThread = manager.bookmarks[indexPath.row].thread
+            destinationViewController.selectedThread = bookmarks[indexPath.row].thread
         }
     }
     
