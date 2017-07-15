@@ -35,6 +35,15 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     var photoIndex: Int?
     
     // MARK: ThreadTableViewControllerProtocol
+    var forum: KomicaForum? {
+        set {
+            // Setter does nothing.
+        }
+        
+        get {
+            return Forums.selectedForum
+        }
+    }
     var threads:[KomicaEngine.Thread] = []
     
     func refreshWithPage(_ page: Int) {
@@ -195,6 +204,7 @@ extension HomeTableViewController {
             let destinationViewController = segue.destination as? ThreadTableViewController,
             let indexPath = tableView.indexPath(for: selectedCell)
         {
+            destinationViewController.forum = forum
             destinationViewController.selectedThread = threads[indexPath.row]
         }
     }

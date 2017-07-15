@@ -11,7 +11,7 @@ import UIKit
 import KomicaEngine
 
 protocol ThreadTableViewControllerProtocol: class {
-    var forum: KomicaForum? { get }
+    var forum: KomicaForum? { get set }
     var threads: [KomicaEngine.Thread] { get set }
     var downloader: KomicaDownloader? { get }
     var completion: KomicaDownloaderHandler? { get }
@@ -22,7 +22,6 @@ protocol ThreadTableViewControllerProtocol: class {
 
 extension ThreadTableViewControllerProtocol where Self: UITableViewController {
     
-    var forum: KomicaForum? { return Forums.selectedForum }
     var downloader: KomicaDownloader? { return KomicaDownloader() }
     var completion: KomicaDownloaderHandler? {
         return { [weak self ](success, page, result) in

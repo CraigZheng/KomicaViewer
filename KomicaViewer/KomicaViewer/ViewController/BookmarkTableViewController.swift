@@ -60,6 +60,7 @@ extension BookmarkTableViewController {
             let destinationViewController = segue.destination as? ThreadTableViewController,
             let indexPath = tableView.indexPath(for: selectedCell)
         {
+            destinationViewController.forum = bookmarks[indexPath.row].forum
             destinationViewController.selectedThread = bookmarks[indexPath.row].thread
         }
     }

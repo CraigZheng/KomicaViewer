@@ -79,6 +79,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         return nil
     }
     // MARK: ThreadTableViewControllerProtocol
+    var forum: KomicaForum?
     lazy var postCompletion: KomicaDownloaderHandler? = {
         [weak self](success, page, result) in
         guard let strongSelf = self else { return }
