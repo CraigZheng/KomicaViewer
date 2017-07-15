@@ -10,7 +10,7 @@ import UIKit
 
 import KomicaEngine
 import SDWebImage
-import SVPullToRefresh
+import CCBottomRefreshControl
 import SVWebViewController
 import GoogleMobileAds
 import Firebase
@@ -36,19 +36,12 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     
     // MARK: ThreadTableViewControllerProtocol
     var threads:[KomicaEngine.Thread] = []
-    func refresh() {
-        if let forum = forum {
-            Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
-                AnalyticsParameterContentType: "REFRESH FORUM" as NSObject,
-                AnalyticsParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
-                AnalyticsParameterItemName: "\(forum.name ?? "name undefined")" as NSString])
-        }
-        refreshWithPage(forum?.startingIndex ?? 0)
-    }
+    
     func refreshWithPage(_ page: Int) {
         DLog(" - \(page)")
         loadThreadsWithPage(page)
     }
+    
     lazy var postCompletion: KomicaDownloaderHandler? = { (success, page, result) in
         var suffix = "th"
         switch String(page).characters.last! {
@@ -68,13 +61,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
                 ProgressHUD.showMessage("\(page + 1 - (self.forum?.startingIndex ?? 0))\(suffix) page failed to load.")
             }
         }
-        // If the originalContentInset is nil, record it, otherwise apply it to the tableView.
-        // This is due to a bug that is introduced by SVPullToRefresh library. In order to fix this bug, I need to manually adjust the content inset.
-        if let originalContentInset = self.originalContentInset {
-            self.tableView.contentInset = originalContentInset
-        } else {
-            self.originalContentInset = self.tableView.contentInset
-        }
+        self.bottomRefreshControl?.endRefreshing()
     }
     
     // MARK: TableViewControllerBulkUpdateProtocol
@@ -104,7 +91,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     }
     
     fileprivate let _guardDog = WebViewGuardDog()
-    fileprivate var originalContentInset: UIEdgeInsets?
+    fileprivate var bottomRefreshControl: UIRefreshControl?
     fileprivate var pageIndex = 0
     fileprivate let showThreadSegue = "showThread"
     
@@ -114,35 +101,45 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         refreshControl?.addTarget(self,
                                   action: #selector(HomeTableViewController.refresh),
                                   for: UIControlEvents.valueChanged)
+        bottomRefreshControl = UIRefreshControl()
+        bottomRefreshControl?.addTarget(self,
+                                       action: #selector(HomeTableViewController.loadMore),
+                                       for: .valueChanged)
+        // Row heights.
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
+        
         tableView.register(UINib(nibName: "ThreadTableViewCell", bundle: nil), forCellReuseIdentifier: ThreadTableViewCell.identifier)
         // Add handler for Forum selected notification.
         NotificationCenter.default.addObserver(self,
-                                                         selector: #selector(HomeTableViewController.handleForumSelectedNotification(_:)),
-                                                         name: NSNotification.Name(rawValue: Forums.selectionUpdatedNotification),
-                                                         object: nil)
+                                               selector: #selector(HomeTableViewController.handleForumSelectedNotification(_:)),
+                                               name: NSNotification.Name(rawValue: Forums.selectionUpdatedNotification),
+                                               object: nil)
         // Add handler for blocked user updated notification.
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: BlockedUserManager.updatedNotification),
-                                                                object: nil,
-                                                                queue: OperationQueue.main) { [weak self] (_) in
-                                                                    self?.tableView.reloadData()
+                                               object: nil,
+                                               queue: OperationQueue.main) { [weak self] (_) in
+                                                self?.tableView.reloadData()
         }
         // Configuration updated.
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Configuration.updatedNotification),
-                                                                object: nil,
-                                                                queue: OperationQueue.main) { [weak self] (_) in
-                                                                    self?.tableView.reloadData()
+                                               object: nil,
+                                               queue: OperationQueue.main) { [weak self] (_) in
+                                                self?.tableView.reloadData()
         }
         // Ad configuration update notification
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: AdConfiguration.adConfigurationUpdatedNotification),
-                                                                object: nil,
-                                                                queue: OperationQueue.main) { [weak self] (_) in
-                                                                    self?.attemptLoadRequest()
+                                               object: nil,
+                                               queue: OperationQueue.main) { [weak self] (_) in
+                                                self?.attemptLoadRequest()
         }
-        tableView.addPullToRefresh(actionHandler: {
-            self.refreshWithPage(self.pageIndex + 1)
-        }, position: .bottom)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if tableView.bottomRefreshControl == nil {
+            tableView.bottomRefreshControl = bottomRefreshControl
+        }
     }
     
     deinit {
@@ -264,6 +261,25 @@ extension HomeTableViewController {
         } else {
             ProgressHUD.showMessage("Cannot open: \(link)")
         }
+    }
+    
+}
+
+// MARK: Refresh controls
+extension HomeTableViewController {
+    
+    func refresh() {
+        if let forum = forum {
+            Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                AnalyticsParameterContentType: "REFRESH FORUM" as NSObject,
+                AnalyticsParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
+                AnalyticsParameterItemName: "\(forum.name ?? "name undefined")" as NSString])
+        }
+        refreshWithPage(forum?.startingIndex ?? 0)
+    }
+
+    func loadMore() {
+        self.refreshWithPage(self.pageIndex + 1)
     }
     
 }

@@ -20,7 +20,8 @@ target 'KomicaViewer' do
   pod "MBProgressHUD"
   pod "AFNetworking"
   pod "PureLayout"
-  pod 'SVPullToRefresh', :git => 'https://github.com/samvermette/SVPullToRefresh.git'
+  #pod 'SVPullToRefresh', :git => 'https://github.com/CraigZheng/SVPullToRefresh.git'
+  pod 'CCBottomRefreshControl', :git => 'https://github.com/CraigZheng/CCBottomRefreshControl.git'
   pod 'SVWebViewController', :git => 'https://github.com/TransitApp/SVWebViewController.git'
   pod 'Firebase/Core'
   pod 'Firebase/AdMob'
