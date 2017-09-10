@@ -28,7 +28,7 @@ class BookmarkTableViewController: UITableViewController {
     }
     
     @IBAction func editAction(_ sender: Any) {
-        tableView.setEditing(tableView.isEditing, animated: true)
+        tableView.setEditing(!tableView.isEditing, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,6 +50,18 @@ class BookmarkTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: Segue.showThread.rawValue, sender: tableView.cellForRow(at: indexPath))
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            BookmarkManager.shared.remove(bookmarks[indexPath.row])
+            tableView.reloadData()
+        default:
+            // Nothing
+            break
+        }
+    }
+    
 }
 
 // MARK: Prepare for segue.
