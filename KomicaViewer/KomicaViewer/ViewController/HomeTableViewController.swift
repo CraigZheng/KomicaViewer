@@ -231,7 +231,7 @@ extension HomeTableViewController {
             if threads[indexPath.row].videoLinks?.isEmpty == false, let videoLink = threads[indexPath.row].videoLinks?.first
             {
                 // When image is available, allow selecting either image or video.
-                let openMediaAlertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .actionSheet)
+                let openMediaAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 if threads[indexPath.row].imageURL != nil {
                     openMediaAlertController.addAction(UIAlertAction(title: "Open Image", style: .default, handler: { (_) in
                         self.openImageWithIndex(indexPath.row)
