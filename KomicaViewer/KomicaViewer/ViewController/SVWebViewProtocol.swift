@@ -20,20 +20,14 @@ protocol SVWebViewProtocol: class {
 extension SVWebViewProtocol where Self: UIViewController {
     
     func presentSVWebView() {
-        if let svWebViewURL = svWebViewURL
-        {
-            if let navigationController = self.navigationController,
-                let webViewController = SVWebViewController(url: svWebViewURL) {
-                webViewController.delegate = svWebViewGuardDog
-                navigationController.pushViewController(webViewController, animated: true)
-            } else if let webViewController = SVModalWebViewController(url: svWebViewURL) {
-                webViewController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
-                webViewController.barsTintColor = navigationController?.navigationBar.barTintColor
-                webViewController.webViewDelegate = svWebViewGuardDog
-                webViewController.popoverPresentationController?.sourceView = self.view
-                webViewController.popoverPresentationController?.sourceRect = self.view.bounds
-                present(webViewController, animated: true, completion: nil)
-            }
+        if let svWebViewURL = svWebViewURL,
+            let webViewController = SVModalWebViewController(url: svWebViewURL) {
+            webViewController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
+            webViewController.barsTintColor = navigationController?.navigationBar.barTintColor
+            webViewController.webViewDelegate = svWebViewGuardDog
+            webViewController.popoverPresentationController?.sourceView = self.view
+            webViewController.popoverPresentationController?.sourceRect = self.view.bounds
+            present(webViewController, animated: true, completion: nil)
         }
     }
     
