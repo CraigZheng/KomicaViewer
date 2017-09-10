@@ -39,7 +39,6 @@
 		446714441E531B33002C6339 /* youtube-play-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 446714431E531B32002C6339 /* youtube-play-button.png */; };
 		4475E6001F18F253004EC14D /* BookmarkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4475E5FF1F18F253004EC14D /* BookmarkTableViewController.swift */; };
 		4475E6261F1906BB004EC14D /* Thread.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4475E6251F1906BB004EC14D /* Thread.storyboard */; };
-		4475E63E1F1916C1004EC14D /* BFWControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4475E6391F1916AF004EC14D /* BFWControls.framework */; };
 		447664F71E03F48F00A06138 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447664F61E03F48F00A06138 /* IAPHelper.swift */; };
 		447665561E067A7D00A06138 /* MessagePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447665551E067A7D00A06138 /* MessagePopup.swift */; };
 		447EF1C31D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447EF1C21D5C832D00FE5D88 /* TableViewControllerBulkUpdateProtocol.swift */; };
@@ -479,7 +478,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4475E63E1F1916C1004EC14D /* BFWControls.framework in Frameworks */,
 				44FBD8251D899D1800ACA2C8 /* DTFoundation.framework in Frameworks */,
 				44655D471D5AD24700229404 /* KomicaEngine.framework in Frameworks */,
 				8E7FE4381DD014DA47A44100 /* Pods_KomicaViewer.framework in Frameworks */,
