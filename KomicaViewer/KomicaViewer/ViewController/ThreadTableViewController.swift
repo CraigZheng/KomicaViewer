@@ -325,6 +325,12 @@ extension ThreadTableViewController: UIAlertViewDelegate {
             self.svWebViewURL = self.currentURL
             self.presentSVWebView()
         }
+        let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
+            // Default UIActivityViewController, no customisation other than the supplied URL.
+            let activityViewController = UIActivityViewController(activityItems : [self.currentURL as Any], applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            self.present(activityViewController, animated: true, completion: nil)
+        }
         let reportAction = UIAlertAction(title: "Report", style: .default) { _ in
             // Set the URL to report URL.
             self.svWebViewGuardDog = WebViewGuardDog()
@@ -339,6 +345,7 @@ extension ThreadTableViewController: UIAlertViewDelegate {
                                                 message: nil,
                                                 preferredStyle: .actionSheet)
         alertController.addAction(openURLAction)
+        alertController.addAction(shareAction)
         alertController.addAction(reportAction)
         alertController.addAction(cancelAction)
         alertController.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem

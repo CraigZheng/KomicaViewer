@@ -215,8 +215,28 @@ extension HomeTableViewController {
 extension HomeTableViewController {
     
     @IBAction func openInSafariAction(_ sender: AnyObject) {
-        // Open in browser.
-        presentSVWebView()
+        let openURLAction = UIAlertAction(title: "Open in Browser", style: .default) { _ in
+            // Set the target URL to the currentURL.
+            self.svWebViewGuardDog = self._guardDog
+            self.svWebViewURL = self.currentURL
+            self.presentSVWebView()
+        }
+        let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
+            // Default UIActivityViewController, no customisation other than the supplied URL.
+            let activityViewController = UIActivityViewController(activityItems : [self.currentURL as Any], applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            self.present(activityViewController, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let alertController = UIAlertController(title: nil,
+                                                message: nil,
+                                                preferredStyle: .actionSheet)
+        alertController.addAction(openURLAction)
+        alertController.addAction(shareAction)
+        alertController.addAction(cancelAction)
+        alertController.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
+        present(alertController, animated: true, completion: nil)
     }
 
     @IBAction func unwindToHomeSegue(_ segue: UIStoryboardSegue) {
@@ -302,6 +322,8 @@ extension HomeTableViewController {
         threads.removeAll()
         tableView.reloadData()
         refreshWithPage(forum?.startingIndex ?? 0)
+        // Disable/enable the webview bar button.
+        actionBarButton.isEnabled = currentURL != nil
         if let forum = forum {
             Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
                 AnalyticsParameterContentType: "SELECT FORUM" as NSObject,
