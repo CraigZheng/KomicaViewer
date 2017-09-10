@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UZr-hX-E8J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UZr-hX-E8J">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Bookmark Table View Controller-->
+        <!--Bookmark-->
         <scene sceneID="9h5-QT-V20">
             <objects>
-                <tableViewController id="Zgb-yp-4tQ" customClass="BookmarkTableViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Bookmark" id="Zgb-yp-4tQ" customClass="BookmarkTableViewController" customModule="KomicaViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zAe-6a-yQU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,7 +31,7 @@
                             <outlet property="delegate" destination="Zgb-yp-4tQ" id="UHg-0f-vs2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="wQ8-WP-xvf">
+                    <navigationItem key="navigationItem" title="Bookmark" id="wQ8-WP-xvf">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="bfE-16-8qg">
                             <connections>
                                 <segue destination="qaG-84-7QC" kind="unwind" unwindAction="unwindToHomeSegue:" id="v4H-Vk-Tmu"/>
@@ -69,6 +69,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="1" green="0.63375720099999999" blue="0.27949856020000002" alpha="0.88256318509999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2GE-J3-ZGA">
                         <rect key="frame" x="0.0" y="623" width="375" height="44"/>
