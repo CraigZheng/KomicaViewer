@@ -37,6 +37,8 @@ class BookmarkManager {
         }
         if let jsonString = bookmarks.jsonEncode() {
             userDefault.set(jsonString, forKey: bookmarkKey)
+        } else if bookmarks.isEmpty {
+            userDefault.removeObject(forKey: bookmarkKey)
         }
     }
 }
