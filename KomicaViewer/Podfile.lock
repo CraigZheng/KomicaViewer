@@ -149,7 +149,7 @@ SPEC CHECKSUMS:
   OGVKit: b5f97b40c255fbd9f54df8c90d484d4c73abd088
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
   SVWebViewController: aa2e18a41ff5f45be7aeec8e92ca5bcc50b5ebb1
   SwiftMessages: e20aa1557fde1525ea369361bec4943cc0d08e7c
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
