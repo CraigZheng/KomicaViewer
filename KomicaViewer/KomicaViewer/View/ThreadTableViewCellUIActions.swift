@@ -33,7 +33,7 @@ extension ThreadTableViewCell {
                     topViewController.present(alertController, animated: true, completion: nil)
                 }
             } else {
-                alertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .actionSheet)
+                alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 if let alertController = alertController {
                     let copyIDAction = UIAlertAction(title: "Copy ID: \(userID ?? "")", style: .default) { (_) in
                         if let text = self.textLabel?.text {
