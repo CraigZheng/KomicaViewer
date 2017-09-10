@@ -302,8 +302,6 @@ extension HomeTableViewController {
         threads.removeAll()
         tableView.reloadData()
         refreshWithPage(forum?.startingIndex ?? 0)
-        // Disable/enable the webview bar button.
-        actionBarButton.isEnabled = currentURL != nil
         if let forum = forum {
             Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
                 AnalyticsParameterContentType: "SELECT FORUM" as NSObject,
