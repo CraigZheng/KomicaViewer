@@ -24,9 +24,20 @@ class Bookmark: Equatable {
   
     static func ==(left: Bookmark, right: Bookmark) -> Bool {
         return left.forum.isEqual(right.forum)
-          && left.thread.jsonEncode() == right.thread.jsonEncode()
+          && left.thread == right.thread
     }
   
+}
+
+fileprivate extension KomicaEngine.Thread {
+    
+    static func ==(left: KomicaEngine.Thread, right: KomicaEngine.Thread) -> Bool {
+        return left.ID == right.ID &&
+        left.UID == right.UID &&
+        left.name == right.name &&
+        left.email == right.email
+    }
+    
 }
 
 extension KomicaForum: Jsonable {
