@@ -10,6 +10,9 @@
 		4411C74B1D76C28400047660 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4411C74A1D76C28400047660 /* GoogleService-Info.plist */; };
 		4421C1B21E72C8DE00BD48C4 /* PartialTransparentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4421C1B11E72C8DE00BD48C4 /* PartialTransparentView.m */; };
 		442A502A1D8570A600769A2A /* CustomForumManagerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A50291D8570A600769A2A /* CustomForumManagerTableViewController.swift */; };
+		443176E71F66903400B342D5 /* BFWControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4475E6391F1916AF004EC14D /* BFWControls.framework */; };
+		443176E81F66906100B342D5 /* BFWControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4475E6391F1916AF004EC14D /* BFWControls.framework */; };
+		443176E91F66906100B342D5 /* BFWControls.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4475E6391F1916AF004EC14D /* BFWControls.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		443342A41D5F568B00EDFA8F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443342A31D5F568B00EDFA8F /* Configuration.swift */; };
 		443342A71D5F576F00EDFA8F /* AFHTTPSessionManager+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443342A61D5F576F00EDFA8F /* AFHTTPSessionManager+Util.swift */; };
 		443342A91D5F5A3800EDFA8F /* ActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443342A81D5F5A3800EDFA8F /* ActionTableViewCell.swift */; };
@@ -73,6 +76,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		443176EA1F66906100B342D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4475E6331F1916AF004EC14D /* BFWControls.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E28BA9101E963F7800D5DE3D;
+			remoteInfo = BFWControls;
+		};
 		44496F641D5985A6005875DD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 44496F471D5985A6005875DD /* Project object */;
@@ -383,6 +393,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				443176E91F66906100B342D5 /* BFWControls.framework in Embed Frameworks */,
 				44FBD8261D899D2100ACA2C8 /* DTFoundation.framework in Embed Frameworks */,
 				44C25D1D1D8998650066888E /* DTCoreText.framework in Embed Frameworks */,
 				44655D481D5AD24700229404 /* KomicaEngine.framework in Embed Frameworks */,
@@ -478,7 +489,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				443176E71F66903400B342D5 /* BFWControls.framework in Frameworks */,
 				44FBD8251D899D1800ACA2C8 /* DTFoundation.framework in Frameworks */,
+				443176E81F66906100B342D5 /* BFWControls.framework in Frameworks */,
 				44655D471D5AD24700229404 /* KomicaEngine.framework in Frameworks */,
 				8E7FE4381DD014DA47A44100 /* Pods_KomicaViewer.framework in Frameworks */,
 			);
@@ -764,6 +777,7 @@
 				44FBD8241D899D1100ACA2C8 /* PBXTargetDependency */,
 				44FBD7CC1D899C1900ACA2C8 /* PBXTargetDependency */,
 				44655D4A1D5AD24700229404 /* PBXTargetDependency */,
+				443176EB1F66906100B342D5 /* PBXTargetDependency */,
 			);
 			name = KomicaViewer;
 			productName = KomicaViewer;
@@ -1317,6 +1331,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		443176EB1F66906100B342D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BFWControls;
+			targetProxy = 443176EA1F66906100B342D5 /* PBXContainerItemProxy */;
+		};
 		44496F651D5985A6005875DD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 44496F4E1D5985A6005875DD /* KomicaViewer */;
@@ -1465,7 +1484,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC7DAB90B7018AB9E394882B /* Pods-KomicaViewer.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -1488,7 +1507,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1F999914BCD5E6DBD4D5D973 /* Pods-KomicaViewer.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
