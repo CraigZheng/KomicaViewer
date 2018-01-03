@@ -43,15 +43,15 @@ import SwiftMessages
     var swiftValue: MessageView.Layout {
         switch self {
         case .MessageView:
-            return .MessageView
+            return .messageView
         case .CardView:
-            return .CardView
+            return .cardView
         case .TabView:
-            return .TabView
+            return .tabView
         case .StatusLine:
-            return .StatusLine
+            return .statusLine
         case .MessageViewIOS8:
-            return .MessageViewIOS8
+            return .messageViewIOS8
         }
     }
 }
@@ -104,19 +104,19 @@ class MessagePopup: NSObject {
     }
     
     class func showMessage(title: String?, message: String?) {
-        showMessage(title: title, message: message, layout: .CardView)
+        showMessage(title: title, message: message, layout: .cardView)
     }
     
     @objc class func showStatusBarMessage(message: String?) {
-        showMessage(title: nil, message: message, layout: .StatusLine)
+        showMessage(title: nil, message: message, layout: .statusLine)
     }
     
-    class func showMessage(title: String?, message: String?, layout: MessageView.Layout = .CardView, theme: Theme = .info, position: SwiftMessages.PresentationStyle = .top, buttonTitle: String? = nil, buttonActionHandler: ((_ button: UIButton) -> Void)? = nil) {
+    class func showMessage(title: String?, message: String?, layout: MessageView.Layout = .cardView, theme: Theme = .info, position: SwiftMessages.PresentationStyle = .top, buttonTitle: String? = nil, buttonActionHandler: ((_ button: UIButton) -> Void)? = nil) {
         var layout = layout
-        if layout == MessageView.Layout.MessageView,
+        if layout == MessageView.Layout.messageView,
             let systemVersion = Double(UIDevice.current.systemVersion),
             systemVersion < 9.0 {
-            layout = MessageView.Layout.MessageViewIOS8
+            layout = MessageView.Layout.messageViewIOS8
         }
         let messageView = MessageView.viewFromNib(layout: layout)
         messageView.configureTheme(theme)

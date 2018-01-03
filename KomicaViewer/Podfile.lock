@@ -17,37 +17,38 @@ PODS:
   - CCBottomRefreshControl (0.5.1):
     - Masonry (~> 0.6.2)
   - DACircularProgress (2.3.1)
-  - Firebase (4.0.3):
-    - Firebase/Core (= 4.0.3)
-  - Firebase/AdMob (4.0.3):
+  - Firebase (4.8.0):
+    - Firebase/Core (= 4.8.0)
+  - Firebase/AdMob (4.8.0):
     - Firebase/Core
-    - Google-Mobile-Ads-SDK (= 7.21.0)
-  - Firebase/Core (4.0.3):
-    - FirebaseAnalytics (= 4.0.2)
-    - FirebaseCore (= 4.0.3)
-  - Firebase/Crash (4.0.3):
+    - Google-Mobile-Ads-SDK (= 7.27.0)
+  - Firebase/Core (4.8.0):
+    - FirebaseAnalytics (= 4.0.5)
+    - FirebaseCore (= 4.0.13)
+  - Firebase/Crash (4.8.0):
     - Firebase/Core
-    - FirebaseCrash (= 2.0.0)
-  - FirebaseAnalytics (4.0.2):
+    - FirebaseCrash (= 2.0.2)
+  - FirebaseAnalytics (4.0.5):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCore (4.0.3):
+    - nanopb (~> 0.3)
+  - FirebaseCore (4.0.13):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCrash (2.0.0):
+  - FirebaseCrash (2.0.2):
     - FirebaseAnalytics (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - Protobuf (~> 3.1)
-  - FirebaseInstanceID (2.0.0):
+  - FirebaseInstanceID (2.0.8):
     - FirebaseCore (~> 4.0)
-  - Google-Mobile-Ads-SDK (7.21.0)
-  - GoogleToolboxForMac/Defines (2.1.1)
-  - GoogleToolboxForMac/Logger (2.1.1):
-    - GoogleToolboxForMac/Defines (= 2.1.1)
-  - GoogleToolboxForMac/NSData+zlib (2.1.1):
-    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - Google-Mobile-Ads-SDK (7.27.0)
+  - GoogleToolboxForMac/Defines (2.1.3)
+  - GoogleToolboxForMac/Logger (2.1.3):
+    - GoogleToolboxForMac/Defines (= 2.1.3)
+  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+    - GoogleToolboxForMac/Defines (= 2.1.3)
   - libnestegg (0.1)
   - libogg (1.3.2)
   - libopus (1.1):
@@ -62,6 +63,11 @@ PODS:
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
   - OGVKit/Core (0.5.11)
   - OGVKit/OpusDecoder (0.5.11):
     - libopus
@@ -89,13 +95,13 @@ PODS:
   - OGVKit/WebMDemuxer (0.5.11):
     - libnestegg
     - OGVKit/Core
-  - Protobuf (3.3.0)
+  - Protobuf (3.5.0)
   - PureLayout (3.0.2)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SVWebViewController (1.0)
-  - SwiftMessages (3.4.0)
+  - SwiftMessages (4.1.0)
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
@@ -124,36 +130,37 @@ CHECKOUT OPTIONS:
     :commit: fcf4ab50737f8dd4fa9f3c8541227a4e689cb6e6
     :git: https://github.com/CraigZheng/CCBottomRefreshControl.git
   SVWebViewController:
-    :commit: 9abad6b852b6c2ad19bb3c28532cce53719e2a7f
+    :commit: fe4ddeca1a8c7e5cc5ea716667426463f31b28f3
     :git: https://github.com/TransitApp/SVWebViewController.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   CCBottomRefreshControl: 57a596348855260f627ffc2b311328ed15b94877
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
-  Firebase: 9e33fdfbca37cab635c693883caa90a4475b842b
-  FirebaseAnalytics: ad41720e3e67fc63fbe3d2948d3e26932a8de311
-  FirebaseCore: c709067051de07bdaffdc4e735cd7299a23c463a
-  FirebaseCrash: 600ec2cbd8e10c3064a42de2c6ee7687bd02a076
-  FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
-  Google-Mobile-Ads-SDK: 4a6f1b43c8cc0e1e95a3b59d9f52a01671c6f9f3
-  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  Firebase: 710decbbc6d9d48530e9a5dba3209740c3532e05
+  FirebaseAnalytics: 5b02a63ead2c3f0259cfc7f15e053e440587ecf8
+  FirebaseCore: 3c02ec652db3d03fdc8bc6d9154af3e20d64b6f5
+  FirebaseCrash: cded0fc566c03651aea606a101bc156085f333ca
+  FirebaseInstanceID: 81df5805a08001e69138664bdd02c6719a9ac80f
+  Google-Mobile-Ads-SDK: 83f7f890e638ce8f1debd440ea363338c9f6be3b
+  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   libnestegg: 29be3e4d84978423ab8a282476c099aa221d1c4e
-  libogg: 924cd993b3fcf4d93568f7d582496061ef82716e
+  libogg: eacdec661e0c159936854a335569f62b6aa45056
   libopus: ad5f060dcb8f30f139777244d70f9111f1c80863
   libvorbis: ce9ba21bbef15c2060e31e1e33dcdeb3762427b0
   libvpx: a5eeb44d068ae2f597eddf27a9fc097ac423b208
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   OGVKit: b5f97b40c255fbd9f54df8c90d484d4c73abd088
-  Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
+  Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
-  SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVWebViewController: aa2e18a41ff5f45be7aeec8e92ca5bcc50b5ebb1
-  SwiftMessages: e20aa1557fde1525ea369361bec4943cc0d08e7c
+  SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: e8ce15d3c8a7287e2354ad78078dce0b9a0bf187
+PODFILE CHECKSUM: d9715c8fa9a98c655107896c141681c28695372e
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1

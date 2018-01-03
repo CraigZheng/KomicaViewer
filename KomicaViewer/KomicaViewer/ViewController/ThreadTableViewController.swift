@@ -424,7 +424,7 @@ extension ThreadTableViewController: TTTAttributedLabelDelegate {
             guard let quotedThread = threads.first(where: { return $0.ID?.numericValue() == quotedNumber }) else {
                 MessagePopup.showMessage(title: "Cannot find id:\(quotedNumber)",
                                          message: "Id:\(quotedNumber) cannot be found within this thread.",
-                                         layout: .CardView,
+                                         layout: .cardView,
                                          theme: .error,
                                          position: .top,
                                          buttonTitle: "OK",

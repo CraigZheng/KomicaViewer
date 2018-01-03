@@ -158,7 +158,7 @@ class Configuration: NSObject {
                                                                                 DispatchQueue.main.async(execute: {
                                                                                     MessagePopup.showMessage(title: "Announcement",
                                                                                                              message: announcement,
-                                                                                                             layout: .MessageView,
+                                                                                                             layout: .cardView,
                                                                                                              theme: .info,
                                                                                                              position: .bottom,
                                                                                                              buttonTitle: "OK",

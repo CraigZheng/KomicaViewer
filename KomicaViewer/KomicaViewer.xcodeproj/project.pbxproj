@@ -71,8 +71,10 @@
 		44F9528F1F11077F00026A37 /* QuotedContentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F9528E1F11077F00026A37 /* QuotedContentTableViewController.swift */; };
 		44FBD8251D899D1800ACA2C8 /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44FBD81E1D899D0A00ACA2C8 /* DTFoundation.framework */; };
 		44FBD8261D899D2100ACA2C8 /* DTFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44FBD81E1D899D0A00ACA2C8 /* DTFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8E7FE4381DD014DA47A44100 /* Pods_KomicaViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21C3A364A9DD0DDE230355EF /* Pods_KomicaViewer.framework */; };
-		E80704DFC180EFDBF5CBAC10 /* Pods_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B832635AE945C0A0AE7FB38 /* Pods_KomicaViewerTests.framework */; };
+		8F89F2B3F64E466EDA8E6ED1 /* Pods_KomicaViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21C3A364A9DD0DDE230355EF /* Pods_KomicaViewer.framework */; };
+		A626FE4C1E96D311C76B1EF2 /* Pods_KomicaViewer_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9888890F89082B45414F82C /* Pods_KomicaViewer_KomicaViewerTests.framework */; };
+		B20E87BADB21FFDFDA78476B /* Pods_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B832635AE945C0A0AE7FB38 /* Pods_KomicaViewerTests.framework */; };
+		BCE55B9E9BB5B372EA0A346B /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -384,6 +386,13 @@
 			remoteGlobalIDString = A7EA07B71A2B2F6A00B61CCE;
 			remoteInfo = "DTFoundation (iOS)";
 		};
+		B76362361FFC4E9800A10CCC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 94D24B961D4AFE7800C7F33C;
+			remoteInfo = "DTCoreText (tvOS)";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -493,7 +502,7 @@
 				44FBD8251D899D1800ACA2C8 /* DTFoundation.framework in Frameworks */,
 				443176E81F66906100B342D5 /* BFWControls.framework in Frameworks */,
 				44655D471D5AD24700229404 /* KomicaEngine.framework in Frameworks */,
-				8E7FE4381DD014DA47A44100 /* Pods_KomicaViewer.framework in Frameworks */,
+				8F89F2B3F64E466EDA8E6ED1 /* Pods_KomicaViewer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,7 +510,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E80704DFC180EFDBF5CBAC10 /* Pods_KomicaViewerTests.framework in Frameworks */,
+				A626FE4C1E96D311C76B1EF2 /* Pods_KomicaViewer_KomicaViewerTests.framework in Frameworks */,
+				BCE55B9E9BB5B372EA0A346B /* BuildFile in Frameworks */,
+				B20E87BADB21FFDFDA78476B /* Pods_KomicaViewerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,6 +716,7 @@
 				44C25D151D89984C0066888E /* libDTCoreText_no_DTFoundation.a */,
 				44C25D171D89984C0066888E /* DTCoreText.framework */,
 				44C25D191D89984C0066888E /* DTCoreText.framework */,
+				B76362371FFC4E9800A10CCC /* DTCoreText.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1130,6 +1142,13 @@
 			remoteRef = 44FBD8211D899D0A00ACA2C8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		B76362371FFC4E9800A10CCC /* DTCoreText.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DTCoreText.framework;
+			remoteRef = B76362361FFC4E9800A10CCC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1169,13 +1188,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KomicaViewerTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		68104A70DA5FA7686066341C /* [CP] Embed Pods Frameworks */ = {
@@ -1184,9 +1206,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-NSData+zlib/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1199,13 +1226,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KomicaViewer-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7C2A12900AD7C31E84A470E7 /* Embed Pods Frameworks */ = {
@@ -1244,9 +1274,50 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/CCBottomRefreshControl/CCBottomRefreshControl.framework",
+				"${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-Logger-NSData+zlib/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MWPhotoBrowser/MWPhotoBrowser.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/OGVKit/OGVKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVWebViewController/SVWebViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
+				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/libnestegg/nestegg.framework",
+				"${BUILT_PRODUCTS_DIR}/libogg/ogg.framework",
+				"${BUILT_PRODUCTS_DIR}/libopus/libopus.framework",
+				"${BUILT_PRODUCTS_DIR}/libvorbis/vorbis.framework",
+				"${PODS_ROOT}/libvpx/VPX.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CCBottomRefreshControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DACircularProgress.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MWPhotoBrowser.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OGVKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVWebViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nestegg.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ogg.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libopus.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/vorbis.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VPX.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
