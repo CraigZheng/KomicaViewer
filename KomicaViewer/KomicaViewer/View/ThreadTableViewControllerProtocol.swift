@@ -50,6 +50,13 @@ extension ThreadTableViewControllerProtocol where Self: UITableViewController {
                 request.preferredEncoding = forum.textEncoding
                 if forum.parserType == FutabaListParser.self {
                     request.preferredBaseURLString = targetURL.host
+                } else if forum.parserType == PixmicatListParser.self {
+                    var baseURLComponents = URLComponents(url: targetURL, resolvingAgainstBaseURL: false)
+                    baseURLComponents?.path = ""
+                    baseURLComponents?.query = nil
+                    if let baseURL = baseURLComponents?.url {
+                        request.preferredBaseURLString = baseURL.absoluteString
+                    }
                 }
                 _ = downloader.downloadListForRequest(request)
             } else {
@@ -68,6 +75,13 @@ extension ThreadTableViewControllerProtocol where Self: UITableViewController {
             request.preferredEncoding = forum.textEncoding
             if forum.parserType == FutabaListParser.self {
                 request.preferredBaseURLString = targetURL.host
+            } else if forum.parserType == PixmicatListParser.self {
+                var baseURLComponents = URLComponents(url: targetURL, resolvingAgainstBaseURL: false)
+                baseURLComponents?.path = ""
+                baseURLComponents?.query = nil
+                if let baseURL = baseURLComponents?.url {
+                    request.preferredBaseURLString = baseURL.absoluteString
+                }
             }
             _ = downloader.downloadRepliesForRequest(request)
         } else {
