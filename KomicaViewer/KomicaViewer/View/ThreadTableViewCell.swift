@@ -150,7 +150,8 @@ class ThreadTableViewCell: UITableViewCell {
             if SDWebImageManager.shared().cachedImageExists(for: imageURL) {
                 let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: SDWebImageManager.shared().cacheKey(for: imageURL))
                 imageView?.image = cachedImage
-            } else if let tableViewController = tableViewController as? UITableViewController {
+            } else {
+                imageView?.image = nil
                 imageView?.sd_setImage(with: imageURL, placeholderImage: nil, options: SDWebImageOptions.retryFailed, completed: nil)
             }
             // Show imageFormatLabel, and set the text to the pathExtension.
