@@ -13,6 +13,8 @@ import SDWebImage
 import SVWebViewController
 import GoogleMobileAds
 import Firebase
+import TTTAttributedLabel
+import SwiftMessages
 
 class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol, UIViewControllerMWPhotoBrowserProtocol {
     
@@ -25,18 +27,12 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         }
     }
     @IBOutlet weak var adDescriptionLabel: UILabel!
+    @IBOutlet weak var bookmarkButtonItem: UIBarButtonItem!
     
     var selectedThread: KomicaEngine.Thread! {
         didSet {
             title = selectedThread.title
         }
-    }
-    
-    fileprivate var currentURL: URL? {
-        if let threadID = threadID {
-            return forum?.responseURLForThreadID(threadID)
-        }
-        return nil
     }
     
     // MARK: UIViewControllerMWPhotoBrowserProtocol
@@ -54,7 +50,18 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         guardDog.home = currentURL?.host
         return guardDog
     }
-    fileprivate let showParasitePostSegue = "showParasitePosts"
+    
+    fileprivate var isBookmarked: Bool {
+        guard let forum = forum else { return false }
+        let bookmark = Bookmark(forum: forum, thread: selectedThread)
+        return BookmarkManager.shared.bookmarks.contains(bookmark)
+    }
+    
+    enum SegueIdentifier: String {
+        case parasitePosts
+        case popupThread
+    }
+    
     // Get the threadID from the selectedThread.ID.
     fileprivate var threadID: Int? {
         if let stringArray = selectedThread.ID?.components(
@@ -64,7 +71,15 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         }
         return 0
     }
+    fileprivate var quotedThread: KomicaEngine.Thread?
+    fileprivate var currentURL: URL? {
+        if let threadID = threadID {
+            return forum?.responseURLForThreadID(threadID)
+        }
+        return nil
+    }
     // MARK: ThreadTableViewControllerProtocol
+    var forum: KomicaForum?
     lazy var postCompletion: KomicaDownloaderHandler? = {
         [weak self](success, page, result) in
         guard let strongSelf = self else { return }
@@ -83,16 +98,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     lazy var threads: [KomicaEngine.Thread] = {
         return [self.selectedThread]
     }()
-    func refresh() {
-        refreshWithPage(0)
-    }
-    func refreshWithPage(_ page: Int) {
-        // For each thread ID, there is only 1 page.
-        if let threadID = threadID {
-            loadResponsesWithThreadID(threadID)
-        }
-    }
-
+    
     // MARK: TableViewControllerBulkUpdateProtocol
     var targetTableView: UITableView {
         return self.tableView
@@ -100,6 +106,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     var bulkUpdateTimer: Timer?
     var pendingIndexPaths: [IndexPath] = [IndexPath]()
     
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Block user updated notification.
@@ -133,11 +140,12 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         attemptLoadRequest()
         if let forum = forum,
             let forumName = forum.name {
-            FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-                kFIRParameterContentType: "SELECT THREAD" as NSObject,
-                kFIRParameterItemID: "\(forumName) - \(threadID ?? 0)" as NSString,
-                kFIRParameterItemName: "\(forumName) - \(threadID ?? 0)" as NSString])
+            Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                AnalyticsParameterContentType: "SELECT THREAD" as NSObject,
+                AnalyticsParameterItemID: "\(forumName) - \(threadID ?? 0)" as NSString,
+                AnalyticsParameterItemName: "\(forumName) - \(threadID ?? 0)" as NSString])
         }
+        updateBookmarkButton()
     }
     
     deinit {
@@ -154,6 +162,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
             let thread = threads[indexPath.row]
             cell.shouldShowImage = Configuration.singleton.showImage
             cell.layoutWithThread(thread, forTableViewController: self)
+            cell.textContentLabel?.delegate = self
         }
         return cell
     }
@@ -166,8 +175,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
             // If thumbnail image is not nil, include the thumbnail image.
             if let thumbnailURL = threads[indexPath.row].thumbnailURL {
                 if SDWebImageManager.shared().cachedImageExists(for: thumbnailURL) {
-                    let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: SDWebImageManager.shared().cacheKey(for: thumbnailURL))
-                    estimatedHeight += (cachedImage?.size.height)!
+                    estimatedHeight += 140
                 }
             }
         }
@@ -189,27 +197,61 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     // MARK: Segue events.
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let parasitePostTableViewController = segue.destination as? ParasitePostTableViewController,
-            let superCell = (sender as? UIView)?.superCell(),
-            let indexPath = tableView.indexPath(for: superCell),
-            let parasitePosts = threads[indexPath.row].pushPost
-        {
-            parasitePostTableViewController.parasitePosts = parasitePosts
+        guard let segueIdentifier = segue.identifier, !segueIdentifier.isEmpty else { return }
+        switch SegueIdentifier(rawValue: segueIdentifier)! {
+        case .parasitePosts:
+            if let parasitePostTableViewController = segue.destination as? ParasitePostTableViewController,
+                let superCell = (sender as? UIView)?.superCell(),
+                let indexPath = tableView.indexPath(for: superCell),
+                let parasitePosts = threads[indexPath.row].pushPost
+            {
+                parasitePostTableViewController.parasitePosts = parasitePosts
+            }
+        case .popupThread:
+            guard let quotedContentViewController = segue.destination as? QuotedContentTableViewController else { return }
+            quotedContentViewController.quotedThread = quotedThread
+            quotedContentViewController.popoverPresentationController?.delegate = self;
+            quotedContentViewController.popoverPresentationController?.sourceView = view;
+            quotedContentViewController.popoverPresentationController?.sourceRect = view.bounds;
+            // Quoted thread is now consumed.
+            quotedThread = nil
         }
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         var should = true
-        if identifier == showParasitePostSegue,
-            let superCell = (sender as? UIView)?.superCell(),
-            let indexPath = tableView.indexPath(for: superCell),
-            let parasitePosts = threads[indexPath.row].pushPost
-        {
-            should = parasitePosts.count > 0
+        switch SegueIdentifier(rawValue: identifier)! {
+        case .parasitePosts:
+            if let superCell = (sender as? UIView)?.superCell(),
+                let indexPath = tableView.indexPath(for: superCell),
+                let parasitePosts = threads[indexPath.row].pushPost
+            {
+                should = parasitePosts.count > 0
+            }
+        case .popupThread:
+            should = quotedThread != nil
         }
         return should
     }
-
+    
+    @IBAction func tappedBookmark(_ sender: UIBarButtonItem) {
+        guard let forum = forum else { return }
+        let bookmark = Bookmark(forum: forum, thread: selectedThread)
+        if isBookmarked {
+            BookmarkManager.shared.remove(bookmark)
+        } else {
+            BookmarkManager.shared.add(bookmark)
+        }
+        updateBookmarkButton()
+    }
+    
+    fileprivate func updateBookmarkButton() {
+        if isBookmarked {
+            bookmarkButtonItem.image = UIImage(named: "filled-star")
+        } else {
+            bookmarkButtonItem.image = UIImage(named: "empty-star")
+        }
+    }
 }
 
 // MARK: UIActions.
@@ -217,8 +259,8 @@ extension ThreadTableViewController: UIAlertViewDelegate {
     
     @IBAction func tapOnParasitePostView(_ sender: UIButton) {
         // User tap on parasite post view, show all parasite posts.
-        if shouldPerformSegue(withIdentifier: showParasitePostSegue, sender: sender) {
-            performSegue(withIdentifier: showParasitePostSegue, sender: sender)
+        if shouldPerformSegue(withIdentifier: SegueIdentifier.parasitePosts.rawValue, sender: sender) {
+            performSegue(withIdentifier: SegueIdentifier.parasitePosts.rawValue, sender: sender)
         }
     }
     
@@ -230,7 +272,7 @@ extension ThreadTableViewController: UIAlertViewDelegate {
             if threads[indexPath.row].videoLinks?.isEmpty == false, let videoLink = threads[indexPath.row].videoLinks?.first
             {
                 // When image is available, allow selecting either image or video.
-                let openMediaAlertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .actionSheet)
+                let openMediaAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 if threads[indexPath.row].imageURL != nil {
                     openMediaAlertController.addAction(UIAlertAction(title: "Open Image", style: .default, handler: { (_) in
                         self.openImageWithIndex(indexPath.row)
@@ -252,10 +294,10 @@ extension ThreadTableViewController: UIAlertViewDelegate {
     fileprivate func openImageWithIndex(_ index: Int) {
         // Present
         photoURLs = imageThreads.map({ (thread) -> URL? in
-            return thread.imageURL
+            return thread.imageURL ?? thread.thumbnailURL
         }).flatMap({ $0 })
         thumbnailURLs = imageThreads.map({ (thread) -> URL? in
-            return thread.thumbnailURL
+            return thread.thumbnailURL ?? thread.imageURL
         }).flatMap({ $0 })
         if let index = imageThreads.index(of: threads[index]) {
             photoIndex = index
@@ -267,10 +309,10 @@ extension ThreadTableViewController: UIAlertViewDelegate {
         if let videoURL = URL(string: link), UIApplication.shared.canOpenURL(videoURL)
         {
             UIApplication.shared.openURL(videoURL)
-            FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-                kFIRParameterContentType: "SELECT REMOTE URL" as NSObject,
-                kFIRParameterItemID: "\(videoURL.absoluteString)" as NSString,
-                kFIRParameterItemName: "\(videoURL.absoluteString)" as NSString])
+            Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                AnalyticsParameterContentType: "SELECT REMOTE URL" as NSObject,
+                AnalyticsParameterItemID: "\(videoURL.absoluteString)" as NSString,
+                AnalyticsParameterItemName: "\(videoURL.absoluteString)" as NSString])
         } else {
             ProgressHUD.showMessage("Cannot open: \(link)")
         }
@@ -283,6 +325,12 @@ extension ThreadTableViewController: UIAlertViewDelegate {
             self.svWebViewURL = self.currentURL
             self.presentSVWebView()
         }
+        let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
+            // Default UIActivityViewController, no customisation other than the supplied URL.
+            let activityViewController = UIActivityViewController(activityItems : [self.currentURL as Any], applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            self.present(activityViewController, animated: true, completion: nil)
+        }
         let reportAction = UIAlertAction(title: "Report", style: .default) { _ in
             // Set the URL to report URL.
             self.svWebViewGuardDog = WebViewGuardDog()
@@ -293,8 +341,11 @@ extension ThreadTableViewController: UIAlertViewDelegate {
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
-        let alertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: nil,
+                                                message: nil,
+                                                preferredStyle: .actionSheet)
         alertController.addAction(openURLAction)
+        alertController.addAction(shareAction)
         alertController.addAction(reportAction)
         alertController.addAction(cancelAction)
         alertController.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
@@ -303,7 +354,7 @@ extension ThreadTableViewController: UIAlertViewDelegate {
     
     fileprivate var imageThreads: [KomicaEngine.Thread] {
         return self.threads.filter({ (thread) -> Bool in
-            return thread.imageURL != nil
+            return thread.imageURL != nil || thread.thumbnailURL != nil
         })
     }
     
@@ -359,6 +410,55 @@ extension ThreadTableViewController: GADBannerViewDelegate {
             toggleAdBanner(false)
         }
         tableView.reloadData()
+    }
+    
+}
+
+extension ThreadTableViewController: TTTAttributedLabelDelegate {
+    
+    func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.openURL(url)
+        } else if (url.absoluteString.hasPrefix(ThreadTableViewCell.quotedIdentifier)) {
+            guard let quotedNumber = url.absoluteString.numericValue() else { return }
+            guard let quotedThread = threads.first(where: { return $0.ID?.numericValue() == quotedNumber }) else {
+                MessagePopup.showMessage(title: "Cannot find id:\(quotedNumber)",
+                                         message: "Id:\(quotedNumber) cannot be found within this thread.",
+                                         layout: .cardView,
+                                         theme: .error,
+                                         position: .top,
+                                         buttonTitle: "OK",
+                                         buttonActionHandler: { _ in
+                                            SwiftMessages.hide()
+                })
+                return
+            }
+            self.quotedThread = quotedThread
+            performSegue(withIdentifier: SegueIdentifier.popupThread.rawValue, sender: nil)
+        }
+    }
+    
+}
+
+extension ThreadTableViewController {
+    
+    func refresh() {
+        refreshWithPage(0)
+    }
+    
+    func refreshWithPage(_ page: Int) {
+        // For each thread ID, there is only 1 page.
+        if let threadID = threadID {
+            loadResponsesWithThreadID(threadID)
+        }
+    }
+
+}
+
+extension ThreadTableViewController: UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
     
 }

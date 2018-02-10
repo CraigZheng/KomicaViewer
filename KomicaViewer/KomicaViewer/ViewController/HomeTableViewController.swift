@@ -10,10 +10,11 @@ import UIKit
 
 import KomicaEngine
 import SDWebImage
-import SVPullToRefresh
+import CCBottomRefreshControl
 import SVWebViewController
 import GoogleMobileAds
 import Firebase
+import TTTAttributedLabel
 
 class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol, UIViewControllerMWPhotoBrowserProtocol {
     
@@ -34,20 +35,22 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     var photoIndex: Int?
     
     // MARK: ThreadTableViewControllerProtocol
-    var threads:[KomicaEngine.Thread] = []
-    func refresh() {
-        if let forum = forum {
-            FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-                kFIRParameterContentType: "REFRESH FORUM" as NSObject,
-                kFIRParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
-                kFIRParameterItemName: "\(forum.name ?? "name undefined")" as NSString])
+    var forum: KomicaForum? {
+        set {
+            // Setter does nothing.
         }
-        refreshWithPage(forum?.startingIndex ?? 0)
+        
+        get {
+            return Forums.selectedForum
+        }
     }
+    var threads:[KomicaEngine.Thread] = []
+    
     func refreshWithPage(_ page: Int) {
         DLog(" - \(page)")
         loadThreadsWithPage(page)
     }
+    
     lazy var postCompletion: KomicaDownloaderHandler? = { (success, page, result) in
         var suffix = "th"
         switch String(page).characters.last! {
@@ -67,13 +70,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
                 ProgressHUD.showMessage("\(page + 1 - (self.forum?.startingIndex ?? 0))\(suffix) page failed to load.")
             }
         }
-        // If the originalContentInset is nil, record it, otherwise apply it to the tableView.
-        // This is due to a bug that is introduced by SVPullToRefresh library. In order to fix this bug, I need to manually adjust the content inset.
-        if let originalContentInset = self.originalContentInset {
-            self.tableView.contentInset = originalContentInset
-        } else {
-            self.originalContentInset = self.tableView.contentInset
-        }
+        self.bottomRefreshControl?.endRefreshing()
     }
     
     // MARK: TableViewControllerBulkUpdateProtocol
@@ -103,7 +100,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     }
     
     fileprivate let _guardDog = WebViewGuardDog()
-    fileprivate var originalContentInset: UIEdgeInsets?
+    fileprivate var bottomRefreshControl: UIRefreshControl?
     fileprivate var pageIndex = 0
     fileprivate let showThreadSegue = "showThread"
     
@@ -113,35 +110,45 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         refreshControl?.addTarget(self,
                                   action: #selector(HomeTableViewController.refresh),
                                   for: UIControlEvents.valueChanged)
+        bottomRefreshControl = UIRefreshControl()
+        bottomRefreshControl?.addTarget(self,
+                                       action: #selector(HomeTableViewController.loadMore),
+                                       for: .valueChanged)
+        // Row heights.
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
+        
         tableView.register(UINib(nibName: "ThreadTableViewCell", bundle: nil), forCellReuseIdentifier: ThreadTableViewCell.identifier)
         // Add handler for Forum selected notification.
         NotificationCenter.default.addObserver(self,
-                                                         selector: #selector(HomeTableViewController.handleForumSelectedNotification(_:)),
-                                                         name: NSNotification.Name(rawValue: Forums.selectionUpdatedNotification),
-                                                         object: nil)
+                                               selector: #selector(HomeTableViewController.handleForumSelectedNotification(_:)),
+                                               name: NSNotification.Name(rawValue: Forums.selectionUpdatedNotification),
+                                               object: nil)
         // Add handler for blocked user updated notification.
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: BlockedUserManager.updatedNotification),
-                                                                object: nil,
-                                                                queue: OperationQueue.main) { [weak self] (_) in
-                                                                    self?.tableView.reloadData()
+                                               object: nil,
+                                               queue: OperationQueue.main) { [weak self] (_) in
+                                                self?.tableView.reloadData()
         }
         // Configuration updated.
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Configuration.updatedNotification),
-                                                                object: nil,
-                                                                queue: OperationQueue.main) { [weak self] (_) in
-                                                                    self?.tableView.reloadData()
+                                               object: nil,
+                                               queue: OperationQueue.main) { [weak self] (_) in
+                                                self?.tableView.reloadData()
         }
         // Ad configuration update notification
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: AdConfiguration.adConfigurationUpdatedNotification),
-                                                                object: nil,
-                                                                queue: OperationQueue.main) { [weak self] (_) in
-                                                                    self?.attemptLoadRequest()
+                                               object: nil,
+                                               queue: OperationQueue.main) { [weak self] (_) in
+                                                self?.attemptLoadRequest()
         }
-        tableView.addPullToRefresh(actionHandler: {
-            self.refreshWithPage(self.pageIndex + 1)
-        }, position: .bottom)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if tableView.bottomRefreshControl == nil {
+            tableView.bottomRefreshControl = bottomRefreshControl
+        }
     }
     
     deinit {
@@ -162,6 +169,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
             cell.shouldShowParasitePost = false
             cell.shouldShowImage = Configuration.singleton.showImage
             cell.layoutWithThread(thread, forTableViewController: self)
+            cell.textContentLabel?.delegate = self
         }
         return cell
     }
@@ -196,6 +204,7 @@ extension HomeTableViewController {
             let destinationViewController = segue.destination as? ThreadTableViewController,
             let indexPath = tableView.indexPath(for: selectedCell)
         {
+            destinationViewController.forum = forum
             destinationViewController.selectedThread = threads[indexPath.row]
         }
     }
@@ -206,8 +215,28 @@ extension HomeTableViewController {
 extension HomeTableViewController {
     
     @IBAction func openInSafariAction(_ sender: AnyObject) {
-        // Open in browser.
-        presentSVWebView()
+        let openURLAction = UIAlertAction(title: "Open in Browser", style: .default) { _ in
+            // Set the target URL to the currentURL.
+            self.svWebViewGuardDog = self._guardDog
+            self.svWebViewURL = self.currentURL
+            self.presentSVWebView()
+        }
+        let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
+            // Default UIActivityViewController, no customisation other than the supplied URL.
+            let activityViewController = UIActivityViewController(activityItems : [self.currentURL as Any], applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            self.present(activityViewController, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let alertController = UIAlertController(title: nil,
+                                                message: nil,
+                                                preferredStyle: .actionSheet)
+        alertController.addAction(openURLAction)
+        alertController.addAction(shareAction)
+        alertController.addAction(cancelAction)
+        alertController.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
+        present(alertController, animated: true, completion: nil)
     }
 
     @IBAction func unwindToHomeSegue(_ segue: UIStoryboardSegue) {
@@ -222,7 +251,7 @@ extension HomeTableViewController {
             if threads[indexPath.row].videoLinks?.isEmpty == false, let videoLink = threads[indexPath.row].videoLinks?.first
             {
                 // When image is available, allow selecting either image or video.
-                let openMediaAlertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .actionSheet)
+                let openMediaAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 if threads[indexPath.row].imageURL != nil {
                     openMediaAlertController.addAction(UIAlertAction(title: "Open Image", style: .default, handler: { (_) in
                         self.openImageWithIndex(indexPath.row)
@@ -243,7 +272,7 @@ extension HomeTableViewController {
     
     fileprivate func openImageWithIndex(_ index: Int) {
         // Present
-        if let imageURL = threads[index].imageURL {
+        if let imageURL = threads[index].imageURL ?? threads[index].thumbnailURL {
             photoURLs = [imageURL]
         }
         // Home table view controller has only 1 photo URL.
@@ -255,13 +284,32 @@ extension HomeTableViewController {
         if let videoURL = URL(string: link), UIApplication.shared.canOpenURL(videoURL)
         {
             UIApplication.shared.openURL(videoURL)
-            FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-                kFIRParameterContentType: "SELECT REMOTE URL" as NSObject,
-                kFIRParameterItemID: "\(videoURL.absoluteString)" as NSString,
-                kFIRParameterItemName: "\(videoURL.absoluteString)" as NSString])
+            Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                AnalyticsParameterContentType: "SELECT REMOTE URL" as NSObject,
+                AnalyticsParameterItemID: "\(videoURL.absoluteString)" as NSString,
+                AnalyticsParameterItemName: "\(videoURL.absoluteString)" as NSString])
         } else {
             ProgressHUD.showMessage("Cannot open: \(link)")
         }
+    }
+    
+}
+
+// MARK: Refresh controls
+extension HomeTableViewController {
+    
+    func refresh() {
+        if let forum = forum {
+            Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                AnalyticsParameterContentType: "REFRESH FORUM" as NSObject,
+                AnalyticsParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
+                AnalyticsParameterItemName: "\(forum.name ?? "name undefined")" as NSString])
+        }
+        refreshWithPage(forum?.startingIndex ?? 0)
+    }
+
+    func loadMore() {
+        self.refreshWithPage(self.pageIndex + 1)
     }
     
 }
@@ -277,10 +325,10 @@ extension HomeTableViewController {
         // Disable/enable the webview bar button.
         actionBarButton.isEnabled = currentURL != nil
         if let forum = forum {
-            FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-                kFIRParameterContentType: "SELECT FORUM" as NSObject,
-                kFIRParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
-                kFIRParameterItemName: "\(forum.name ?? "name undefined")" as NSString]
+            Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                AnalyticsParameterContentType: "SELECT FORUM" as NSObject,
+                AnalyticsParameterItemID: "\(forum.name ?? "id undefined")" as NSString,
+                AnalyticsParameterItemName: "\(forum.name ?? "name undefined")" as NSString]
             )
         }
     }
@@ -326,6 +374,16 @@ extension HomeTableViewController: GADBannerViewDelegate {
             toggleAdBanner(false)
         }
         tableView.reloadData()
+    }
+    
+}
+
+extension HomeTableViewController: TTTAttributedLabelDelegate {
+    
+    func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.openURL(url)
+        }
     }
     
 }

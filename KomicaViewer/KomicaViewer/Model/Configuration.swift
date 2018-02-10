@@ -9,6 +9,7 @@
 import Foundation
 
 import AFNetworking
+import SwiftMessages
 
 class Configuration: NSObject {
     // MARK: constants
@@ -155,7 +156,15 @@ class Configuration: NSObject {
                                                                             DLog("Remote notification updates.")
                                                                             if let announcement = self.announcement, !announcement.isEmpty {
                                                                                 DispatchQueue.main.async(execute: {
-                                                                                    ProgressHUD.showMessage(announcement)
+                                                                                    MessagePopup.showMessage(title: "Announcement",
+                                                                                                             message: announcement,
+                                                                                                             layout: .cardView,
+                                                                                                             theme: .info,
+                                                                                                             position: .bottom,
+                                                                                                             buttonTitle: "OK",
+                                                                                                             buttonActionHandler: { _ in
+                                                                                                                SwiftMessages.hide()
+                                                                                    })
                                                                                 })
                                                                             }
                                                                         })

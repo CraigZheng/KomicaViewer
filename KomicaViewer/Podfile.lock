@@ -1,183 +1,163 @@
 PODS:
-  - AFNetworking (3.1.0):
-    - AFNetworking/NSURLSession (= 3.1.0)
-    - AFNetworking/Reachability (= 3.1.0)
-    - AFNetworking/Security (= 3.1.0)
-    - AFNetworking/Serialization (= 3.1.0)
-    - AFNetworking/UIKit (= 3.1.0)
-  - AFNetworking/NSURLSession (3.1.0):
+  - AFNetworking (3.2.0):
+    - AFNetworking/NSURLSession (= 3.2.0)
+    - AFNetworking/Reachability (= 3.2.0)
+    - AFNetworking/Security (= 3.2.0)
+    - AFNetworking/Serialization (= 3.2.0)
+    - AFNetworking/UIKit (= 3.2.0)
+  - AFNetworking/NSURLSession (3.2.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.1.0)
-  - AFNetworking/Security (3.1.0)
-  - AFNetworking/Serialization (3.1.0)
-  - AFNetworking/UIKit (3.1.0):
+  - AFNetworking/Reachability (3.2.0)
+  - AFNetworking/Security (3.2.0)
+  - AFNetworking/Serialization (3.2.0)
+  - AFNetworking/UIKit (3.2.0):
     - AFNetworking/NSURLSession
+  - CCBottomRefreshControl (0.5.2)
   - DACircularProgress (2.3.1)
-  - Firebase/AdMob (3.17.0):
+  - Firebase (4.8.2):
+    - Firebase/Core (= 4.8.2)
+  - Firebase/AdMob (4.8.2):
     - Firebase/Core
-    - Google-Mobile-Ads-SDK (= 7.19.1)
-  - Firebase/Core (3.17.0):
-    - FirebaseAnalytics (= 3.9.0)
-    - FirebaseCore (= 3.6.0)
-  - Firebase/Crash (3.17.0):
+    - Google-Mobile-Ads-SDK (= 7.27.0)
+  - Firebase/Core (4.8.2):
+    - FirebaseAnalytics (= 4.0.9)
+    - FirebaseCore (= 4.0.14)
+  - Firebase/Crash (4.8.2):
     - Firebase/Core
-    - FirebaseCrash (= 1.1.6)
-  - FirebaseAnalytics (3.9.0):
-    - FirebaseCore (~> 3.6)
-    - FirebaseInstanceID (~> 1.0)
+    - FirebaseCrash (= 2.0.2)
+  - FirebaseAnalytics (4.0.9):
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCore (3.6.0):
+    - nanopb (~> 0.3)
+  - FirebaseCore (4.0.14):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCrash (1.1.6):
-    - FirebaseAnalytics (~> 3.7)
-    - FirebaseInstanceID (~> 1.0)
+  - FirebaseCrash (2.0.2):
+    - FirebaseAnalytics (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - Protobuf (~> 3.1)
-  - FirebaseInstanceID (1.0.10):
-    - FirebaseCore (~> 3.6)
-  - Google-Mobile-Ads-SDK (7.19.1)
-  - GoogleToolboxForMac/Defines (2.1.1)
-  - GoogleToolboxForMac/Logger (2.1.1):
-    - GoogleToolboxForMac/Defines (= 2.1.1)
-  - GoogleToolboxForMac/NSData+zlib (2.1.1):
-    - GoogleToolboxForMac/Defines (= 2.1.1)
-  - libnestegg (0.1)
-  - libogg (1.3.2)
-  - liboggz (1.1.1):
-    - libogg (>= 1.0)
-  - libtheora (1.1.1):
-    - libogg (>= 1.1)
+  - FirebaseInstanceID (2.0.8):
+    - FirebaseCore (~> 4.0)
+  - Google-Mobile-Ads-SDK (7.27.0)
+  - GoogleToolboxForMac/Defines (2.1.3)
+  - GoogleToolboxForMac/Logger (2.1.3):
+    - GoogleToolboxForMac/Defines (= 2.1.3)
+  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+    - GoogleToolboxForMac/Defines (= 2.1.3)
+  - libnestegg (0.3)
+  - libogg (1.3.3)
+  - libopus (1.1):
+    - libopus/float (= 1.1)
+  - libopus/float (1.1)
   - libvorbis (1.3.5):
     - libogg (>= 1.0)
-  - libvpx (1.5.0-1021-g59ae167)
+  - libvpx (1.7.0)
   - MBProgressHUD (0.9.2)
   - MWPhotoBrowser (2.1.2):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
-  - OGVKit (0.5.9):
-    - OGVKit/AVDecoder (= 0.5.9)
-    - OGVKit/Core (= 0.5.9)
-    - OGVKit/libskeleton (= 0.5.9)
-    - OGVKit/MP3 (= 0.5.9)
-    - OGVKit/MP4 (= 0.5.9)
-    - OGVKit/Ogg (= 0.5.9)
-    - OGVKit/OggDemuxer (= 0.5.9)
-    - OGVKit/TheoraDecoder (= 0.5.9)
-    - OGVKit/VorbisDecoder (= 0.5.9)
-    - OGVKit/VP8Decoder (= 0.5.9)
-    - OGVKit/WebM (= 0.5.9)
-    - OGVKit/WebMDemuxer (= 0.5.9)
-  - OGVKit/AVDecoder (0.5.9):
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
+  - OGVKit/Core (0.5.13)
+  - OGVKit/OpusDecoder (0.5.13):
+    - libopus
     - OGVKit/Core
-  - OGVKit/Core (0.5.9)
-  - OGVKit/libskeleton (0.5.9):
-    - libogg
-  - OGVKit/MP3 (0.5.9):
-    - OGVKit/AVDecoder
-  - OGVKit/MP4 (0.5.9):
-    - OGVKit/AVDecoder
-  - OGVKit/Ogg (0.5.9):
-    - OGVKit/Ogg/Theora (= 0.5.9)
-    - OGVKit/Ogg/Vorbis (= 0.5.9)
-  - OGVKit/Ogg/Theora (0.5.9):
-    - OGVKit/OggDemuxer
-    - OGVKit/TheoraDecoder
-    - OGVKit/VorbisDecoder
-  - OGVKit/Ogg/Vorbis (0.5.9):
-    - OGVKit/OggDemuxer
-    - OGVKit/VorbisDecoder
-  - OGVKit/OggDemuxer (0.5.9):
-    - liboggz
-    - OGVKit/Core
-    - OGVKit/libskeleton (~> 0.4)
-  - OGVKit/TheoraDecoder (0.5.9):
-    - libtheora
-    - OGVKit/Core
-  - OGVKit/VorbisDecoder (0.5.9):
+  - OGVKit/VorbisDecoder (0.5.13):
     - libvorbis
     - OGVKit/Core
-  - OGVKit/VP8Decoder (0.5.9):
-    - libvpx (~> 1.5.0-1021-g59ae167)
+  - OGVKit/VP8Decoder (0.5.13):
+    - libvpx (~> 1.7.0)
     - OGVKit/Core
-  - OGVKit/WebM (0.5.9):
-    - OGVKit/WebM/Vorbis (= 0.5.9)
-    - OGVKit/WebM/VP8 (= 0.5.9)
-  - OGVKit/WebM/Vorbis (0.5.9):
+  - OGVKit/WebM (0.5.13):
+    - OGVKit/WebM/Opus (= 0.5.13)
+    - OGVKit/WebM/Vorbis (= 0.5.13)
+    - OGVKit/WebM/VP8 (= 0.5.13)
+  - OGVKit/WebM/Opus (0.5.13):
+    - OGVKit/OpusDecoder
+    - OGVKit/WebMDemuxer
+  - OGVKit/WebM/Vorbis (0.5.13):
     - OGVKit/VorbisDecoder
     - OGVKit/WebMDemuxer
-  - OGVKit/WebM/VP8 (0.5.9):
+  - OGVKit/WebM/VP8 (0.5.13):
     - OGVKit/VorbisDecoder
     - OGVKit/VP8Decoder
     - OGVKit/WebMDemuxer
-  - OGVKit/WebMDemuxer (0.5.9):
-    - libnestegg
+  - OGVKit/WebMDemuxer (0.5.13):
+    - libnestegg (~> 0.2)
     - OGVKit/Core
-  - Protobuf (3.3.0)
+  - Protobuf (3.5.0)
   - PureLayout (3.0.2)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
-  - SVPullToRefresh (0.4.1)
   - SVWebViewController (1.0)
-  - SwiftMessages (3.3.3)
+  - SwiftMessages (4.1.0)
+  - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
   - AFNetworking
+  - CCBottomRefreshControl (from `https://github.com/CraigZheng/CCBottomRefreshControl.git`)
+  - Firebase
   - Firebase/AdMob
   - Firebase/Core
   - Firebase/Crash
   - MBProgressHUD
   - MWPhotoBrowser (~> 2.1.2)
-  - OGVKit
+  - OGVKit/WebM
   - PureLayout
-  - SVPullToRefresh (from `https://github.com/samvermette/SVPullToRefresh.git`)
   - SVWebViewController (from `https://github.com/TransitApp/SVWebViewController.git`)
   - SwiftMessages
+  - TTTAttributedLabel
 
 EXTERNAL SOURCES:
-  SVPullToRefresh:
-    :git: https://github.com/samvermette/SVPullToRefresh.git
+  CCBottomRefreshControl:
+    :git: https://github.com/CraigZheng/CCBottomRefreshControl.git
   SVWebViewController:
     :git: https://github.com/TransitApp/SVWebViewController.git
 
 CHECKOUT OPTIONS:
-  SVPullToRefresh:
-    :commit: a5f9dfee86a27c4e994d7edf93d0768c881d58bb
-    :git: https://github.com/samvermette/SVPullToRefresh.git
+  CCBottomRefreshControl:
+    :commit: bc00bc7f0a1c14266414801912a5ae45bb07b264
+    :git: https://github.com/CraigZheng/CCBottomRefreshControl.git
   SVWebViewController:
-    :commit: 9abad6b852b6c2ad19bb3c28532cce53719e2a7f
+    :commit: fe4ddeca1a8c7e5cc5ea716667426463f31b28f3
     :git: https://github.com/TransitApp/SVWebViewController.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
+  CCBottomRefreshControl: 389780b4488321c91d18f66a6da5ef9606df6de5
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
-  Firebase: 4b66b5b59c43edac745b87f0c87e42cdd0279c13
-  FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
-  FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
-  FirebaseCrash: db4c05d9c75baa050744d31b36357c8f1efba481
-  FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
-  Google-Mobile-Ads-SDK: 43ac87810e4961f5093024d3525bfe022f956da3
-  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
-  libnestegg: 29be3e4d84978423ab8a282476c099aa221d1c4e
-  libogg: 924cd993b3fcf4d93568f7d582496061ef82716e
-  liboggz: 6605f8cd394de0fe330957507179f6bdcce716d1
-  libtheora: cf6fb3c5c0db661460d0d54d0a343bc38dc766d3
-  libvorbis: ce9ba21bbef15c2060e31e1e33dcdeb3762427b0
-  libvpx: a5eeb44d068ae2f597eddf27a9fc097ac423b208
+  Firebase: 7d3b8cd837ad9fcd391657734c0d56dab8e9a5a3
+  FirebaseAnalytics: 388b630c15713f5dbf364071f5f3d6077fb52f4e
+  FirebaseCore: 2e0b98fb2d64ca8140136beff15772bdd14d2dd7
+  FirebaseCrash: cded0fc566c03651aea606a101bc156085f333ca
+  FirebaseInstanceID: 81df5805a08001e69138664bdd02c6719a9ac80f
+  Google-Mobile-Ads-SDK: 83f7f890e638ce8f1debd440ea363338c9f6be3b
+  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
+  libnestegg: 851afa1dc38c810bb18fa6459c39aa124abd7fc0
+  libogg: 35e313159a7270931d0f0f208c2d5f60bc05399b
+  libopus: ad5f060dcb8f30f139777244d70f9111f1c80863
+  libvorbis: b2c6a2c2bb22447d80403981185b213cf688fae7
+  libvpx: 5abeaf729fa406fd65ae1c19adcf00329c40e02a
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
-  OGVKit: a7323b234ede2b6a4825097dd8a7f2075c71125b
-  Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  OGVKit: 0e63492407aa2f3734ff18670ca09ecfe63d34e7
+  Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SVWebViewController: aa2e18a41ff5f45be7aeec8e92ca5bcc50b5ebb1
-  SwiftMessages: 09cea3336e3fb63c3578983c8aac65acaa6d884a
+  SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: abed6fe8264392f095f8ba39f85afede26561c8e
+PODFILE CHECKSUM: 8d9a46bca3b71dbf613c109b7002bc60ae587cf3
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.4.0

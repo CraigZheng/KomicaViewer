@@ -33,7 +33,7 @@ extension ThreadTableViewCell {
                     topViewController.present(alertController, animated: true, completion: nil)
                 }
             } else {
-                alertController = UIAlertController(title: "What would you want to do?", message: nil, preferredStyle: .actionSheet)
+                alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 if let alertController = alertController {
                     let copyIDAction = UIAlertAction(title: "Copy ID: \(userID ?? "")", style: .default) { (_) in
                         if let text = self.textLabel?.text {
@@ -44,7 +44,7 @@ extension ThreadTableViewCell {
                         self.alertController = nil
                     }
                     let copyContentAction = UIAlertAction(title: "Copy Content", style: .default) { (_) in
-                        if let text = self.textView?.text {
+                        if let text = self.textContentLabel?.text {
                             UIPasteboard.general.string = text
                             ProgressHUD.showMessage("Content Copied")
                         }
@@ -69,10 +69,10 @@ extension ThreadTableViewCell {
                                 let linkAction = UIAlertAction(title: link.absoluteString, style: .default) { _ in
                                     if UIApplication.shared.canOpenURL(link as URL) {
                                         UIApplication.shared.openURL(link as URL)
-                                        FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-                                            kFIRParameterContentType: "SELECT REMOTE URL" as NSObject,
-                                            kFIRParameterItemID: "\(link.absoluteString)" as NSString,
-                                            kFIRParameterItemName: "\(link.absoluteString)" as NSString])
+                                        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+                                            AnalyticsParameterContentType: "SELECT REMOTE URL" as NSObject,
+                                            AnalyticsParameterItemID: "\(link.absoluteString)" as NSString,
+                                            AnalyticsParameterItemName: "\(link.absoluteString)" as NSString])
                                     }
                                 }
                                 alertController.addAction(linkAction)
@@ -103,5 +103,4 @@ extension ThreadTableViewCell {
             }
         }
     }
-
 }

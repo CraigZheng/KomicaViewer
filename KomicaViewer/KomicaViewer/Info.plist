@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.9.6</string>
+	<string>2.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.9.1</string>
+	<string>2.1.1</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -37,6 +37,8 @@
 	<string>Select a date to be reminded about.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Scan QR code with your camera.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Save an image to your photo library.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Select a QR code from your photo library.</string>
 	<key>UILaunchStoryboardName</key>

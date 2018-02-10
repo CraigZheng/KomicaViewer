@@ -1,27 +1,30 @@
 {
-  "reportURL": "http://2cat.or.tl/~ad/0d/fstyle.html?",
-  "addForumHelpURL": "https://drive.google.com/file/d/0BzYYz0LsNP2QR1BNaWZib0FZU1U/view?usp=sharing",
-  "scanForumQRHelpURL": "https://h.nimingban.com/t/9740708",
-  "imagePerPage": 40,
-  "timeout": 20,
-  "thumbnailWidth": 50,
-  "remoteDebug": true,
-  "announcement": "",
-  "remoteActions": [
-    {
-      "Contact Developer": "http://weibo.com/u/3868827431/"
-    },
-    {
-      "Give a Review": "itms-apps://itunes.apple.com/app/id1143300746"
-    },
-    {
-      "Report a Bug": "https://www.wenjuan.com/s/VNjMNjm/"
-    },
-    {
-      "My Other Apps": "https://itunes.apple.com/au/developer/haozheng-zheng/id530032325?mt=8"
-    },
-    {
-      "Project Repository": "https://github.com/CraigZheng/KomicaViewer"
-    }
-  ]
+    "reportURL": "http://2cat.or.tl/~ad/0d/fstyle.html?",
+    "addForumHelpURL": "https://drive.google.com/file/d/0BzYYz0LsNP2QR1BNaWZib0FZU1U/view?usp=sharing",
+    "scanForumQRHelpURL": "https://h.nimingban.com/t/9740708",
+    "imagePerPage": 40,
+    "timeout": 20,
+    "thumbnailWidth": 50,
+    "remoteDebug": true,
+    "announcement": "",
+    "remoteActions":
+    [
+        {
+            "Contact Developer": "http://weibo.com/u/3868827431/"
+        },        {
+            "Give a Review": "itms-apps://itunes.apple.com/app/id1143300746"
+        },
+        {
+            "Report a Bug": "https://www.wenjuan.com/s/VNjMNjm/"
+        },
+        {
+            "My Other Apps": "https://itunes.apple.com/au/developer/haozheng-zheng/id530032325?mt=8"
+        },
+        {
+            "EH Reader(Repository)": "https://bitbucket.org/CraigZheng/exellency"
+        },
+        {
+            "Project Repository": "https://github.com/CraigZheng/KomicaViewer"
+        }
+    ]
 }

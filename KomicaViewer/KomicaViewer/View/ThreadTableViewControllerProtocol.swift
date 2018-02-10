@@ -9,10 +9,9 @@
 import UIKit
 
 import KomicaEngine
-import SVPullToRefresh
 
 protocol ThreadTableViewControllerProtocol: class {
-    var forum: KomicaForum? { get }
+    var forum: KomicaForum? { get set }
     var threads: [KomicaEngine.Thread] { get set }
     var downloader: KomicaDownloader? { get }
     var completion: KomicaDownloaderHandler? { get }
@@ -23,7 +22,6 @@ protocol ThreadTableViewControllerProtocol: class {
 
 extension ThreadTableViewControllerProtocol where Self: UITableViewController {
     
-    var forum: KomicaForum? { return Forums.selectedForum }
     var downloader: KomicaDownloader? { return KomicaDownloader() }
     var completion: KomicaDownloaderHandler? {
         return { [weak self ](success, page, result) in
@@ -38,7 +36,6 @@ extension ThreadTableViewControllerProtocol where Self: UITableViewController {
                 self?.tableView.reloadData()
                 self?.refreshControl?.endRefreshing()
                 self?.hideLoading()
-                self?.tableView.pullToRefreshView?.stopAnimating()
                 self?.postCompletion?(success, page, result)
             }
         }
@@ -53,6 +50,13 @@ extension ThreadTableViewControllerProtocol where Self: UITableViewController {
                 request.preferredEncoding = forum.textEncoding
                 if forum.parserType == FutabaListParser.self {
                     request.preferredBaseURLString = targetURL.host
+                } else if forum.parserType == PixmicatListParser.self {
+                    var baseURLComponents = URLComponents(url: targetURL, resolvingAgainstBaseURL: false)
+                    baseURLComponents?.path = ""
+                    baseURLComponents?.query = nil
+                    if let baseURL = baseURLComponents?.url {
+                        request.preferredBaseURLString = baseURL.absoluteString
+                    }
                 }
                 _ = downloader.downloadListForRequest(request)
             } else {
@@ -71,6 +75,13 @@ extension ThreadTableViewControllerProtocol where Self: UITableViewController {
             request.preferredEncoding = forum.textEncoding
             if forum.parserType == FutabaListParser.self {
                 request.preferredBaseURLString = targetURL.host
+            } else if forum.parserType == PixmicatListParser.self {
+                var baseURLComponents = URLComponents(url: targetURL, resolvingAgainstBaseURL: false)
+                baseURLComponents?.path = ""
+                baseURLComponents?.query = nil
+                if let baseURL = baseURLComponents?.url {
+                    request.preferredBaseURLString = baseURL.absoluteString
+                }
             }
             _ = downloader.downloadRepliesForRequest(request)
         } else {

@@ -149,7 +149,7 @@ class SettingsTableViewController: UITableViewController {
                                 self?.tableView.reloadData()
                                 MessagePopup.showMessage(title: "Payment Made",
                                                          message: "You've acquired this item: \(product.localizedTitle)",
-                                                         layout: .CardView,
+                                                         layout: .cardView,
                                                          theme: .success,
                                                          position: .bottom,
                                                          buttonTitle: "OK",
@@ -175,7 +175,7 @@ class SettingsTableViewController: UITableViewController {
                                 self?.tableView.reloadData()
                                 MessagePopup.showMessage(title: "Restoration Successful",
                                                          message: "You've acquired this item: \(product.localizedTitle)",
-                                    layout: .CardView,
+                                    layout: .cardView,
                                     theme: .success,
                                     position: .bottom,
                                     buttonTitle: "OK",
@@ -188,7 +188,7 @@ class SettingsTableViewController: UITableViewController {
                                 // Network transaction was successful, but no purchase is recorded.
                                 MessagePopup.showMessage(title: "Failed To Restore",
                                                          message: "There is no previous payment made by this account, please verify your account and try again.",
-                                                         layout: .CardView,
+                                                         layout: .cardView,
                                                          theme: .error,
                                                          position: .bottom,
                                                          buttonTitle: "OK",
@@ -220,7 +220,7 @@ class SettingsTableViewController: UITableViewController {
             if let message = message, !message.isEmpty {
                 MessagePopup.showMessage(title: "Failed To Purchase",
                                          message: "Cannot make a payment due to the following reason: \n\(message)",
-                    layout: .CardView,
+                    layout: .cardView,
                     theme: .error,
                     position: .bottom,
                     buttonTitle: "OK",
@@ -232,7 +232,7 @@ class SettingsTableViewController: UITableViewController {
             // Generic error.
             MessagePopup.showMessage(title: "Failed To Connect",
                                      message: "The connection to the server seems to be broken, please try again later.",
-                                     layout: .CardView,
+                                     layout: .cardView,
                                      theme: .error,
                                      position: .bottom,
                                      buttonTitle: "OK",

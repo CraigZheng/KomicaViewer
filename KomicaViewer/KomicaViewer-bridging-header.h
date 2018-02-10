@@ -13,3 +13,4 @@
 #endif /* Header_h */
 
 #import "CPLoadFromNibView.h"
+#import "PartialTransparentView.h"

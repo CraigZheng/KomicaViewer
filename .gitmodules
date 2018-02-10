@@ -1,0 +1,3 @@
+[submodule "KomicaViewer/submodules/BFWControl"]
+	path = KomicaViewer/submodules/BFWControl
+	url = https://github.com/BareFeetWare/BFWControls.git
