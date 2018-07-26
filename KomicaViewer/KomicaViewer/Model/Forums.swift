@@ -67,7 +67,7 @@ class Forums {
                     linkAttribute.value.contains("futaba.htm") else {
                         return nil
                 }
-                let link = linkAttribute.value
+                let link = linkAttribute.value.replacingOccurrences(of: "//", with: "http://")
                 let jsonDictionary: [String: AnyObject] = ["name": element.text() as NSString,
                                                            "startingIndex": 0 as NSNumber,
                                                            "indexURL": link as NSString,
