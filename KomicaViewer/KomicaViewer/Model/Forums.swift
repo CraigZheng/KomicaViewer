@@ -17,7 +17,7 @@ class Forums {
     
     fileprivate static let sharedInstance = Forums()
     fileprivate static let customForumsKey = "customForumsKey"
-    fileprivate static let futabaUpdateURL = URL(string: "http://civ.atwebpages.com/KomicaViewer/futaba_remote_forums.php")
+    fileprivate static let futabaUpdateURL = URL(string: "http://civ.atwebpages.com/KomicaViewer/2chan_remote_forums.html")!
     fileprivate var selectedForum: KomicaForum?
     
     static var selectedForum: KomicaForum? {
@@ -57,13 +57,31 @@ class Forums {
     }
     
     static func updateRemoteFutabaForums() {
-        KomicaForumFinder.sharedInstance.loadRemoteForumsFrom(url: futabaUpdateURL!) { (success, forumGroups, error) in
-            if success, let forumGroups = forumGroups {
-                futabaForumGroup = forumGroups
-                // Remote forums updated, send a notification.
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: forumsUpdatedNotification), object: nil)
+        URLSession(configuration: .default).dataTask(with: futabaUpdateURL) { data, response, error in
+            guard let data = data else {
+                return
             }
-        }
+            let forums = (ObjectiveGumbo.parseDocument(with: data, encoding: String.Encoding.shiftJIS.rawValue).elements(with: OGTag.A) as? [OGElement])?.flatMap { element -> KomicaForum? in
+                guard let attributes = element.attributes as? [String: String],
+                    let linkAttribute = attributes.filter({ $0.0 == "href" }).first,
+                    linkAttribute.value.contains("futaba.htm") else {
+                        return nil
+                }
+                let link = linkAttribute.value
+                let jsonDictionary: [String: AnyObject] = ["name": element.text() as NSString,
+                                                           "startingIndex": 0 as NSNumber,
+                                                           "indexURL": link as NSString,
+                                                           "listURL": link.replacingOccurrences(of: "futaba", with: "<PAGE>") as NSString,
+                                                           "responseURL": link.replacingOccurrences(of: "futaba", with: "res/<ID>") as NSString,
+                                                           "parserType": 5 as NSNumber]
+                return KomicaForum(jsonDict: jsonDictionary)
+            }
+            let forumGroup = KomicaForumGroup()
+            forumGroup.name = "2 chan"
+            forumGroup.forums = forums
+            futabaForumGroup = [forumGroup]
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: forumsUpdatedNotification), object: nil)
+        }.resume()
     }
 
     class func addCustomForum(_ forum: KomicaForum) {
