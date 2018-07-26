@@ -11,7 +11,9 @@ import UIKit
 import KomicaEngine
 
 class ForumPickerTableViewController: UITableViewController {
-    
+    private enum Host: Int {
+        case komica, futaba
+    }
     // MARK: - UI elements.
     
     @IBOutlet weak var sourceSegmentedControl: UISegmentedControl!
@@ -38,7 +40,21 @@ class ForumPickerTableViewController: UITableViewController {
         return forums
     }
     fileprivate static var scrollOffset: CGPoint?
-    fileprivate static var selectedSegmentControlIndex: Int?
+    private var selectedHost: Host {
+        get {
+            let selectedIndex = UserDefaults.standard.integer(forKey: "SelectedHost")
+            guard let selectedHost = Host(rawValue: selectedIndex) else {
+                return .komica
+            }
+            return selectedHost
+        }
+        set {
+            UserDefaults.standard.set(newValue.rawValue, forKey: "SelectedHost")
+            UserDefaults.standard.synchronize()
+            NotificationCenter.default.post(name: Notification.Name(rawValue: AdConfiguration.adConfigurationUpdatedNotification),
+                                            object: nil)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,9 +83,8 @@ class ForumPickerTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         tableView.reloadData()
         // Select previous segmented control index.
-        if let selectedIndex = ForumPickerTableViewController.selectedSegmentControlIndex {
-            sourceSegmentedControl.selectedSegmentIndex = selectedIndex
-        }
+        sourceSegmentedControl.selectedSegmentIndex = selectedHost.rawValue
+        
         // If user has previously selected an index, let's roll to the previous position.
         if let scrollOffset = ForumPickerTableViewController.scrollOffset
         {
@@ -85,7 +100,9 @@ class ForumPickerTableViewController: UITableViewController {
     // MARK: - UI actions.
     
     @IBAction func segmentedControlValueChanged(_ sender: Any) {
-        ForumPickerTableViewController.selectedSegmentControlIndex = sourceSegmentedControl.selectedSegmentIndex
+        if let selectedHost = Host(rawValue: sourceSegmentedControl.selectedSegmentIndex) {
+            self.selectedHost = selectedHost
+        }
         tableView.reloadData()
     }
 
