@@ -77,9 +77,9 @@ class ForumPickerTableViewController: UITableViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ForumPickerTableViewController.scrollOffset = tableView.contentOffset
     }
     
     // MARK: - UI actions.
@@ -144,10 +144,8 @@ class ForumPickerTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let forums = forumsForSection(indexPath.section), indexPath.row < forums.count
-        {
+        if let forums = forumsForSection(indexPath.section), indexPath.row < forums.count {
             Forums.selectedForum = forums[indexPath.row]
-            ForumPickerTableViewController.scrollOffset = tableView.contentOffset
         }
         // Dismiss self.
         dismiss(animated: true, completion: nil)
