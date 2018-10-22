@@ -89,7 +89,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
             }
         } else {
             unmodifiedForum = newForum
-            addButton.setTitle("Edit", for: .normal)
+            addButton.setTitle("Save", for: .normal)
         }
         reload()
     }
