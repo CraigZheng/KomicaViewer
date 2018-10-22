@@ -46,7 +46,7 @@ class ThreadTableViewCell: UITableViewCell {
     var userID: String?
     var links: [URL] {
         var links = [URL]()
-        if let linkDetector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue), let text = textContentLabel?.text {
+        if let linkDetector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue), let text = textContentLabel?.text as? String {
             for match in linkDetector.matches(in: text, options: [], range: NSMakeRange(0, text.characters.count)) {
                 if match.resultType == NSTextCheckingResult.CheckingType.link, let url = match.url {
                     links.append(url)
