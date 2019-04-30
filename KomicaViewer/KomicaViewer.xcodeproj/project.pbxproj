@@ -74,7 +74,7 @@
 		8F89F2B3F64E466EDA8E6ED1 /* Pods_KomicaViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21C3A364A9DD0DDE230355EF /* Pods_KomicaViewer.framework */; };
 		A626FE4C1E96D311C76B1EF2 /* Pods_KomicaViewer_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9888890F89082B45414F82C /* Pods_KomicaViewer_KomicaViewerTests.framework */; };
 		B20E87BADB21FFDFDA78476B /* Pods_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B832635AE945C0A0AE7FB38 /* Pods_KomicaViewerTests.framework */; };
-		BCE55B9E9BB5B372EA0A346B /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		BCE55B9E9BB5B372EA0A346B /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -511,7 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A626FE4C1E96D311C76B1EF2 /* Pods_KomicaViewer_KomicaViewerTests.framework in Frameworks */,
-				BCE55B9E9BB5B372EA0A346B /* (null) in Frameworks */,
+				BCE55B9E9BB5B372EA0A346B /* BuildFile in Frameworks */,
 				B20E87BADB21FFDFDA78476B /* Pods_KomicaViewerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -779,7 +779,6 @@
 				44496F4D1D5985A6005875DD /* Resources */,
 				44655D4B1D5AD24700229404 /* Embed Frameworks */,
 				9B8EF6BF0691FFF00370BA47 /* [CP] Embed Pods Frameworks */,
-				AC055B34C87542385C0B897D /* [CP] Copy Pods Resources */,
 				7C2A12900AD7C31E84A470E7 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -805,7 +804,6 @@
 				44496F601D5985A6005875DD /* Frameworks */,
 				44496F611D5985A6005875DD /* Resources */,
 				68104A70DA5FA7686066341C /* [CP] Embed Pods Frameworks */,
-				97865819251EB715CFC1A5AC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1206,7 +1204,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-NSData+zlib/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -1217,7 +1215,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7BF8544B2F5B3079BB66FB76 /* [CP] Check Pods Manifest.lock */ = {
@@ -1253,28 +1251,13 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		97865819251EB715CFC1A5AC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9B8EF6BF0691FFF00370BA47 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/CCBottomRefreshControl/CCBottomRefreshControl.framework",
 				"${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework",
@@ -1319,22 +1302,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AC055B34C87542385C0B897D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
