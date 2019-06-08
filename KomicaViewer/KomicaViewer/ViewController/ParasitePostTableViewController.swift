@@ -10,11 +10,11 @@ import UIKit
 
 class ParasitePostTableViewController: UITableViewController {
     
-    var parasitePosts: [String]!
+    @objc var parasitePosts: [String]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
     }
     

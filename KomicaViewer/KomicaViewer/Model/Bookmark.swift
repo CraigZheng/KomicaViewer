@@ -72,7 +72,7 @@ extension KomicaEngine.Thread: Jsonable {
         return thread
     }
     
-    func jsonEncode() -> String? {
+    @objc func jsonEncode() -> String? {
         var jsonDict = Dictionary<String, Any>()
         jsonDict["title"] = title
         jsonDict["rawHtmlContent"] = rawHtmlContent
@@ -154,7 +154,7 @@ extension Sequence where Iterator.Element == Bookmark {
     }
     
     static func jsonDecode(jsonString: [String]) -> [Bookmark]? {
-        let bookmarks = jsonString.flatMap { string -> Bookmark? in
+        let bookmarks = jsonString.compactMap { string -> Bookmark? in
             guard let jsonData = string.data(using: .utf8)
                 , let jsonDict = (try? JSONSerialization.jsonObject(with: jsonData, options: .allowFragments)) as? Dictionary<String, AnyObject> else { return nil }
             return Bookmark.jsonDecode(jsonDict: jsonDict) as? Bookmark

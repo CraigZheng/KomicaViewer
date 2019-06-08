@@ -98,11 +98,11 @@ class SettingsTableViewController: UITableViewController {
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             switch cell {
             case restorePurchaseCell, removeAdCell:
-                return iapProducts.isEmpty || AdConfiguration.singleton.isAdRemovePurchased ? 0 : UITableViewAutomaticDimension
+                return iapProducts.isEmpty || AdConfiguration.singleton.isAdRemovePurchased ? 0 : UITableView.automaticDimension
             case noAdvertisementCell:
-                return AdConfiguration.singleton.isAdRemovePurchased ? UITableViewAutomaticDimension : 0
+                return AdConfiguration.singleton.isAdRemovePurchased ? UITableView.automaticDimension : 0
             default:
-                return UITableViewAutomaticDimension
+                return UITableView.automaticDimension
             }
         case .remoteActions:
             return CGFloat(Configuration.singleton.remoteActions.count * 44) + 20

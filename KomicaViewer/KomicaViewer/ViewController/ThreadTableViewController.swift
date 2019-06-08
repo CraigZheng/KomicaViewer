@@ -29,20 +29,20 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
     @IBOutlet weak var adDescriptionLabel: UILabel!
     @IBOutlet weak var bookmarkButtonItem: UIBarButtonItem!
     
-    var selectedThread: KomicaEngine.Thread! {
+    @objc var selectedThread: KomicaEngine.Thread! {
         didSet {
             title = selectedThread.title
         }
     }
     
     // MARK: UIViewControllerMWPhotoBrowserProtocol
-    var photoURLs: [URL]?
-    var thumbnailURLs: [URL]?
+    @objc var photoURLs: [URL]?
+    @objc var thumbnailURLs: [URL]?
     var photoIndex: Int?
     
     // MARK: SVWebViewProtocol
-    var svWebViewURL: URL?
-    var svWebViewGuardDog: WebViewGuardDog?
+    @objc var svWebViewURL: URL?
+    @objc var svWebViewGuardDog: WebViewGuardDog?
     // MARK: private properties.
     fileprivate var _guardDog: WebViewGuardDog {
         let guardDog = WebViewGuardDog()
@@ -79,8 +79,8 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         return nil
     }
     // MARK: ThreadTableViewControllerProtocol
-    var forum: KomicaForum?
-    lazy var postCompletion: KomicaDownloaderHandler? = {
+    @objc var forum: KomicaForum?
+    @objc lazy var postCompletion: KomicaDownloaderHandler? = {
         [weak self](success, page, result) in
         guard let strongSelf = self else { return }
         if success, let t = result?.threads {
@@ -95,16 +95,16 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
             ProgressHUD.showMessage("Loading failed")
         }
     }
-    lazy var threads: [KomicaEngine.Thread] = {
+    @objc lazy var threads: [KomicaEngine.Thread] = {
         return [self.selectedThread]
     }()
     
     // MARK: TableViewControllerBulkUpdateProtocol
-    var targetTableView: UITableView {
+    @objc var targetTableView: UITableView {
         return self.tableView
     }
-    var bulkUpdateTimer: Timer?
-    var pendingIndexPaths: [IndexPath] = [IndexPath]()
+    @objc var bulkUpdateTimer: Timer?
+    @objc var pendingIndexPaths: [IndexPath] = [IndexPath]()
     
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -130,8 +130,8 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self,
                                   action: #selector(ThreadTableViewController.refresh),
-                                  for: UIControlEvents.valueChanged)
-        tableView.rowHeight = UITableViewAutomaticDimension
+                                  for: UIControl.Event.valueChanged)
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 140
         tableView.register(UINib(nibName: "ThreadTableViewCell", bundle: nil), forCellReuseIdentifier: ThreadTableViewCell.identifier)
         // Load page.
@@ -295,10 +295,10 @@ extension ThreadTableViewController: UIAlertViewDelegate {
         // Present
         photoURLs = imageThreads.map({ (thread) -> URL? in
             return thread.imageURL ?? thread.thumbnailURL
-        }).flatMap({ $0 })
+        }).compactMap({ $0 })
         thumbnailURLs = imageThreads.map({ (thread) -> URL? in
             return thread.thumbnailURL ?? thread.imageURL
-        }).flatMap({ $0 })
+        }).compactMap({ $0 })
         if let index = imageThreads.index(of: threads[index]) {
             photoIndex = index
         }
@@ -379,7 +379,7 @@ extension ThreadTableViewController: GADBannerViewDelegate {
         AdConfiguration.singleton.clickedAd()
     }
     
-    func toggleAdBanner(_ show: Bool) {
+    @objc func toggleAdBanner(_ show: Bool) {
         DispatchQueue.main.async {
             if (show) {
                 self.adDescriptionLabel.text = AdConfiguration.singleton.adDescription
@@ -398,7 +398,7 @@ extension ThreadTableViewController: GADBannerViewDelegate {
         }
     }
     
-    func attemptLoadRequest() {
+    @objc func attemptLoadRequest() {
         if AdConfiguration.singleton.shouldDisplayAds {
             let request = GADRequest()
             #if DEBUG
@@ -442,11 +442,11 @@ extension ThreadTableViewController: TTTAttributedLabelDelegate {
 
 extension ThreadTableViewController {
     
-    func refresh() {
+    @objc func refresh() {
         refreshWithPage(0)
     }
     
-    func refreshWithPage(_ page: Int) {
+    @objc func refreshWithPage(_ page: Int) {
         // For each thread ID, there is only 1 page.
         if let threadID = threadID {
             loadResponsesWithThreadID(threadID)

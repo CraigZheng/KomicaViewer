@@ -16,9 +16,9 @@ class Configuration: NSObject {
     fileprivate let defaultConfiguration = "defaultConfiguration"
     fileprivate let remoteConfigurationURL = URL(string: "http://civ.atwebpages.com/KomicaViewer/kv_remote_configuration.php?bundleVersion=\(Configuration.bundleVersion)")! // 100% sure not optional.
     fileprivate var updateTimer: Timer?
-    static let debugChangedNotification = "debugChangedNotification"
-    static let updatedNotification = "Configuration.updatedNotification"
-    static var bundleVersion: String {
+    @objc static let debugChangedNotification = "debugChangedNotification"
+    @objc static let updatedNotification = "Configuration.updatedNotification"
+    @objc static var bundleVersion: String {
         // Won't be nil.
         let bundleVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion")!
         let versionString = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")!
@@ -28,15 +28,15 @@ class Configuration: NSObject {
     fileprivate let sessionManager = AFHTTPSessionManager.sessionManager()
     
     // MARK: public properties.
-    var reportURL: URL?
-    var addForumHelpURL: URL?
-    var scanForumQRHelpURL: URL?
-    var remoteActions = [[String: String]]()
-    var announcement: String?
-    var updatedWithServer = false
+    @objc var reportURL: URL?
+    @objc var addForumHelpURL: URL?
+    @objc var scanForumQRHelpURL: URL?
+    @objc var remoteActions = [[String: String]]()
+    @objc var announcement: String?
+    @objc var updatedWithServer = false
     
     // MARK: user define settings.
-    var showImage: Bool {
+    @objc var showImage: Bool {
         set {
             UserDefaults.standard.set(newValue, forKey: "showImage")
             UserDefaults.standard.synchronize()
@@ -51,9 +51,9 @@ class Configuration: NSObject {
         }
     }
     
-    var timeout: TimeInterval = 20
-    var thumbnailWidth = 50.0
-    var debug: Bool {
+    @objc var timeout: TimeInterval = 20
+    @objc var thumbnailWidth = 50.0
+    @objc var debug: Bool {
         get {
             if UserDefaults.standard.object(forKey: "DEBUG") != nil {
                 return UserDefaults.standard.bool(forKey: "DEBUG")
@@ -71,7 +71,7 @@ class Configuration: NSObject {
     
     // MARK: JSON parsing.
     
-    func parseJSONData(_ jsonData: Data)->Bool {
+    @objc func parseJSONData(_ jsonData: Data)->Bool {
         var parseSuccessful = false
         if let jsonDictionary = (try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)) as? NSDictionary {
             parseJSONDictionary(jsonDictionary)
@@ -80,7 +80,7 @@ class Configuration: NSObject {
         return parseSuccessful
     }
     
-    func parseJSONDictionary(_ jsonDictionary: NSDictionary) {
+    @objc func parseJSONDictionary(_ jsonDictionary: NSDictionary) {
         if let timeout = jsonDictionary["timeout"] as? NSNumber {
             self.timeout = TimeInterval(timeout.doubleValue)
         }
@@ -110,7 +110,7 @@ class Configuration: NSObject {
     
     // MARK: Update.
     
-    func updateWithCompletion(_ completion: (()->())?) {
+    @objc func updateWithCompletion(_ completion: (()->())?) {
         DLog("Updating configuration.")
         sessionManager.dataTask(with: URLRequest(url: remoteConfigurationURL)) { response, responseObject, error in
             DLog("Updating completed.")
@@ -146,7 +146,7 @@ class Configuration: NSObject {
                                                              selector: #selector(Operation.main),
                                                              userInfo: nil,
                                                              repeats: true)
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidBecomeActive,
+        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification,
                                                                 object: nil,
                                                                 queue: OperationQueue.main) { _ in
                                                                     if !self.updatedWithServer {
@@ -173,5 +173,5 @@ class Configuration: NSObject {
     }
 
     // Singleton.
-    static var singleton = Configuration()
+    @objc static var singleton = Configuration()
 }

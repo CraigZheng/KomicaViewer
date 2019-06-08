@@ -19,10 +19,10 @@ class ForumTextInputViewController: UIViewController {
     @IBOutlet weak var insertBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var saveBarButtonItem: UIBarButtonItem!
     
-    var allowEditing = true
+    @objc var allowEditing = true
     var delegate: ForumTextInputViewControllerProtocol?
-    var prefilledString: String?
-    var pageSpecifier: String?
+    @objc var prefilledString: String?
+    @objc var pageSpecifier: String?
     var field: ForumField! {
         didSet {
             self.title = field.rawValue
@@ -43,8 +43,8 @@ class ForumTextInputViewController: UIViewController {
             textView.text = prefilledString
         }
         // Keyboard events observer.
-        NotificationCenter.default.addObserver(self, selector: #selector(ForumTextInputViewController.handlekeyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ForumTextInputViewController.handleKeyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ForumTextInputViewController.handlekeyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ForumTextInputViewController.handleKeyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         // Configure the text view.
         insertBarButtonItem.isEnabled = pageSpecifier?.isEmpty == false
         if !allowEditing {
@@ -113,8 +113,8 @@ extension ForumTextInputViewController {
 // MARK: keyboard events.
 extension ForumTextInputViewController {
     
-    func handlekeyboardWillShow(_ notification: Notification) {
-        if let keyboardValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
+    @objc func handlekeyboardWillShow(_ notification: Notification) {
+        if let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         {
             let keyboardRect = view.convert(keyboardValue.cgRectValue, from: nil)
             textViewBottomConstraint.constant = keyboardRect.size.height
@@ -122,7 +122,7 @@ extension ForumTextInputViewController {
         }
     }
     
-    func handleKeyboardWillHide(_ notification: Notification) {
+    @objc func handleKeyboardWillHide(_ notification: Notification) {
         textViewBottomConstraint.constant = 0
         toolbarBottomConstraint.constant = 0
     }

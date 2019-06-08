@@ -61,7 +61,7 @@ class Forums {
             guard let data = data else {
                 return
             }
-            let forums = (ObjectiveGumbo.parseDocument(with: data, encoding: String.Encoding.shiftJIS.rawValue).elements(with: OGTag.A) as? [OGElement])?.flatMap { element -> KomicaForum? in
+            let forums = (ObjectiveGumbo.parseDocument(with: data, encoding: String.Encoding.shiftJIS.rawValue).elements(with: OGTag.A) as? [OGElement])?.compactMap { element -> KomicaForum? in
                 guard let attributes = element.attributes as? [String: String],
                     let linkAttribute = attributes.filter({ $0.0 == "href" }).first,
                     linkAttribute.value.contains("futaba.htm") else {

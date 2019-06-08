@@ -9,8 +9,8 @@
 import UIKit
 
 class BlockedUserManager: NSObject {
-    static let sharedManager = BlockedUserManager()
-    static let updatedNotification = "BlockedUserUpdatedNotification"
+    @objc static let sharedManager = BlockedUserManager()
+    @objc static let updatedNotification = "BlockedUserUpdatedNotification"
     fileprivate let BlockedUserIDKey = "BlockedUserIDKey"
     
     fileprivate var blockedUserIDs = [String]()
@@ -31,7 +31,7 @@ class BlockedUserManager: NSObject {
         restore()
     }
     
-    func blockUserID(_ id: String) {
+    @objc func blockUserID(_ id: String) {
         blockedUserIDs.append(id)
         // A bit of safty measure, when more than 9999, drop the first entity.
         if blockedUserIDs.count > 9999 {
@@ -41,13 +41,13 @@ class BlockedUserManager: NSObject {
         NotificationCenter.default.post(name: Notification.Name(rawValue: BlockedUserManager.updatedNotification), object: nil)
     }
     
-    func unblockUserID(_ id: String) {
+    @objc func unblockUserID(_ id: String) {
         blockedUserIDs.removeObject(id)
         save()
         NotificationCenter.default.post(name: Notification.Name(rawValue: BlockedUserManager.updatedNotification), object: nil)
     }
     
-    func isUserIDBlocked(_ id: String) -> Bool {
+    @objc func isUserIDBlocked(_ id: String) -> Bool {
         return blockedUserIDs.contains(id)
     }
 }

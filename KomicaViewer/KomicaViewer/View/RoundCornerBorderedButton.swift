@@ -20,7 +20,7 @@ import UIKit
         commonInit()
     }
     
-    func commonInit() {
+    @objc func commonInit() {
         // Unity the tintColor with the current text color.
         tintColor = titleLabel?.textColor
         // Rounded corner border.

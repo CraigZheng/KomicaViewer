@@ -99,11 +99,11 @@ import SwiftMessages
 
 class MessagePopup: NSObject {
     
-    class func hide() {
+    @objc class func hide() {
         SwiftMessages.hide()
     }
     
-    class func showMessage(title: String?, message: String?) {
+    @objc class func showMessage(title: String?, message: String?) {
         showMessage(title: title, message: message, layout: .cardView)
     }
     
@@ -135,7 +135,7 @@ class MessagePopup: NSObject {
         messageView.iconImageView?.isHidden = !(theme == .info)
         messageView.iconLabel?.isHidden = !(theme == .info)
         config.presentationStyle = position
-        config.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+        config.presentationContext = .window(windowLevel: UIWindow.Level.statusBar.rawValue)
         SwiftMessages.show(config: config, view: messageView)
     }
     

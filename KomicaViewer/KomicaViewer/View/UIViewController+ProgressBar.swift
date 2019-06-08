@@ -9,10 +9,10 @@
 import Foundation
 
 extension UIViewController {
-    func showLoading() {
+    @objc func showLoading() {
         hideLoading()
         DLog("showLoading()")
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        let activityIndicator = UIActivityIndicatorView(style: .white)
         activityIndicator.startAnimating()
         let indicatorBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         if var rightBarButtonItems = navigationItem.rightBarButtonItems {
@@ -23,7 +23,7 @@ extension UIViewController {
         }
     }
     
-    func hideLoading() {
+    @objc func hideLoading() {
         DLog("hideLoading()")
         if let rightBarButtonItems = navigationItem.rightBarButtonItems {
             var BarButtonItemsWithoutActivityIndicator = rightBarButtonItems

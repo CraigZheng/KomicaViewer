@@ -17,13 +17,13 @@ protocol WebViewGuardDogDelegate: class {
  */
 class WebViewGuardDog: NSObject, UIWebViewDelegate {
     // Home host, any host that does not match this host would be rejected.
-    var home: String?
-    var showWarningOnBlock = false
-    var onBlockMessage = "You cannot navigate away from this page."
+    @objc var home: String?
+    @objc var showWarningOnBlock = false
+    @objc var onBlockMessage = "You cannot navigate away from this page."
     var delegate: WebViewGuardDogDelegate?
     // MARK: UIWebViewDelegate
     
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         var should = true
         if let home = home {
             if request.url?.host != home && navigationType == .linkClicked{

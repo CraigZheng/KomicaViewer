@@ -12,7 +12,7 @@ import Firebase
 
 extension ThreadTableViewCell {
     
-    func longPressAction() {
+    @objc func longPressAction() {
         DLog("")
         // If there's another alertController, don't do anything.
         if alertController == nil {

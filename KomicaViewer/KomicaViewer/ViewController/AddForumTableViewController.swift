@@ -43,8 +43,8 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     @IBOutlet weak var addButtonTableViewCell: UITableViewCell!
     @IBOutlet weak var qrButtonTableViewCell: UITableViewCell!
     
-    var newForum: KomicaForum!
-    var unmodifiedForum: KomicaForum?
+    @objc var newForum: KomicaForum!
+    @objc var unmodifiedForum: KomicaForum?
     var displayType = AddForumViewControllerType.edit
     
     // MARK: Private.
@@ -59,13 +59,13 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
     }
     
     // MARK: SVWebViewProtocol
-    var svWebViewURL: URL? {
+    @objc var svWebViewURL: URL? {
         set {}
         get {
             return Configuration.singleton.addForumHelpURL as URL?
         }
     }
-    var svWebViewGuardDog: WebViewGuardDog? = {
+    @objc var svWebViewGuardDog: WebViewGuardDog? = {
         let guardDog = WebViewGuardDog()
         guardDog.showWarningOnBlock = true
         guardDog.home = Configuration.singleton.addForumHelpURL?.host
@@ -144,7 +144,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
         }
     }
 
-    func reload() {
+    @objc func reload() {
         addForumHelpButtonItem.isEnabled = Configuration.singleton.addForumHelpURL != nil
         let incompleted = "Incompleted..."
         title = newForum.name
@@ -296,7 +296,7 @@ extension AddForumTableViewController {
 }
 
 extension KomicaForum {
-    func isReady() -> Bool {
+    @objc func isReady() -> Bool {
         var isReady = true
         if (name ?? "").isEmpty
             || (indexURL ?? "" ).isEmpty
@@ -307,7 +307,7 @@ extension KomicaForum {
         return isReady
     }
     
-    func isModified() -> Bool {
+    @objc func isModified() -> Bool {
         var isModified = false
         if !(name ?? "").isEmpty
             || !(indexURL ?? "" ).isEmpty

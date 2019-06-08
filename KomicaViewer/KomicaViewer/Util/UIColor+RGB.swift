@@ -9,7 +9,7 @@
 import Foundation
 
 extension UIColor {
-    static func colorWithRedValue(_ redValue: Int, greenValue: Int, blueValue: Int, alpha: Double) -> UIColor {
+    @objc static func colorWithRedValue(_ redValue: Int, greenValue: Int, blueValue: Int, alpha: Double) -> UIColor {
         return UIColor(red: CGFloat(redValue)/255.0, green: CGFloat(greenValue)/255.0, blue: CGFloat(blueValue)/255.0, alpha: CGFloat(alpha))
     }
 }

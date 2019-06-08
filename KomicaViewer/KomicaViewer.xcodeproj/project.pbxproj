@@ -74,7 +74,7 @@
 		8F89F2B3F64E466EDA8E6ED1 /* Pods_KomicaViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21C3A364A9DD0DDE230355EF /* Pods_KomicaViewer.framework */; };
 		A626FE4C1E96D311C76B1EF2 /* Pods_KomicaViewer_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9888890F89082B45414F82C /* Pods_KomicaViewer_KomicaViewerTests.framework */; };
 		B20E87BADB21FFDFDA78476B /* Pods_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B832635AE945C0A0AE7FB38 /* Pods_KomicaViewerTests.framework */; };
-		BCE55B9E9BB5B372EA0A346B /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		BCE55B9E9BB5B372EA0A346B /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,13 +141,6 @@
 			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
 			remoteInfo = DemoApp;
 		};
-		44C25D0E1D89984C0066888E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A70F11DE148632CD009202BF;
-			remoteInfo = "Static Library";
-		};
 		44C25D101D89984C0066888E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
@@ -161,13 +154,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = A78D9F781965B7DD00C80986;
 			remoteInfo = MacUnitTest;
-		};
-		44C25D141D89984C0066888E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 44C25D011D89984C0066888E /* DTCoreText.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A7F7EFCD1573603100F5A4D0;
-			remoteInfo = "Static Library (no DTFoundation)";
 		};
 		44C25D161D89984C0066888E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -511,7 +497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A626FE4C1E96D311C76B1EF2 /* Pods_KomicaViewer_KomicaViewerTests.framework in Frameworks */,
-				BCE55B9E9BB5B372EA0A346B /* BuildFile in Frameworks */,
+				BCE55B9E9BB5B372EA0A346B /* (null) in Frameworks */,
 				B20E87BADB21FFDFDA78476B /* Pods_KomicaViewerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -710,10 +696,8 @@
 			isa = PBXGroup;
 			children = (
 				44C25D0D1D89984C0066888E /* RTDemoApp.app */,
-				44C25D0F1D89984C0066888E /* libDTCoreText.a */,
 				44C25D111D89984C0066888E /* UnitTest.xctest */,
 				44C25D131D89984C0066888E /* MacUnitTest.xctest */,
-				44C25D151D89984C0066888E /* libDTCoreText_no_DTFoundation.a */,
 				44C25D171D89984C0066888E /* DTCoreText.framework */,
 				44C25D191D89984C0066888E /* DTCoreText.framework */,
 				B76362371FFC4E9800A10CCC /* DTCoreText.framework */,
@@ -828,7 +812,7 @@
 					44496F4E1D5985A6005875DD = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 9EBE9MWW9X;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 1010;
 					};
 					44496F621D5985A6005875DD = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -909,13 +893,6 @@
 			remoteRef = 44C25D0C1D89984C0066888E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		44C25D0F1D89984C0066888E /* libDTCoreText.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libDTCoreText.a;
-			remoteRef = 44C25D0E1D89984C0066888E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		44C25D111D89984C0066888E /* UnitTest.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
@@ -928,13 +905,6 @@
 			fileType = wrapper.cfbundle;
 			path = MacUnitTest.xctest;
 			remoteRef = 44C25D121D89984C0066888E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		44C25D151D89984C0066888E /* libDTCoreText_no_DTFoundation.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libDTCoreText_no_DTFoundation.a;
-			remoteRef = 44C25D141D89984C0066888E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		44C25D171D89984C0066888E /* DTCoreText.framework */ = {
@@ -1540,7 +1510,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -1563,7 +1533,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

@@ -33,7 +33,7 @@ class ActionTableViewCell: UITableViewCell {
 }
 
 class RemoteActionTableViewDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
-    let actionCellIdentifier = "actionCellIdentifier"
+    @objc let actionCellIdentifier = "actionCellIdentifier"
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

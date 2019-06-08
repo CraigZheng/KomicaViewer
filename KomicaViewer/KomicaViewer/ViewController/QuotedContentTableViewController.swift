@@ -12,11 +12,11 @@ import KomicaEngine
 
 class QuotedContentTableViewController: UITableViewController {
     
-    var quotedThread: KomicaEngine.Thread!
+    @objc var quotedThread: KomicaEngine.Thread!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
         tableView.register(UINib(nibName: "ThreadTableViewCell",
                                  bundle: nil),

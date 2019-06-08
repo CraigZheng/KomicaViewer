@@ -12,7 +12,7 @@ import MBProgressHUD
 
 class ProgressHUD: MBProgressHUD {
     
-    class func showMessage(_ message: String) {
+    @objc class func showMessage(_ message: String) {
         DispatchQueue.main.async {
             if let rootView = UIApplication.topViewController?.view {
                 let hud = MBProgressHUD.showAdded(to: rootView, animated:true)

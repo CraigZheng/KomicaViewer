@@ -30,12 +30,12 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     @IBOutlet weak var actionBarButton: UIBarButtonItem!
     
     // MARK: UIViewControllerMWPhotoBrowserProtocol
-    var photoURLs: [URL]?
-    var thumbnailURLs: [URL]?
+    @objc var photoURLs: [URL]?
+    @objc var thumbnailURLs: [URL]?
     var photoIndex: Int?
     
     // MARK: ThreadTableViewControllerProtocol
-    var forum: KomicaForum? {
+    @objc var forum: KomicaForum? {
         set {
             // Setter does nothing.
         }
@@ -44,14 +44,14 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
             return Forums.selectedForum
         }
     }
-    var threads:[KomicaEngine.Thread] = []
+    @objc var threads:[KomicaEngine.Thread] = []
     
-    func refreshWithPage(_ page: Int) {
+    @objc func refreshWithPage(_ page: Int) {
         DLog(" - \(page)")
         loadThreadsWithPage(page)
     }
     
-    lazy var postCompletion: KomicaDownloaderHandler? = { (success, page, result) in
+    @objc lazy var postCompletion: KomicaDownloaderHandler? = { (success, page, result) in
         var suffix = "th"
         switch String(page).characters.last! {
         case Character("0"): suffix = "st"
@@ -74,23 +74,23 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     }
     
     // MARK: TableViewControllerBulkUpdateProtocol
-    var targetTableView: UITableView {
+    @objc var targetTableView: UITableView {
         return self.tableView
     }
-    var bulkUpdateTimer: Timer?
-    var pendingIndexPaths: [IndexPath] = [IndexPath]()
+    @objc var bulkUpdateTimer: Timer?
+    @objc var pendingIndexPaths: [IndexPath] = [IndexPath]()
     
     fileprivate var currentURL: URL? {
         return forum?.listURLForPage(pageIndex)
     }
     // MARK: SVWebViewProtocol
-    var svWebViewURL: URL? {
+    @objc var svWebViewURL: URL? {
         set {}
         get {
             return currentURL
         }
     }
-    var svWebViewGuardDog: WebViewGuardDog? {
+    @objc var svWebViewGuardDog: WebViewGuardDog? {
         set {}
         get {
             _guardDog.home = currentURL?.host
@@ -109,13 +109,13 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self,
                                   action: #selector(HomeTableViewController.refresh),
-                                  for: UIControlEvents.valueChanged)
+                                  for: UIControl.Event.valueChanged)
         bottomRefreshControl = UIRefreshControl()
         bottomRefreshControl?.addTarget(self,
                                        action: #selector(HomeTableViewController.loadMore),
                                        for: .valueChanged)
         // Row heights.
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 120
         
         tableView.register(UINib(nibName: "ThreadTableViewCell", bundle: nil), forCellReuseIdentifier: ThreadTableViewCell.identifier)
@@ -298,7 +298,7 @@ extension HomeTableViewController {
 // MARK: Refresh controls
 extension HomeTableViewController {
     
-    func refresh() {
+    @objc func refresh() {
         if let forum = forum {
             Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
                 AnalyticsParameterContentType: "REFRESH FORUM" as NSObject,
@@ -308,7 +308,7 @@ extension HomeTableViewController {
         refreshWithPage(forum?.startingIndex ?? 0)
     }
 
-    func loadMore() {
+    @objc func loadMore() {
         self.refreshWithPage(self.pageIndex + 1)
     }
     
@@ -317,7 +317,7 @@ extension HomeTableViewController {
 // MARK: Forum selected notification handler.
 extension HomeTableViewController {
     
-    func handleForumSelectedNotification(_ notification: Notification) {
+    @objc func handleForumSelectedNotification(_ notification: Notification) {
         title = forum?.name
         threads.removeAll()
         tableView.reloadData()
@@ -343,7 +343,7 @@ extension HomeTableViewController: GADBannerViewDelegate {
         AdConfiguration.singleton.clickedAd()
     }
     
-    func toggleAdBanner(_ show: Bool) {
+    @objc func toggleAdBanner(_ show: Bool) {
         DispatchQueue.main.async {
             if (show) {
                 self.adDescriptionLabel.text = AdConfiguration.singleton.adDescription
@@ -362,7 +362,7 @@ extension HomeTableViewController: GADBannerViewDelegate {
         }
     }
     
-    func attemptLoadRequest() {
+    @objc func attemptLoadRequest() {
         if AdConfiguration.singleton.shouldDisplayAds {
             let request = GADRequest()
             #if DEBUG

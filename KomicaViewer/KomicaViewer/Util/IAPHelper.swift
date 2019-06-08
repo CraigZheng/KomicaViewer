@@ -9,7 +9,7 @@
 import StoreKit
 
 extension SKProduct {
-  public func localizedPrice() -> String? {
+  @objc public func localizedPrice() -> String? {
     let formatter = NumberFormatter()
     formatter.numberStyle = .currency
     formatter.locale = self.priceLocale
@@ -34,7 +34,7 @@ public class IAPHelper: NSObject {
     
     addObserver()
   }
-  static let sharedInstance = IAPHelper()
+  @objc static let sharedInstance = IAPHelper()
   
   fileprivate var productsRequest: SKProductsRequest?
   fileprivate var productsRequestHandler: ProductsRequestHandler?
@@ -44,14 +44,14 @@ public class IAPHelper: NSObject {
   
   private var observerAdded = false
   
-  public func addObserver() {
+  @objc public func addObserver() {
     if !observerAdded {
       observerAdded = true
       SKPaymentQueue.default().add(self)
     }
   }
   
-  public func removeObserver() {
+  @objc public func removeObserver() {
     if observerAdded {
       observerAdded = false
       SKPaymentQueue.default().remove(self)
@@ -63,7 +63,7 @@ public class IAPHelper: NSObject {
 
 extension IAPHelper {
   
-  public func requestProducts(_ productIdentifiers: Set<ProductIdentifier>, handler: @escaping ProductsRequestHandler) {
+  @objc public func requestProducts(_ productIdentifiers: Set<ProductIdentifier>, handler: @escaping ProductsRequestHandler) {
     productsRequest?.cancel()
     productsRequestHandler = handler
     
@@ -72,7 +72,7 @@ extension IAPHelper {
     productsRequest?.start()
   }
   
-  public func purchaseProduct(_ productIdentifier: ProductIdentifier, handler: @escaping PurchaseHandler) {
+  @objc public func purchaseProduct(_ productIdentifier: ProductIdentifier, handler: @escaping PurchaseHandler) {
     purchaseHandler = handler
     
     let payment = SKMutablePayment()
@@ -80,7 +80,7 @@ extension IAPHelper {
     SKPaymentQueue.default().add(payment)
   }
   
-  public func restorePurchases(_ handler: @escaping RestoreHandler) {
+  @objc public func restorePurchases(_ handler: @escaping RestoreHandler) {
     restoreHandler = handler
     SKPaymentQueue.default().restoreCompletedTransactions()
   }

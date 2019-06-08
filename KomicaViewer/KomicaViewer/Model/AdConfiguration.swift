@@ -9,12 +9,12 @@
 import UIKit
 
 class AdConfiguration: NSObject {
-    var enableAd = true
-    var dailyAdClickLimit = 3
-    var weeklyAdClickLimit = 9
-    var monthlyAdClickLimit = 18
-    var adDescription: String?
-    var isAdRemovePurchased: Bool {
+    @objc var enableAd = true
+    @objc var dailyAdClickLimit = 3
+    @objc var weeklyAdClickLimit = 9
+    @objc var monthlyAdClickLimit = 18
+    @objc var adDescription: String?
+    @objc var isAdRemovePurchased: Bool {
         get {
             return UserDefaults.standard.bool(forKey: "AdRemovePurchased")
         }
@@ -25,7 +25,7 @@ class AdConfiguration: NSObject {
                                             object: nil)
         }
     }
-    var shouldDisplayAds: Bool {
+    @objc var shouldDisplayAds: Bool {
         var should = enableAd
         if should {
             // If user has clicked the ads many times, return false.
@@ -58,9 +58,9 @@ class AdConfiguration: NSObject {
         }
         return should
     }
-    var historyOfClicks = [Date]()
-    static let singleton = AdConfiguration()
-    static let adConfigurationUpdatedNotification = "adConfigurationUpdatedNotification"
+    @objc var historyOfClicks = [Date]()
+    @objc static let singleton = AdConfiguration()
+    @objc static let adConfigurationUpdatedNotification = "adConfigurationUpdatedNotification"
     
     struct AdMobID {
         static let bannerID1 = "ca-app-pub-2081665256237089/9633270459"
@@ -99,7 +99,7 @@ class AdConfiguration: NSObject {
         })
     }
     
-    func updateAdConfiguration(_ completion: (()->())?) {
+    @objc func updateAdConfiguration(_ completion: (()->())?) {
         DLog("")
         defaultSession.dataTask(with: URLRequest(url: remoteConfigurationURL), completionHandler: { (responseObject, response, error) in
             if let responseObject = responseObject {
@@ -110,7 +110,7 @@ class AdConfiguration: NSObject {
         }) .resume()
     }
     
-    func clickedAd() {
+    @objc func clickedAd() {
         historyOfClicks.append(Date())
         // Save history.
         UserDefaults.standard.set(historyOfClicks, forKey: historyKey)

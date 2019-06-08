@@ -11,7 +11,7 @@ import Foundation
 import AFNetworking
 
 extension AFHTTPSessionManager {
-    class func sessionManager() -> AFHTTPSessionManager {
+    @objc class func sessionManager() -> AFHTTPSessionManager {
         let sessionManager = AFHTTPSessionManager()
         sessionManager.responseSerializer = AFHTTPResponseSerializer()
         return sessionManager

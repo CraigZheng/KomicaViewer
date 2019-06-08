@@ -12,7 +12,7 @@ import OGVKit
 
 class WebMPlayerViewController: UIViewController {
     
-    var webMSourceURL: URL!
+    @objc var webMSourceURL: URL!
 
     @IBOutlet weak var playerView: OGVPlayerView!
     

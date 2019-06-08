@@ -18,7 +18,7 @@ class ForumPickerTableViewController: UITableViewController {
     
     @IBOutlet weak var sourceSegmentedControl: UISegmentedControl!
     
-    var forumGroups: [KomicaForumGroup] {
+    @objc var forumGroups: [KomicaForumGroup] {
         switch sourceSegmentedControl.selectedSegmentIndex {
         case 0: // Komica source.
             return Forums.remoteForumGroups ?? Forums.defaultForumsGroups
@@ -122,7 +122,7 @@ class ForumPickerTableViewController: UITableViewController {
         return indexPath.section == 0
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if indexPath.section == 0 && editingStyle == .delete {
             Forums.customForumGroup.forums?.remove(at: indexPath.row)
             Forums.saveCustomForums()
@@ -131,7 +131,7 @@ class ForumPickerTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

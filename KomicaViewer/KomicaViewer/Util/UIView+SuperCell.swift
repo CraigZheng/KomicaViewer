@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIView {
-    func superCell()->UITableViewCell? {
+    @objc func superCell()->UITableViewCell? {
         var cell: UIView? = self
         while cell != nil && !(cell is UITableViewCell) {
             cell = cell!.superview
@@ -17,7 +17,7 @@ extension UIView {
         return cell as? UITableViewCell ?? nil
     }
     
-    func superCollectionViewCell()->UICollectionViewCell? {
+    @objc func superCollectionViewCell()->UICollectionViewCell? {
         var cell: UIView? = self
         while cell != nil && !(cell is UICollectionViewCell) {
             cell = cell!.superview

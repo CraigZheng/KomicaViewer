@@ -58,10 +58,10 @@ extension UIViewControllerMWPhotoBrowserProtocol where Self: UIViewController {
 }
 
 private class PhotoBrowserDelegate: NSObject, MWPhotoBrowserDelegate {
-    static let singleton = PhotoBrowserDelegate()
+    @objc static let singleton = PhotoBrowserDelegate()
     
-    var photoURLs: [URL]!
-    var thumbnailURLs: [URL]?
+    @objc var photoURLs: [URL]!
+    @objc var thumbnailURLs: [URL]?
     
     @objc func numberOfPhotos(in photoBrowser: MWPhotoBrowser!) -> UInt {
         return UInt(photoURLs.count)

@@ -10,7 +10,7 @@ import Foundation
 
 extension UIApplication {
     
-    class var topViewController: UIViewController? {
+    @objc class var topViewController: UIViewController? {
         var topViewController = UIApplication.shared.keyWindow?.rootViewController
         while topViewController?.presentedViewController != nil {
             topViewController = topViewController?.presentedViewController
@@ -18,7 +18,7 @@ extension UIApplication {
         return topViewController
     }
     
-    class var appName: String {
+    @objc class var appName: String {
         return Bundle.main.infoDictionary!["CFBundleDisplayName"] as! String
     }
 }
