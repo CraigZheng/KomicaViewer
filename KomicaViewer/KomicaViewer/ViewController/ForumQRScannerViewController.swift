@@ -67,7 +67,7 @@ class ForumQRScannerViewController: UIViewController {
             let metadataOutput = AVCaptureMetadataOutput()
             captureSession.addOutput(metadataOutput)
             metadataOutput.setMetadataObjectsDelegate(self, queue:DispatchQueue.main)
-            metadataOutput.metadataObjectTypes = [convertFromAVMetadataObjectObjectType(AVMetadataObject.ObjectType.qr), convertFromAVMetadataObjectObjectType(AVMetadataObject.ObjectType.ean13)]
+            metadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr, AVMetadataObject.ObjectType.ean13]
             let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
             previewLayer.frame = self.cameraPreviewView.bounds; // Align to cameraPreviewView.
             previewLayer.videoGravity = AVLayerVideoGravity(rawValue: convertFromAVLayerVideoGravity(AVLayerVideoGravity.resizeAspectFill));
@@ -138,8 +138,9 @@ extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
         if let lastMetadataObject = metadataObjects.last,
             let readableObject = lastMetadataObject as? AVMetadataMachineReadableCodeObject
         {
-            if (readableObject.type.rawValue == convertFromAVMetadataObjectObjectType(AVMetadataObject.ObjectType.qr)) {
-                if parseJsonString(readableObject.stringValue) {
+            if (readableObject.type.rawValue == convertFromAVMetadataObjectObjectType(AVMetadataObject.ObjectType.qr)),
+                let string = readableObject.stringValue {
+                if parseJsonString(string) {
                     captureSession?.stopRunning()
                     return
                 }
