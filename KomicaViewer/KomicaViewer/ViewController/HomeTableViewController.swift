@@ -53,7 +53,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     
     @objc lazy var postCompletion: KomicaDownloaderHandler? = { (success, page, result) in
         var suffix = "th"
-        switch String(page).characters.last! {
+        switch String(page).last! {
         case Character("0"): suffix = "st"
         case Character("1"): suffix = "nd"
         case Character("2"): suffix = "rd"

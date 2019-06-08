@@ -30,7 +30,7 @@ class ThreadTableViewCell: UITableViewCell {
                 let quotedString = String(quotedNumber)
                 if let textContentLabel = textContentLabel,
                     let range = (textContentLabel.attributedText.string as NSString?)?.range(of: quotedString),
-                    (range.location + range.length) <= textContentLabel.attributedText.string.characters.count
+                    (range.location + range.length) <= textContentLabel.attributedText.string.count
                 {
                     guard let mutableAttributedText = textContentLabel.attributedText.mutableCopy() as? NSMutableAttributedString else { return }
                     mutableAttributedText.addAttributes(convertToNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.link): "\(ThreadTableViewCell.quotedIdentifier)\(quotedString)"]), range: range)
@@ -47,7 +47,7 @@ class ThreadTableViewCell: UITableViewCell {
     @objc var links: [URL] {
         var links = [URL]()
         if let linkDetector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue), let text = textContentLabel?.text as? String {
-            for match in linkDetector.matches(in: text, options: [], range: NSMakeRange(0, text.characters.count)) {
+            for match in linkDetector.matches(in: text, options: [], range: NSMakeRange(0, text.count)) {
                 if match.resultType == NSTextCheckingResult.CheckingType.link, let url = match.url {
                     links.append(url)
                 }
