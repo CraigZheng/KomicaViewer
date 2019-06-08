@@ -50,9 +50,13 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.3)
   - libnestegg (0.3)
   - libogg (1.3.3)
+  - liboggz (1.2.0-1):
+    - libogg (>= 1.0)
   - libopus (1.1):
     - libopus/float (= 1.1)
   - libopus/float (1.1)
+  - libtheora (1.2.0-3):
+    - libogg (>= 1.1)
   - libvorbis (1.3.5):
     - libogg (>= 1.0)
   - libvpx (1.7.0)
@@ -66,9 +70,52 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - OGVKit (0.5.13):
+    - OGVKit/AVDecoder (= 0.5.13)
+    - OGVKit/Core (= 0.5.13)
+    - OGVKit/libskeleton (= 0.5.13)
+    - OGVKit/MP3 (= 0.5.13)
+    - OGVKit/MP4 (= 0.5.13)
+    - OGVKit/Ogg (= 0.5.13)
+    - OGVKit/OggDemuxer (= 0.5.13)
+    - OGVKit/OpusDecoder (= 0.5.13)
+    - OGVKit/TheoraDecoder (= 0.5.13)
+    - OGVKit/VorbisDecoder (= 0.5.13)
+    - OGVKit/VP8Decoder (= 0.5.13)
+    - OGVKit/WebM (= 0.5.13)
+    - OGVKit/WebMDemuxer (= 0.5.13)
+  - OGVKit/AVDecoder (0.5.13):
+    - OGVKit/Core
   - OGVKit/Core (0.5.13)
+  - OGVKit/libskeleton (0.5.13):
+    - libogg
+  - OGVKit/MP3 (0.5.13):
+    - OGVKit/AVDecoder
+  - OGVKit/MP4 (0.5.13):
+    - OGVKit/AVDecoder
+  - OGVKit/Ogg (0.5.13):
+    - OGVKit/Ogg/Opus (= 0.5.13)
+    - OGVKit/Ogg/Theora (= 0.5.13)
+    - OGVKit/Ogg/Vorbis (= 0.5.13)
+  - OGVKit/Ogg/Opus (0.5.13):
+    - OGVKit/OggDemuxer
+    - OGVKit/OpusDecoder
+  - OGVKit/Ogg/Theora (0.5.13):
+    - OGVKit/OggDemuxer
+    - OGVKit/TheoraDecoder
+    - OGVKit/VorbisDecoder
+  - OGVKit/Ogg/Vorbis (0.5.13):
+    - OGVKit/OggDemuxer
+    - OGVKit/VorbisDecoder
+  - OGVKit/OggDemuxer (0.5.13):
+    - liboggz (= 1.2.0-1)
+    - OGVKit/Core
+    - OGVKit/libskeleton (~> 0.4)
   - OGVKit/OpusDecoder (0.5.13):
     - libopus
+    - OGVKit/Core
+  - OGVKit/TheoraDecoder (0.5.13):
+    - libtheora (= 1.2.0-3)
     - OGVKit/Core
   - OGVKit/VorbisDecoder (0.5.13):
     - libvorbis
@@ -111,7 +158,7 @@ DEPENDENCIES:
   - Firebase/Crash
   - MBProgressHUD
   - MWPhotoBrowser (~> 2.1.2)
-  - OGVKit/WebM
+  - OGVKit
   - PureLayout
   - SVWebViewController (from `https://github.com/TransitApp/SVWebViewController.git`)
   - SwiftMessages
@@ -121,6 +168,8 @@ SPEC REPOS:
   https://github.com/brion/OGVKit-Specs.git:
     - libnestegg
     - libogg
+    - liboggz
+    - libtheora
     - libvorbis
     - libvpx
     - OGVKit
@@ -171,7 +220,9 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   libnestegg: 851afa1dc38c810bb18fa6459c39aa124abd7fc0
   libogg: 35e313159a7270931d0f0f208c2d5f60bc05399b
+  liboggz: 976a3ffd70b71e8c4faa06a298547038ab03c567
   libopus: ad5f060dcb8f30f139777244d70f9111f1c80863
+  libtheora: 30624be24781bfacab55d3ecb7c5ff1293e8026c
   libvorbis: b2c6a2c2bb22447d80403981185b213cf688fae7
   libvpx: 5abeaf729fa406fd65ae1c19adcf00329c40e02a
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
@@ -185,6 +236,6 @@ SPEC CHECKSUMS:
   SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 8d9a46bca3b71dbf613c109b7002bc60ae587cf3
+PODFILE CHECKSUM: 11bee400b3aa23bb37309dfab74a14b6bbedf37a
 
 COCOAPODS: 1.6.1
