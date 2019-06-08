@@ -812,7 +812,7 @@
 					44496F4E1D5985A6005875DD = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 9EBE9MWW9X;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 					};
 					44496F621D5985A6005875DD = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -825,6 +825,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -1510,7 +1511,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1533,7 +1534,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

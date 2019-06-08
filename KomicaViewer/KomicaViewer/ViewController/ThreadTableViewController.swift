@@ -299,7 +299,7 @@ extension ThreadTableViewController: UIAlertViewDelegate {
         thumbnailURLs = imageThreads.map({ (thread) -> URL? in
             return thread.thumbnailURL ?? thread.imageURL
         }).compactMap({ $0 })
-        if let index = imageThreads.index(of: threads[index]) {
+        if let index = imageThreads.firstIndex(of: threads[index]) {
             photoIndex = index
         }
         presentPhotos()

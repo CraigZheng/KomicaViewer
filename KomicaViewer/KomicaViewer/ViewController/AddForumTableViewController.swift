@@ -78,7 +78,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
             // Restore from cache.
             if let jsonString = UserDefaults.standard.object(forKey: pausedForumKey) as? String, !jsonString.isEmpty {
                 if let jsonData = jsonString.data(using: String.Encoding.utf8),
-                    let rawDict = try? JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? Dictionary<String, AnyObject>,
+                    let rawDict = ((try? JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? Dictionary<String, AnyObject>) as Dictionary<String, AnyObject>??),
                     let jsonDict = rawDict
                 {
                     newForum = KomicaForum(jsonDict: jsonDict)
@@ -154,7 +154,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
         responseDetailLabel.text = !(newForum.responseURL ?? "").isEmpty ? newForum.responseURL : incompleted
         var selectRow = 0
         if let parserType = newForum.parserType {
-             selectRow = KomicaForum.parserTypes.index(where: { $0 == parserType }) ?? 0
+             selectRow = KomicaForum.parserTypes.firstIndex(where: { $0 == parserType }) ?? 0
         }
         parserPickerView.selectRow(selectRow, inComponent: 0, animated: false)
         addButton.isEnabled = displayType == .edit
