@@ -51,7 +51,7 @@ import SwiftMessages
         case .StatusLine:
             return .statusLine
         case .MessageViewIOS8:
-            return .messageViewIOS8
+            return .messageView
         }
     }
 }
@@ -116,7 +116,7 @@ class MessagePopup: NSObject {
         if layout == MessageView.Layout.messageView,
             let systemVersion = Double(UIDevice.current.systemVersion),
             systemVersion < 9.0 {
-            layout = MessageView.Layout.messageViewIOS8
+            layout = MessageView.Layout.messageView
         }
         let messageView = MessageView.viewFromNib(layout: layout)
         messageView.configureTheme(theme)
@@ -135,7 +135,7 @@ class MessagePopup: NSObject {
         messageView.iconImageView?.isHidden = !(theme == .info)
         messageView.iconLabel?.isHidden = !(theme == .info)
         config.presentationStyle = position
-        config.presentationContext = .window(windowLevel: UIWindow.Level.statusBar.rawValue)
+        config.presentationContext = .window(windowLevel: UIWindow.Level.statusBar)
         SwiftMessages.show(config: config, view: messageView)
     }
     
