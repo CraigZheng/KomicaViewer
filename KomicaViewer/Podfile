@@ -27,7 +27,7 @@ target 'KomicaViewer' do
   pod 'Firebase/Core'
   pod 'Firebase/AdMob'
   pod 'Firebase/Crash'
-  pod "OGVKit/WebM"
+  pod 'MobileVLCKit'
   pod 'SwiftMessages'
   pod 'TTTAttributedLabel'
 

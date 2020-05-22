@@ -43,8 +43,8 @@ extension UIViewControllerMWPhotoBrowserProtocol where Self: UIViewController {
 
     func presentPhotos() {
         if let photoURLs = photoURLs, !photoURLs.isEmpty {
-            if let photoIndex = photoIndex, (photoURLs[photoIndex].absoluteString as NSString).pathExtension.lowercased() == "webm" {
-                // Open webm file.
+            if let photoIndex = photoIndex, ["webm", "mp4"].contains((photoURLs[photoIndex].absoluteString as NSString).pathExtension.lowercased()) {
+                // Open video file.
                 if let webMPlayerViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WebMPlayerViewController") as? WebMPlayerViewController {
                     webMPlayerViewController.webMSourceURL = photoURLs[photoIndex]
                     navigationController?.present(webMPlayerViewController, animated: true, completion: nil)
