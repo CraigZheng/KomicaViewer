@@ -8,31 +8,40 @@
 
 import UIKit
 
-import OGVKit
+import MobileVLCKit
 
 class WebMPlayerViewController: UIViewController {
     
     @objc var webMSourceURL: URL!
 
-    @IBOutlet weak var playerView: OGVPlayerView!
+    @IBOutlet weak var playerView: UIView!
+    private let mediaPlayer = VLCMediaPlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        playerView.backgroundColor = .black
+        mediaPlayer.delegate = self
+        mediaPlayer.drawable = playerView
+        mediaPlayer.media = VLCMedia(url: webMSourceURL)
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        playerView.delegate = self
-        playerView.sourceURL = webMSourceURL
-        playerView.play()
+        mediaPlayer.play()
     }
 
     @IBAction func doneAction(_ sender: AnyObject) {
-        playerView.pause()
+        mediaPlayer.pause()
         _ = navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func playAction(_ sender: Any) {
+        if mediaPlayer.isPlaying {
+            mediaPlayer.pause()
+        } else {
+            mediaPlayer.play()
+        }
     }
     
     @IBAction func safariAction(_ sender: AnyObject) {
@@ -40,9 +49,12 @@ class WebMPlayerViewController: UIViewController {
             UIApplication.shared.openURL(webMSourceURL)
         }
     }
-    
+
 }
 
-extension WebMPlayerViewController: OGVPlayerDelegate {
-    
+extension WebMPlayerViewController: VLCMediaPlayerDelegate {
+    func mediaPlayerStateChanged(_ aNotification: Notification!) {
+        print(aNotification)
+        print("state: \(mediaPlayer.state), \(mediaPlayer.state.rawValue)")
+    }
 }

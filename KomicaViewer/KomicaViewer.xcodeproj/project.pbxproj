@@ -73,6 +73,22 @@
 		44FBD8261D899D2100ACA2C8 /* DTFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44FBD81E1D899D0A00ACA2C8 /* DTFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8F89F2B3F64E466EDA8E6ED1 /* Pods_KomicaViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21C3A364A9DD0DDE230355EF /* Pods_KomicaViewer.framework */; };
 		B20E87BADB21FFDFDA78476B /* Pods_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B832635AE945C0A0AE7FB38 /* Pods_KomicaViewerTests.framework */; };
+		B799513B24782A9F00EC5671 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799511724782A9F00EC5671 /* AudioToolbox.framework */; };
+		B799513D24782AA500EC5671 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799513C24782AA500EC5671 /* AVFoundation.framework */; };
+		B799513F24782AAB00EC5671 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799513E24782AAB00EC5671 /* CFNetwork.framework */; };
+		B799514124782AB200EC5671 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799514024782AB200EC5671 /* CoreGraphics.framework */; };
+		B799514524782ABD00EC5671 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799514424782ABD00EC5671 /* CoreMedia.framework */; };
+		B799514724782AC600EC5671 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799514624782AC600EC5671 /* CoreText.framework */; };
+		B799514924782ACE00EC5671 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799514824782ACE00EC5671 /* CoreVideo.framework */; };
+		B799514B24782AD800EC5671 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799514A24782AD800EC5671 /* Foundation.framework */; };
+		B799514E24782B4400EC5671 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B799514C24782ADE00EC5671 /* libbz2.tbd */; };
+		B799515124782B5800EC5671 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799515024782B5800EC5671 /* OpenGLES.framework */; };
+		B799515324782B5E00EC5671 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799515224782B5E00EC5671 /* QuartzCore.framework */; };
+		B799515524782B6400EC5671 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799515424782B6300EC5671 /* Security.framework */; };
+		B799515724782B6B00EC5671 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799515624782B6B00EC5671 /* VideoToolbox.framework */; };
+		B799515924782B7000EC5671 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799515824782B7000EC5671 /* UIKit.framework */; };
+		B799515A24782B9E00EC5671 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B799514F24782B4C00EC5671 /* libiconv.tbd */; };
+		B799515C24782BD700EC5671 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B799515B24782BD700EC5671 /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -471,6 +487,24 @@
 		44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTFoundation.xcodeproj; path = ../../KomicaEngine/Externals/DTCoreText/Externals/DTFoundation/DTFoundation.xcodeproj; sourceTree = "<group>"; };
 		5B832635AE945C0A0AE7FB38 /* Pods_KomicaViewerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KomicaViewerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F0A0392FA0DA6C1927ACC66 /* Pods-KomicaViewerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B799511724782A9F00EC5671 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		B799513C24782AA500EC5671 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B799513E24782AAB00EC5671 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		B799514024782AB200EC5671 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B799514224782AB800EC5671 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		B799514424782ABD00EC5671 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		B799514624782AC600EC5671 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		B799514824782ACE00EC5671 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		B799514A24782AD800EC5671 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B799514C24782ADE00EC5671 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		B799514D24782AE700EC5671 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		B799514F24782B4C00EC5671 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		B799515024782B5800EC5671 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		B799515224782B5E00EC5671 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B799515424782B6300EC5671 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B799515624782B6B00EC5671 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		B799515824782B7000EC5671 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B799515B24782BD700EC5671 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		C4E60A0BF1FCCC05D433E68E /* Pods-KomicaViewerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests.release.xcconfig"; sourceTree = "<group>"; };
 		DC7DAB90B7018AB9E394882B /* Pods-KomicaViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer.debug.xcconfig"; sourceTree = "<group>"; };
 		F8BD662B1EAC34FEA48F9CA3 /* Pods-KomicaViewer-KomicaViewerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewer-KomicaViewerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewer-KomicaViewerTests/Pods-KomicaViewer-KomicaViewerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -482,10 +516,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				443176E71F66903400B342D5 /* BFWControls.framework in Frameworks */,
+				B799515724782B6B00EC5671 /* VideoToolbox.framework in Frameworks */,
+				B799514524782ABD00EC5671 /* CoreMedia.framework in Frameworks */,
+				B799515324782B5E00EC5671 /* QuartzCore.framework in Frameworks */,
 				44FBD8251D899D1800ACA2C8 /* DTFoundation.framework in Frameworks */,
+				B799513F24782AAB00EC5671 /* CFNetwork.framework in Frameworks */,
+				B799514924782ACE00EC5671 /* CoreVideo.framework in Frameworks */,
+				B799514B24782AD800EC5671 /* Foundation.framework in Frameworks */,
+				B799515C24782BD700EC5671 /* CoreFoundation.framework in Frameworks */,
+				B799514E24782B4400EC5671 /* libbz2.tbd in Frameworks */,
+				B799515924782B7000EC5671 /* UIKit.framework in Frameworks */,
+				B799514124782AB200EC5671 /* CoreGraphics.framework in Frameworks */,
 				443176E81F66906100B342D5 /* BFWControls.framework in Frameworks */,
 				44655D471D5AD24700229404 /* KomicaEngine.framework in Frameworks */,
 				8F89F2B3F64E466EDA8E6ED1 /* Pods_KomicaViewer.framework in Frameworks */,
+				B799515124782B5800EC5671 /* OpenGLES.framework in Frameworks */,
+				B799514724782AC600EC5671 /* CoreText.framework in Frameworks */,
+				B799513D24782AA500EC5671 /* AVFoundation.framework in Frameworks */,
+				B799515A24782B9E00EC5671 /* libiconv.tbd in Frameworks */,
+				B799515524782B6400EC5671 /* Security.framework in Frameworks */,
+				B799513B24782A9F00EC5671 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,6 +787,24 @@
 		EB66FD301D4D76270A8DC709 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B799515B24782BD700EC5671 /* CoreFoundation.framework */,
+				B799515824782B7000EC5671 /* UIKit.framework */,
+				B799515624782B6B00EC5671 /* VideoToolbox.framework */,
+				B799515424782B6300EC5671 /* Security.framework */,
+				B799515224782B5E00EC5671 /* QuartzCore.framework */,
+				B799515024782B5800EC5671 /* OpenGLES.framework */,
+				B799514F24782B4C00EC5671 /* libiconv.tbd */,
+				B799514D24782AE700EC5671 /* libc++.tbd */,
+				B799514C24782ADE00EC5671 /* libbz2.tbd */,
+				B799514A24782AD800EC5671 /* Foundation.framework */,
+				B799514824782ACE00EC5671 /* CoreVideo.framework */,
+				B799514624782AC600EC5671 /* CoreText.framework */,
+				B799514424782ABD00EC5671 /* CoreMedia.framework */,
+				B799514224782AB800EC5671 /* CoreImage.framework */,
+				B799514024782AB200EC5671 /* CoreGraphics.framework */,
+				B799513E24782AAB00EC5671 /* CFNetwork.framework */,
+				B799513C24782AA500EC5671 /* AVFoundation.framework */,
+				B799511724782A9F00EC5671 /* AudioToolbox.framework */,
 				44FBD7C91D899C0500ACA2C8 /* DTFoundation.framework */,
 				21C3A364A9DD0DDE230355EF /* Pods_KomicaViewer.framework */,
 				5B832635AE945C0A0AE7FB38 /* Pods_KomicaViewerTests.framework */,
@@ -1230,18 +1298,12 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MWPhotoBrowser/MWPhotoBrowser.framework",
-				"${BUILT_PRODUCTS_DIR}/OGVKit/OGVKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVWebViewController/SVWebViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
-				"${BUILT_PRODUCTS_DIR}/libnestegg/nestegg.framework",
-				"${BUILT_PRODUCTS_DIR}/libogg/ogg.framework",
-				"${BUILT_PRODUCTS_DIR}/libopus/libopus.framework",
-				"${BUILT_PRODUCTS_DIR}/libvorbis/vorbis.framework",
-				"${PODS_ROOT}/libvpx/VPX.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1253,18 +1315,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MWPhotoBrowser.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OGVKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVWebViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nestegg.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ogg.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libopus.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/vorbis.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VPX.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1499,6 +1555,111 @@
 				INFOPLIST_FILE = KomicaViewer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"sqlite3\"",
+					"-l\"xml2\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"CCBottomRefreshControl\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"CoreVideo\"",
+					"-framework",
+					"\"DACircularProgress\"",
+					"-framework",
+					"\"FIRAnalyticsConnector\"",
+					"-framework",
+					"\"FirebaseAnalytics\"",
+					"-framework",
+					"\"FirebaseCore\"",
+					"-framework",
+					"\"FirebaseCoreDiagnostics\"",
+					"-framework",
+					"\"FirebaseCrash\"",
+					"-framework",
+					"\"FirebaseInstanceID\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GoogleAppMeasurement\"",
+					"-framework",
+					"\"GoogleMobileAds\"",
+					"-framework",
+					"\"GoogleToolboxForMac\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MWPhotoBrowser\"",
+					"-framework",
+					"\"MediaPlayer\"",
+					"-framework",
+					"\"MessageUI\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"MobileVLCKit\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"Protobuf\"",
+					"-framework",
+					"\"PureLayout\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVWebViewController\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SwiftMessages\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"TTTAttributedLabel\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"VideoToolbox\"",
+					"-framework",
+					"\"nanopb\"",
+					"-weak_framework",
+					"\"AdSupport\"",
+					"-weak_framework",
+					"\"JavaScriptCore\"",
+					"-weak_framework",
+					"\"Photos\"",
+					"-weak_framework",
+					"\"SafariServices\"",
+					"-weak_framework",
+					"\"WebKit\"",
+				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1522,6 +1683,111 @@
 				INFOPLIST_FILE = KomicaViewer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"sqlite3\"",
+					"-l\"xml2\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"CCBottomRefreshControl\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"CoreVideo\"",
+					"-framework",
+					"\"DACircularProgress\"",
+					"-framework",
+					"\"FIRAnalyticsConnector\"",
+					"-framework",
+					"\"FirebaseAnalytics\"",
+					"-framework",
+					"\"FirebaseCore\"",
+					"-framework",
+					"\"FirebaseCoreDiagnostics\"",
+					"-framework",
+					"\"FirebaseCrash\"",
+					"-framework",
+					"\"FirebaseInstanceID\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GoogleAppMeasurement\"",
+					"-framework",
+					"\"GoogleMobileAds\"",
+					"-framework",
+					"\"GoogleToolboxForMac\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MWPhotoBrowser\"",
+					"-framework",
+					"\"MediaPlayer\"",
+					"-framework",
+					"\"MessageUI\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"MobileVLCKit\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"Protobuf\"",
+					"-framework",
+					"\"PureLayout\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVWebViewController\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SwiftMessages\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"TTTAttributedLabel\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"VideoToolbox\"",
+					"-framework",
+					"\"nanopb\"",
+					"-weak_framework",
+					"\"AdSupport\"",
+					"-weak_framework",
+					"\"JavaScriptCore\"",
+					"-weak_framework",
+					"\"Photos\"",
+					"-weak_framework",
+					"\"SafariServices\"",
+					"-weak_framework",
+					"\"WebKit\"",
+				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
