@@ -112,7 +112,7 @@ class Configuration: NSObject {
     
     @objc func updateWithCompletion(_ completion: (()->())?) {
         DLog("Updating configuration.")
-        sessionManager.dataTask(with: URLRequest(url: remoteConfigurationURL)) { response, responseObject, error in
+        sessionManager.dataTask(with: URLRequest(url: remoteConfigurationURL), uploadProgress: nil, downloadProgress: nil) { response, responseObject, error in
             DLog("Updating completed.")
             if error == nil, let responseObject = responseObject as? Data {
                 _ = self.parseJSONData(responseObject)

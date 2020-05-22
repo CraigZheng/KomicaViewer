@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         // Use Firebase library to configure APIs
         FirebaseApp.configure()
-        GADMobileAds.configure(withApplicationID: "ca-app-pub-2081665256237089~8156537252")
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         Forums.updateRemoteForums()
         Forums.updateRemoteFutabaForums()
         // Initialise Configuration singletons.
