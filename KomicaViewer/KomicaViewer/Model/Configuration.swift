@@ -29,6 +29,7 @@ class Configuration: NSObject {
     
     // MARK: public properties.
     @objc var reportURL: URL?
+    var futabaReportURL = URL(string: "https://jun.2chan.net/junbi/futaba.htm")!
     @objc var addForumHelpURL: URL?
     @objc var scanForumQRHelpURL: URL?
     @objc var remoteActions = [[String: String]]()
@@ -96,6 +97,9 @@ class Configuration: NSObject {
         }
         if let reportURL = jsonDictionary["reportURL"] as? String, !reportURL.isEmpty {
             self.reportURL = URL(string: reportURL)
+        }
+        if let futabaReportPath = jsonDictionary["futabaReportURL"] as? String, !futabaReportPath.isEmpty, let futabaReportURL = URL(string: futabaReportPath) {
+            self.futabaReportURL = futabaReportURL
         }
         if let thumbnailWidth = jsonDictionary["thumbnailWidth"] as? NSNumber {
             self.thumbnailWidth = Double(thumbnailWidth.doubleValue)

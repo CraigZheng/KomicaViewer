@@ -334,9 +334,16 @@ extension ThreadTableViewController: UIAlertViewDelegate {
         let reportAction = UIAlertAction(title: "Report", style: .default) { _ in
             // Set the URL to report URL.
             self.svWebViewGuardDog = WebViewGuardDog()
-            self.svWebViewGuardDog?.home = Configuration.singleton.reportURL?.host
+            let reportURL: URL?
+            switch Forums.selectedSource {
+            case .komica:
+                reportURL = Configuration.singleton.reportURL
+            case .futaba:
+                reportURL = Configuration.singleton.futabaReportURL
+            }
+            self.svWebViewGuardDog?.home = reportURL?.host
             self.svWebViewGuardDog?.showWarningOnBlock = true
-            self.svWebViewURL = Configuration.singleton.reportURL as URL?
+            self.svWebViewURL = reportURL
             self.presentSVWebView()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
