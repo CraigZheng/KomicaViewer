@@ -40,7 +40,6 @@ class Configuration: NSObject {
     @objc var showImage: Bool {
         set {
             UserDefaults.standard.set(newValue, forKey: "showImage")
-            UserDefaults.standard.synchronize()
             NotificationCenter.default.post(name: Notification.Name(rawValue: Configuration.updatedNotification), object: nil)
         }
         get {
@@ -49,6 +48,15 @@ class Configuration: NSObject {
             } else {
                 return true
             }
+        }
+    }
+    var hasAcceptedEULA: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: "acceptedEULA")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "acceptedEULA")
+            NotificationCenter.default.post(name: Notification.Name(rawValue: Configuration.updatedNotification), object: nil)
         }
     }
     
