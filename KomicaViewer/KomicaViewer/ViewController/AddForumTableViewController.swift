@@ -187,7 +187,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
 extension AddForumTableViewController {
     
     @IBAction func addForumHelpAction(_ sender: AnyObject) {
-        presentSVWebView()
+        presentSVWebView(completion: nil)
     }
     
     @IBAction func addForumAction(_ sender: UIButton) {

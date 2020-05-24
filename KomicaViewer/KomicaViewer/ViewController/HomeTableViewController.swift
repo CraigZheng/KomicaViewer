@@ -255,7 +255,7 @@ extension HomeTableViewController {
             // Set the target URL to the currentURL.
             self.svWebViewGuardDog = self._guardDog
             self.svWebViewURL = self.currentURL
-            self.presentSVWebView()
+            self.presentSVWebView(completion: nil)
         }
         let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
             // Default UIActivityViewController, no customisation other than the supplied URL.

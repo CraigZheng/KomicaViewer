@@ -323,7 +323,7 @@ extension ThreadTableViewController: UIAlertViewDelegate {
             // Set the target URL to the currentURL.
             self.svWebViewGuardDog = self._guardDog
             self.svWebViewURL = self.currentURL
-            self.presentSVWebView()
+            self.presentSVWebView(completion: nil)
         }
         let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
             // Default UIActivityViewController, no customisation other than the supplied URL.
@@ -344,7 +344,16 @@ extension ThreadTableViewController: UIAlertViewDelegate {
             self.svWebViewGuardDog?.home = reportURL?.host
             self.svWebViewGuardDog?.showWarningOnBlock = true
             self.svWebViewURL = reportURL
-            self.presentSVWebView()
+            self.presentSVWebView() {
+                UIPasteboard.general.string = self.currentURL?.absoluteString
+                MessagePopup.showMessage(title: nil,
+                                         message: "URL copied",
+                                         layout: .statusLine,
+                                         theme: .info,
+                                         position: .top,
+                                         buttonTitle: nil,
+                                         buttonActionHandler: nil)
+            }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
