@@ -144,10 +144,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
                                                queue: OperationQueue.main) { [weak self] (_) in
                                                 self?.attemptLoadRequest()
         }
-        
-        if forum == nil {
-            performSegue(withIdentifier: showMenuSegue, sender: nil)
-        }
+        checkAppState()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -165,6 +162,27 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
                                      buttonActionHandler: { _ in
                                         SwiftMessages.hide()
             })
+        }
+    }
+    
+    func checkAppState() {
+        if !Configuration.singleton.hasAcceptedEULA {
+            let alertController = UIAlertController(title: "New EULA",
+                                                    message: "In order to continue using this app, your must accept our EULA. If you do not accept this EULA, please uninstall this app now.",
+                                                    preferredStyle: .alert)
+            let acceptAction = UIAlertAction(title: "Accept", style: .default) { _ in
+                Configuration.singleton.hasAcceptedEULA = true
+                self.checkAppState()
+            }
+            let viewEULAAction = UIAlertAction(title: "View EULA", style: .default) { _ in
+                UIApplication.shared.openURL(Configuration.singleton.eulaURL)
+                self.checkAppState()
+            }
+            alertController.addAction(acceptAction)
+            alertController.addAction(viewEULAAction)
+            present(alertController, animated: true)
+        } else if forum == nil {
+            performSegue(withIdentifier: showMenuSegue, sender: nil)
         }
     }
     

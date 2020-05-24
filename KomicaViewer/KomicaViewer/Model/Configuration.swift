@@ -34,6 +34,7 @@ class Configuration: NSObject {
     @objc var remoteActions = [[String: String]]()
     @objc var announcement: String?
     @objc var updatedWithServer = false
+    private(set) var eulaURL = URL(string: "https://www.eulatemplate.com/live.php?token=Y7Mb0qx4K863ZWrQOB2y8JDHpqU1hiEH")!
     private(set) var pendingAnnouncement: String?
     
     // MARK: user define settings.
@@ -114,6 +115,9 @@ class Configuration: NSObject {
             self.scanForumQRHelpURL = URL(string: scanForumQRHelpURL)
         } else {
             self.scanForumQRHelpURL = nil
+        }
+        if let eulaPath = jsonDictionary["eulaURL"] as? String, let eulaURL = URL(string: eulaPath) {
+            self.eulaURL = eulaURL
         }
     }
     
