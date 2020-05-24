@@ -134,7 +134,7 @@
                     <navigationItem key="navigationItem" id="aYr-iF-oH4">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="Kgg-cW-qSB">
                             <connections>
-                                <segue destination="q8u-Ey-SgU" kind="presentation" id="A44-nI-7PW"/>
+                                <segue destination="q8u-Ey-SgU" kind="presentation" identifier="showMenu" id="A44-nI-7PW"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -276,7 +276,7 @@
                                 <segue destination="KpS-1d-mSQ" kind="unwind" unwindAction="unwindToHomeSegue:" id="9Mr-nt-ZAg"/>
                             </connections>
                         </barButtonItem>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Gaf-Vr-Uiz">
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Gaf-Vr-Uiz">
                             <rect key="frame" x="125.5" y="12" width="163" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>

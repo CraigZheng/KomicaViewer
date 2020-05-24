@@ -103,6 +103,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     fileprivate var bottomRefreshControl: UIRefreshControl?
     fileprivate var pageIndex = 0
     fileprivate let showThreadSegue = "showThread"
+    private let showMenuSegue = "showMenu"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -141,6 +142,10 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
                                                object: nil,
                                                queue: OperationQueue.main) { [weak self] (_) in
                                                 self?.attemptLoadRequest()
+        }
+        
+        if forum == nil {
+            performSegue(withIdentifier: showMenuSegue, sender: nil)
         }
     }
     
