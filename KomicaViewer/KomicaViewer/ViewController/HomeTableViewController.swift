@@ -162,6 +162,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
                                      buttonActionHandler: { _ in
                                         SwiftMessages.hide()
             })
+            Configuration.singleton.pendingAnnouncement = nil
         }
     }
     

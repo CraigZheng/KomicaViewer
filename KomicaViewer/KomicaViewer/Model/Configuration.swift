@@ -35,7 +35,7 @@ class Configuration: NSObject {
     @objc var announcement: String?
     @objc var updatedWithServer = false
     private(set) var eulaURL = URL(string: "https://www.eulatemplate.com/live.php?token=Y7Mb0qx4K863ZWrQOB2y8JDHpqU1hiEH")!
-    private(set) var pendingAnnouncement: String?
+    var pendingAnnouncement: String?
     
     // MARK: user define settings.
     @objc var showImage: Bool {
