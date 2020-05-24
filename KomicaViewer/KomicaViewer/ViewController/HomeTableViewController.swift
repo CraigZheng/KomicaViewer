@@ -15,6 +15,7 @@ import SVWebViewController
 import GoogleMobileAds
 import Firebase
 import TTTAttributedLabel
+import SwiftMessages
 
 class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol, UIViewControllerMWPhotoBrowserProtocol {
     
@@ -153,6 +154,17 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         super.viewDidAppear(animated)
         if tableView.bottomRefreshControl == nil {
             tableView.bottomRefreshControl = bottomRefreshControl
+        }
+        if let announcement = Configuration.singleton.pendingAnnouncement, !announcement.isEmpty {
+            MessagePopup.showMessage(title: "Announcement",
+                                     message: announcement,
+                                     layout: .cardView,
+                                     theme: .info,
+                                     position: .bottom,
+                                     buttonTitle: "OK",
+                                     buttonActionHandler: { _ in
+                                        SwiftMessages.hide()
+            })
         }
     }
     

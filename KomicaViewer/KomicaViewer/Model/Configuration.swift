@@ -34,6 +34,7 @@ class Configuration: NSObject {
     @objc var remoteActions = [[String: String]]()
     @objc var announcement: String?
     @objc var updatedWithServer = false
+    private(set) var pendingAnnouncement: String?
     
     // MARK: user define settings.
     @objc var showImage: Bool {
@@ -155,17 +156,7 @@ class Configuration: NSObject {
                                                                         self.updateWithCompletion({
                                                                             DLog("Remote notification updates.")
                                                                             if let announcement = self.announcement, !announcement.isEmpty {
-                                                                                DispatchQueue.main.async(execute: {
-                                                                                    MessagePopup.showMessage(title: "Announcement",
-                                                                                                             message: announcement,
-                                                                                                             layout: .cardView,
-                                                                                                             theme: .info,
-                                                                                                             position: .bottom,
-                                                                                                             buttonTitle: "OK",
-                                                                                                             buttonActionHandler: { _ in
-                                                                                                                SwiftMessages.hide()
-                                                                                    })
-                                                                                })
+                                                                                self.pendingAnnouncement = announcement
                                                                             }
                                                                         })
                                                                     }
