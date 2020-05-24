@@ -11,6 +11,10 @@ import Foundation
 import KomicaEngine
 
 class Forums {
+    enum Source: Int {
+        case komica, futaba
+    }
+    
     // Forum notifications.
     static let selectionUpdatedNotification = "Forums.selectionUpdatedNotification"
     static let forumsUpdatedNotification = "Forums.forumsUpdatedNotification"
@@ -30,6 +34,15 @@ class Forums {
                 // Selection updated, send a notification for this.
                 NotificationCenter.default.post(name: Notification.Name(rawValue: selectionUpdatedNotification), object: nil)
             }
+        }
+    }
+    static var selectedSource: Source {
+        get {
+            return Source(rawValue: UserDefaults.standard.integer(forKey: "selectedForumSource")) ?? .komica
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue.rawValue, forKey: "selectedForumSource")
         }
     }
     
