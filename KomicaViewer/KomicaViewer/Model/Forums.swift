@@ -96,8 +96,7 @@ class Forums {
             var forums = [KomicaForum]()
             jsonStrings.forEach({jsonString in
                 if let jsonData = jsonString.data(using: String.Encoding.utf8),
-                    let rawDict = try? JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? Dictionary<String, AnyObject>,
-                    let jsonDict = rawDict
+                    let jsonDict = try? JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? Dictionary<String, AnyObject>
                 {
                     let forum = KomicaForum(jsonDict: jsonDict)
                     forums.append(forum)

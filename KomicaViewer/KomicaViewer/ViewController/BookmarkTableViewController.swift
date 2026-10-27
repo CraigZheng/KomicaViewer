@@ -22,7 +22,7 @@ class BookmarkTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 120
         tableView.register(UINib(nibName: "ThreadTableViewCell", bundle: nil), forCellReuseIdentifier: ThreadTableViewCell.identifier)
     }
@@ -51,7 +51,7 @@ class BookmarkTableViewController: UITableViewController {
         performSegue(withIdentifier: Segue.showThread.rawValue, sender: tableView.cellForRow(at: indexPath))
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
             BookmarkManager.shared.remove(bookmarks[indexPath.row])

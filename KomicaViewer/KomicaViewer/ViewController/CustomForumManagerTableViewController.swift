@@ -62,7 +62,7 @@ class CustomForumManagerTableViewController: UITableViewController {
     
     // MARK: UITableView delegate
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             Forums.customForumGroup.forums?.remove(at: indexPath.row)
             Forums.saveCustomForums()

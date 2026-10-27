@@ -57,7 +57,7 @@ class RemoteActionTableViewDelegate: NSObject, UITableViewDataSource, UITableVie
             let object = dict[key]
         {
             if let actionURL = URL(string: object), UIApplication.shared.canOpenURL(actionURL) {
-                UIApplication.shared.openURL(actionURL)
+                UIApplication.shared.open(actionURL, options: [:], completionHandler: nil)
                 Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
                     AnalyticsParameterContentType: "SELECT REMOTE ACTION" as NSObject,
                     AnalyticsParameterItemID: "\(key)" as NSString,

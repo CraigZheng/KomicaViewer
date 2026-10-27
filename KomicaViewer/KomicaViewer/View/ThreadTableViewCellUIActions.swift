@@ -12,7 +12,7 @@ import Firebase
 
 extension ThreadTableViewCell {
     
-    func longPressAction() {
+    @objc func longPressAction() {
         DLog("")
         // If there's another alertController, don't do anything.
         if alertController == nil {
@@ -44,7 +44,7 @@ extension ThreadTableViewCell {
                         self.alertController = nil
                     }
                     let copyContentAction = UIAlertAction(title: "Copy Content", style: .default) { (_) in
-                        if let text = self.textContentLabel?.text {
+                        if let text = self.textContentLabel?.text as? String {
                             UIPasteboard.general.string = text
                             ProgressHUD.showMessage("Content Copied")
                         }
@@ -68,7 +68,7 @@ extension ThreadTableViewCell {
                             for link in self.links {
                                 let linkAction = UIAlertAction(title: link.absoluteString, style: .default) { _ in
                                     if UIApplication.shared.canOpenURL(link as URL) {
-                                        UIApplication.shared.openURL(link as URL)
+                                        UIApplication.shared.open(link as URL, options: [:], completionHandler: nil)
                                         Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
                                             AnalyticsParameterContentType: "SELECT REMOTE URL" as NSObject,
                                             AnalyticsParameterItemID: "\(link.absoluteString)" as NSString,

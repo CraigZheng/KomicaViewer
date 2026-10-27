@@ -11,7 +11,6 @@ import UIKit
 import KomicaEngine
 import SDWebImage
 import CCBottomRefreshControl
-import SVWebViewController
 import GoogleMobileAds
 import Firebase
 import TTTAttributedLabel
@@ -19,7 +18,7 @@ import TTTAttributedLabel
 class HomeTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol, UIViewControllerMWPhotoBrowserProtocol {
     
     @IBOutlet weak var adBannerTableViewHeaderView: UIView!
-    @IBOutlet weak var adBannerView: GADBannerView! {
+    @IBOutlet weak var adBannerView: BannerView! {
         didSet {
             adBannerView.adUnitID = AdConfiguration.AdMobID.bannerID1
             adBannerView.rootViewController = self
@@ -53,7 +52,7 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
     
     lazy var postCompletion: KomicaDownloaderHandler? = { (success, page, result) in
         var suffix = "th"
-        switch String(page).characters.last! {
+        switch String(page).last! {
         case Character("0"): suffix = "st"
         case Character("1"): suffix = "nd"
         case Character("2"): suffix = "rd"
@@ -109,21 +108,22 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self,
                                   action: #selector(HomeTableViewController.refresh),
-                                  for: UIControlEvents.valueChanged)
+                                  for: UIControl.Event.valueChanged)
         bottomRefreshControl = UIRefreshControl()
         bottomRefreshControl?.addTarget(self,
                                        action: #selector(HomeTableViewController.loadMore),
                                        for: .valueChanged)
         // Row heights.
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 120
         
         tableView.register(UINib(nibName: "ThreadTableViewCell", bundle: nil), forCellReuseIdentifier: ThreadTableViewCell.identifier)
         // Add handler for Forum selected notification.
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(HomeTableViewController.handleForumSelectedNotification(_:)),
-                                               name: NSNotification.Name(rawValue: Forums.selectionUpdatedNotification),
-                                               object: nil)
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Forums.selectionUpdatedNotification),
+                                               object: nil,
+                                               queue: OperationQueue.main) { [weak self] notification in
+            self?.handleForumSelectedNotification(notification)
+        }
         // Add handler for blocked user updated notification.
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: BlockedUserManager.updatedNotification),
                                                object: nil,
@@ -181,8 +181,8 @@ class HomeTableViewController: UITableViewController, ThreadTableViewControllerP
             estimatedHeight += estimatedTextSize.height + ((threads[indexPath.row].title?.isEmpty ?? true) ? 50 : 82)
             // If thumbnail image is not nil, include the thumbnail image.
             if let thumbnailURL = threads[indexPath.row].thumbnailURL {
-                if SDWebImageManager.shared().cachedImageExists(for: thumbnailURL) {
-                    let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: SDWebImageManager.shared().cacheKey(for: thumbnailURL))
+                if (SDWebImageManager.shared.cacheKey(for: thumbnailURL).map { SDImageCache.shared.diskImageDataExists(withKey: $0) } ?? false) {
+                    let cachedImage = SDImageCache.shared.imageFromCache(forKey: SDWebImageManager.shared.cacheKey(for: thumbnailURL))
                     estimatedHeight += (cachedImage?.size.height)!
                 }
             }
@@ -283,7 +283,7 @@ extension HomeTableViewController {
     fileprivate func openVideoWithLink(_ link: String) {
         if let videoURL = URL(string: link), UIApplication.shared.canOpenURL(videoURL)
         {
-            UIApplication.shared.openURL(videoURL)
+            UIApplication.shared.open(videoURL, options: [:], completionHandler: nil)
             Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
                 AnalyticsParameterContentType: "SELECT REMOTE URL" as NSObject,
                 AnalyticsParameterItemID: "\(videoURL.absoluteString)" as NSString,
@@ -298,7 +298,7 @@ extension HomeTableViewController {
 // MARK: Refresh controls
 extension HomeTableViewController {
     
-    func refresh() {
+    @objc func refresh() {
         if let forum = forum {
             Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
                 AnalyticsParameterContentType: "REFRESH FORUM" as NSObject,
@@ -308,7 +308,7 @@ extension HomeTableViewController {
         refreshWithPage(forum?.startingIndex ?? 0)
     }
 
-    func loadMore() {
+    @objc func loadMore() {
         self.refreshWithPage(self.pageIndex + 1)
     }
     
@@ -317,7 +317,7 @@ extension HomeTableViewController {
 // MARK: Forum selected notification handler.
 extension HomeTableViewController {
     
-    func handleForumSelectedNotification(_ notification: Notification) {
+    @objc func handleForumSelectedNotification(_ notification: Notification) {
         title = forum?.name
         threads.removeAll()
         tableView.reloadData()
@@ -335,10 +335,10 @@ extension HomeTableViewController {
     
 }
 
-// MAKR: GADBannerViewDelegate
-extension HomeTableViewController: GADBannerViewDelegate {
+// MAKR: BannerViewDelegate
+extension HomeTableViewController: BannerViewDelegate {
     
-    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+    func bannerViewWillLeaveApplication(_ bannerView: BannerView) {
         DLog("")
         AdConfiguration.singleton.clickedAd()
     }
@@ -364,9 +364,12 @@ extension HomeTableViewController: GADBannerViewDelegate {
     
     func attemptLoadRequest() {
         if AdConfiguration.singleton.shouldDisplayAds {
-            let request = GADRequest()
+            let request = Request()
             #if DEBUG
-                request.testDevices = [kGADSimulatorID, "4fa1b332e0290930b2ae511c65ff8947"]
+            MobileAds.shared.requestConfiguration.testDeviceIdentifiers = [
+                "Simulator",
+                "4fa1b332e0290930b2ae511c65ff8947"
+            ]
             #endif
             adBannerView.load(request)
             toggleAdBanner(true)
@@ -382,7 +385,7 @@ extension HomeTableViewController: TTTAttributedLabelDelegate {
     
     func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
         if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     

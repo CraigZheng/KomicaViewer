@@ -17,6 +17,7 @@ class ForumQRScannerViewController: UIViewController {
     @IBOutlet var cameraPreviewView: UIView!
     var capturedForum: KomicaForum?
     fileprivate var captureSession: AVCaptureSession?
+    fileprivate var previewLayer: AVCaptureVideoPreviewLayer?
     fileprivate var warningAlertController: UIAlertController?
     
     fileprivate struct SegueIdentifier {
@@ -26,23 +27,18 @@ class ForumQRScannerViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // Request camera permission.
-        AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { (granted) in
+        AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted) in
             DispatchQueue.main.async(execute: {
                 if (granted) {
-                    // Permission has been granted. Use dispatch_async for any UI updating
-                    // code because this block may be executed in a thread.
                     self.setUpScanner()
                 } else {
-                    // No permission, inform user about the permission issue, or quit.
                     let alertController = UIAlertController(title: "\(UIApplication.appName) Would Like To Use Your Camera", message: nil, preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { [weak self] _ in
-                        // Dismiss self.
                         _ = self?.navigationController?.popToRootViewController(animated: true)
                     }))
                     alertController.addAction(UIAlertAction(title: "Settings", style: .default, handler: { _ in
-                        let settingsUrl = URL(string: UIApplicationOpenSettingsURLString)
-                        if let url = settingsUrl {
-                            UIApplication.shared.openURL(url)
+                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
                         }
                     }))
                     self.present(alertController, animated: true, completion: nil)
@@ -56,23 +52,37 @@ class ForumQRScannerViewController: UIViewController {
         captureSession?.stopRunning()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        previewLayer?.frame = cameraPreviewView.bounds
+    }
+
     fileprivate func setUpScanner() {
         captureSession?.stopRunning()
-        captureSession = AVCaptureSession()
-        let videoCaptureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-        if let videoInput = try? AVCaptureDeviceInput(device:videoCaptureDevice),
-            let captureSession = captureSession
-        {
-            captureSession.addInput(videoInput)
-            let metadataOutput = AVCaptureMetadataOutput()
-            captureSession.addOutput(metadataOutput)
-            metadataOutput.setMetadataObjectsDelegate(self, queue:DispatchQueue.main)
-            metadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeEAN13Code]
-            let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-            previewLayer?.frame = self.cameraPreviewView.bounds; // Align to cameraPreviewView.
-            previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill;
-            cameraPreviewView.layer.addSublayer(previewLayer!)
-            captureSession.startRunning()
+        previewLayer?.removeFromSuperlayer()
+        let session = AVCaptureSession()
+        captureSession = session
+        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video),
+              let videoInput = try? AVCaptureDeviceInput(device: videoCaptureDevice) else {
+            return
+        }
+        guard session.canAddInput(videoInput) else { return }
+        session.addInput(videoInput)
+
+        let metadataOutput = AVCaptureMetadataOutput()
+        guard session.canAddOutput(metadataOutput) else { return }
+        session.addOutput(metadataOutput)
+        metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        metadataOutput.metadataObjectTypes = [.qr, .ean13]
+
+        let previewLayer = AVCaptureVideoPreviewLayer(session: session)
+        previewLayer.frame = cameraPreviewView.bounds
+        previewLayer.videoGravity = .resizeAspectFill
+        cameraPreviewView.layer.addSublayer(previewLayer)
+        self.previewLayer = previewLayer
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            session.startRunning()
         }
     }
 }
@@ -82,7 +92,6 @@ extension ForumQRScannerViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueIdentifier.addForum, let destinationViewController = segue.destination as? AddForumTableViewController {
-            // Passing nil to the destination would cause the app to crash, so if capturedForum is nil, pass a new komica forum object to it.
             destinationViewController.newForum = capturedForum ?? KomicaForum()
         }
     }
@@ -104,7 +113,7 @@ extension ForumQRScannerViewController: UIImagePickerControllerDelegate, UINavig
     @IBAction func scanQRHelpBarButtonItemAction(_ sender: AnyObject) {
         if let scanForumQRHelpURL = Configuration.singleton.scanForumQRHelpURL, UIApplication.shared.canOpenURL(scanForumQRHelpURL as URL)
         {
-            UIApplication.shared.openURL(scanForumQRHelpURL)
+            UIApplication.shared.open(scanForumQRHelpURL, options: [:], completionHandler: nil)
             Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
                 AnalyticsParameterContentType: "SELECT REMOTE URL" as NSObject,
                 AnalyticsParameterItemID: "\(scanForumQRHelpURL.absoluteString)" as NSString,
@@ -113,8 +122,8 @@ extension ForumQRScannerViewController: UIImagePickerControllerDelegate, UINavig
     }
     
     // MARK: UIImagePickerControllerDelegate
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage,
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[.originalImage] as? UIImage,
             let ciImage = CIImage(image: pickedImage)
         {
             let parsedResult = performQRCodeDetection(ciImage)
@@ -131,19 +140,17 @@ extension ForumQRScannerViewController: UIImagePickerControllerDelegate, UINavig
 // MARK: AVCaptureMetadataOutputObjectsDelegate
 extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
-        if let lastMetadataObject = metadataObjects.last,
-            let readableObject = lastMetadataObject as? AVMetadataMachineReadableCodeObject
-        {
-            if (readableObject.type == AVMetadataObjectTypeQRCode) {
-                if parseJsonString(readableObject.stringValue) {
-                    captureSession?.stopRunning()
-                    return
-                }
-            }
+    func metadataOutput(_ output: AVCaptureMetadataOutput,
+                        didOutput metadataObjects: [AVMetadataObject],
+                        from connection: AVCaptureConnection) {
+        if let readableObject = metadataObjects.last as? AVMetadataMachineReadableCodeObject,
+           readableObject.type == .qr,
+           let stringValue = readableObject.stringValue,
+           parseJsonString(stringValue) {
+            captureSession?.stopRunning()
+            return
         }
         if warningAlertController == nil {
-            // Cannot parse.
             warningAlertController = UIAlertController(title: "QR code cannot be parsed, please try again", message: nil, preferredStyle: .alert)
             warningAlertController?.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
                 self.warningAlertController = nil
@@ -153,7 +160,6 @@ extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func parseJsonString(_ jsonString: String) -> Bool {
-        // Construct a forum object with the scanned result.
         if let jsonData = jsonString.data(using: String.Encoding.utf8),
             let jsonDict = (try? JSONSerialization.jsonObject(with: jsonData,
                 options: .allowFragments)) as? [String: AnyObject], !jsonString.isEmpty
@@ -171,14 +177,13 @@ extension ForumQRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
 
 // MARK: Read from library
 extension ForumQRScannerViewController {
-    // Shamelessly copied from http://stackoverflow.com/questions/35956538/how-to-read-qr-code-from-static-image and modified to my need.
     func performQRCodeDetection(_ image: CIImage) -> [String] {
         let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh, CIDetectorAspectRatio: 1.0])
         let features = detector?.features(in: image)
         var strings = [String]()
         features?.forEach { feature in
-            if let feature = feature as? CIQRCodeFeature {
-                strings.append(feature.messageString!)
+            if let feature = feature as? CIQRCodeFeature, let message = feature.messageString {
+                strings.append(message)
             }
         }
         return strings

@@ -9,7 +9,7 @@
 import StoreKit
 
 extension SKProduct {
-  public func localizedPrice() -> String? {
+  public func formattedPrice() -> String? {
     let formatter = NumberFormatter()
     formatter.numberStyle = .currency
     formatter.locale = self.priceLocale

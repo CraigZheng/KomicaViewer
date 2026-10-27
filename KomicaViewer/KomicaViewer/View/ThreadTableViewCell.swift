@@ -30,10 +30,10 @@ class ThreadTableViewCell: UITableViewCell {
                 let quotedString = String(quotedNumber)
                 if let textContentLabel = textContentLabel,
                     let range = (textContentLabel.attributedText.string as NSString?)?.range(of: quotedString),
-                    (range.location + range.length) <= textContentLabel.attributedText.string.characters.count
+                    (range.location + range.length) <= textContentLabel.attributedText.string.count
                 {
                     guard let mutableAttributedText = textContentLabel.attributedText.mutableCopy() as? NSMutableAttributedString else { return }
-                    mutableAttributedText.addAttributes([NSLinkAttributeName: "\(ThreadTableViewCell.quotedIdentifier)\(quotedString)"], range: range)
+                    mutableAttributedText.addAttributes([NSAttributedString.Key.link: "\(ThreadTableViewCell.quotedIdentifier)\(quotedString)"], range: range)
                     textContentLabel.setText(mutableAttributedText)
                 }
             }
@@ -46,8 +46,9 @@ class ThreadTableViewCell: UITableViewCell {
     var userID: String?
     var links: [URL] {
         var links = [URL]()
-        if let linkDetector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue), let text = textContentLabel?.text {
-            for match in linkDetector.matches(in: text, options: [], range: NSMakeRange(0, text.characters.count)) {
+        if let linkDetector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue),
+           let text = textContentLabel?.text as? String {
+            for match in linkDetector.matches(in: text, options: [], range: NSMakeRange(0, text.count)) {
                 if match.resultType == NSTextCheckingResult.CheckingType.link, let url = match.url {
                     links.append(url)
                 }
@@ -123,16 +124,16 @@ class ThreadTableViewCell: UITableViewCell {
         //
         if let attributedString = thread.content,
             let mutableAttributedString = thread.content?.mutableCopy() as? NSMutableAttributedString {
-            mutableAttributedString.addAttributes([NSParagraphStyleAttributeName: paragraphAttribute], range: NSMakeRange(0, attributedString.length))
+            mutableAttributedString.addAttributes([NSAttributedString.Key.paragraphStyle: paragraphAttribute], range: NSMakeRange(0, attributedString.length))
             // Set the default font and colour.
-            mutableAttributedString.addAttributes([NSFontAttributeName: defaultFont, NSForegroundColorAttributeName: TextColour.standard],
+            mutableAttributedString.addAttributes([NSAttributedString.Key.font: defaultFont, NSAttributedString.Key.foregroundColor: TextColour.standard],
                                            range: NSMakeRange(0, mutableAttributedString.length))
             // Add the font colour attributes back to the attributed string.
-            attributedString.enumerateAttribute(NSForegroundColorAttributeName,
+            attributedString.enumerateAttribute(NSAttributedString.Key.foregroundColor,
                                                 in: NSMakeRange(0, attributedString.length),
                                                 options: [], using: { (attributeValue, range, stop) in
                                                     if let attribute = attributeValue as? UIColor {
-                                                        mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: attribute, range: range)
+                                                        mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: attribute, range: range)
                                                     }
             })
             textContentLabel?.setText(mutableAttributedString)
@@ -147,30 +148,30 @@ class ThreadTableViewCell: UITableViewCell {
         if let imageURL = thread.thumbnailURL,
             shouldShowImage
         {
-            if SDWebImageManager.shared().cachedImageExists(for: imageURL) {
-                let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: SDWebImageManager.shared().cacheKey(for: imageURL))
+            if (SDWebImageManager.shared.cacheKey(for: imageURL).map { SDImageCache.shared.diskImageDataExists(withKey: $0) } ?? false) {
+                let cachedImage = SDImageCache.shared.imageFromCache(forKey: SDWebImageManager.shared.cacheKey(for: imageURL))
                 imageView?.image = cachedImage
             } else {
                 imageView?.image = nil
-                imageView?.sd_setImage(with: imageURL, placeholderImage: nil, options: SDWebImageOptions.retryFailed, completed: nil)
+                imageView?.sd_setImage(with: imageURL, placeholderImage: nil, options: .retryFailed, completed: nil)
             }
             // Show imageFormatLabel, and set the text to the pathExtension.
             if let imageURLString = thread.imageURL?.absoluteString {
                 imageFormatLabel.isHidden = false
                 imageFormatLabel.text = (imageURLString as NSString).pathExtension.uppercased()
-                imageViewZeroHeight.priority = 1
+                imageViewZeroHeight.priority = UILayoutPriority(rawValue: 1)
             }
         } else {
             imageView?.image = nil
             imageFormatLabel.isHidden = true
-            imageViewZeroHeight.priority = 999
+            imageViewZeroHeight.priority = UILayoutPriority(rawValue: 999)
         }
         // When videoLinks is not empty, show mediaLinkLabel.
         mediaLinkLabel.isHidden = !(thread.videoLinks?.isEmpty == false)
         // When video link is not empty, but there's no preview image, then give it a default play button image.
         if !(thread.videoLinks?.isEmpty ?? true), imageView?.image == nil {
             imageView?.image = UIImage(named: "youtube-play-button.png")
-            imageViewZeroHeight.priority = 1
+            imageViewZeroHeight.priority = UILayoutPriority(rawValue: 1)
         }
         // Parasite post.
         if shouldShowParasitePost,
@@ -179,11 +180,11 @@ class ThreadTableViewCell: UITableViewCell {
         {
             parasitePostTextLabel?.text = firstParasitePost
             parasitePostCountLabel?.text = parasitePosts.count - 1 > 0 ? "..." : ""
-            parasitePostViewZeroHeight?.priority = 1
+            parasitePostViewZeroHeight?.priority = UILayoutPriority(rawValue: 1)
         } else {
             parasitePostTextLabel?.text = ""
             parasitePostCountLabel?.text = ""
-            parasitePostViewZeroHeight?.priority = 999
+            parasitePostViewZeroHeight?.priority = UILayoutPriority(rawValue: 999)
         }
         dateLabel?.text = thread.postDateString ?? ""
         if !thread.warnings.isEmpty {

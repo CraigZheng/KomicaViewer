@@ -17,11 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // Use Firebase library to configure APIs
         FirebaseApp.configure()
-        GADMobileAds.configure(withApplicationID: "ca-app-pub-2081665256237089~8156537252")
+        MobileAds.shared.start(completionHandler: nil)
         Forums.updateRemoteForums()
         Forums.updateRemoteFutabaForums()
         // Initialise Configuration singletons.

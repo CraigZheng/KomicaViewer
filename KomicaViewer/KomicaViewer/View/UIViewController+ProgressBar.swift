@@ -6,13 +6,13 @@
 //  Copyright © 2016 cz. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension UIViewController {
     func showLoading() {
         hideLoading()
         DLog("showLoading()")
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
         activityIndicator.startAnimating()
         let indicatorBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         if var rightBarButtonItems = navigationItem.rightBarButtonItems {
@@ -48,7 +48,7 @@ extension RangeReplaceableCollection where Iterator.Element : Equatable {
     
     // Remove first collection element that is equal to the given `object`:
     mutating func removeObject(_ object : Iterator.Element) {
-        if let index = self.index(of: object) {
+        if let index = self.firstIndex(of: object) {
             self.remove(at: index)
         }
     }

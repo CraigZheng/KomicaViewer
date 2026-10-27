@@ -122,8 +122,7 @@ class AdConfiguration: NSObject {
     
     // MARK: Private methods.
     fileprivate func parseJSONData(_ jsonData: Data) {
-        if let rawDict = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers) as? [String: AnyObject],
-            let jsonDict = rawDict {
+        if let jsonDict = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers) as? [String: AnyObject] {
             if let enableAd = jsonDict[DictionaryKey.enableAd] as? NSNumber {
                 self.enableAd = enableAd.boolValue
             }

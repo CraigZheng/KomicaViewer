@@ -7,8 +7,8 @@
 //
 
 import Foundation
+import UIKit
 
-import AFNetworking
 import SwiftMessages
 
 class Configuration: NSObject {
@@ -25,7 +25,7 @@ class Configuration: NSObject {
         return "\(versionString)(\(bundleVersion))"
     }
     
-    fileprivate let sessionManager = AFHTTPSessionManager.sessionManager()
+    fileprivate let urlSession = URLSession(configuration: .default)
     
     // MARK: public properties.
     var reportURL: URL?
@@ -112,15 +112,13 @@ class Configuration: NSObject {
     
     func updateWithCompletion(_ completion: (()->())?) {
         DLog("Updating configuration.")
-        sessionManager.dataTask(with: URLRequest(url: remoteConfigurationURL)) { response, responseObject, error in
+        urlSession.dataTask(with: URLRequest(url: remoteConfigurationURL)) { data, _, error in
             DLog("Updating completed.")
-            if error == nil, let responseObject = responseObject as? Data {
-                _ = self.parseJSONData(responseObject)
+            if error == nil, let data {
+                _ = self.parseJSONData(data)
                 self.updatedWithServer = true
             }
-            if let completion = completion {
-                completion()
-            }
+            completion?()
             // Configuration updated notification.
             NotificationCenter.default.post(name: Notification.Name(rawValue: Configuration.updatedNotification), object: nil)
         }.resume()
@@ -146,7 +144,7 @@ class Configuration: NSObject {
                                                              selector: #selector(Operation.main),
                                                              userInfo: nil,
                                                              repeats: true)
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidBecomeActive,
+        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification,
                                                                 object: nil,
                                                                 queue: OperationQueue.main) { _ in
                                                                     if !self.updatedWithServer {

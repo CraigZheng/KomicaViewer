@@ -7,28 +7,21 @@
 //
 
 import UIKit
+import SafariServices
 
-import SVWebViewController
-
-protocol SVWebViewProtocol: class {
+protocol SVWebViewProtocol: AnyObject {
     var svWebViewGuardDog: WebViewGuardDog? { get set }
     var svWebViewURL: URL? { get set }
-    
+
     func presentSVWebView()
 }
 
 extension SVWebViewProtocol where Self: UIViewController {
-    
+
     func presentSVWebView() {
-        if let svWebViewURL = svWebViewURL,
-            let webViewController = SVModalWebViewController(url: svWebViewURL) {
-            webViewController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
-            webViewController.barsTintColor = navigationController?.navigationBar.barTintColor
-//            webViewController.webViewDelegate = svWebViewGuardDog
-            webViewController.popoverPresentationController?.sourceView = self.view
-            webViewController.popoverPresentationController?.sourceRect = self.view.bounds
-            present(webViewController, animated: true, completion: nil)
-        }
+        guard let svWebViewURL else { return }
+        let safari = SFSafariViewController(url: svWebViewURL)
+        safari.preferredControlTintColor = navigationController?.navigationBar.tintColor
+        present(safari, animated: true, completion: nil)
     }
-    
 }

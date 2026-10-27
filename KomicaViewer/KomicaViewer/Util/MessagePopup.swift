@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 import SwiftMessages
 
@@ -42,7 +43,7 @@ import SwiftMessages
     case MessageViewIOS8
     var swiftValue: MessageView.Layout {
         switch self {
-        case .MessageView:
+        case .MessageView, .MessageViewIOS8:
             return .messageView
         case .CardView:
             return .cardView
@@ -50,8 +51,6 @@ import SwiftMessages
             return .tabView
         case .StatusLine:
             return .statusLine
-        case .MessageViewIOS8:
-            return .messageViewIOS8
         }
     }
 }
@@ -112,12 +111,6 @@ class MessagePopup: NSObject {
     }
     
     class func showMessage(title: String?, message: String?, layout: MessageView.Layout = .cardView, theme: Theme = .info, position: SwiftMessages.PresentationStyle = .top, buttonTitle: String? = nil, buttonActionHandler: ((_ button: UIButton) -> Void)? = nil) {
-        var layout = layout
-        if layout == MessageView.Layout.messageView,
-            let systemVersion = Double(UIDevice.current.systemVersion),
-            systemVersion < 9.0 {
-            layout = MessageView.Layout.messageViewIOS8
-        }
         let messageView = MessageView.viewFromNib(layout: layout)
         messageView.configureTheme(theme)
         messageView.configureContent(title: title ?? "", body: message ?? "")
@@ -135,7 +128,7 @@ class MessagePopup: NSObject {
         messageView.iconImageView?.isHidden = !(theme == .info)
         messageView.iconLabel?.isHidden = !(theme == .info)
         config.presentationStyle = position
-        config.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+        config.presentationContext = .window(windowLevel: .statusBar)
         SwiftMessages.show(config: config, view: messageView)
     }
     

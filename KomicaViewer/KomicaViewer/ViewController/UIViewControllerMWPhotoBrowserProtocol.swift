@@ -7,11 +7,9 @@
 //
 
 import UIKit
+import SDWebImage
 
-import KomicaEngine
-import MWPhotoBrowser
-
-protocol UIViewControllerMWPhotoBrowserProtocol {
+protocol UIViewControllerMWPhotoBrowserProtocol: AnyObject {
     var photoURLs: [URL]? { get set }
     var thumbnailURLs: [URL]? { get set }
     var photoIndex: Int? { get set }
@@ -19,61 +17,111 @@ protocol UIViewControllerMWPhotoBrowserProtocol {
 }
 
 extension UIViewControllerMWPhotoBrowserProtocol where Self: UIViewController {
-    
-    fileprivate var photoBrowser: MWPhotoBrowser {
-        PhotoBrowserDelegate.singleton.photoURLs = photoURLs ?? []
-        PhotoBrowserDelegate.singleton.thumbnailURLs = thumbnailURLs
-        let photoBrowser = MWPhotoBrowser(delegate: PhotoBrowserDelegate.singleton)
-        photoBrowser!.displayNavArrows = true; // Whether to display left and right nav arrows on toolbar (defaults to false)
-        photoBrowser!.displaySelectionButtons = false; // Whether selection buttons are shown on each image (defaults to false)
-        photoBrowser!.zoomPhotosToFill = false; // Images that almost fill the screen will be initially zoomed to fill (defaults to true)
-        photoBrowser!.alwaysShowControls = false; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to false)
-        photoBrowser!.enableGrid = true; // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to true)
-        photoBrowser!.startOnGrid = false; // Whether to start on the grid of thumbnails instead of the first photo (defaults to false)
-        photoBrowser!.delayToHideElements = UInt(8);
-        photoBrowser!.enableSwipeToDismiss = false; // dont dismiss
-        photoBrowser!.displayActionButton = true;
-        photoBrowser!.hidesBottomBarWhenPushed = true;
-
-        if let photoIndex = photoIndex {
-            photoBrowser?.setCurrentPhotoIndex(UInt(photoIndex))
-        }
-        return photoBrowser!
-    }
 
     func presentPhotos() {
-        if let photoURLs = photoURLs, !photoURLs.isEmpty {
-            if let photoIndex = photoIndex, (photoURLs[photoIndex].absoluteString as NSString).pathExtension.lowercased() == "webm" {
-                // Open webm file.
-                if let webMPlayerViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WebMPlayerViewController") as? WebMPlayerViewController {
-                    webMPlayerViewController.webMSourceURL = photoURLs[photoIndex]
-                    navigationController?.present(webMPlayerViewController, animated: true, completion: nil)
-                }
-            } else {
-                navigationController?.pushViewController(photoBrowser, animated:true)
+        guard let photoURLs = photoURLs, !photoURLs.isEmpty else { return }
+        let index = photoIndex ?? 0
+        if index < photoURLs.count,
+           (photoURLs[index].absoluteString as NSString).pathExtension.lowercased() == "webm" {
+            if let webMPlayerViewController = UIStoryboard(name: "Main", bundle: nil)
+                .instantiateViewController(withIdentifier: "WebMPlayerViewController") as? WebMPlayerViewController {
+                webMPlayerViewController.webMSourceURL = photoURLs[index]
+                present(webMPlayerViewController, animated: true, completion: nil)
             }
+            return
         }
+
+        let browser = SimplePhotoBrowserViewController(photoURLs: photoURLs, startIndex: index)
+        navigationController?.pushViewController(browser, animated: true)
     }
-    
 }
 
-private class PhotoBrowserDelegate: NSObject, MWPhotoBrowserDelegate {
-    static let singleton = PhotoBrowserDelegate()
-    
-    var photoURLs: [URL]!
-    var thumbnailURLs: [URL]?
-    
-    @objc func numberOfPhotos(in photoBrowser: MWPhotoBrowser!) -> UInt {
-        return UInt(photoURLs.count)
+final class SimplePhotoBrowserViewController: UIViewController, UIScrollViewDelegate {
+
+    private let photoURLs: [URL]
+    private let startIndex: Int
+    private let scrollView = UIScrollView()
+    private let imageView = UIImageView()
+    private var currentIndex: Int
+
+    init(photoURLs: [URL], startIndex: Int) {
+        self.photoURLs = photoURLs
+        self.startIndex = max(0, min(startIndex, photoURLs.count - 1))
+        self.currentIndex = self.startIndex
+        super.init(nibName: nil, bundle: nil)
+        hidesBottomBarWhenPushed = true
     }
-    
-    @objc func photoBrowser(_ photoBrowser: MWPhotoBrowser!, photoAt index: UInt) -> MWPhotoProtocol! {
-        return MWPhoto(url: photoURLs[Int(index)])
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    
-    @objc fileprivate func photoBrowser(_ photoBrowser: MWPhotoBrowser!, thumbPhotoAt index: UInt) -> MWPhotoProtocol! {
-        let url = (thumbnailURLs != nil) ? thumbnailURLs?[Int(index)] : photoURLs[Int(index)]
-        return MWPhoto(url: url)
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .black
+
+        scrollView.frame = view.bounds
+        scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        scrollView.delegate = self
+        scrollView.minimumZoomScale = 1
+        scrollView.maximumZoomScale = 4
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
+        view.addSubview(scrollView)
+
+        imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = true
+        scrollView.addSubview(imageView)
+
+        let left = UISwipeGestureRecognizer(target: self, action: #selector(showPrevious))
+        left.direction = .right
+        view.addGestureRecognizer(left)
+        let right = UISwipeGestureRecognizer(target: self, action: #selector(showNext))
+        right.direction = .left
+        view.addGestureRecognizer(right)
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .action,
+            target: self,
+            action: #selector(shareCurrent)
+        )
+
+        loadCurrent()
     }
-    
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scrollView.frame = view.bounds
+        imageView.frame = scrollView.bounds
+        scrollView.contentSize = scrollView.bounds.size
+    }
+
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        imageView
+    }
+
+    private func loadCurrent() {
+        title = "\(currentIndex + 1) / \(photoURLs.count)"
+        scrollView.setZoomScale(1, animated: false)
+        imageView.sd_setImage(with: photoURLs[currentIndex], placeholderImage: nil)
+    }
+
+    @objc private func showPrevious() {
+        guard currentIndex > 0 else { return }
+        currentIndex -= 1
+        loadCurrent()
+    }
+
+    @objc private func showNext() {
+        guard currentIndex < photoURLs.count - 1 else { return }
+        currentIndex += 1
+        loadCurrent()
+    }
+
+    @objc private func shareCurrent() {
+        let activity = UIActivityViewController(activityItems: [photoURLs[currentIndex]], applicationActivities: nil)
+        activity.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(activity, animated: true)
+    }
 }

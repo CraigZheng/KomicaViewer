@@ -10,7 +10,6 @@ import UIKit
 
 import KomicaEngine
 import SDWebImage
-import SVWebViewController
 import GoogleMobileAds
 import Firebase
 import TTTAttributedLabel
@@ -19,7 +18,7 @@ import SwiftMessages
 class ThreadTableViewController: UITableViewController, ThreadTableViewControllerProtocol, TableViewControllerBulkUpdateProtocol, SVWebViewProtocol, UIViewControllerMWPhotoBrowserProtocol {
     
     @IBOutlet weak var adBannerTableViewHeaderView: UIView!
-    @IBOutlet weak var adBannerView: GADBannerView! {
+    @IBOutlet weak var adBannerView: BannerView! {
         didSet {
             adBannerView.adUnitID = AdConfiguration.AdMobID.bannerID2
             adBannerView.rootViewController = self
@@ -130,8 +129,8 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self,
                                   action: #selector(ThreadTableViewController.refresh),
-                                  for: UIControlEvents.valueChanged)
-        tableView.rowHeight = UITableViewAutomaticDimension
+                                  for: UIControl.Event.valueChanged)
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 140
         tableView.register(UINib(nibName: "ThreadTableViewCell", bundle: nil), forCellReuseIdentifier: ThreadTableViewCell.identifier)
         // Load page.
@@ -174,7 +173,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
             estimatedHeight += estimatedTextSize.height + 50
             // If thumbnail image is not nil, include the thumbnail image.
             if let thumbnailURL = threads[indexPath.row].thumbnailURL {
-                if SDWebImageManager.shared().cachedImageExists(for: thumbnailURL) {
+                if (SDWebImageManager.shared.cacheKey(for: thumbnailURL).map { SDImageCache.shared.diskImageDataExists(withKey: $0) } ?? false) {
                     estimatedHeight += 140
                 }
             }
@@ -255,7 +254,7 @@ class ThreadTableViewController: UITableViewController, ThreadTableViewControlle
 }
 
 // MARK: UIActions.
-extension ThreadTableViewController: UIAlertViewDelegate {
+extension ThreadTableViewController {
     
     @IBAction func tapOnParasitePostView(_ sender: UIButton) {
         // User tap on parasite post view, show all parasite posts.
@@ -295,11 +294,11 @@ extension ThreadTableViewController: UIAlertViewDelegate {
         // Present
         photoURLs = imageThreads.map({ (thread) -> URL? in
             return thread.imageURL ?? thread.thumbnailURL
-        }).flatMap({ $0 })
+        }).compactMap({ $0 })
         thumbnailURLs = imageThreads.map({ (thread) -> URL? in
             return thread.thumbnailURL ?? thread.imageURL
-        }).flatMap({ $0 })
-        if let index = imageThreads.index(of: threads[index]) {
+        }).compactMap({ $0 })
+        if let index = imageThreads.firstIndex(of: threads[index]) {
             photoIndex = index
         }
         presentPhotos()
@@ -308,7 +307,7 @@ extension ThreadTableViewController: UIAlertViewDelegate {
     fileprivate func openVideoWithLink(_ link: String) {
         if let videoURL = URL(string: link), UIApplication.shared.canOpenURL(videoURL)
         {
-            UIApplication.shared.openURL(videoURL)
+            UIApplication.shared.open(videoURL, options: [:], completionHandler: nil)
             Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
                 AnalyticsParameterContentType: "SELECT REMOTE URL" as NSObject,
                 AnalyticsParameterItemID: "\(videoURL.absoluteString)" as NSString,
@@ -357,24 +356,12 @@ extension ThreadTableViewController: UIAlertViewDelegate {
             return thread.imageURL != nil || thread.thumbnailURL != nil
         })
     }
-    
-    // UIAlertViewDelegate
-    func alertView(_ alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
-        if buttonIndex != alertView.cancelButtonIndex {
-            // Open in Safari.
-            if let threadID = threadID,
-                let currentPageURL = forum?.responseURLForThreadID(threadID), UIApplication.shared.canOpenURL(currentPageURL)
-            {
-                UIApplication.shared.openURL(currentPageURL)
-            }
-        }
-    }
 }
 
-// MAKR: GADBannerViewDelegate
-extension ThreadTableViewController: GADBannerViewDelegate {
+// MAKR: BannerViewDelegate
+extension ThreadTableViewController: BannerViewDelegate {
     
-    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+    func bannerViewWillLeaveApplication(_ bannerView: BannerView) {
         DLog("")
         AdConfiguration.singleton.clickedAd()
     }
@@ -400,9 +387,12 @@ extension ThreadTableViewController: GADBannerViewDelegate {
     
     func attemptLoadRequest() {
         if AdConfiguration.singleton.shouldDisplayAds {
-            let request = GADRequest()
+            let request = Request()
             #if DEBUG
-                request.testDevices = [kGADSimulatorID, "4fa1b332e0290930b2ae511c65ff8947"]
+            MobileAds.shared.requestConfiguration.testDeviceIdentifiers = [
+                "Simulator",
+                "4fa1b332e0290930b2ae511c65ff8947"
+            ]
             #endif
             adBannerView.load(request)
             toggleAdBanner(true)
@@ -418,7 +408,7 @@ extension ThreadTableViewController: TTTAttributedLabelDelegate {
     
     func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
         if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         } else if (url.absoluteString.hasPrefix(ThreadTableViewCell.quotedIdentifier)) {
             guard let quotedNumber = url.absoluteString.numericValue() else { return }
             guard let quotedThread = threads.first(where: { return $0.ID?.numericValue() == quotedNumber }) else {
@@ -442,7 +432,7 @@ extension ThreadTableViewController: TTTAttributedLabelDelegate {
 
 extension ThreadTableViewController {
     
-    func refresh() {
+    @objc func refresh() {
         refreshWithPage(0)
     }
     

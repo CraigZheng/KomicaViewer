@@ -32,21 +32,19 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         let productIdentifiers: Set<ProductIdentifier> = [iapRemoveAd]
         overrideLoadingIndicator = false
-        showLoading()
-        IAPHelper.sharedInstance.requestProducts(productIdentifiers) { [weak self] (response, error) in
+        showSettingsLoading()
+        IAPHelper.sharedInstance.requestProducts(productIdentifiers) { [weak self] response, _ in
+            guard let self else { return }
             DispatchQueue.main.async {
-                self?.hideLoading()
-                self?.overrideLoadingIndicator = true
-                if let response = response,
-                    !response.products.isEmpty {
-                    // Reload tableView with the newly downloaded product.
-                    self?.iapProducts.append(contentsOf: response.products)
-                    if let product = self?.iapProducts.first {
-                        self?.removeAdCell.textLabel?.text = product.localizedTitle
-                        self?.removeAdCell.detailTextLabel?.text = product.localizedPrice()
-                    }
-                    self?.tableView.reloadData()
+                self.hideSettingsLoading()
+                self.overrideLoadingIndicator = true
+                guard let response, !response.products.isEmpty else { return }
+                self.iapProducts.append(contentsOf: response.products)
+                if let product = self.iapProducts.first {
+                    self.removeAdCell.textLabel?.text = product.localizedTitle
+                    self.removeAdCell.detailTextLabel?.text = product.formattedPrice()
                 }
+                self.tableView.reloadData()
             }
         }
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Configuration.updatedNotification),
@@ -56,20 +54,20 @@ class SettingsTableViewController: UITableViewController {
         }
     }
     
-    override func showLoading() {
+    func showSettingsLoading() {
         isDownloading = true
         if overrideLoadingIndicator {
             // Show on the highest level, block all user interactions.
             MBProgressHUD.showAdded(to: self.navigationController?.view ?? self.view, animated: true)
         } else {
-            super.showLoading()
+            showLoading()
         }
     }
     
-    override func hideLoading() {
+    func hideSettingsLoading() {
         isDownloading = false
-        MBProgressHUD.hideAllHUDs(for: self.navigationController?.view ?? self.view, animated: true)
-        super.hideLoading()
+        MBProgressHUD.hide(for: self.navigationController?.view ?? self.view, animated: true)
+        hideLoading()
     }
     
     // MARK: - UI elements.
@@ -98,11 +96,11 @@ class SettingsTableViewController: UITableViewController {
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             switch cell {
             case restorePurchaseCell, removeAdCell:
-                return iapProducts.isEmpty || AdConfiguration.singleton.isAdRemovePurchased ? 0 : UITableViewAutomaticDimension
+                return iapProducts.isEmpty || AdConfiguration.singleton.isAdRemovePurchased ? 0 : UITableView.automaticDimension
             case noAdvertisementCell:
-                return AdConfiguration.singleton.isAdRemovePurchased ? UITableViewAutomaticDimension : 0
+                return AdConfiguration.singleton.isAdRemovePurchased ? UITableView.automaticDimension : 0
             default:
-                return UITableViewAutomaticDimension
+                return UITableView.automaticDimension
             }
         case .remoteActions:
             return CGFloat(Configuration.singleton.remoteActions.count * 44) + 20
@@ -133,7 +131,7 @@ class SettingsTableViewController: UITableViewController {
             let url = URL(string: urlString)
         {
             if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         } else {
             if let cell = tableView.cellForRow(at: indexPath) {
@@ -141,7 +139,7 @@ class SettingsTableViewController: UITableViewController {
                 case removeAdCell:
                     // Initiate purchasing.
                     if let product = self.iapProducts.first {
-                        showLoading()
+                        showSettingsLoading()
                         IAPHelper.sharedInstance.purchaseProduct(product.productIdentifier) { [weak self] (purchasedIdentifier, error) in
                             if let purchasedIdentifier = purchasedIdentifier, !purchasedIdentifier.isEmpty {
                                 // Inform success.
@@ -159,16 +157,16 @@ class SettingsTableViewController: UITableViewController {
                             } else {
                                 self?.handle(error)
                             }
-                            self?.hideLoading()
+                            self?.hideSettingsLoading()
                         }
                     }
                     break
                 case restorePurchaseCell:
                     // Restore purchase.
                     if let product = self.iapProducts.first {
-                        showLoading()
+                        showSettingsLoading()
                         IAPHelper.sharedInstance.restorePurchases({ [weak self] (productIdentifiers, error) in
-                            self?.hideLoading()
+                            self?.hideSettingsLoading()
                             if productIdentifiers.contains(product.productIdentifier) {
                                 // Restoration successful.
                                 AdConfiguration.singleton.isAdRemovePurchased = true

@@ -16,7 +16,7 @@ class QuotedContentTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
         tableView.register(UINib(nibName: "ThreadTableViewCell",
                                  bundle: nil),

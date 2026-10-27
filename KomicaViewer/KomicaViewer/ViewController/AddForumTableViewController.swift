@@ -78,8 +78,7 @@ class AddForumTableViewController: UITableViewController, SVWebViewProtocol {
             // Restore from cache.
             if let jsonString = UserDefaults.standard.object(forKey: pausedForumKey) as? String, !jsonString.isEmpty {
                 if let jsonData = jsonString.data(using: String.Encoding.utf8),
-                    let rawDict = try? JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? Dictionary<String, AnyObject>,
-                    let jsonDict = rawDict
+                    let jsonDict = try? JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? Dictionary<String, AnyObject>
                 {
                     newForum = KomicaForum(jsonDict: jsonDict)
                 }

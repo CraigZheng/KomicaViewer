@@ -31,7 +31,7 @@ class ShowForumQRCodeViewController: UIViewController {
         let filter = CIFilter(name: "CIQRCodeGenerator")
         filter?.setValue(data, forKey: "inputMessage")
         if let rawOutput = filter?.outputImage {
-            let outputImage = rawOutput.applying(CGAffineTransform(scaleX: 10.0, y: 10.0))
+            let outputImage = rawOutput.transformed(by: CGAffineTransform(scaleX: 10.0, y: 10.0))
             return UIImage(ciImage: outputImage)
         } else {
             return nil
