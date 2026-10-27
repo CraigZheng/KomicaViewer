@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Network
 
 import GoogleMobileAds
 import Firebase
@@ -19,6 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // Xcode/iOS 26: warm the Network stack before Firebase/Ads touch URLSession
+        // or SCNetworkReachability, which otherwise crash with EXC_I386_GPFLT in Simulator.
+        // See https://github.com/firebase/firebase-ios-sdk/issues/14948
+        _ = nw_tls_create_options()
+
         // Use Firebase library to configure APIs
         FirebaseApp.configure()
         MobileAds.shared.start(completionHandler: nil)
