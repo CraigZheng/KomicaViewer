@@ -1,49 +1,42 @@
-source 'https://github.com/CocoaPods/Specs.git'
-source 'https://github.com/brion/OGVKit-Specs.git'
-
-# Uncomment this line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '15.0'
 
 workspace 'KomicaViewer.xcworkspace'
-xcodeproj 'KomicaViewer.xcodeproj'
-xcodeproj '../../komicaengine/KomicaEngine.xcodeproj'
-
+project 'KomicaViewer.xcodeproj'
 
 target 'KomicaViewer' do
-  # Comment this line if you're not using Swift and don't want to use dynamic frameworks    
   use_frameworks!
-  source 'https://github.com/brion/OGVKit-Specs.git'  
 
-  xcodeproj 'KomicaViewer.xcworkspace'
-  
-  # Pods for KomicaViewer
-  pod "MWPhotoBrowser", '~> 2.1.2'
-  pod "MBProgressHUD"
-  pod "AFNetworking"
-  pod "PureLayout"
-  #pod 'SVPullToRefresh', :git => 'https://github.com/CraigZheng/SVPullToRefresh.git'
+  pod 'MBProgressHUD', '~> 1.2'
+  pod 'PureLayout', '~> 3.1'
   pod 'CCBottomRefreshControl', :git => 'https://github.com/CraigZheng/CCBottomRefreshControl.git'
-  pod 'SVWebViewController', :git => 'https://github.com/TransitApp/SVWebViewController.git'
-  pod 'Firebase/Core'
-  pod 'Firebase/AdMob'
-  pod 'Firebase/Crash'
-  pod "OGVKit/WebM"
-  pod 'SwiftMessages'
-  pod 'TTTAttributedLabel'
+  pod 'Firebase/Analytics'
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'SwiftMessages', '~> 9.0'
+  pod 'TTTAttributedLabel', '~> 2.0'
+  pod 'SDWebImage', '~> 5.0'
 
   target 'KomicaViewerTests' do
-   inherit! :search_paths
-    # Pods for testing
-    pod 'Firebase'
+    inherit! :search_paths
   end
-
 end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
       config.build_settings['ENABLE_BITCODE'] = 'NO'
       config.build_settings['GCC_WARN_ABOUT_RETURN_TYPE'] = 'YES'
+      # Keep pods in Swift 5 language mode for Xcode 26.
+      config.build_settings['SWIFT_VERSION'] = '5.0'
+      config.build_settings['DEAD_CODE_STRIPPING'] = 'YES'
     end
+  end
+
+  # KomicaEngine lives beside this repo and vendors DTCoreText as a submodule.
+  prepare = File.expand_path('../../komicaengine/Scripts/prepare-dtcoretext.sh', __dir__)
+  if File.exist?(prepare)
+    system('bash', prepare) or raise('Failed to prepare DTCoreText for Xcode 26')
+  else
+    Pod::UI.warn("Skipping DTCoreText prepare script (not found at #{prepare})")
   end
 end

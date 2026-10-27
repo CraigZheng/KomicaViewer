@@ -1,163 +1,173 @@
 PODS:
-  - AFNetworking (3.2.0):
-    - AFNetworking/NSURLSession (= 3.2.0)
-    - AFNetworking/Reachability (= 3.2.0)
-    - AFNetworking/Security (= 3.2.0)
-    - AFNetworking/Serialization (= 3.2.0)
-    - AFNetworking/UIKit (= 3.2.0)
-  - AFNetworking/NSURLSession (3.2.0):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.2.0)
-  - AFNetworking/Security (3.2.0)
-  - AFNetworking/Serialization (3.2.0)
-  - AFNetworking/UIKit (3.2.0):
-    - AFNetworking/NSURLSession
   - CCBottomRefreshControl (0.5.2)
-  - DACircularProgress (2.3.1)
-  - Firebase (4.8.2):
-    - Firebase/Core (= 4.8.2)
-  - Firebase/AdMob (4.8.2):
+  - Firebase/Analytics (12.19.3):
     - Firebase/Core
-    - Google-Mobile-Ads-SDK (= 7.27.0)
-  - Firebase/Core (4.8.2):
-    - FirebaseAnalytics (= 4.0.9)
-    - FirebaseCore (= 4.0.14)
-  - Firebase/Crash (4.8.2):
-    - Firebase/Core
-    - FirebaseCrash (= 2.0.2)
-  - FirebaseAnalytics (4.0.9):
-    - FirebaseCore (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-    - nanopb (~> 0.3)
-  - FirebaseCore (4.0.14):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCrash (2.0.2):
-    - FirebaseAnalytics (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/Logger (~> 2.1)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-    - Protobuf (~> 3.1)
-  - FirebaseInstanceID (2.0.8):
-    - FirebaseCore (~> 4.0)
-  - Google-Mobile-Ads-SDK (7.27.0)
-  - GoogleToolboxForMac/Defines (2.1.3)
-  - GoogleToolboxForMac/Logger (2.1.3):
-    - GoogleToolboxForMac/Defines (= 2.1.3)
-  - GoogleToolboxForMac/NSData+zlib (2.1.3):
-    - GoogleToolboxForMac/Defines (= 2.1.3)
-  - libnestegg (0.3)
-  - libogg (1.3.3)
-  - libopus (1.1):
-    - libopus/float (= 1.1)
-  - libopus/float (1.1)
-  - libvorbis (1.3.5):
-    - libogg (>= 1.0)
-  - libvpx (1.7.0)
-  - MBProgressHUD (0.9.2)
-  - MWPhotoBrowser (2.1.2):
-    - DACircularProgress (~> 2.3)
-    - MBProgressHUD (~> 0.9)
-    - SDWebImage (!= 3.7.2, ~> 3.7)
-  - nanopb (0.3.8):
-    - nanopb/decode (= 0.3.8)
-    - nanopb/encode (= 0.3.8)
-  - nanopb/decode (0.3.8)
-  - nanopb/encode (0.3.8)
-  - OGVKit/Core (0.5.13)
-  - OGVKit/OpusDecoder (0.5.13):
-    - libopus
-    - OGVKit/Core
-  - OGVKit/VorbisDecoder (0.5.13):
-    - libvorbis
-    - OGVKit/Core
-  - OGVKit/VP8Decoder (0.5.13):
-    - libvpx (~> 1.7.0)
-    - OGVKit/Core
-  - OGVKit/WebM (0.5.13):
-    - OGVKit/WebM/Opus (= 0.5.13)
-    - OGVKit/WebM/Vorbis (= 0.5.13)
-    - OGVKit/WebM/VP8 (= 0.5.13)
-  - OGVKit/WebM/Opus (0.5.13):
-    - OGVKit/OpusDecoder
-    - OGVKit/WebMDemuxer
-  - OGVKit/WebM/Vorbis (0.5.13):
-    - OGVKit/VorbisDecoder
-    - OGVKit/WebMDemuxer
-  - OGVKit/WebM/VP8 (0.5.13):
-    - OGVKit/VorbisDecoder
-    - OGVKit/VP8Decoder
-    - OGVKit/WebMDemuxer
-  - OGVKit/WebMDemuxer (0.5.13):
-    - libnestegg (~> 0.2)
-    - OGVKit/Core
-  - Protobuf (3.5.0)
-  - PureLayout (3.0.2)
-  - SDWebImage (3.8.2):
-    - SDWebImage/Core (= 3.8.2)
-  - SDWebImage/Core (3.8.2)
-  - SVWebViewController (1.0)
-  - SwiftMessages (4.1.0)
+  - Firebase/Core (12.19.3):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (~> 12.19.0)
+  - Firebase/CoreOnly (12.19.3):
+    - FirebaseCore (~> 12.19.3)
+  - FirebaseAnalytics (12.19.0):
+    - FirebaseAnalytics/Default (= 12.19.0)
+    - FirebaseCore (~> 12.19.0)
+    - FirebaseInstallations (~> 12.19.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.1)
+    - GoogleUtilities/MethodSwizzler (~> 8.1)
+    - GoogleUtilities/Network (~> 8.1)
+    - "GoogleUtilities/NSData+zlib (~> 8.1)"
+    - nanopb (~> 3.30910.0)
+  - FirebaseAnalytics/Default (12.19.0):
+    - FirebaseCore (~> 12.19.0)
+    - FirebaseInstallations (~> 12.19.0)
+    - GoogleAppMeasurement/Default (= 12.19.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.1)
+    - GoogleUtilities/MethodSwizzler (~> 8.1)
+    - GoogleUtilities/Network (~> 8.1)
+    - "GoogleUtilities/NSData+zlib (~> 8.1)"
+    - nanopb (~> 3.30910.0)
+  - FirebaseCore (12.19.3):
+    - FirebaseCoreInternal (~> 12.19.0)
+    - GoogleUtilities/Environment (~> 8.1)
+    - GoogleUtilities/Logger (~> 8.1)
+  - FirebaseCoreInternal (12.19.0):
+    - "GoogleUtilities/NSData+zlib (~> 8.1)"
+  - FirebaseInstallations (12.19.0):
+    - FirebaseCore (~> 12.19.0)
+    - GoogleUtilities/Environment (~> 8.1)
+    - GoogleUtilities/UserDefaults (~> 8.1)
+    - PromisesObjC (~> 2.4)
+  - Google-Mobile-Ads-SDK (13.11.0):
+    - GoogleUserMessagingPlatform (>= 1.1)
+  - GoogleAdsOnDeviceConversion (3.7.0):
+    - GoogleUtilities/Environment (~> 8.1)
+    - GoogleUtilities/Logger (~> 8.1)
+    - GoogleUtilities/Network (~> 8.1)
+    - nanopb (~> 3.30910.0)
+  - GoogleAppMeasurement/Core (12.19.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.1)
+    - GoogleUtilities/MethodSwizzler (~> 8.1)
+    - GoogleUtilities/Network (~> 8.1)
+    - "GoogleUtilities/NSData+zlib (~> 8.1)"
+    - nanopb (~> 3.30910.0)
+  - GoogleAppMeasurement/Default (12.19.0):
+    - GoogleAdsOnDeviceConversion (~> 3.7.0)
+    - GoogleAppMeasurement/Core (= 12.19.0)
+    - GoogleAppMeasurement/IdentitySupport (= 12.19.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.1)
+    - GoogleUtilities/MethodSwizzler (~> 8.1)
+    - GoogleUtilities/Network (~> 8.1)
+    - "GoogleUtilities/NSData+zlib (~> 8.1)"
+    - nanopb (~> 3.30910.0)
+  - GoogleAppMeasurement/IdentitySupport (12.19.0):
+    - GoogleAppMeasurement/Core (= 12.19.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.1)
+    - GoogleUtilities/MethodSwizzler (~> 8.1)
+    - GoogleUtilities/Network (~> 8.1)
+    - "GoogleUtilities/NSData+zlib (~> 8.1)"
+    - nanopb (~> 3.30910.0)
+  - GoogleUserMessagingPlatform (3.1.0)
+  - GoogleUtilities/AppDelegateSwizzler (8.1.5):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/Environment (8.1.5):
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/Logger (8.1.5):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/MethodSwizzler (8.1.5):
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/Network (8.1.5):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Privacy
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (8.1.5)":
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/Privacy (8.1.5)
+  - GoogleUtilities/Reachability (8.1.5):
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/UserDefaults (8.1.5):
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Privacy
+  - MBProgressHUD (1.2.0)
+  - nanopb (3.30910.0):
+    - nanopb/decode (= 3.30910.0)
+    - nanopb/encode (= 3.30910.0)
+  - nanopb/decode (3.30910.0)
+  - nanopb/encode (3.30910.0)
+  - PromisesObjC (2.4.1)
+  - PureLayout (3.1.9)
+  - SDWebImage (5.21.7):
+    - SDWebImage/Core (= 5.21.7)
+  - SDWebImage/Core (5.21.7)
+  - SwiftMessages (9.0.9):
+    - SwiftMessages/App (= 9.0.9)
+  - SwiftMessages/App (9.0.9)
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
-  - AFNetworking
   - CCBottomRefreshControl (from `https://github.com/CraigZheng/CCBottomRefreshControl.git`)
-  - Firebase
-  - Firebase/AdMob
-  - Firebase/Core
-  - Firebase/Crash
-  - MBProgressHUD
-  - MWPhotoBrowser (~> 2.1.2)
-  - OGVKit/WebM
-  - PureLayout
-  - SVWebViewController (from `https://github.com/TransitApp/SVWebViewController.git`)
-  - SwiftMessages
-  - TTTAttributedLabel
+  - Firebase/Analytics
+  - Google-Mobile-Ads-SDK
+  - MBProgressHUD (~> 1.2)
+  - PureLayout (~> 3.1)
+  - SDWebImage (~> 5.0)
+  - SwiftMessages (~> 9.0)
+  - TTTAttributedLabel (~> 2.0)
+
+SPEC REPOS:
+  trunk:
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseCoreInternal
+    - FirebaseInstallations
+    - Google-Mobile-Ads-SDK
+    - GoogleAdsOnDeviceConversion
+    - GoogleAppMeasurement
+    - GoogleUserMessagingPlatform
+    - GoogleUtilities
+    - MBProgressHUD
+    - nanopb
+    - PromisesObjC
+    - PureLayout
+    - SDWebImage
+    - SwiftMessages
+    - TTTAttributedLabel
 
 EXTERNAL SOURCES:
   CCBottomRefreshControl:
     :git: https://github.com/CraigZheng/CCBottomRefreshControl.git
-  SVWebViewController:
-    :git: https://github.com/TransitApp/SVWebViewController.git
 
 CHECKOUT OPTIONS:
   CCBottomRefreshControl:
     :commit: bc00bc7f0a1c14266414801912a5ae45bb07b264
     :git: https://github.com/CraigZheng/CCBottomRefreshControl.git
-  SVWebViewController:
-    :commit: fe4ddeca1a8c7e5cc5ea716667426463f31b28f3
-    :git: https://github.com/TransitApp/SVWebViewController.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
   CCBottomRefreshControl: 389780b4488321c91d18f66a6da5ef9606df6de5
-  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
-  Firebase: 7d3b8cd837ad9fcd391657734c0d56dab8e9a5a3
-  FirebaseAnalytics: 388b630c15713f5dbf364071f5f3d6077fb52f4e
-  FirebaseCore: 2e0b98fb2d64ca8140136beff15772bdd14d2dd7
-  FirebaseCrash: cded0fc566c03651aea606a101bc156085f333ca
-  FirebaseInstanceID: 81df5805a08001e69138664bdd02c6719a9ac80f
-  Google-Mobile-Ads-SDK: 83f7f890e638ce8f1debd440ea363338c9f6be3b
-  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
-  libnestegg: 851afa1dc38c810bb18fa6459c39aa124abd7fc0
-  libogg: 35e313159a7270931d0f0f208c2d5f60bc05399b
-  libopus: ad5f060dcb8f30f139777244d70f9111f1c80863
-  libvorbis: b2c6a2c2bb22447d80403981185b213cf688fae7
-  libvpx: 5abeaf729fa406fd65ae1c19adcf00329c40e02a
-  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
-  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  OGVKit: 0e63492407aa2f3734ff18670ca09ecfe63d34e7
-  Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
-  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  SVWebViewController: aa2e18a41ff5f45be7aeec8e92ca5bcc50b5ebb1
-  SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
+  Firebase: e3c5ab38229ae085490d02398d97b9f5374bbe6e
+  FirebaseAnalytics: e9f8c369447e453da23f0455a06e4910bad10de0
+  FirebaseCore: ab948de5d99e69aeed3cd6f5ace263ce795b2559
+  FirebaseCoreInternal: 656b1c2fd5a1c5976183dc54b73deda78fb26ee3
+  FirebaseInstallations: f70a49eed611f5602f373e40974b3b01556ac217
+  Google-Mobile-Ads-SDK: 09d0868abe43b9f851b7b340a245679f0eafc96c
+  GoogleAdsOnDeviceConversion: 41f168313b305040f4af27093d3c0af5ba46a9a3
+  GoogleAppMeasurement: f2f676480e4c97936df934aa181bc29caea46975
+  GoogleUserMessagingPlatform: befe603da6501006420c206222acd449bba45a9c
+  GoogleUtilities: 7dc09b3fa9ecb5c2298b952313d14628b61b9da3
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
+  PromisesObjC: 752c3227f599e3467650e47ea36f433eeb10c273
+  PureLayout: 5fb5e5429519627d60d079ccb1eaa7265ce7cf88
+  SDWebImage: e9fc87c1aab89a8ab1bbd74eba378c6f53be8abf
+  SwiftMessages: 1a23aef303fa7bb26ad802880746cf8358e378fe
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 8d9a46bca3b71dbf613c109b7002bc60ae587cf3
+PODFILE CHECKSUM: b6e6008f80df57450dfeee814b0945e836263540
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.16.2

@@ -67,14 +67,13 @@
 		44BD39821D5B5F310070E0CB /* ThreadTableViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39811D5B5F310070E0CB /* ThreadTableViewControllerProtocol.swift */; };
 		44BD39861D5B74ED0070E0CB /* UIView+SuperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD39851D5B74ED0070E0CB /* UIView+SuperCell.swift */; };
 		44C25D1D1D8998650066888E /* DTCoreText.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44C25D191D89984C0066888E /* DTCoreText.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		44D1SPUSH000000000000002 /* DismissAndPushSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1SPUSH000000000000001 /* DismissAndPushSegue.swift */; };
 		44F48EBC1D5D3F0700519C1B /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F48EBB1D5D3F0700519C1B /* ProgressHUD.swift */; };
 		44F9528F1F11077F00026A37 /* QuotedContentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F9528E1F11077F00026A37 /* QuotedContentTableViewController.swift */; };
 		44FBD8251D899D1800ACA2C8 /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44FBD81E1D899D0A00ACA2C8 /* DTFoundation.framework */; };
 		44FBD8261D899D2100ACA2C8 /* DTFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44FBD81E1D899D0A00ACA2C8 /* DTFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8F89F2B3F64E466EDA8E6ED1 /* Pods_KomicaViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21C3A364A9DD0DDE230355EF /* Pods_KomicaViewer.framework */; };
-		A626FE4C1E96D311C76B1EF2 /* Pods_KomicaViewer_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9888890F89082B45414F82C /* Pods_KomicaViewer_KomicaViewerTests.framework */; };
 		B20E87BADB21FFDFDA78476B /* Pods_KomicaViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B832635AE945C0A0AE7FB38 /* Pods_KomicaViewerTests.framework */; };
-		BCE55B9E9BB5B372EA0A346B /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -402,7 +401,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				443176E91F66906100B342D5 /* BFWControls.framework in Embed Frameworks */,
 				44FBD8261D899D2100ACA2C8 /* DTFoundation.framework in Embed Frameworks */,
 				44C25D1D1D8998650066888E /* DTCoreText.framework in Embed Frameworks */,
 				44655D481D5AD24700229404 /* KomicaEngine.framework in Embed Frameworks */,
@@ -480,14 +478,14 @@
 		44BD397F1D5B5E180070E0CB /* ThreadTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadTableViewController.swift; sourceTree = "<group>"; };
 		44BD39811D5B5F310070E0CB /* ThreadTableViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreadTableViewControllerProtocol.swift; path = KomicaViewer/View/ThreadTableViewControllerProtocol.swift; sourceTree = SOURCE_ROOT; };
 		44BD39851D5B74ED0070E0CB /* UIView+SuperCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SuperCell.swift"; sourceTree = "<group>"; };
-		44C25D011D89984C0066888E /* DTCoreText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTCoreText.xcodeproj; path = ../../KomicaEngine/Externals/DTCoreText/DTCoreText.xcodeproj; sourceTree = "<group>"; };
+		44C25D011D89984C0066888E /* DTCoreText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTCoreText.xcodeproj; path = ../../komicaengine/Externals/DTCoreText/DTCoreText.xcodeproj; sourceTree = "<group>"; };
+		44D1SPUSH000000000000001 /* DismissAndPushSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAndPushSegue.swift; sourceTree = "<group>"; };
 		44F48EBB1D5D3F0700519C1B /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		44F9528E1F11077F00026A37 /* QuotedContentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotedContentTableViewController.swift; sourceTree = "<group>"; };
 		44FBD7C91D899C0500ACA2C8 /* DTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DTFoundation.framework; path = "../../KomicaEngine/Externals/DTCoreText/Externals/DTFoundation/build/Debug-iphoneos/DTFoundation.framework"; sourceTree = "<group>"; };
-		44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTFoundation.xcodeproj; path = ../../KomicaEngine/Externals/DTCoreText/Externals/DTFoundation/DTFoundation.xcodeproj; sourceTree = "<group>"; };
+		44FBD7CE1D899D0A00ACA2C8 /* DTFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTFoundation.xcodeproj; path = ../../komicaengine/Externals/DTCoreText/Externals/DTFoundation/DTFoundation.xcodeproj; sourceTree = "<group>"; };
 		5B832635AE945C0A0AE7FB38 /* Pods_KomicaViewerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KomicaViewerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F0A0392FA0DA6C1927ACC66 /* Pods-KomicaViewerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		B9888890F89082B45414F82C /* Pods_KomicaViewer_KomicaViewerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KomicaViewer_KomicaViewerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E60A0BF1FCCC05D433E68E /* Pods-KomicaViewerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests.release.xcconfig"; sourceTree = "<group>"; };
 		DC7DAB90B7018AB9E394882B /* Pods-KomicaViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer.debug.xcconfig"; sourceTree = "<group>"; };
 		F8BD662B1EAC34FEA48F9CA3 /* Pods-KomicaViewer-KomicaViewerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KomicaViewer-KomicaViewerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KomicaViewer-KomicaViewerTests/Pods-KomicaViewer-KomicaViewerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -498,9 +496,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				443176E71F66903400B342D5 /* BFWControls.framework in Frameworks */,
 				44FBD8251D899D1800ACA2C8 /* DTFoundation.framework in Frameworks */,
-				443176E81F66906100B342D5 /* BFWControls.framework in Frameworks */,
 				44655D471D5AD24700229404 /* KomicaEngine.framework in Frameworks */,
 				8F89F2B3F64E466EDA8E6ED1 /* Pods_KomicaViewer.framework in Frameworks */,
 			);
@@ -510,8 +506,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A626FE4C1E96D311C76B1EF2 /* Pods_KomicaViewer_KomicaViewerTests.framework in Frameworks */,
-				BCE55B9E9BB5B372EA0A346B /* (null) in Frameworks */,
 				B20E87BADB21FFDFDA78476B /* Pods_KomicaViewerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -682,6 +676,7 @@
 				447664F61E03F48F00A06138 /* IAPHelper.swift */,
 				44BD39741D5B1E510070E0CB /* Logger.swift */,
 				447665551E067A7D00A06138 /* MessagePopup.swift */,
+				44D1SPUSH000000000000001 /* DismissAndPushSegue.swift */,
 				44F48EBB1D5D3F0700519C1B /* ProgressHUD.swift */,
 				4421C1B01E72C8DE00BD48C4 /* PartialTransparentView.h */,
 				4421C1B11E72C8DE00BD48C4 /* PartialTransparentView.m */,
@@ -760,7 +755,6 @@
 			children = (
 				44FBD7C91D899C0500ACA2C8 /* DTFoundation.framework */,
 				21C3A364A9DD0DDE230355EF /* Pods_KomicaViewer.framework */,
-				B9888890F89082B45414F82C /* Pods_KomicaViewer_KomicaViewerTests.framework */,
 				5B832635AE945C0A0AE7FB38 /* Pods_KomicaViewerTests.framework */,
 			);
 			name = Frameworks;
@@ -785,11 +779,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				4475E63D1F1916BB004EC14D /* PBXTargetDependency */,
 				44FBD8241D899D1100ACA2C8 /* PBXTargetDependency */,
 				44FBD7CC1D899C1900ACA2C8 /* PBXTargetDependency */,
 				44655D4A1D5AD24700229404 /* PBXTargetDependency */,
-				443176EB1F66906100B342D5 /* PBXTargetDependency */,
 			);
 			name = KomicaViewer;
 			productName = KomicaViewer;
@@ -804,8 +796,6 @@
 				44496F5F1D5985A6005875DD /* Sources */,
 				44496F601D5985A6005875DD /* Frameworks */,
 				44496F611D5985A6005875DD /* Resources */,
-				68104A70DA5FA7686066341C /* [CP] Embed Pods Frameworks */,
-				97865819251EB715CFC1A5AC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1200,26 +1190,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		68104A70DA5FA7686066341C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-NSData+zlib/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7BF8544B2F5B3079BB66FB76 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1253,73 +1223,44 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		97865819251EB715CFC1A5AC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewerTests/Pods-KomicaViewerTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9B8EF6BF0691FFF00370BA47 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CCBottomRefreshControl/CCBottomRefreshControl.framework",
-				"${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-Logger-NSData+zlib/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/MWPhotoBrowser/MWPhotoBrowser.framework",
-				"${BUILT_PRODUCTS_DIR}/OGVKit/OGVKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SVWebViewController/SVWebViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
-				"${BUILT_PRODUCTS_DIR}/libnestegg/nestegg.framework",
-				"${BUILT_PRODUCTS_DIR}/libogg/ogg.framework",
-				"${BUILT_PRODUCTS_DIR}/libopus/libopus.framework",
-				"${BUILT_PRODUCTS_DIR}/libvorbis/vorbis.framework",
-				"${PODS_ROOT}/libvpx/VPX.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CCBottomRefreshControl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DACircularProgress.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreInternal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MWPhotoBrowser.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OGVKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVWebViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nestegg.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ogg.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libopus.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/vorbis.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VPX.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AC055B34C87542385C0B897D /* [CP] Copy Pods Resources */ = {
@@ -1328,13 +1269,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Google-Mobile-Ads-SDK/GoogleMobileAdsResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUserMessagingPlatform/UserMessagingPlatformResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMobileAdsResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UserMessagingPlatformResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KomicaViewer/Pods-KomicaViewer-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1360,6 +1306,7 @@
 				443342A71D5F576F00EDFA8F /* AFHTTPSessionManager+Util.swift in Sources */,
 				44397D721D695C00005B44AA /* RoundCornerBorderedButton.swift in Sources */,
 				44496F531D5985A6005875DD /* AppDelegate.swift in Sources */,
+				44D1SPUSH000000000000002 /* DismissAndPushSegue.swift in Sources */,
 				442A502A1D8570A600769A2A /* CustomForumManagerTableViewController.swift in Sources */,
 				44ADCC081D85951600699BAC /* ShowForumQRCodeViewController.swift in Sources */,
 				443342A91D5F5A3800EDFA8F /* ActionTableViewCell.swift in Sources */,
@@ -1493,12 +1440,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "KomicaViewer-bridging-header.h";
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1538,11 +1486,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "KomicaViewer-bridging-header.h";
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1562,13 +1511,13 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = KomicaViewer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1585,13 +1534,13 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = KomicaViewer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1612,11 +1561,11 @@
 					"\"${PODS_ROOT}/Headers/Public/libvpx\"",
 				);
 				INFOPLIST_FILE = KomicaViewerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KomicaViewer.app/KomicaViewer";
 			};
 			name = Debug;
@@ -1638,11 +1587,11 @@
 					"\"${PODS_ROOT}/Headers/Public/libvpx\"",
 				);
 				INFOPLIST_FILE = KomicaViewerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.craig.KomicaViewerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KomicaViewer.app/KomicaViewer";
 			};
 			name = Release;
